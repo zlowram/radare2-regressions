@@ -42,17 +42,16 @@ EXPECT='0x805b030
 '
 run_test
 
-if [ 0 = 1 ]; then
-NAME='z + aac + axt'
-FILE=../bins/elf/go_stripped
+NAME='z + aa + axt'
+FILE=../bins/elf/zigs_stripped
 CMDS='
-zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
-.z/ section..text section..text+1074039
+zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+.z/ section..text section..text+434
 e anal.hasnext=0
-aac
-axt 0x805b030
+aa
+axt 0x400536
 '
-EXPECT='call 0x8049adb call sign.sys.b.sym.fmt.Println in fcn.08049a6c
+EXPECT='call 0x40056f call sign.sys.b.sym.print in main
 '
 run_test
 
@@ -70,7 +69,6 @@ zb sym.func._bar 5589..83....8b....89....c7............c7............8b....3b...
 zn-
 '
 run_test
-fi
 
 NAME='zg on elf'
 FILE=../bins/elf/x86-helloworld-gcc
@@ -84,15 +82,14 @@ zb sym.main 5589..83....83....c7............e8........b8........c9c3
 run_test
 
 NAME='.z on stripped go'
-FILE=../bins/elf/go_stripped2
+FILE=../bins/elf/zigs_stripped
 CMDS='
-aaa
-zn go
-zb sym.fmt.Println 6448..............48......0f..........48......31..31..48........48..............48............31..48....74..48............48........48......48........48........48........48........48........48........48........48........e8........48........48........48........48........48........48..............48......c348............48......48............48........48............48........e8........48........e9........e8........e9........
-.z. @@f
-?v sign.go.b.sym.fmt.Println
+aa
+zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+.z. @@fcn*
+?v sign.sys.b.sym.print
 '
 EXPECT='
-0x45a7b0
+0x400536
 '
 run_test
