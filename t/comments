@@ -117,3 +117,16 @@ EXPECT='            0x00000000      90             nop                         ;
             0x00000000      90             nop
 '
 run_test
+
+FILE=../bins/elf/main
+NAME="cmtrefs"
+CMDS='
+aaa
+e asm.cmtrefs = true
+f test.flag @ 0x004003e0
+CC test comment @ 0x004003e0
+pd 1 @ 0x0040050f
+'
+EXPECT='|           0x0040050f      e8ccfeffff     call sym.imp.puts           ; (test.flag) ; (test comment)
+'
+run_test
