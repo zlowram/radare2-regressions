@@ -133,10 +133,15 @@ FILE=${APP}
 ARGS=''
 BROKEN=
 IGNORE_ERR=1
-CMDS="pi 1 @0x25c; pi 1 @0x026a; pi 1 @0x0294"
-EXPECT='sget-object v0, Ljava/lang/System;
+CMDS="pi 1 @0x240; pi 1 @0x246; pi 1 @0x25c; pi 1 @0x264; pi 1 @0x276; pi 1 @0x026a; pi 1 @0x0294; pi 1 @0x0298"
+EXPECT='iput v0, v1, LHello;->localVar I
+sput v0, LHello;->localVar2 I
+sget-object v0, Ljava/lang/System;->out Ljava/io/PrintStream;
+invoke-virtual {v0, v1}, Ljava/io/PrintStream.println(Ljava/lang/String;)V ; 0x5
+invoke-virtual {v0, v1}, LHello.foo(I)V ; 0x1
 new-instance v0, LHello;
 new-instance v1, Ljava/lang/StringBuilder;
+invoke-direct {v1}, Ljava/lang/StringBuilder.<init>()V ; 0x9
 '
 run_test
 
@@ -146,9 +151,9 @@ ARGS=''
 BROKEN=
 IGNORE_ERR=1
 CMDS="pd 1 @0x00000290|grep Hello.java; pd 1 @0x000002f4|grep World.java; pd 1 @0x00000318|grep World.java;"
-EXPECT='            0x00000290      62000400       sget-object v0, Ljava/lang/System; ; Hello.java:9
+EXPECT='            0x00000290      62000400       sget-object v0, Ljava/lang/System;->out Ljava/io/PrintStream; ; Hello.java:9
             0x000002f4      701008000100   invoke-direct {v1}, Ljava/lang/Object.<init>()V ; 0x8 ; World.java:5
-            0x00000318      62000400       sget-object v0, Ljava/lang/System; ; World.java:11
+            0x00000318      62000400       sget-object v0, Ljava/lang/System;->out Ljava/io/PrintStream; ; World.java:11
 '
 run_test
 
