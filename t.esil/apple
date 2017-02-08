@@ -90,10 +90,9 @@ run_test
 
 NAME='thumb emulation arm issue'
 FILE=../bins/mach0/FileDP
-CMDS='e asm.bits=16
-aes
+CMDS='aes
 e asm.bits'
-EXPECT='16
+EXPECT='32
 '
 run_test
 
