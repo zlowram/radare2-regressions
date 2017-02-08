@@ -266,3 +266,11 @@ CMDS='!rabin2 -qqz ${R2_FILE}'
 EXPECT='Hello World
 '
 run_test
+
+
+NAME='rabin2 -qOr'
+FILE=../../bins/elf/analysis/ls-linux-x86_64-zlul
+ARGS=
+CMDS='!rabin2 -qOr/.data/-1 ${FILE} &> /dev/null; !rabin2 -qOr/.data/-1 ${FILE}  &> /dev/null'
+EXPECT='Segmentation fault'
+run_test
