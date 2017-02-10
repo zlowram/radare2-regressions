@@ -1239,9 +1239,9 @@ test_vector "${PLUGIN}" "xsetbv" 0f01d1
 test_invalid "${PLUGIN}" "mov eax, eip"
 test_invalid "${PLUGIN}" "mov eax, ax" "br"
 test_invalid "${PLUGIN}" "mov [eax*6], 1" "br"
-test_invalid "${PLUGIN}" "mov [1], [2]"
 test_invalid "${PLUGIN}" "mov [0x1122334455667788],eax" "br"
 test_invalid "${PLUGIN}" "mov fs:[1],[ds:1]" "br"
+test_invalid "${PLUGIN}" "mov [1], [2]"
 
 BITS=64
 test_vector "${PLUGIN}" "add r13, r15" 4d01fd
