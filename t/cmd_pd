@@ -436,7 +436,11 @@ NAME='pdf fcnline'
 FILE='../bins/pe/a.exe'
 ARGS=
 BROKEN=
-CMDS='e asm.fcnlines=true;s 0x004017c0; af+ 0x004017c0 45 fcn2.0x004017c0; afb+ 0x4017c0 0x4017c0 13 0x4017dd 0x4017cd; pdf'
+CMDS='e asm.fcnlines=true
+s 0x004017c0
+af+ 0x004017c0 fcn2.0x004017c0
+afb+ 0x4017c0 0x4017c0 13 0x4017dd 0x4017cd
+pdf'
 EXPECT='/ (fcn) fcn2.0x004017c0 13
 |   fcn2.0x004017c0 ();
 |           0x004017c0      51             push ecx

@@ -1,5 +1,5 @@
 #!/bin/sh
-# GPL 3+ - Copyright (C) 2012-2015  pancake, Edd Barrett, Simon Ruderich
+# GPL 3+ - Copyright (C) 2012-2017  pancake, Edd Barrett, Simon Ruderich
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
 ## test visual mode in batch
@@ -19,7 +19,8 @@ e asm.bits=16
 e asm.nbytes=2
 e asm.cmtcol=0
 wx 66b801000000b90f006683fb02e2fa66bb01000000c3
-af+ 0000:0000 22 fcn1
+af+ 0000:0000 fcn1
+afb+ 0 0 22
 f .loop1 @ 0000:0009
 pd 1 @ 0000:000d
 '
@@ -35,7 +36,8 @@ e asm.arch=x86
 e asm.bits=16
 e asm.nbytes=2
 wx 66b801000000b90f006683fb02e2fa66bb01000000c3
-af+ 0 22 fnc1
+af+ 0 fnc1
+afb+ 0 0 22
 f .loop1 @ 9
 pd 1 @ 9
 '

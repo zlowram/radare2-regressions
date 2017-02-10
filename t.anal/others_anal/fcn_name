@@ -4,7 +4,6 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME="anal/fcn_name"
-BROKEN=
 FILE=../../bins/elf/analysis/main-g
 IGNORE_ERR=1
 ARGS=
@@ -16,11 +15,9 @@ EXPECT='/ (fcn) sym.call_gmon_start 23
 run_test
 
 NAME="anal/fcn_subname"
-BROKEN=
 FILE=../../bins/elf/analysis/main-g
 ARGS=
 # REGRESSION
-BROKEN=
 IGNORE_ERR=1
 CMDS='s 0x0040042c
 af
@@ -32,13 +29,11 @@ EXPECT='name: sym.call_gmon_start
 run_test
 
 NAME="anal/name"
-BROKEN=
 FILE=../../bins/mach0/ls-osx-x86_64
 ARGS=
-BROKEN=1
 CMDS='af
 afi~name
 '
-EXPECT='name: entry0
+EXPECT='name: main
 '
 run_test
