@@ -16,6 +16,16 @@ EXPECT='[44m  [44m  [40m  [41m  [44m  [44m  [47m  [40m  [0m
 [41m  [40m  [41m  [40m  [47m  [47m  [47m  [47m  [0m
 [47m  [40m  [47m  [41m  [44m  [41m  [47m  [44m  [0m
 '
+# ascii art
+EXPECT='----..==----##..
+--==####..####..
+==..##..------==
+--==####..####--
+==..==##--##==##
+..----####--====
+==..==..########
+##..##==--==##--
+'
 
 run_test
 
@@ -49,13 +59,13 @@ run_test
 
 NAME='p=d'
 FILE='../bins/elf/arm1.bin'
-BROKEN=1
 ARGS=-n
-CMDS='p=d 10 2560@0'
+CMDS='p=d 10 @ 0'
 EXPECT='min:   1  0x1
-max:   235  0xeb
-dict:  65  0x41
-range: 234  0xea
+max:   127  0x7f
+dict:  6  0x6
+range: 126  0x7e
+size:  10  0xa
 '
 
 run_test
