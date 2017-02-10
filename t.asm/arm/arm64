@@ -6,6 +6,10 @@ NAME="${1}: [${2}]"
 FILE=malloc://32
 if [ "${5}" = "br" ]; then
 		BROKEN=1
+		if [ -n "${TRAVIS}" ]; then
+			unset BROKEN
+			return
+		fi
 	fi
 CMDS='
 e asm.arch='${1}'
