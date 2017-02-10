@@ -6,6 +6,9 @@ test_vector() {
 NAME="${1} ${BITS}: [${2}]"
 if [ "${4}" = "br" ]; then
     BROKEN=1
+    if [ -n "${TRAVIS}" ]; then
+      return
+    fi
 fi
 CMDS='!rasm2 -a '${1}' -b '${BITS}' "'${2}'"
 '
