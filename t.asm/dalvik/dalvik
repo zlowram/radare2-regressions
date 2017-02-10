@@ -133,10 +133,10 @@ test_vector "${PLUGIN}" "invoke-direct {v1}, method+8" 701008000100
 test_vector "${PLUGIN}" "invoke-static {v4}, method+52" 711034000400
 test_vector "${PLUGIN}" "invoke-interface {v1, v3, v4, v5}, method+545" 724021023154
 test_vector "${PLUGIN}" "invoke-virtual/range {v19..v21}, method+6" 740306001300
-test_vector "${PLUGIN}" "invoke-super {v1}, method+422" 7501A6010100 br # quite wrong, refact
+test_vector "${PLUGIN}" "invoke-super/range {v1..v1}, method+422" 7501A6010100
 test_vector "${PLUGIN}" "invoke-direct/range {v19..v21}, method+58" 76033A001300
 test_vector "${PLUGIN}" "invoke-static/range {v19..v21}, method+58" 77033A001300
-test_vector "${PLUGIN}" "invoke-interface {v1..v4}, method+545" 784021020100 br # quite wrong, refact
+test_vector "${PLUGIN}" "invoke-interface/range {v1..v64}, method+545" 784021020100
 test_vector "${PLUGIN}" "neg-int v1, v0" 7B01
 test_vector "${PLUGIN}" "not-int v1, v0" 7C01
 test_vector "${PLUGIN}" "neg-long v2, v0" 7D02
