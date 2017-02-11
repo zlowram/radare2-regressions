@@ -272,5 +272,6 @@ NAME='rabin2 -qOr'
 FILE=../../bins/elf/analysis/ls-linux-x86_64-zlul
 ARGS=
 CMDS='!rabin2 -qOr/.data/-1 ${FILE} &> /dev/null; !rabin2 -qOr/.data/-1 ${FILE}  &> /dev/null'
-EXPECT='Segmentation fault'
+EXPECT='0
+'
 run_test
