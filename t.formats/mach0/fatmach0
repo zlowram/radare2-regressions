@@ -1,7 +1,48 @@
 #!/bin/sh
-# LGPLv3 - Copyright (C) 2014-2016  pancake
+# LGPLv3 - Copyright (C) 2014-2017  pancake
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME='fatmach0 arm16 symbol alignment'
+BROKEN=1
+FILE=../../bins/mach0/a.out
+ARGS=
+CMDS='s sym._call
+pi 1
+'
+EXPECT='push {r7, lr}
+'
+run_test
+
+NAME='mach0 arm16 symbol alignment'
+FILE=../../bins/mach0/a.out.fat/a.out.arm_32.0
+ARGS=
+CMDS='s sym._call
+pi 1
+'
+EXPECT='push {r7, lr}
+'
+run_test
+
+NAME='fatmach0 arm64 symbol alignment'
+FILE=../../bins/mach0/a.out
+ARGS="-a arm -b 64"
+CMDS='s sym._call
+pi 1
+'
+EXPECT='stp x29, x30, [sp, -0x10]!
+'
+run_test
+
+NAME='mach0 arm64 symbol alignment'
+FILE=../../bins/mach0/a.out.fat/a.out.arm_64.1
+ARGS=
+CMDS='s sym._call
+pi 1
+'
+EXPECT='stp x29, x30, [sp, -0x10]!
+'
+run_test
 
 NAME='fatmach0 archs'
 BROKEN=
