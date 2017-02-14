@@ -59,3 +59,13 @@ EXPECT='struct _IO_marker {
 };
 '
 run_test
+
+NAME="${PLUGIN}: iddt"
+CMDS='iddi ../../bins/elf/bomb
+iddt _IO_marker._sbuf
+iddt _IO_marker._pos
+'
+EXPECT='struct _IO_FILE * - 8
+int  - 4
+'
+run_test
