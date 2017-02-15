@@ -19,8 +19,8 @@ EXPECT='1
 run_test
 
 
-NAME='a2f jmp after ret'
-BROKEN=
+NAME='a2f jmp after ret - _size (symsize)'
+BROKEN=1
 FILE=malloc://512
 ARGS=
 CMDS='
@@ -31,6 +31,25 @@ wx b8010000004839ca7f26b8ffffffff4839ca7c1c498b4838498b5138b8010000004839ca7f0ab
 a2f
 afl~?
 afl~[2]
+'
+EXPECT='1
+60
+'
+run_test
+
+
+NAME='a2f jmp after ret - realsize (bbs_sum)'
+BROKEN=
+FILE=malloc://512
+ARGS=
+CMDS='
+e anal.hasnext=0
+e asm.arch=x86
+e asm.bits=64
+wx b8010000004839ca7f26b8ffffffff4839ca7c1c498b4838498b5138b8010000004839ca7f0ab8ffffffff4839ca7d025dc34883c7684883c6685dc3
+a2f
+afl~?
+afl~[4]
 '
 EXPECT='1
 60
