@@ -14,7 +14,14 @@ EXPECT="${3}
 run_test
 }
 
-PLUGIN=x86.nasm
+type nasm > /dev/null 2>&1
+if [ $? = 0 ]; then
+    PLUGIN=x86.nasm
+    echo "nasm found in path. testing it..."
+else
+    PLUGIN=x86
+    echo "cant find nasm, using x86"
+fi
 BITS=32
 
 # Multiline label test
