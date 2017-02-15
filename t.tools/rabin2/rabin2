@@ -271,7 +271,7 @@ run_test
 NAME='rabin2 -qOr'
 FILE=../../bins/elf/analysis/ls-linux-x86_64-zlul
 ARGS=
-CMDS='!rabin2 -qOr/.data/-1 ${FILE} &> /dev/null; !rabin2 -qOr/.data/-1 ${FILE}  &> /dev/null'
-EXPECT='0
-'
+CMDS='!rabin2 -qOr/.data/-1 ${FILE}
+!rabin2 -qOr/.data/-1 ${FILE}'
+EXPECT=''
 run_test
