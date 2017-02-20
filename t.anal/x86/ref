@@ -11,3 +11,26 @@ ao~^ptr[1]
 EXPECT='0x00004434
 '
 run_test
+
+NAME="strings xref issue"
+FILE=../../bins/elf/redpill
+BROKEN=1
+CMDS='
+aa
+axt 0x00001d89
+axt 0x00001da0
+axt 0x00001db7
+axt 0x00001dd1
+axt 0x00001de8
+axt 0x00001df4
+axt 0x00001e09
+'
+EXPECT='data 0x00001457 lea eax, str.Take_the_Red_Pill____n in main
+data 0x0000148e lea eax, str.use:_._exploit1_PILL in main
+data 0x000014eb lea eax, str.Red_Pill__0x50444552 in main
+data 0x00001502 lea eax, str.Your_Pill_0x_08x_n in main
+data 0x00001523 lea eax, str._n__Red_Pill in main
+data 0x00001557 lea eax, str.fwhibbit_ in main
+data 0x0000161d lea eax, str._n__Blue_Pill in main
+'
+run_test
