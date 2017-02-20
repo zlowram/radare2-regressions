@@ -12,11 +12,21 @@ EXPECT='0x00004434
 '
 run_test
 
+NAME="iM command"
+FILE=../../bins/elf/redpill
+BROKEN=
+CMDS='iM
+'
+EXPECT='[Main]
+vaddr=0x0000142e paddr=0x0000142e
+'
+run_test
+
 NAME="strings xref issue"
 FILE=../../bins/elf/redpill
 BROKEN=1
 CMDS='
-aa
+aac
 axt 0x00001d89
 axt 0x00001da0
 axt 0x00001db7
