@@ -211,3 +211,93 @@ EXPECT='data 0x804848a mov dword [esp], str.Sdvvzrug_RN______ in sym.test
 d 0x804848a mov dword [esp], str.Sdvvzrug_RN______
 '
 run_test
+
+NAME="x86 ref issue"
+CMDS='
+e asm.bits=64
+e asm.arch=x86
+wx c7052a44000050000000
+ao~^ptr[1]
+'
+EXPECT='0x00004434
+'
+run_test
+
+NAME="strings xref issue"
+FILE=../../bins/elf/redpill
+BROKEN=1
+CMDS='
+aac
+axt 0x00001d89
+axt 0x00001da0
+axt 0x00001db7
+axt 0x00001dd1
+axt 0x00001de8
+axt 0x00001df4
+axt 0x00001e09
+'
+EXPECT='data 0x00001457 lea eax, str.Take_the_Red_Pill____n in main
+data 0x0000148e lea eax, str.use:_._exploit1_PILL in main
+data 0x000014eb lea eax, str.Red_Pill__0x50444552 in main
+data 0x00001502 lea eax, str.Your_Pill_0x_08x_n in main
+data 0x00001523 lea eax, str._n__Red_Pill in main
+data 0x00001557 lea eax, str.fwhibbit_ in main
+data 0x0000161d lea eax, str._n__Blue_Pill in main
+'
+run_test
+
+NAME='reference to like mov [0x400000], 0x1234'
+BROKEN=
+FILE=../../bins/elf/analysis/reference.out
+ARGS=
+CMDS='
+aaa
+axt@0x0804a01c
+'
+EXPECT='data 0x80483ee mov dword [obj.a], 0x1337 in sym.main
+'
+run_test
+
+NAME='delete references with ax-'
+FILE='../../bins/elf/crackme'
+ARGS=
+CMDS='
+ax 10 20
+ax
+ax- 10
+ax
+ax- 20
+ax
+ax 10 20
+ax 30 40
+ax
+ax-*
+ax
+'
+EXPECT='ref.unk.0x14=0xa
+xref.unk.0xa=0x14
+types=code.jmp,code.call,data.mem,data.string
+ref.unk.0x14=0xa
+xref.unk.0xa=0x14
+types=code.jmp,code.call,data.mem,data.string
+types=code.jmp,code.call,data.mem,data.string
+ref.unk.0x28=0x1e
+ref.unk.0x14=0xa
+xref.unk.0xa=0x14
+xref.unk.0x1e=0x28
+types=code.jmp,code.call,data.mem,data.string
+types=code.jmp,code.call,data.mem,data.string
+'
+run_test
+
+NAME='reference PIC binary'
+BROKEN=1
+FILE=../../bins/elf/analysis/xrefpic
+ARGS=
+CMDS='
+aaa
+axt@0x80484e0
+'
+EXPECT='data 0x0804842c add ebx, str.Hello_PIC_ in main
+'
+run_test

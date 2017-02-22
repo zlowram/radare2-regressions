@@ -867,3 +867,13 @@ block    0x100
 '
 FILTER='sed "s/^fd       [0-9][0-9]*/fd       42/"'
 run_test
+
+NAME="iM command"
+FILE=../bins/elf/redpill
+BROKEN=
+CMDS='iM
+'
+EXPECT='[Main]
+vaddr=0x0000142e paddr=0x0000142e
+'
+run_test
