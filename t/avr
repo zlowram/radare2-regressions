@@ -109,6 +109,7 @@ FILE=../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='
+s 0
 /c in ~ 0x18
 pd 5'
 EXPECT='0x00000296   # 2: in r24, 0x18
@@ -117,5 +118,29 @@ EXPECT='0x00000296   # 2: in r24, 0x18
       ,===< 0x00000008      0c94db00       jmp 0x1b6
      ,====< 0x0000000c      0c94db00       jmp 0x1b6
     ,=====< 0x00000010      0c94db00       jmp 0x1b6
+'
+run_test
+
+NAME="entry point and bin format - arduino"
+FILE=../bins/firmware/arduino_avr.bin
+ARGS=
+BROKEN=
+CMDS='
+?v $$
+i~arch[1]'
+EXPECT='0x158
+avr
+'
+run_test
+
+NAME="entry point and bin format - jumpy"
+FILE=../bins/firmware/jumpy.bin
+ARGS=
+BROKEN=
+CMDS='
+?v $$
+i~arch[1]'
+EXPECT='0x8a
+avr
 '
 run_test
