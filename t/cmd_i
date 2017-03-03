@@ -4,6 +4,26 @@
 
 ## "i" - get info about opened file
 export BIT_SIZE=`getconf LONG_BIT`
+NAME='ih (file x86)'
+FILE=../bins/elf/analysis/x86-helloworld-gcc
+ARGS=
+CMDS="ihq"
+EXPECT='[Header fields]
+0x00000000 0x00000000 ehdr
+0x000007cc 0x000007cc shoff
+0x00000034 0x00000034 phoff
+0x00000034 0x00000034 phdr_0
+0x00000134 0x00000134 phdr_1
+0x00000000 0x00000000 phdr_2
+0x0000059c 0x0000059c phdr_3
+0x000005a8 0x000005a8 phdr_4
+0x00000148 0x00000148 phdr_5
+0x000004c0 0x000004c0 phdr_6
+0x00000000 0x00000000 phdr_7
+
+11 fields
+'
+run_test
 
 NAME='i (all) (malloc)'
 FILE=malloc://1025
@@ -306,26 +326,6 @@ EXPECT='[{"vaddr":134513408,"paddr":768,"baddr":134512640,"laddr":0,"haddr":24,"
 '
 run_test
 
-NAME='ih (file x86)'
-FILE=../bins/elf/analysis/x86-helloworld-gcc
-ARGS=
-CMDS="ih"
-EXPECT='[Header fields]
-idx=00 vaddr=0x00000000 paddr=0x00000000 name=ehdr
-idx=01 vaddr=0x000007cc paddr=0x000007cc name=shoff
-idx=02 vaddr=0x00000034 paddr=0x00000034 name=phoff
-idx=03 vaddr=0x00000034 paddr=0x00000034 name=phdr_0
-idx=04 vaddr=0x00000134 paddr=0x00000134 name=phdr_1
-idx=05 vaddr=0x00000000 paddr=0x00000000 name=phdr_2
-idx=06 vaddr=0x0000059c paddr=0x0000059c name=phdr_3
-idx=07 vaddr=0x000005a8 paddr=0x000005a8 name=phdr_4
-idx=08 vaddr=0x00000148 paddr=0x00000148 name=phdr_5
-idx=09 vaddr=0x000004c0 paddr=0x000004c0 name=phdr_6
-idx=10 vaddr=0x00000000 paddr=0x00000000 name=phdr_7
-
-11 fields
-'
-run_test
 
 NAME='ii (file x86)'
 FILE=../bins/elf/analysis/x86-helloworld-gcc
@@ -587,24 +587,17 @@ vaddr=0x00400410 paddr=0x00000410 baddr=0x00400000 laddr=0x00000000 haddr=0x0000
 '
 run_test
 
-NAME='ih (file x86_64)'
+NAME='iH (file x86_64)'
 FILE=../bins/elf/analysis/hello-linux-x86_64
 ARGS=
-CMDS="ih"
-EXPECT='[Header fields]
-idx=00 vaddr=0x00000000 paddr=0x00000000 name=ehdr
-idx=01 vaddr=0x00000a30 paddr=0x00000a30 name=shoff
-idx=02 vaddr=0x00000040 paddr=0x00000040 name=phoff
-idx=03 vaddr=0x00000040 paddr=0x00000040 name=phdr_0
-idx=04 vaddr=0x00000200 paddr=0x00000200 name=phdr_1
-idx=05 vaddr=0x00000000 paddr=0x00000000 name=phdr_2
-idx=06 vaddr=0x000006e0 paddr=0x000006e0 name=phdr_3
-idx=07 vaddr=0x000006f8 paddr=0x000006f8 name=phdr_4
-idx=08 vaddr=0x0000021c paddr=0x0000021c name=phdr_5
-idx=09 vaddr=0x000005d0 paddr=0x000005d0 name=phdr_6
-idx=10 vaddr=0x00000000 paddr=0x00000000 name=phdr_7
-
-11 fields
+CMDS='iH'
+EXPECT='0x00000000  ELF64       0x464c457f
+0x00000010  Type        0x0002
+0x00000012  Machine     0x003e
+0x00000014  Version     0x00000001
+0x00000018  Entrypoint  0x00400410
+0x00000020  PhOff       0x00000040
+0x00000028  ShOff       0x00000a30
 '
 run_test
 
