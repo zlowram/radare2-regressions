@@ -217,3 +217,16 @@ dr rip
 EXPECT='0x00400582
 '
 run_test
+
+NAME='dbg.dcu can reach main'
+FILE=../../bins/elf/analysis/calls_x64
+ARGS='-a x86 -d'
+BROKEN=
+CMDS='
+dcu main
+?v $$~[1];
+'
+EXPECT='0x400574
+Hello world
+'
+run_test
