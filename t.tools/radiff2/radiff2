@@ -37,25 +37,29 @@ run_test
 
 
 NAME='radiff2 string comparsion'
+BROKEN=
 ARGS=
 CMDS="!!radiff2 -z ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
-EXPECT="0x00000000 48656c6c6f20776f72 => 6f20776f726c64210a 0x00000000
+EXPECT="0x00000000 48656c6c6f20776f726c64210a => 414141416f20776f726c64210a 0x00000000
 "
 run_test
 
 NAME='radiff2 unified string comparsion'
+BROKEN=
 ARGS=
-CMDS="!!radiff2 -uqz ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
-EXPECT="- Hello wor
-+ o world!
-"
+CMDS="!!radiff2 -uz ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
+EXPECT="[31m- Hello world!
+[0m[32m+ AAAAo world!
+[0m"
 run_test
 
 NAME='radiff2 gnu unified string comparsion'
-BROKEN=1
+BROKEN=
 ARGS=
-CMDS="!!radiff2 -Uz ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
-EXPECT="0x000004b0 48656c6c => 01020304 0x000004b0
+CMDS="!!radiff2 -Uz ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1 | tail -n 3"
+EXPECT="@@ -1 +1 @@
+-Hello world!
++AAAAo world!
 "
 run_test
 
