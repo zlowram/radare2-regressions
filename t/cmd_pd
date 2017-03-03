@@ -86,6 +86,29 @@ EXPECT="            0x00000000      fa67bba9       stp x26, x25, [sp, -0x50]!  ;
 "
 run_test
 
+NAME='asm.filter issue #6752'
+FILE=malloc://1024
+ARGS=
+CMDS='
+s 0x100
+wx e801000000c350c3
+aaaa
+e asm.pseudo=true
+e asm.offset=false
+e asm.lines=false
+e asm.marks=false
+e asm.nbytes=0
+e asm.comments=false
+e asm.fcnlines=false
+e asm.calls=false
+e asm.functions=false
+e scr.color=false
+pd 1
+'
+EXPECT="fcn.00000106 ()
+"
+run_test
+
 NAME='pd bits hint'
 FILE='-'
 ARGS='-a snes'
