@@ -95,13 +95,24 @@ zn-
 run_test
 
 NAME='zg on elf'
-FILE=../bins/elf/analysis/x86-helloworld-gcc
+FILE=../bins/elf/analysis/zigs
 BROKEN=
 CMDS='
 aaa
-zg x86~?main
+zg x86~sym.main[2]
 '
-EXPECT='1
+EXPECT='5548....48......89....48......bf........e8........b8........c9c3
+'
+run_test
+
+NAME='zG on elf'
+FILE=../bins/elf/analysis/zigs
+BROKEN=
+CMDS='
+aaa
+zG x86~sym.main[2]
+'
+EXPECT='554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
 '
 run_test
 
