@@ -4,41 +4,8 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 NAME='PE: checksum 1'
 FILE=../../bins/pe/a.exe
 ARGS='-A'
-CMDS="i"
-EXPECT='type     EXEC (Executable file)
-file     ../../bins/pe/a.exe
-fd       6
-size     0x1600
-iorw     false
-blksz    0x0
-mode     -r--
-block    0x100
-format   pe
-havecode true
-pic      false
-canary   false
-nx       false
-crypto   false
-va       true
-bintype  pe
-class    PE32
-arch     x86
-bits     32
-machine  i386
-os       windows
-minopsz  1
-maxopsz  16
-pcalign  0
-subsys   Windows CUI
-endian   little
-stripped false
-static   false
-linenum  true
-lsyms    true
-relocs   true
-binsz    5632
-compiled Wed Apr 23 23:56:24 2014
-hdr.csum 0x00005ee2
+CMDS="i~csum"
+EXPECT='hdr.csum 0x00005ee2
 cmp.csum 0x00005ee2
 '
 run_test
@@ -46,41 +13,8 @@ run_test
 NAME='PE: checksum 2'
 FILE=../../bins/pe/a2.exe
 ARGS='-A'
-CMDS="i"
-EXPECT='type     EXEC (Executable file)
-file     ../../bins/pe/a2.exe
-fd       6
-size     0x6ed1
-iorw     false
-blksz    0x0
-mode     -r--
-block    0x100
-format   pe
-havecode true
-pic      false
-canary   false
-nx       false
-crypto   false
-va       true
-bintype  pe
-class    PE32
-arch     x86
-bits     32
-machine  i386
-os       windows
-minopsz  1
-maxopsz  16
-pcalign  0
-subsys   Windows CUI
-endian   little
-stripped true
-static   false
-linenum  true
-lsyms    false
-relocs   true
-binsz    28369
-compiled Fri Dec 12 01:11:54 2014
-hdr.csum 0x000079a3
+CMDS="i~csum"
+EXPECT='hdr.csum 0x000079a3
 cmp.csum 0x000079a3
 '
 run_test
@@ -88,41 +22,8 @@ run_test
 NAME='PE: checksum 3'
 FILE=../../bins/pe/base.exe
 ARGS='-A'
-CMDS="i"
-EXPECT='type     EXEC (Executable file)
-file     ../../bins/pe/base.exe
-fd       6
-size     0x34df9
-iorw     false
-blksz    0x0
-mode     -r--
-block    0x100
-format   pe
-havecode true
-pic      false
-canary   false
-nx       false
-crypto   false
-va       true
-bintype  pe
-class    PE32
-arch     x86
-bits     32
-machine  i386
-os       windows
-minopsz  1
-maxopsz  16
-pcalign  0
-subsys   Windows CUI
-endian   little
-stripped true
-static   false
-linenum  true
-lsyms    false
-relocs   true
-binsz    216569
-compiled Wed Feb 12 22:16:24 2014
-hdr.csum 0x0003881f
+CMDS="i~csum"
+EXPECT='hdr.csum 0x0003881f
 cmp.csum 0x0003881f
 '
 run_test
