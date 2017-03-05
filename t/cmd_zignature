@@ -36,7 +36,7 @@ FILE=../bins/elf/analysis/go_stripped
 CMDS='
 zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 .z/ section..text section..text+1074039
-?v sign.sys.b.sym.fmt.Println
+?v sign.sys.b.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
@@ -48,7 +48,7 @@ CMDS='
 e search.in = io.section
 zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 .z/ section..text section..text+1074039
-?v sign.sys.b.sym.fmt.Println
+?v sign.sys.b.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
@@ -60,7 +60,7 @@ CMDS='
 e search.align = 4
 zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 .z/ section..text section..text+1074039
-?v sign.sys.b.sym.fmt.Println
+?v sign.sys.b.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
@@ -75,7 +75,7 @@ e anal.hasnext=0
 aa
 axt 0x400536
 '
-EXPECT='call 0x40056f call sign.sys.b.sym.print in main
+EXPECT='call 0x40056f call sign.sys.b.sym.print_0 in main
 '
 run_test
 
@@ -122,7 +122,7 @@ CMDS='
 aa
 zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
 .z. @@ fcn*
-?v sign.sys.b.sym.print
+?v sign.sys.b.sym.print_0
 '
 EXPECT='0x400536
 '
