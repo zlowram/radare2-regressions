@@ -2129,3 +2129,234 @@ EXPECT='efbeadde
 0x00000001
 '
 run_test
+
+NAME="add reg"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=1
+ar r2=2
+wv 0xe0810002
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="add reg in place"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r0=1
+ar r1=2
+wv 0xe0800001
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="add reg shifted"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=1
+ar r2=4
+wv 0xe08100a2
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="add reg asr"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=2
+ar r2=-1
+wv 0xe08100c2
+aes
+ar r0
+'
+EXPECT='0x00000001
+'
+run_test
+
+NAME="add imm"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=1
+wv 0xe2810002
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="add imm rotated"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=2
+wv 0xe2810104
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="sub imm rotated"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xa
+wv 0xe2410104
+aes
+ar r0
+'
+EXPECT='0x00000009
+'
+run_test
+
+NAME="mul reg"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xa
+ar r2=0x2
+wv 0xe0000291
+aes
+ar r0
+'
+EXPECT='0x00000014
+'
+run_test
+
+NAME="and imm rotated"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xf
+wv 0xe2010104
+aes
+ar r0
+'
+EXPECT='0x00000001
+'
+run_test
+
+NAME="orr imm rotated"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0x2
+wv 0xe3810104
+aes
+ar r0
+'
+EXPECT='0x00000003
+'
+run_test
+
+NAME="eor imm rotated"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xf
+wv 0xe2210104
+aes
+ar r0
+'
+EXPECT='0x0000000e
+'
+run_test
+
+NAME="lsr reg"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xa
+ar r2=0x2
+wv 0xe1a00231
+aes
+ar r0
+'
+EXPECT='0x00000002
+'
+run_test
+
+NAME="lsl reg"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0xa
+ar r2=0x2
+wv 0xe1a00211
+aes
+ar r0
+'
+EXPECT='0x00000028
+'
+run_test
+
+NAME="add pc op1"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+wv 0xe28f0002
+aes
+ar r0
+'
+EXPECT='0x0000000a
+'
+run_test
+
+NAME="add pc op2"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+ar r1=0x2
+wv 0xe081000f
+aes
+ar r0
+'
+EXPECT='0x0000000a
+'
+run_test

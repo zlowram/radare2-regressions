@@ -403,3 +403,33 @@ ar r4
 EXPECT='0xfffffffe
 '
 run_test
+
+NAME="orn"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=16
+ar r1=0x3
+ar r2=0x7
+wv 0x0002ea61
+aes
+ar r0
+'
+EXPECT='0xfffffffb
+'
+run_test
+
+NAME="add pc"
+BROKEN=
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=16
+wv 0x4478
+aes
+ar r0
+'
+EXPECT='0x00000004
+'
+run_test
