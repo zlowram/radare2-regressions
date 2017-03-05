@@ -40,7 +40,7 @@ NAME='radiff2 string comparsion'
 BROKEN=
 ARGS=
 CMDS="!!radiff2 -z ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
-EXPECT="0x00000000 48656c6c6f20776f726c64210a => 414141416f20776f726c64210a 0x00000000
+EXPECT="0x00000000 48656c6c => 41414141 0x00000000
 "
 run_test
 
@@ -48,8 +48,8 @@ NAME='radiff2 unified string comparsion'
 BROKEN=
 ARGS=
 CMDS="!!radiff2 -uz ../../bins/elf/elf_one_symbol_shdr ../../bins/elf/elf_one_symbol_shdr1"
-EXPECT="[31m- Hello world!
-[0m[32m+ AAAAo world!
+EXPECT="[31m- Hell
+[0m[32m+ AAAA
 [0m"
 run_test
 
