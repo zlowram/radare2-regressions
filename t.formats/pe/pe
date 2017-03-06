@@ -15,6 +15,24 @@ EXPECT='vaddr=0x00401280 paddr=0x00000680 baddr=0x00400000 laddr=0x00000000 hadd
 '
 run_test
 
+NAME='pe overlay'
+FILE=$F
+ARGS='-nn'
+CMDS='f~pe_overlay
+'
+EXPECT='0x00032600 10233 pe_overlay
+'
+run_test
+
+NAME='pe no overlay'
+FILE=../../bins/pe/normal.exe
+ARGS=
+CMDS='iI~overlay
+'
+EXPECT='overlay  false
+'
+run_test
+
 NAME='pe relocs [r2]'
 IGNORE_ERR=1
 FILE=$F
