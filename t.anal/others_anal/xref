@@ -225,9 +225,11 @@ run_test
 
 NAME="strings xref issue"
 FILE=../../bins/elf/redpill
-BROKEN=1
+BROKEN=
 CMDS='
-aac
+e anal.strings=true
+aa
+aae
 axt 0x00001d89
 axt 0x00001da0
 axt 0x00001db7
@@ -236,13 +238,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='data 0x00001457 lea eax, str.Take_the_Red_Pill____n in main
-data 0x0000148e lea eax, str.use:_._exploit1_PILL in main
-data 0x000014eb lea eax, str.Red_Pill__0x50444552 in main
-data 0x00001502 lea eax, str.Your_Pill_0x_08x_n in main
-data 0x00001523 lea eax, str._n__Red_Pill in main
-data 0x00001557 lea eax, str.fwhibbit_ in main
-data 0x0000161d lea eax, str._n__Blue_Pill in main
+EXPECT='data 0x1457 lea eax, str.Take_the_Red_Pill____n in main
+data 0x148e lea eax, str.use:_._exploit1_PILL in main
+data 0x14eb lea eax, str.Red_Pill__0x50444552 in main
+data 0x1502 lea eax, str.Your_Pill_0x_08x_n in main
+data 0x1523 lea eax, str._n__Red_Pill in main
+data 0x1557 lea eax, str.fwhibbit_ in main
+data 0x161d lea eax, str._n__Blue_Pill in main
 '
 run_test
 
@@ -291,13 +293,56 @@ types=code.jmp,code.call,data.mem,data.string
 run_test
 
 NAME='reference PIC binary'
-BROKEN=1
+BROKEN=
 FILE=../../bins/elf/analysis/xrefpic
 ARGS=
 CMDS='
-aaa
+e anal.strings=true
+aa
+aae
 axt@0x80484e0
 '
-EXPECT='data 0x0804842c add ebx, str.Hello_PIC_ in main
+EXPECT='data 0x8048432 lea eax, str.Hello_PIC_ in main
 '
 run_test
+
+NAME="strings xref issue without relsub"
+FILE=../../bins/elf/redpill
+CMDS='
+e anal.strings=true
+e asm.relsub=false
+aa
+aae
+axt 0x00001d89
+axt 0x00001da0
+axt 0x00001db7
+axt 0x00001dd1
+axt 0x00001de8
+axt 0x00001df4
+axt 0x00001e09
+'
+EXPECT='data 0x1457 lea eax, [esi - 0x2277] in main
+data 0x148e lea eax, [esi - 0x2260] in main
+data 0x14eb lea eax, [esi - 0x2249] in main
+data 0x1502 lea eax, [esi - 0x222f] in main
+data 0x1523 lea eax, [esi - 0x2218] in main
+data 0x1557 lea eax, [esi - 0x220c] in main
+data 0x161d lea eax, [esi - 0x21f7] in main
+'
+run_test
+
+NAME='reference PIC binary without relsub'
+FILE=../../bins/elf/analysis/xrefpic
+ARGS=
+CMDS='
+e anal.strings=true
+e asm.relsub=false
+aa
+aae
+axt@0x80484e0
+'
+EXPECT='data 0x8048432 lea eax, [ebx - 0x1b20] in main
+'
+run_test
+
+
