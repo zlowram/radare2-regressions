@@ -18,9 +18,9 @@ aa > /dev/null
 pd 38
 '
 EXPECT='┌ (fcn) fcn.00000000 1015
-│           ; var int local_4h @ esp+0x4
-│           ; var int local_1ch @ esp+0x1c
-│           ; var int local_2ch @ esp+0x2c
+│           ; var int arg_4h @ esp+0x4
+│           ; var int arg_1ch @ esp+0x1c
+│           ; var int arg_2ch @ esp+0x2c
 │           0x00000000      xor eax, eax
 │           0x00000002      cmp esi, edx
 │       ┌─< 0x00000004      jb 0x50
@@ -32,10 +32,10 @@ EXPECT='┌ (fcn) fcn.00000000 1015
 │     ↑││   0x00000015      mov eax, ebp
 │     ↑││   0x00000017      div ecx
 │     ↑││   0x00000019      xor edx, edx
-│     ↑││   0x0000001b      mov dword [esp + local_1ch], eax
+│     ↑││   0x0000001b      mov dword [esp + arg_1ch], eax
 │     ↑││   0x0000001f      mov eax, edi
 │     ↑││   0x00000021      div ecx
-│     ↑││   0x00000023      cmp dword [esp + local_1ch], eax
+│     ↑││   0x00000023      cmp dword [esp + arg_1ch], eax
 │    ┌────< 0x00000027      jbe 0x90
 │    │↑││   0x00000029      mov edx, dword [ebx + 0x208]
 │    │↑││   0x0000002f      mov eax, dword [edx]
@@ -80,9 +80,9 @@ aa >/dev/null
 pd 38
 '
 EXPECT='/ (fcn) fcn.00000000 1015
-|           ; var int local_4h @ esp+0x4
-|           ; var int local_1ch @ esp+0x1c
-|           ; var int local_2ch @ esp+0x2c
+|           ; var int arg_4h @ esp+0x4
+|           ; var int arg_1ch @ esp+0x1c
+|           ; var int arg_2ch @ esp+0x2c
 |           0x00000000      xor eax, eax
 |           0x00000002      cmp esi, edx
 |       ,=< 0x00000004      jb 0x50
@@ -94,10 +94,10 @@ EXPECT='/ (fcn) fcn.00000000 1015
 |     !||   0x00000015      mov eax, ebp
 |     !||   0x00000017      div ecx
 |     !||   0x00000019      xor edx, edx
-|     !||   0x0000001b      mov dword [esp + local_1ch], eax
+|     !||   0x0000001b      mov dword [esp + arg_1ch], eax
 |     !||   0x0000001f      mov eax, edi
 |     !||   0x00000021      div ecx
-|     !||   0x00000023      cmp dword [esp + local_1ch], eax
+|     !||   0x00000023      cmp dword [esp + arg_1ch], eax
 |    ,====< 0x00000027      jbe 0x90
 |    |!||   0x00000029      mov edx, dword [ebx + 0x208]
 |    |!||   0x0000002f      mov eax, dword [edx]
