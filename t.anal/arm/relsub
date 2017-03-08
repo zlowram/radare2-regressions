@@ -46,10 +46,10 @@ pd 1 @ 0x00008204
 pd 1 @ 0x0000816c
 pd 1 @ 0x000081b0
 '
-EXPECT='                 ldr r0, [sym.main]
-                 ldr r1, [obj.object.6286]
-                 ldr r3, [sym.__libc_csu_init]
-                 ldr r4, [loc._d_6]
+EXPECT='                 ldr r0, sym.main
+                 ldr r1, obj.object.6286
+                 ldr r3, sym.__libc_csu_init
+                 ldr r4, loc._d_6
 '
 run_test
 
