@@ -57,3 +57,13 @@ EXPECT='signedData
 '
 IGNORE_ERR=1
 run_test
+
+
+NAME='PE: corkami signature.exe - iI'
+FILE=../../bins/pe/signature.exe
+ARGS=''
+CMDS="iI~signed; q!"
+EXPECT='signed   true
+'
+IGNORE_ERR=1
+run_test

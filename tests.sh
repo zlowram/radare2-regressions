@@ -20,7 +20,7 @@
 export RABIN2_NOPLUGINS=1
 export RASM2_NOPLUGINS=1
 export R2_NOPLUGINS=1
-
+MACHINE_OS=$(uname -o)
 GREP="$1"
 GREP=""
 DIFF=""
@@ -70,7 +70,7 @@ printdiff() {
     print_label File:
     echo "${FILE}"
     print_label Script:
-    cat ${TMP_RAD}
+    cat "${TMP_RAD}"
   fi
 }
 
@@ -257,7 +257,11 @@ __EOF__
       EXITCODE=${CODE}
     fi
   fi
-
+  if [ "${MACHINE_OS}" = "Msys" ] || [ "${MACHINE_OS}" = "Cygwin" ]; then
+    cat "${TMP_OUT}" | tr -d '\r' > "${TMP_OUT}_fix"
+    rm -f "${TMP_OUT}"
+    mv "${TMP_OUT}_fix" "${TMP_OUT}"
+  fi
   # Check if the output matched. (default to yes)
   ${DIFF} ${DIFF_ARG} -u "${TMP_EXP}" "${TMP_OUT}" > "${TMP_ODF}"
   OUT_CODE=0
@@ -272,6 +276,11 @@ __EOF__
   if [ "${IGNORE_ERR}" = 1 ]; then
     ERR_CODE=0
   else
+    if [ "${MACHINE_OS}" = "Msys" ] || [ "${MACHINE_OS}" = "Cygwin" ]; then
+      cat "${TMP_ERR}" | tr -d '\r' > "${TMP_ERR}_fix"
+      rm -f "${TMP_ERR}"
+      mv "${TMP_ERR}_fix" "${TMP_ERR}"
+    fi
     ${DIFF} ${DIFF_ARG} -u "${TMP_EXR}" "${TMP_ERR}" > "${TMP_EDF}"
     ERR_CODE=0
     [ -s "${TMP_EDF}" ] && ERR_CODE=1
@@ -305,7 +314,7 @@ __EOF__
       echo
     fi
   elif [ ${OUT_CODE} -ne 0 ]; then
-    test_failed "out"
+    test_failed
     printdiff
     if [ -n "${VERBOSE}" ]; then
       print_label Diff:
@@ -319,7 +328,7 @@ __EOF__
       echo
     fi
   elif [ ${ERR_CODE} -ne 0 ]; then
-    test_failed "err"
+    test_failed
     printdiff
     if [ -n "${VERBOSE}" ]; then
       if grep ^Binary "${TMP_EDF}"; then
@@ -397,9 +406,11 @@ test_failed() {
   if [ -z "${SKIP}" -o "${SKIP}" = 0 ]; then
     if [ -n "${ESSENTIAL}" ]; then
       print_failed "EF" # essential failure
+      print_issue "${*}"
     else
       if [ -z "${BROKEN}" ]; then
         print_failed "XX"
+        print_issue "${*}"
       else
         print_broken "BR"
       fi
@@ -424,6 +435,16 @@ if [ -n "${TRAVIS}" ]; then
 else
   NL="\r"
 fi
+
+print_issue() {
+  if [ -n "$1" ]; then
+    if [ -n "${NOCOLOR}" ]; then
+      printf "%b" "${NL}Issue: ${*}\n"
+    else
+      printf "%b" "${NL}\033[31mIssue: ${*}\033[0m\n"
+    fi
+  fi
+}
 
 print_success() {
   if [ -n "${NOOK}" ]; then
