@@ -92,3 +92,20 @@ pd 1 @ 0x2
 EXPECT='            0x00000002      01a0           adr r0, 4                   ; 0x8 ; "Radare2 test string" ; 8
 '
 run_test
+
+NAME='pd bits override for arm'
+FILE=malloc://32
+ARGS=
+CMDS='
+e asm.arch=arm
+e asm.bits=32
+wa mov r0, r0
+e asm.bits=16
+ahb 16
+pd 1 arm 32
+pd 1 arm 32
+'
+EXPECT='            0x00000000      0000a0e1       mov r0, r0
+            0x00000000      0000a0e1       mov r0, r0
+'
+run_test
