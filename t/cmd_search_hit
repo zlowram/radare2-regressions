@@ -1,0 +1,50 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2017  pancake
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='cmd.hit sugar for /x'
+FILE='malloc://1024'
+CMDS='
+wx 90 @ 10
+e cmd.hit=wx 91
+/x 90
+p8 1 @ 10
+'
+EXPECT='0x0000000a hit0_0 90
+91
+'
+run_test
+
+NAME='cmd.hit sugar for /x'
+FILE='malloc://1024'
+CMDS='wx 90 @ 10
+wx 91 @@/x 90
+p8 1 @ 10
+'
+EXPECT='0x0000000a hit0_0 90
+91
+'
+run_test
+
+NAME='cmd.hit sugar for /'
+FILE='malloc://1024'
+CMDS='w A @ 10
+wx 33 @@/ A
+p8 1 @ 10
+'
+EXPECT='0x0000000a hit0_0 "A"
+33
+'
+run_test
+
+NAME='cmd.hit sugar for /'
+FILE='malloc://1024'
+BROKEN=1
+CMDS='wx 90 @ 10
+wx 33 @@/c nop 2> /dev/null
+p8 1 @ 10
+'
+EXPECT='0x0000000a hit0_0 nop
+33
+'
+run_test
