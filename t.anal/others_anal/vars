@@ -17,17 +17,17 @@ EXPECT='/ (fcn) fcn.00000000 89
 |           ; var int local_4h @ esp+0x4
 |           ; var int local_8h @ esp+0x8
 |           ; var int local_ch @ esp+0xc
-|           ; var int local_14h @ esp+0x14
-|           ; var int local_18h @ esp+0x18
-|           ; var int local_1ch @ esp+0x1c
+|           ; arg int arg_14h @ esp+0x14
+|           ; arg int arg_18h @ esp+0x18
+|           ; arg int arg_1ch @ esp+0x1c
 |           ; arg int arg_20h @ esp+0x20
 |           ; arg int arg_28h @ esp+0x28
 |           ; arg int arg_2ch @ esp+0x2c
 |           0x00000000      83ec10         sub esp, 0x10
-|           0x00000003      8b442418       mov eax, dword [esp + local_18h]
+|           0x00000003      8b442418       mov eax, dword [esp + arg_18h]
 |           0x00000007      99             cdq
-|           0x00000008      f77c241c       idiv dword [esp + local_1ch]
-|           0x0000000c      8b442414       mov eax, dword [esp + local_14h]
+|           0x00000008      f77c241c       idiv dword [esp + arg_1ch]
+|           0x0000000c      8b442414       mov eax, dword [esp + arg_14h]
 |           0x00000010      01d0           add eax, edx
 |           0x00000012      8944240c       mov dword [esp + local_ch], eax
 |           0x00000016      8b442420       mov eax, dword [esp + arg_20h]
@@ -36,7 +36,7 @@ EXPECT='/ (fcn) fcn.00000000 89
 |           0x0000001f      8b44240c       mov eax, dword [esp + local_ch]
 |           0x00000023      01d0           add eax, edx
 |           0x00000025      89442408       mov dword [esp + local_8h], eax
-|           0x00000029      8b542414       mov edx, dword [esp + local_14h]
+|           0x00000029      8b542414       mov edx, dword [esp + arg_14h]
 |           0x0000002d      8b44240c       mov eax, dword [esp + local_ch]
 |           0x00000031      8d0c02         lea ecx, [edx + eax]
 |           0x00000034      8b44242c       mov eax, dword [esp + arg_2ch]
