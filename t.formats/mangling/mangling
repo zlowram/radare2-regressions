@@ -4,6 +4,14 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 NAME='m128 parsing test'
 BROKEN=
 ARGS=
+CMDS='"!rabin2 -D cxx _ZNSt2147483648ios_base4InitD1Ev"'
+EXPECT='_ZNSt2147483648ios_base4InitD1Ev
+'
+run_test
+
+NAME='m128 parsing test'
+BROKEN=
+ARGS=
 CMDS='"!rabin2 -D msvc ?var__m128@@3T__m128@@A"'
 EXPECT='__m128 var__m128
 '
