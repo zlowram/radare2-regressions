@@ -20,7 +20,7 @@
 export RABIN2_NOPLUGINS=1
 export RASM2_NOPLUGINS=1
 export R2_NOPLUGINS=1
-MACHINE_OS=$(uname -o)
+MACHINE_OS=$(uname -o 2> /dev/null)
 GREP="$1"
 GREP=""
 DIFF=""
