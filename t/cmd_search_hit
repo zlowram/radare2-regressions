@@ -39,12 +39,11 @@ run_test
 
 NAME='cmd.hit sugar for /'
 FILE='malloc://1024'
-BROKEN=1
 CMDS='wx 90 @ 10
-wx 33 @@/c nop 2> /dev/null
+wx 33 @@/c nop
 p8 1 @ 10
 '
-EXPECT='0x0000000a hit0_0 nop
+EXPECT='0x0000000a   # 1: nop
 33
 '
 run_test
