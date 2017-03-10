@@ -45,3 +45,13 @@ test_vector "${PLUGIN}" "mov x9, 5" a90080d2 "movz x9, 0x5" // equivalent
 test_vector "${PLUGIN}" "movz x1, 5" a10080d2 "movz x1, 0x5"
 test_vector "${PLUGIN}" "movn x6, 2" 46008092 "movn x6, 0x2"
 test_vector "${PLUGIN}" "movk x16, 15" f00180f2 "movk x16, 0xf"
+
+test_vector "${PLUGIN}" "orr x2, x3, x20" 620014aa "orr x2, x3, x20"
+test_vector "${PLUGIN}" "orr x1, x23, x0" e10200aa "orr x1, x23, x0"
+test_vector "${PLUGIN}" "orr x0, x13, x20" a00114aa "orr x0, x13, x20"
+test_vector "${PLUGIN}" "orr x22, x3, 0x2" 76007fb2 "orr x22, x3, 2"
+test_vector "${PLUGIN}" "orr x2, x3, 0x3" 620440b2 "orr x2, x3, 3"
+test_vector "${PLUGIN}" "orr x2, x3, 0x7" 620840b2 "orr x2, x3, 7"
+
+test_vector "${PLUGIN}" "orr w0, w13, w20"  a001142a "orr w0, w13, w20"
+test_vector "${PLUGIN}" "orr w22, w3, 0x2" 76001f32 "orr w22, w3, 2"
