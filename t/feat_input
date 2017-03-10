@@ -70,7 +70,7 @@ NAME='"?e foo" "?e bar"'
 FILE=malloc://1024
 ARGS=
 CMDS='
-"?e foo" "?e bar"
+"?e foo";"?e bar"
 '
 EXPECT='foo
 bar
