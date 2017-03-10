@@ -66,6 +66,7 @@ test_vector "${PLUGIN}" "ldr r0, [r0, 0x74]" 406f
 test_vector "${PLUGIN}" "ldr r0, [r0, 0x7]" d0f80700
 test_vector "${PLUGIN}" "ldr r1, [r2, 0x124]" d2f82411
 test_vector "${PLUGIN}" "blx lr" f047
+test_vector "${PLUGIN}" "bl -0x2a" fff7e9ff
 test_vector "${PLUGIN}" "mov fp, r1" 8b46
 test_vector "${PLUGIN}" "mov r9, r1" 8946
 test_vector "${PLUGIN}" "mov r4, r1" 0c46
