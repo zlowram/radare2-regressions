@@ -136,7 +136,6 @@ EXPECT='            0x00000000 (2 bytes hidden)
 run_test
 
 FILE=malloc://1024
-BROKEN=1
 NAME="Ch : add/del hide bytes"
 CMDS='
 e scr.color=false
