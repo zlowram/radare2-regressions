@@ -12,6 +12,13 @@ EXPECT='[{"offset":0,"val":104,"esil":"104,rdi,+=,$o,of,=,$s,sf,=,$z,zf,=,$c63,c
 '
 run_test
 
+NAME='empty irj should print empty array'
+CMDS='
+irj
+'
+EXPECT='[]'
+run_test
+
 type jq 2>/dev/null >&2
 if [ $? = 0 ]; then
 # if we have jq installed...
