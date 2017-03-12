@@ -78,6 +78,13 @@ test_vector "${PLUGIN}" "sub sp, 0x30" 8cb0
 test_vector "${PLUGIN}" "sub ip, 0x33" acf1330c
 test_vector "${PLUGIN}" "sub r4, 0x69" a4f16904
 test_vector "${PLUGIN}" "sub r8, 0xf9" a8f1f908
+test_vector "${PLUGIN}" "pop {r0}" 01bc
+test_vector "${PLUGIN}" "pop {r0, r1}" 03bc
+test_vector "${PLUGIN}" "pop {r0-r1}" 03bc
+test_vector "${PLUGIN}" "pop {r0, r1, r2}" 07bc
+test_vector "${PLUGIN}" "pop {r0-r2}" 07bc
+test_vector "${PLUGIN}" "pop {r0, r1, r2, r5}" 27bc
+test_vector "${PLUGIN}" "pop {r0-r2, r5}" 27bc
 
 # Expected to fail
 test_invalid "${PLUGIN}" "b gh"
