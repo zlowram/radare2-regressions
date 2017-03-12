@@ -76,7 +76,7 @@ run_test
 
 NAME="Function definition"
 FILE=../../bins/elf/arm1.bin
-BROKEN=1
+BROKEN=
 CMDS='afr @ main
 s 0x000082cc
 pd 1~?*xmalloc
