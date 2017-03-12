@@ -17,6 +17,7 @@ ao 1~?
 EXPECT='11
 address: 0x0
 opcode: nop
+mnemonic: nop
 prefix: 0
 id: 494
 bytes: 90
@@ -27,7 +28,7 @@ esil: ,
 stack: null
 family: cpu
 90
-11
+12
 '
 run_test
 

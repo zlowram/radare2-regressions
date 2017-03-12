@@ -72,6 +72,7 @@ EXPECT='ldr ip, [pc, 0x20]
 ldr ip, [sl, ip]
 address: 0x0
 opcode: ldr ip, [pc, 0x20]
+mnemonic: ldr
 prefix: 0
 id: 75
 bytes: 20c09fe5
@@ -84,6 +85,7 @@ stack: null
 family: cpu
 address: 0x4
 opcode: ldr ip, [sl, ip]
+mnemonic: ldr
 prefix: 0
 id: 75
 bytes: 0cc09ae7

@@ -10,8 +10,8 @@ CMDS='ao~?
 ahe test
 ao~?
 '
-EXPECT='12
-12
+EXPECT='13
+13
 '
 run_test
 
