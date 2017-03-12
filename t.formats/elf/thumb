@@ -22,6 +22,16 @@ EXPECT='0x8424
 '
 run_test
 
+NAME='thumb main alignment'
+FILE=../../bins/elf/analysis/thumb
+ARGS=
+CMDS='s sym.main
+pi 1
+'
+EXPECT='push {r7, lr}
+'
+run_test
+
 NAME='thumb sym'
 FILE=../../bins/elf/analysis/thumb
 ARGS=
