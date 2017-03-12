@@ -109,3 +109,15 @@ EXPECT='            0x00000000      0000a0e1       mov r0, r0
             0x00000000      0000a0e1       mov r0, r0
 '
 run_test
+
+NAME="thumb adr pc-rel analysis with newline"
+FILE=malloc://32
+CMDS="
+e asm.arch=arm
+e asm.bits=16
+wx 10b5 01a0 00bf 00bf 5261646172653220746573740d0a00
+pd 1 @ 0x2
+"
+EXPECT='            0x00000002      01a0           adr r0, 4                   ; 0x8 ; "Radare2 test.." ; 8
+'
+run_test
