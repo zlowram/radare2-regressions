@@ -384,4 +384,17 @@ tk a
 EXPECT='b
 '
 run_test
-
+NAME="td twice"
+FILE=-
+CMDS='"td int foo(int bar);"
+"td int foo(int bar);"
+tk~foo
+'
+EXPECT_ERR=''
+EXPECT='foo=func
+func.foo.arg.0=int,bar
+func.foo.args=1
+func.foo.cc=cdecl
+func.foo.ret=int
+'
+run_test
