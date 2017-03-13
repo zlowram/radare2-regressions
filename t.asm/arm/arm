@@ -105,6 +105,10 @@ test_vector "${PLUGIN}" "UMLALNE r4, r5, r3, r7" 9347a510 "umlalne r4, r5, r3, r
 test_vector "${PLUGIN}" "UXTBEQ r1, r0" 7010ef06 "uxtbeq r1, r0"
 test_vector "${PLUGIN}" "UXTHEQ r0, r0" 7000ff06 "uxtheq r0, r0"
 test_vector "${PLUGIN}" "VSTREQ d0, [r0]" 000b800d "vstreq d0, [r0]"
+test_vector "${PLUGIN}" "ldr r1, [r2, r3, lsl 2]" 031192e7 "ldr r1, [r2, r3, lsl 2]"
+test_vector "${PLUGIN}" "ldr r1, [r2, r3, lsr 5]" a31292e7 "ldr r1, [r2, r3, lsr 5]"
+test_vector "${PLUGIN}" "ldr r1, [r2, r3, asr 6]" 431392e7 "ldr r1, [r2, r3, asr 6]"
+test_vector "${PLUGIN}" "ldr r1, [r2, r3, ror 9]" e31492e7 "ldr r1, [r2, r3, ror 9]"
 
 NAME="${PLUGIN}: [BLNE 0x1900 @ 0xFF7A46EC]"
 FILE=malloc://32
