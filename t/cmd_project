@@ -230,3 +230,45 @@ EXPECT='5
 5
 '
 run_test
+
+NAME='Save project for a binary and checking opened files'
+FILE='../bins/elf/analysis/main'
+BROKEN=
+ARGS=
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+Po blah > /dev/null
+o*~?
+'
+EXPECT='1
+'
+run_test
+
+
+NAME='Save project for a binary without saving its info'
+FILE='../bins/elf/analysis/main'
+BROKEN=
+ARGS='-n'
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+Po blah > /dev/null
+i~format'
+EXPECT=''
+
+run_test
+
+NAME='Save project for a binary without saving its info at a specific map offset'
+FILE='../bins/elf/analysis/main'
+BROKEN=
+ARGS='-n -m 0x1337'
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+Po blah > /dev/null
+on*~?
+on*~[2]
+'
+EXPECT='1
+0x1337
+'
+
+run_test
