@@ -2,14 +2,14 @@
 # GPL 3+ - Copyright (C) 2012  pancake, Edd Barrett, Simon Ruderich
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
-NAME='z xref'
+NAME='zae + z/'
 FILE=../bins/elf/analysis/hello-linux-x86_64
 CMDS='
 s entry0
-zb test fc044000e8b7
+zae test fc044000e8b7
 fs sign
 f~?
-.z/ $$ $$+1024
+z/ $$ $$+1024
 f~?
 '
 EXPECT='0
@@ -17,26 +17,12 @@ EXPECT='0
 '
 run_test
 
-NAME='zb'
+NAME='zae + z/'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
-zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
-z
-'
-EXPECT='Loaded 1 signatures
-  1 byte signatures
-  0 head signatures
-  0 func signatures
-Found 0 matches
-'
-run_test
-
-NAME='z/'
-FILE=../bins/elf/analysis/go_stripped
-CMDS='
-zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
-.z/ section..text section..text+1074039
-?v sign.sys.b.sym.fmt.Println_1
+zae sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+z/ section..text section..text+1074039
+?v sign.sym.fmt.Println_0
 '
 EXPECT='0x805b030
 '
@@ -44,6 +30,7 @@ run_test
 
 NAME='z/ with search.in'
 FILE=../bins/elf/analysis/go_stripped
+BROKEN=1
 CMDS='
 e search.in = io.section
 zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
@@ -54,8 +41,10 @@ EXPECT='0x805b030
 '
 run_test
 
+# TODO
 NAME='z/ with search.align'
 FILE=../bins/elf/analysis/go_stripped
+BROKEN=1
 CMDS='
 e search.align = 4
 zb sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
@@ -66,76 +55,104 @@ EXPECT='0x805b030
 '
 run_test
 
-NAME='z + aa + axt'
+NAME='zae + aa + axt'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
-zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+zae sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
 .z/ section..text section..text+434
 e anal.hasnext=0
 aa
 axt 0x400536
 '
-EXPECT='call 0x40056f call sign.sys.b.sym.print_0 in main
+EXPECT='call 0x40056f call sign.sym.print_0 in main
 '
 run_test
 
-NAME='zg on mach0'
+NAME='zaaF on mach0'
 FILE=../bins/mach0/mach0-i386
-BROKEN=1
 CMDS='
 aaa
-zg i386
+zaaF
+z
 '
-EXPECT='zn i386
-zb sym.func._main 5589..83....8b....8b....c7............89....89....8b....89....e8........83....5dc3
-zb sym.func._foo 5589..83....8b....89....8b....8b....81..........89....89....e8........8b....01..89..83....5dc3
-zb sym.func._bar 5589..83....8b....89....c7............c7............8b....3b....0f..........8b....8b....01..89....8b....05........89....e9........8b....83....5dc3
-zn-
+EXPECT='entry0 a 5589e583ec188b450c8b4d08c745fc00000000894df88945f48b45f8890424e8........83c4185dc3
+sym._foo a 5589e583ec188b45088945fc8b45fc8b4dfc81c103000000890c248945f8e8........8b4df801c189c883c4185dc3
+sym._bar a 5589e583ec0c8b45088945fcc745f800000000c745f4000000008b45f43b45fc0f8d........8b45f48b4df801c1894df88b45f405010000008945f4e9........8b45f883c40c5dc3
 '
 run_test
 
-NAME='zg on elf'
+NAME='zaaF on elf'
 FILE=../bins/elf/analysis/zigs
-BROKEN=
 CMDS='
 aaa
-zg x86~sym.main[2]
+zaaF
+z*~sym.main[2]
 '
-EXPECT='5548....48......89....48......bf........e8........b8........c9c3
+EXPECT='554889e54883ec10897dfc488975f0bf13064000e8........b800000000c9c3
 '
 run_test
 
-NAME='zG on elf'
+NAME='zaeF on elf'
 FILE=../bins/elf/analysis/zigs
-BROKEN=
 CMDS='
 aaa
-zG x86~sym.main[2]
+zaeF
+z*~sym.main[2]
 '
 EXPECT='554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
 '
 run_test
 
-NAME='.z on stripped go'
+NAME='z/ on stripped go'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
-zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
-.z. @@ fcn*
-?v sign.sys.b.sym.print_0
+zae sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+zc @@ fcn*
+?v sign.sym.print_0
 '
 EXPECT='0x400536
 '
 run_test
 
-NAME='fs reset'
-FILE=../bins/elf/analysis/zigs_stripped
+NAME='zs unset'
 CMDS='
-fs strings
-zb sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
-.z. @@ fcn*
-fs~* strings
+zs test1
+zae foo1 aabbccdd
+zae bar1 aabbccdd
+zs test2
+zae foo2 aabbccdd
+zae bar2 aabbccdd
+zs test3
+zae foo3 aabbccdd
+zae bar3 aabbccdd
+zs test1
+zs *
+zs-test2
+z~bar2
+z~foo2
 '
-EXPECT='0    1 * strings
+EXPECT='bar2 e aabbccdd
+foo2 e aabbccdd
 '
+run_test
+
+NAME='zs delete'
+CMDS='
+zs test1
+zae foo1 aabbccdd
+zae bar1 aabbccdd
+zs test2
+zae foo2 aabbccdd
+zae bar2 aabbccdd
+zs test3
+zae foo3 aabbccdd
+zae bar3 aabbccdd
+zs test2
+z-*
+zs *
+z~bar2
+z~foo2
+'
+EXPECT=''
 run_test
