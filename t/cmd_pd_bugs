@@ -144,7 +144,7 @@ pi 2
 EXPECT="            ;-- entry0:
             ;-- section..text:
             ;-- _start:
-            0x004005c0      31ed           xor ebp, ebp                ; [14] va=0x004005c0 pa=0x000005c0 sz=584 vsz=584 rwx=--r-x .text
+            0x004005c0      31ed           xor ebp, ebp                ; section 14 va=0x004005c0 pa=0x000005c0 sz=584 vsz=584 rwx=--r-x .text
             0x004005c2      4989d1         mov r9, rdx
 xor ebp, ebp
 mov r9, rdx
