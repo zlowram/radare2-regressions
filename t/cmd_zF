@@ -4,6 +4,7 @@
 
 NAME='aa ; zF libc.sig'
 FILE=../bins/elf/analysis/pid_stripped
+BROKEN=1
 ARGS=
 CMDS="aa ; zF ../bins/other/sigs/libc.sig "
 EXPECT='Found flirt.__libc_start_main
@@ -12,6 +13,7 @@ run_test
 
 NAME='zFd libc.sig'
 FILE=../bins/elf/analysis/pid_stripped
+BROKEN=1
 ARGS=
 CMDS="zFd ../bins/other/sigs/libc.sig "
 EXPECT='41564155B8........4154554D89C4534889CD4D89CD4881EC900000004885C0:
@@ -21,6 +23,7 @@ run_test
 
 NAME='af ; af ; zF libc.sig'
 FILE=../bins/elf/analysis/pid_stripped
+BROKEN=1
 ARGS=
 CMDS="s 0x4e2420 ; af ; s 0x4e25c7 ; af ; zF ../bins/other/sigs/libc.sig ; afl ~4e2420"
 EXPECT='0x004e2420   40 664          flirt.__libc_start_main
