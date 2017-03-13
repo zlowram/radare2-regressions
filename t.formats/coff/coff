@@ -50,7 +50,7 @@ vaddr=0x00000ec2 paddr=0x00000ec2 ord=000 fwd=NONE sz=4 bind= type=STATIC name=.
             ;-- section..text_mn_5:
             ;-- ??1FooBar@@QAE@XZ:
             ;-- .text$mn:
-            0x00000ec2      55             push ebp                    ; [5] va=0x00000ec2 pa=0x00000ec2 sz=42 vsz=42 rwx=m-r-x .text_mn_5
+            0x00000ec2      55             push ebp                    ; section 5 va=0x00000ec2 pa=0x00000ec2 sz=42 vsz=42 rwx=m-r-x .text_mn_5
             0x00000ec3      8bec           mov ebp, esp
 '
 run_test

@@ -14,7 +14,7 @@ ao 1
 p8 1
 ao 1~?
 '
-EXPECT='11
+EXPECT='12
 address: 0x0
 opcode: nop
 mnemonic: nop
