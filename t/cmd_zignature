@@ -110,6 +110,37 @@ EXPECT='0
 '
 run_test
 
+NAME='z/ with search.{from, to}'
+FILE=malloc://1024
+CMDS='
+wx 00112233445566778899aabbccddeeff
+zae a 11223344
+zae b bbccddee
+fs *
+f~?
+e search.in=raw
+e search.from=0x0
+e search.to=0x8
+z/
+?v sign.a_0
+?v sign.b_0
+f-*
+f~?
+e search.from=0x8
+e search.to=0xf
+z/
+?v sign.a_0
+?v sign.b_0
+'
+EXPECT='0
+0x1
+0x0
+0
+0x0
+0xb
+'
+run_test
+
 NAME='zae ; z/ ; aa ; axt'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
