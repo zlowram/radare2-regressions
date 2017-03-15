@@ -92,10 +92,10 @@ pd 1 @ 0x0000817c
 pd 1 @ 0x00008180
 pd 1 @ 0x00008184
 '
-EXPECT='            .dword 0x00084758 ; obj.completed.6278
-            .dword 0x00008b00 ; sym.__libc_csu_fini
-            .dword 0x00008290 ; sym.main
-            .dword 0x00008b48 ; sym.__libc_csu_init
+EXPECT='                 .dword 0x00084758 ; obj.completed.6278
+|                .dword 0x00008b00 ; sym.__libc_csu_fini
+|                .dword 0x00008290 ; sym.main
+|                .dword 0x00008b48 ; sym.__libc_csu_init
 '
 run_test
 
