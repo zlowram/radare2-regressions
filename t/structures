@@ -31,18 +31,18 @@ CMDS='aaa
 s main
 "td struct S1 { int a; int b; int c; char d[256]; short e; }"
 afvn local_110h s1
-pd 4 @ 0x004004be~[2-6]
+pd 4 @ 0x004004be~[2-4]
 afvt s1 S1
-pd 4 @ 0x004004be~[2-6]
+pd 4 @ 0x004004be~[2-4]
 '
-EXPECT='mov dword [rbp - s1]
-mov dword [rbp - local_10ch]
-mov dword [rbp - local_108h]
-lea rax [rbp - s1]
-mov dword [rbp - s1.a]
-mov dword [rbp - s1.b]
-mov dword [rbp - s1.c]
-lea rax [rbp - s1.a]
+EXPECT='mov dword [s1]
+mov dword [local_10ch]
+mov dword [local_108h]
+lea rax [s1]
+mov dword [s1.a]
+mov dword [s1.b]
+mov dword [s1.c]
+lea rax [s1.a]
 '
 run_test
 
@@ -53,17 +53,17 @@ s main
 "td struct S1 { int a; int b; int c; char d[256]; short e; }"
 afvn local_110h s1
 afvt s1 S1
-pd 4 @ 0x004004be~[2-6]
+pd 4 @ 0x004004be~[2-4]
 "td struct S1 { int x; int y; int c; char d[256]; short e; }"
-pd 4 @ 0x004004be~[2-6]
+pd 4 @ 0x004004be~[2-4]
 '
-EXPECT='mov dword [rbp - s1.a]
-mov dword [rbp - s1.b]
-mov dword [rbp - s1.c]
-lea rax [rbp - s1.a]
-mov dword [rbp - s1.x]
-mov dword [rbp - s1.y]
-mov dword [rbp - s1.c]
-lea rax [rbp - s1.x]
+EXPECT='mov dword [s1.a]
+mov dword [s1.b]
+mov dword [s1.c]
+lea rax [s1.a]
+mov dword [s1.x]
+mov dword [s1.y]
+mov dword [s1.c]
+lea rax [s1.x]
 '
 run_test

@@ -24,31 +24,31 @@ EXPECT='/ (fcn) fcn.00000000 89
 |           ; arg int arg_28h @ esp+0x28
 |           ; arg int arg_2ch @ esp+0x2c
 |           0x00000000      83ec10         sub esp, 0x10
-|           0x00000003      8b442418       mov eax, dword [esp + arg_18h]
+|           0x00000003      8b442418       mov eax, dword [arg_18h]
 |           0x00000007      99             cdq
-|           0x00000008      f77c241c       idiv dword [esp + arg_1ch]
-|           0x0000000c      8b442414       mov eax, dword [esp + arg_14h]
+|           0x00000008      f77c241c       idiv dword [arg_1ch]
+|           0x0000000c      8b442414       mov eax, dword [arg_14h]
 |           0x00000010      01d0           add eax, edx
-|           0x00000012      8944240c       mov dword [esp + local_ch], eax
-|           0x00000016      8b442420       mov eax, dword [esp + arg_20h]
+|           0x00000012      8944240c       mov dword [local_ch], eax
+|           0x00000016      8b442420       mov eax, dword [arg_20h]
 |           0x0000001a      99             cdq
-|           0x0000001b      f77c2428       idiv dword [esp + arg_28h]
-|           0x0000001f      8b44240c       mov eax, dword [esp + local_ch]
+|           0x0000001b      f77c2428       idiv dword [arg_28h]
+|           0x0000001f      8b44240c       mov eax, dword [local_ch]
 |           0x00000023      01d0           add eax, edx
-|           0x00000025      89442408       mov dword [esp + local_8h], eax
-|           0x00000029      8b542414       mov edx, dword [esp + arg_14h]
-|           0x0000002d      8b44240c       mov eax, dword [esp + local_ch]
+|           0x00000025      89442408       mov dword [local_8h], eax
+|           0x00000029      8b542414       mov edx, dword [arg_14h]
+|           0x0000002d      8b44240c       mov eax, dword [local_ch]
 |           0x00000031      8d0c02         lea ecx, [edx + eax]
-|           0x00000034      8b44242c       mov eax, dword [esp + arg_2ch]
+|           0x00000034      8b44242c       mov eax, dword [arg_2ch]
 |           0x00000038      99             cdq
 |           0x00000039      f7f9           idiv ecx
-|           0x0000003b      8b442408       mov eax, dword [esp + local_8h]
+|           0x0000003b      8b442408       mov eax, dword [local_8h]
 |           0x0000003f      01d0           add eax, edx
-|           0x00000041      89442404       mov dword [esp + local_4h], eax
-|           0x00000045      8b54240c       mov edx, dword [esp + local_ch]
-|           0x00000049      8b442408       mov eax, dword [esp + local_8h]
+|           0x00000041      89442404       mov dword [local_4h], eax
+|           0x00000045      8b54240c       mov edx, dword [local_ch]
+|           0x00000049      8b442408       mov eax, dword [local_8h]
 |           0x0000004d      01c2           add edx, eax
-|           0x0000004f      8b442404       mov eax, dword [esp + local_4h]
+|           0x0000004f      8b442404       mov eax, dword [local_4h]
 |           0x00000053      01d0           add eax, edx
 |           0x00000055      83c410         add esp, 0x10
 \           0x00000058      c3             ret
@@ -78,18 +78,18 @@ EXPECT="fastcall
 |           0x0804841b      55             push ebp
 |           0x0804841c      89e5           mov ebp, esp
 |           0x0804841e      83ec28         sub esp, 0x28               ; '('
-|           0x08048421      894de4         mov dword [ebp - local_1ch], ecx
-|           0x08048424      8955e0         mov dword [ebp - local_20h], edx
-|           0x08048427      8b55e4         mov edx, dword [ebp - local_1ch]
-|           0x0804842a      8b45e0         mov eax, dword [ebp - local_20h]
+|           0x08048421      894de4         mov dword [local_1ch], ecx
+|           0x08048424      8955e0         mov dword [local_20h], edx
+|           0x08048427      8b55e4         mov edx, dword [local_1ch]
+|           0x0804842a      8b45e0         mov eax, dword [local_20h]
 |           0x0804842d      01d0           add eax, edx
-|           0x0804842f      8945f4         mov dword [ebp - local_ch], eax
-|           0x08048432      8b45e0         mov eax, dword [ebp - local_20h]
-|           0x08048435      2b450c         sub eax, dword [ebp + arg_ch]
-|           0x08048438      8945f0         mov dword [ebp - local_10h], eax
-|           0x0804843b      ff7508         push dword [ebp + arg_8h]
-|           0x0804843e      ff75f0         push dword [ebp - local_10h]
-|           0x08048441      ff75f4         push dword [ebp - local_ch]
+|           0x0804842f      8945f4         mov dword [local_ch], eax
+|           0x08048432      8b45e0         mov eax, dword [local_20h]
+|           0x08048435      2b450c         sub eax, dword [arg_ch]
+|           0x08048438      8945f0         mov dword [local_10h], eax
+|           0x0804843b      ff7508         push dword [arg_8h]
+|           0x0804843e      ff75f0         push dword [local_10h]
+|           0x08048441      ff75f4         push dword [local_ch]
 |           0x08048444      6874850408     push str._i__i__i_n ; str._i__i__i_n ; \"%i %i %i.\" @ 0x8048574
 |           0x08048449      e8a2feffff     call sym.imp.printf        ; int printf(const char *format)
 |           0x0804844e      83c410         add esp, 0x10
@@ -120,16 +120,16 @@ EXPECT='cdecl
 |           0x08048456      55             push ebp
 |           0x08048457      89e5           mov ebp, esp
 |           0x08048459      83ec18         sub esp, 0x18
-|           0x0804845c      8b5508         mov edx, dword [ebp + arg_8h] ; [0x8:4]=0
-|           0x0804845f      8b450c         mov eax, dword [ebp + arg_ch] ; [0xc:4]=0
+|           0x0804845c      8b5508         mov edx, dword [arg_8h] ; [0x8:4]=0
+|           0x0804845f      8b450c         mov eax, dword [arg_ch] ; [0xc:4]=0
 |           0x08048462      01d0           add eax, edx
-|           0x08048464      8945f4         mov dword [ebp - local_ch], eax
-|           0x08048467      8b450c         mov eax, dword [ebp + arg_ch] ; [0xc:4]=0
-|           0x0804846a      2b4514         sub eax, dword [ebp + arg_14h]
-|           0x0804846d      8945f0         mov dword [ebp - local_10h], eax
-|           0x08048470      ff7510         push dword [ebp + arg_10h]
-|           0x08048473      ff75f0         push dword [ebp - local_10h]
-|           0x08048476      ff75f4         push dword [ebp - local_ch]
+|           0x08048464      8945f4         mov dword [local_ch], eax
+|           0x08048467      8b450c         mov eax, dword [arg_ch] ; [0xc:4]=0
+|           0x0804846a      2b4514         sub eax, dword [arg_14h]
+|           0x0804846d      8945f0         mov dword [local_10h], eax
+|           0x08048470      ff7510         push dword [arg_10h]
+|           0x08048473      ff75f0         push dword [local_10h]
+|           0x08048476      ff75f4         push dword [local_ch]
 |           0x08048479      6874850408     push str._i__i__i_n ; str._i__i__i_n ; "%i %i %i." @ 0x8048574
 |           0x0804847e      e86dfeffff     call sym.imp.printf
 |           0x08048483      83c410         add esp, 0x10

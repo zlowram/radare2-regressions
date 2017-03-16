@@ -32,10 +32,10 @@ EXPECT='┌ (fcn) fcn.00000000 1015
 │     ↑││   0x00000015      mov eax, ebp
 │     ↑││   0x00000017      div ecx
 │     ↑││   0x00000019      xor edx, edx
-│     ↑││   0x0000001b      mov dword [esp + local_1ch], eax
+│     ↑││   0x0000001b      mov dword [local_1ch], eax
 │     ↑││   0x0000001f      mov eax, edi
 │     ↑││   0x00000021      div ecx
-│     ↑││   0x00000023      cmp dword [esp + local_1ch], eax
+│     ↑││   0x00000023      cmp dword [local_1ch], eax
 │    ┌────< 0x00000027      jbe 0x90
 │    │↑││   0x00000029      mov edx, dword [ebx + 0x208]
 │    │↑││   0x0000002f      mov eax, dword [edx]
@@ -94,10 +94,10 @@ EXPECT='/ (fcn) fcn.00000000 1015
 |     !||   0x00000015      mov eax, ebp
 |     !||   0x00000017      div ecx
 |     !||   0x00000019      xor edx, edx
-|     !||   0x0000001b      mov dword [esp + local_1ch], eax
+|     !||   0x0000001b      mov dword [local_1ch], eax
 |     !||   0x0000001f      mov eax, edi
 |     !||   0x00000021      div ecx
-|     !||   0x00000023      cmp dword [esp + local_1ch], eax
+|     !||   0x00000023      cmp dword [local_1ch], eax
 |    ,====< 0x00000027      jbe 0x90
 |    |!||   0x00000029      mov edx, dword [ebx + 0x208]
 |    |!||   0x0000002f      mov eax, dword [edx]
