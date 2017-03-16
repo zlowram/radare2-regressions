@@ -120,11 +120,11 @@ EXPECT='cdecl
 |           0x08048456      55             push ebp
 |           0x08048457      89e5           mov ebp, esp
 |           0x08048459      83ec18         sub esp, 0x18
-|           0x0804845c      8b5508         mov edx, dword [arg_8h] ; [0x8:4]=0
-|           0x0804845f      8b450c         mov eax, dword [arg_ch] ; [0xc:4]=0
+|           0x0804845c      8b5508         mov edx, dword [arg_8h]     ; [0x8:4]=0
+|           0x0804845f      8b450c         mov eax, dword [arg_ch]     ; [0xc:4]=0
 |           0x08048462      01d0           add eax, edx
 |           0x08048464      8945f4         mov dword [local_ch], eax
-|           0x08048467      8b450c         mov eax, dword [arg_ch] ; [0xc:4]=0
+|           0x08048467      8b450c         mov eax, dword [arg_ch]     ; [0xc:4]=0
 |           0x0804846a      2b4514         sub eax, dword [arg_14h]
 |           0x0804846d      8945f0         mov dword [local_10h], eax
 |           0x08048470      ff7510         push dword [arg_10h]
