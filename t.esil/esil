@@ -266,3 +266,25 @@ ar eax=0x0000000b
 EXPECT='0xff
 '
 run_test
+
+NAME='rep stosq'
+FILE='../bins/elf/analysis/x64-rep-stosq'
+ARGS=
+CMDS='
+3aes
+ar rcx
+ar rdi
+ar rip
+aes
+ar rcx
+ar rdi
+ar rip
+'
+EXPECT='0x00000001
+0x006000d0
+0x004000c0
+0x00000000
+0x006000d8
+0x004000c3
+'
+run_test
