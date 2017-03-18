@@ -54,12 +54,23 @@ EXPECT='test e .abbc.dd..
 '
 run_test
 
-NAME='z/'
+NAME='zae + z/'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
 zae sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 z/
 ?v sign.e.sym.fmt.Println_0
+'
+EXPECT='0x805b030
+'
+run_test
+
+NAME='zaa + z/'
+FILE=../bins/elf/analysis/go_stripped
+CMDS='
+zaa sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+z/
+?v sign.a.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
