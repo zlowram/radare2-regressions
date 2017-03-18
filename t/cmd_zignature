@@ -188,6 +188,45 @@ EXPECT='0x400536
 '
 run_test
 
+NAME='zc metric zign'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+zam sym.print cc=1 nbbs=1 edges=0 ebbs=1
+zc @@ fcn*
+?v sign.m.sym.print_0
+'
+EXPECT='0x400536
+'
+run_test
+
+NAME='z/ metric zign'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
+z/
+?v sign.m.sym.print_metric_2
+'
+EXPECT='0x400536
+'
+run_test
+
+NAME='z/ anal + metric zign'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+zae sym.print_anal 5548....48......48......48......48....bf........b8........e8........90c9c3
+zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
+z/
+?v sign.e.sym.print_anal_0
+?v sign.m.sym.print_metric_2
+'
+EXPECT='0x400536
+0x400536
+'
+run_test
+
 NAME='aa ; zfs libc.sig'
 FILE=../bins/elf/analysis/pid_stripped
 ARGS=
