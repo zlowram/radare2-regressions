@@ -20,9 +20,18 @@ do:
 	-git pull ${PULLADDR}
 	$(SHELL) run_tests.sh
 
+overlay:
+	if [ -f ../t/overlay ]; then \
+		$(SHELL) overlay.sh create ; \
+	fi
+
+apply-overlay overlay-apply:
+	$(SHELL) overlay.sh apply
+
 all: radare2 commands formats tools io asm anal esil tools archos
 
 radare2:
+	$(MAKE) overlay-apply
 	@if [ -f ../binr/radare2/radare2 ]; then $(SHELL) run_tests.sh ../t ; fi
 
 archos:
