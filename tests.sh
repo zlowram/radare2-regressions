@@ -491,6 +491,9 @@ print_label() {
 }
 
 print_found_nonexec() {
+  if [ "$1" = ./Makefile ]; then
+    return
+  fi
   MSG="Found non-executeable file '$1', skipping. (If it's a test, use chmod +x)"
   if [ -n "${NOCOLOR}" ]; then
     printf "%s\n" "$MSG"
