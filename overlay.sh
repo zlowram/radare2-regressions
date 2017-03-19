@@ -11,6 +11,12 @@ fi
 O=../t/overlay
 
 create() {
+	if [ -d "$O" ]; then
+	(
+		cd ../t
+		git rm -r -f overlay
+	)
+	fi
 	rm -rf $O
 	mkdir -p $O
 	MF=$(git status -s| grep '^ M' |cut -d ' ' -f 3-)
