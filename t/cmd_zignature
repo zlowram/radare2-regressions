@@ -46,12 +46,19 @@ run_test
 
 NAME='z and binmasks'
 CMDS='
-s entry0
 zae test .abbc.dd..
 z
 '
 EXPECT='test e .abbc.dd..
 '
+run_test
+
+NAME='zae zero mask'
+CMDS='
+zae test ....
+z
+'
+EXPECT=''
 run_test
 
 NAME='zae + z/'
