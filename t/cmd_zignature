@@ -16,11 +16,19 @@ zae bar3 aabbccdd
 zs test1
 zs *
 zs-test2
-z~bar2
+z~foo1
+z~bar1
 z~foo2
+z~bar2
+z~foo3
+z~bar3
 '
-EXPECT='bar2 e aabbccdd
+EXPECT='(test1) foo1 e aabbccdd
+(test1) bar1 e aabbccdd
 foo2 e aabbccdd
+bar2 e aabbccdd
+(test3) foo3 e aabbccdd
+(test3) bar3 e aabbccdd
 '
 run_test
 
@@ -38,8 +46,8 @@ zae bar3 aabbccdd
 zs test2
 z-*
 zs *
-z~bar2
 z~foo2
+z~bar2
 '
 EXPECT=''
 run_test
@@ -66,7 +74,7 @@ FILE=../bins/elf/analysis/go_stripped
 CMDS='
 zae sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 z/
-?v sign.e.sym.fmt.Println_0
+?v sign.sym.fmt.Println_0
 '
 EXPECT='0x805b030
 '
@@ -77,7 +85,18 @@ FILE=../bins/elf/analysis/go_stripped
 CMDS='
 zaa sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 z/
-?v sign.a.sym.fmt.Println_1
+?v sign.sym.fmt.Println_1
+'
+EXPECT='0x805b030
+'
+run_test
+
+NAME='zaa + z/'
+FILE=../bins/elf/analysis/go_stripped
+CMDS='
+zaa sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+z/
+?v sign.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
@@ -92,14 +111,14 @@ fs sign
 f~?
 e search.in=file
 z/
-?v sign.e.date_string_0
-?v sign.e.sym.fmt.Println_0
+?v sign.date_string_0
+?v sign.sym.fmt.Println_0
 f-*
 f~?
 e search.in=io.sections.exec
 z/
-?v sign.e.elf_header_0
-?v sign.e.sym.fmt.Println_0
+?v sign.elf_header_0
+?v sign.sym.fmt.Println_0
 '
 EXPECT='0
 0x81a5898
@@ -140,15 +159,15 @@ e search.in=raw
 e search.from=0x0
 e search.to=0x8
 z/
-?v sign.e.a_0
-?v sign.e.b_0
+?v sign.a_0
+?v sign.b_0
 f-*
 f~?
 e search.from=0x8
 e search.to=0xf
 z/
-?v sign.e.a_0
-?v sign.e.b_0
+?v sign.a_0
+?v sign.b_0
 '
 EXPECT='0
 0x1
@@ -168,7 +187,7 @@ e anal.hasnext=0
 aa
 axt 0x400536
 '
-EXPECT='call 0x40056f call sign.e.sym.print_0 in main
+EXPECT='call 0x40056f call sign.sym.print_0 in main
 '
 run_test
 
@@ -176,10 +195,22 @@ NAME='zaaF'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+zs zigs
 zaaF
-z*~sym.main[2]
+z~sym.main
 '
-EXPECT='554889e54883ec1089....48......bf........e8........b800000000c9c3
+EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaaF (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaaF
+z~sym.main
+'
+EXPECT='a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
 '
 run_test
 
@@ -187,10 +218,220 @@ NAME='zaeF'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+zs zigs
 zaeF
-z*~sym.main[2]
+z~sym.main
 '
-EXPECT='554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zaeF (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaeF
+z~sym.main
+'
+EXPECT='e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zamF'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zamF
+z~sym.main
+'
+EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zamF (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zamF
+z~sym.main
+'
+EXPECT='m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zaaf'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaaf sym.main
+z~sym.main
+'
+EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaaf (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaaf sym.main
+z~sym.main
+'
+EXPECT='a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaef'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaef sym.main
+z~sym.main
+'
+EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zaef (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaef sym.main
+z~sym.main
+'
+EXPECT='e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zamf'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zamf sym.main
+z~sym.main
+'
+EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zamf (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zamf sym.main
+z~sym.main
+'
+EXPECT='m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zaaf zigname'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaaf sym.main foobar
+z~foobar
+'
+EXPECT='foobar a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaaf zigname (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaaf sym.main foobar
+z~foobar
+'
+EXPECT='foobar a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaef zigname'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaef sym.main foobar
+z~foobar
+'
+EXPECT='foobar e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zaef zigname (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaef sym.main foobar
+z~foobar
+'
+EXPECT='foobar e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zamf zigname'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zamf sym.main foobar
+z~foobar
+'
+EXPECT='foobar m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zamf zigname (root zignspace)'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zamf sym.main foobar
+z~foobar
+'
+EXPECT='foobar m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
+NAME='zs + zaaf + z/'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaaf sym.main
+z/
+?v sign.zigs.a.sym.main_0
+'
+EXPECT='0x40055b
+'
+run_test
+
+NAME='zs + zaaf + z/'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaaf sym.main
+z/
+?v sign.a.sym.main_0
+'
+EXPECT='0x40055b
+'
+run_test
+
+NAME='zs + zaaf zigname + z/'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zaaf sym.main foobar
+z/
+?v sign.foobar_0
+'
+EXPECT='0x40055b
 '
 run_test
 
@@ -200,7 +441,7 @@ CMDS='
 aa
 zae sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
 zc @@ fcn*
-?v sign.e.sym.print_0
+?v sign.sym.print_0
 '
 EXPECT='0x400536
 '
@@ -212,7 +453,7 @@ CMDS='
 aa
 zam sym.print cc=1 nbbs=1 edges=0 ebbs=1
 zc @@ fcn*
-?v sign.m.sym.print_0
+?v sign.sym.print_0
 '
 EXPECT='0x400536
 '
@@ -224,7 +465,7 @@ CMDS='
 aa
 zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
 z/
-?v sign.m.sym.print_metric_2
+?v sign.sym.print_metric_2
 '
 EXPECT='0x400536
 '
@@ -237,8 +478,8 @@ aa
 zae sym.print_anal 5548....48......48......48......48....bf........b8........e8........90c9c3
 zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
 z/
-?v sign.e.sym.print_anal_0
-?v sign.m.sym.print_metric_2
+?v sign.sym.print_anal_0
+?v sign.sym.print_metric_2
 '
 EXPECT='0x400536
 0x400536
