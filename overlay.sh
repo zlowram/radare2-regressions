@@ -9,57 +9,101 @@ if [ ! -d ../t ]; then
 fi
 
 O=../t/overlay
+B=`cd $O ; git rev-parse --abbrev-ref HEAD`
 
 create() {
+	if [ "$B" = master ];then
+		echo "You are now in master, not gonna overwrite your overlay"
+		exit 0
+	fi
+	echo "Creating overlay for branch $B"
+
 	if [ -d "$O" ]; then
 	(
 		cd ../t
-		git rm -r -f overlay
+		git rm -r -f overlay/$B
 	)
 	fi
 	rm -rf $O
 	mkdir -p $O
 	MF=$(git status -s| grep '^ M' |cut -d ' ' -f 3-)
 	NF=$(git status -s| grep '^A ' |cut -d ' ' -f 3-)
+	if [ -z "${MF}${NF}" ]; then
+		echo "Do some changes in r2r to make git status happy."
+		exit 1
+	fi
 
 	for a in $MF ; do
 		d=`dirname $a`
-		mkdir -p $O/$d
-		git diff $a > $O/$a.patch
+		mkdir -p $O/$B/$d
+		git diff $a > $O/$B/$a.patch
 	done
 
 	for a in $NF ; do
 		d=`dirname $a`
-		mkdir -p $O/$d
-		cp $a $O/$a
+		mkdir -p $O/$B/$d
+		cp $a $O/$B/$a
 	done
 	(
 		cd ../t
-		git add overlay
+		git add overlay/$B
 	)
-	echo "Created ../t/overlay."
+	echo "Created ../t/overlay/$B"
 }
 
 apply() {
+	if [ "$B" != master ]; then
+		echo "You are not in master, overlay will not be applied"
+		exit 0
+	fi
 	if [ ! -d "$O" ]; then
 		echo "Cannot find $O"
 		exit 1
 	fi
+	# git reset --hard
+	OL=$(cd $O/overlay 2> /dev/null && ls)
+	if [ -z "$OL" ]; then
+		echo "Cannot find any overlay to apply"
+		exit 0
+	fi
+	for o in $OL ; do
 	(
-		F=`cd $O/overlay ; find . -type f`
+		F=`cd "$O/$o" ; find . -type f`
 		for a in $F ; do
 			if [ -n "`echo $a | grep .patch`" ]; then
-				patch -p1 < $O/overlay/$a
+				patch -p1 < "$O/$o/$a"
 			else
-				d=`dirname $a`
-				mkdir -p $d
-				cp $O/overlay/$a $a
+				d=`dirname "$a"`
+				mkdir -p "$d"
+				cp -f "$O/$o/$a" "$a"
+				git add "$a"
 			fi
 		done
 	)
-	echo "Applied radare2/t/overlay into r2r"
+	echo "Applied radare2/t/overlay into r2r. You may want to commit that in r2r."
 }
 
-eval $1
-
-
+case "$1" in
+|-h)
+	echo "Usage: ./overlay.sh [auto|apply|create]"
+	echo " auto   - if r2.branch == master { apply }{ create }"
+	echo " create - creates ../t/overlay with changes in this r2r"
+	echo " apply  - apply ../t/overlay into here."
+	;;
+apply)
+	apply
+	;;
+create)
+	create
+	;;
+auto)
+	if [ "$B" = master ]; then
+		apply
+	else
+		create
+	fi
+	;;
+*)
+	eval $1
+	;;
+esac
