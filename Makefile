@@ -18,6 +18,7 @@ PULLADDR=https://github.com/radare/radare2-regressions.git
 
 do:
 	-git pull ${PULLADDR}
+	-$(MAKE) overlay-apply
 	$(SHELL) run_tests.sh
 
 overlay:
@@ -28,10 +29,13 @@ overlay:
 apply-overlay overlay-apply:
 	$(SHELL) overlay.sh apply
 
-all: radare2 commands formats tools io asm anal esil tools archos
+all:
+	-$(MAKE) overlay-apply
+	$(MAKE) alltargets
+
+alltargets: radare2 commands formats tools io asm anal esil tools archos
 
 radare2:
-	$(MAKE) overlay-apply
 	@if [ -f ../binr/radare2/radare2 ]; then $(SHELL) run_tests.sh ../t ; fi
 
 archos:
