@@ -76,8 +76,30 @@ printdiff() {
 
 COUNT=0
 
+dump_test() {
+  echo "NAME=$NAME"
+  echo "FILE=$FILE"
+  if [ 1 = "$BROKEN" ]; then
+    echo "BROKEN=1"
+  fi
+  printf "EXPECT="
+  echo "$EXPECT" | base64
+  if [ -n "$EXPECT_ERR" ]; then
+    printf "EXPECT_ERR="
+    echo "$EXPECT_ERR" | base64
+  fi
+  if [ -n "$ARGS" ]; then
+    echo "ARGS=$ARGS"
+  fi
+  printf "CMDS="
+  echo "$CMDS" | base64
+  echo "RUN"
+}
+
 run_test() {
-  if [ "${HYPERPARALLEL}" = 1 ]; then
+  if [ "${DUMP}" = 1 ]; then
+    dump_test
+  elif [ "${HYPERPARALLEL}" = 1 ]; then
     ( echo "$(run_test_real)" ) &
   else
     run_test_real

@@ -1,0 +1,18 @@
+{
+  "name": "r2r2",
+  "version": "0.1.0",
+  "description": "new testsuite for r2 written in nodejs",
+  "main": "index.js",
+  "dependencies": {
+    "rc": "*",
+    "colors": "*",
+    "tmp": "*",
+    "r2pipe-promise": "*",
+    "co": "*"
+  },
+  "scripts": {
+    "test": "semistandard"
+  },
+  "author": "pancake <pancake@nopcode.org>",
+  "license": "MIT"
+}
