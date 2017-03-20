@@ -50,8 +50,12 @@ Usage: r2r [options] [file] [name] ([cmds])
     }
 
     const walker = walk('db', {followLinks: false});
+    const filter = argv._[0];
     walker.on('file', (root, stat, next) => {
       const testFile = path.join(root, stat.name);
+      if (testFile.indexOf(filter) === -1) {
+        return next();
+      }
       console.log('run', testFile);
       if (testFile.indexOf('/.') !== -1) {
       // skip hidden files

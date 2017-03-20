@@ -94,6 +94,7 @@ dump_test() {
   printf "CMDS64="
   echo "$CMDS" | base64
   echo "RUN"
+  test_reset
 }
 
 run_test() {

@@ -35,18 +35,18 @@ class NewRegressions {
     });
   }
 
-callbackFromPath (name) {
-  if (name.indexOf('db/cmd') !== -1) {
-    return this.runTest;
+  callbackFromPath (name) {
+    if (name.indexOf('db/cmd') !== -1) {
+      return this.runTest;
+    }
+    if (name.indexOf('db/asm') !== -1) {
+      return this.runTestAsm;
+    }
+    if (name.indexOf('db/dis') !== -1) {
+      return this.runTestDis;
+    }
+    return null;
   }
-  if (name.indexOf('db/asm') !== -1) {
-    return this.runTestAsm;
-  }
-  if (name.indexOf('db/dis') !== -1) {
-    return this.runTestDis;
-  }
-  return null;
-}
 
   quit () {
     const promise = this.r2 !== null
@@ -346,4 +346,3 @@ function binPath (file) {
 }
 
 module.exports = NewRegressions;
-
