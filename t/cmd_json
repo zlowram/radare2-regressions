@@ -72,6 +72,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	"CCj"
 	"ej"
 	"p-j"
+	"aeaj"
 '
 
 IFS=`printf "\t"`

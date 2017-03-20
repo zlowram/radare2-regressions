@@ -1,0 +1,80 @@
+#!/bin/sh
+
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+# 0x00000000      4889e5         mov rbp, rsp
+# 0x00000003      b8ffff0000     mov eax, 0xffff
+# 0x00000008      89c2           mov edx, eax
+# 0x0000000a      c1ea1f         shr edx, 0x1f
+# 0x0000000d      01d0           add eax, edx
+
+NAME='aea 5'
+FILE=-
+ARGS="-a x86 -b64"
+CMDS='
+wx 4889e5b8ffff000089c2c1ea1f01d0;aea 5
+'
+EXPECT='A: rsp rbp rax rdx cf edx zf pf sf eax of
+R: rsp rax rdx eax
+W: rbp rax rdx cf edx zf pf sf eax of
+N: rsp
+'
+run_test
+
+NAME='aeaj 5'
+FILE=-
+ARGS="-a x86 -b64"
+CMDS='
+wx 4889e5b8ffff000089c2c1ea1f01d0;aeaj 5~{}
+'
+EXPECT='{
+	"A": [
+		"rsp",
+		"rbp",
+		"rax",
+		"rdx",
+		"cf",
+		"edx",
+		"zf",
+		"pf",
+		"sf",
+		"eax",
+		"of"
+	],
+	"R": [
+		"rsp",
+		"rax",
+		"rdx",
+		"eax"
+	],
+	"W": [
+		"rbp",
+		"rax",
+		"rdx",
+		"cf",
+		"edx",
+		"zf",
+		"pf",
+		"sf",
+		"eax",
+		"of"
+	],
+	"N": [
+		"rsp"
+	]
+}
+'
+run_test
+
+NAME='aeA 15'
+FILE=-
+ARGS="-a x86 -b64"
+CMDS='
+wx 4889e5b8ffff000089c2c1ea1f01d0;aeA 15
+'
+EXPECT='A: rsp rbp rax rdx cf edx zf pf sf eax of
+R: rsp rax rdx eax
+W: rbp rax rdx cf edx zf pf sf eax of
+N: rsp
+'
+run_test
