@@ -109,6 +109,24 @@ EXPECT="fcn.00000106 ()
 "
 run_test
 
+NAME='pd pseudo test for issue #7026'
+FILE='malloc://8'
+ARGS=
+BROKEN=1
+CMDS='e asm.arch=x86
+e asm.bits=64
+wx 31ed
+e asm.pseudo=true
+e asm.comments=true
+e asm.cmtright=true
+pd 1
+e asm.cmtright=false
+pd 1'
+EXPECT="            0x00000000      31ed           ebp = 0
+            0x00000000      31ed           ebp = 0
+"
+run_test
+
 NAME='pd bits hint'
 FILE='-'
 ARGS='-a snes'
@@ -120,10 +138,7 @@ pd 1
 '
 EXPECT="  [36m          [0m[7m[32m0x00000000[0m      [37ma9[33m7e[0m           [35mlda[36m #[33m0x7e[0m[0m[0m
 "
-
 run_test
-
-
 
 NAME='ASCII Recognition'
 FILE=malloc://1024
