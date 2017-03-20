@@ -239,3 +239,23 @@ rm .b.exe.orig
 rm .b.exe.new
 '
 run_test
+
+## "wen" - insert null bytes
+NAME='wen should insert X null bytes even if io.cache=false'
+FILE=malloc://8
+BROKEN=1
+ARGS=
+FILTER="grep size"
+EXPECT='size     0x34e1f
+size     0x34e20
+'
+CMDS='
+cp ../bins/pe/b.exe .b.exe
+o+ .b.exe
+i
+s 0x200
+wen 1
+i
+rm .b.exe
+'
+run_test
