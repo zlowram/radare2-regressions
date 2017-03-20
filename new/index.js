@@ -199,6 +199,10 @@ class NewRegressions {
           test.args = v || [];
           break;
         case 'CMDS':
+          test.cmdScript = v;
+          test.cmds = test.cmdScript ? test.cmdScript.trim().split('\n') : [];
+          break;
+        case 'CMDS64':
           test.cmdScript = debase64(v);
           test.cmds = test.cmdScript ? test.cmdScript.trim().split('\n') : [];
           break;
@@ -241,6 +245,7 @@ class NewRegressions {
       }
       Promise.all(this.promises).then(res => {
  //       console.log(res);
+        console.log('Tests executed:', this.promises.length);
         cb(null, res);
       }).catch(err => {
   //      console.log(err);
@@ -284,7 +289,9 @@ function checkTest (test) {
   const status = (test.passes)
     ? (test.broken ? colors.yellow('FX') : colors.green('OK'))
     : (test.broken ? colors.blue('BR') : colors.red('XX'));
-  console.log(status, test.name);
+// if (status.indexOf('OK') === -1) {
+  console.log('[' + status + ']', colors.yellow(test.name));
+// }
   return test.passes;
 }
 
@@ -296,11 +303,11 @@ function checkTestResult (test) {
     console.log(test.cmdScript);
     if (test.expect !== null) {
       console.log('---');
-      console.log(test.expect.trim().replace(/ /g, '~'));
+      console.log(colors.red(test.expect.trim().replace(/ /g, '~')));
     }
     if (test.stdout !== null) {
       console.log('+++');
-      console.log(test.stdout.trim().replace(/ /g, '~'));
+      console.log(colors.green(test.stdout.trim().replace(/ /g, '~')));
     }
     console.log('===');
   }

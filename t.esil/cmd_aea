@@ -28,40 +28,40 @@ CMDS='
 wx 4889e5b8ffff000089c2c1ea1f01d0;aeaj 5~{}
 '
 EXPECT='{
-	"A": [
-		"rsp",
-		"rbp",
-		"rax",
-		"rdx",
-		"cf",
-		"edx",
-		"zf",
-		"pf",
-		"sf",
-		"eax",
-		"of"
-	],
-	"R": [
-		"rsp",
-		"rax",
-		"rdx",
-		"eax"
-	],
-	"W": [
-		"rbp",
-		"rax",
-		"rdx",
-		"cf",
-		"edx",
-		"zf",
-		"pf",
-		"sf",
-		"eax",
-		"of"
-	],
-	"N": [
-		"rsp"
-	]
+  "A": [
+    "rsp",
+    "rbp",
+    "rax",
+    "rdx",
+    "cf",
+    "edx",
+    "zf",
+    "pf",
+    "sf",
+    "eax",
+    "of"
+  ],
+  "R": [
+    "rsp",
+    "rax",
+    "rdx",
+    "eax"
+  ],
+  "W": [
+    "rbp",
+    "rax",
+    "rdx",
+    "cf",
+    "edx",
+    "zf",
+    "pf",
+    "sf",
+    "eax",
+    "of"
+  ],
+  "N": [
+    "rsp"
+  ]
 }
 '
 run_test

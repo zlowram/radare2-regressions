@@ -1,6 +1,6 @@
 #!/do/not/execute
 
-# Copyright (C) 2011-2016  pancake<nopcode.org>
+# Copyright (C) 2011-2017  pancake<nopcode.org>
 # Copyright (C) 2011-2012  Edd Barrett <vext01@gmail.com>
 # Copyright (C) 2012     Simon Ruderich <simon@ruderich.org>
 #
@@ -91,7 +91,7 @@ dump_test() {
   if [ -n "$ARGS" ]; then
     echo "ARGS=$ARGS"
   fi
-  printf "CMDS="
+  printf "CMDS64="
   echo "$CMDS" | base64
   echo "RUN"
 }
