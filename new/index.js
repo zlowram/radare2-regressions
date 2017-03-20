@@ -1,4 +1,3 @@
-// const rc = require('rc');
 const co = require('co');
 const colors = require('colors');
 const promisify = require('promisify-node');
@@ -9,18 +8,24 @@ const path = require('path');
 const spawn = require('child_process').spawn;
 // const r2promise = require('r2pipe-promise');
 
-const useScript = true;
+// set this to false to avoid creating files
+const useScript = false;
 
 class NewRegressions {
-  constructor () {
+  constructor (argv) {
+    this.argv = argv;
     this.promises = [];
     process.env.RABIN2_NOPLUGINS = 1;
     process.env.RASM2_NOPLUGINS = 1;
     process.env.R2_NOPLUGINS = 1;
   }
 
-  runTest (test) {
+  runTest (test, cb) {
     return new Promise((resolve, reject) => {
+      if (this.argv.l) {
+        console.log(test.from.replace('db/', ''), test.name);
+        return resolve();
+      }
       co(function * () {
         const args = [
           '-escr.utf8=0',
@@ -40,6 +45,9 @@ class NewRegressions {
             yield fs.writeFile(test.tmpScript, test.cmdScript);
             args.push('-i', test.tmpScript);
           } else {
+            if (!test.cmds && test.cmdScript) {
+              test.cmds = test.cmdScript.split('\n');
+            }
             args.push('-c', test.cmds.join(';'));
           }
         // append testfile
@@ -47,6 +55,7 @@ class NewRegressions {
 
           let res = '';
           let ree = '';
+          test.spawnArgs = args;
           const child = spawn('r2', args);
           child.stdout.on('data', data => {
             res += data.toString();
@@ -55,22 +64,19 @@ class NewRegressions {
             ree += data.toString();
           });
           child.on('close', data => {
-            if (!checkTest(test, res, ree)) {
-              console.log('$ r2', args.join(' '));
-              console.log(test.cmdScript);
-              console.log('---');
-              console.log(test.expect.trim().replace(/ /g, '~'));
-              console.log('+++');
-              console.log(res.trim().replace(/ /g, '~'));
-              console.log('===');
+            try {
+              if (test.tmpScript) {
+                // TODO use yield
+                fs.unlinkSync(test.tmpScript);
+                test.tmpScript = null;
+              }
+            } catch (e) {
+              console.error(e);
+              // ignore
             }
-
-            if (test.tmpScript) {
-            // TODO use yield
-              fs.unlinkSync(test.tmpScript);
-              test.tmpScript = null;
-            }
-            resolve(res);
+            test.stdout = res;
+            test.stderr = ree;
+            resolve(cb(test));
           });
         } catch (e) {
           console.error(e);
@@ -108,8 +114,20 @@ class NewRegressions {
     });
   }
 
-  runTests (lines) {
-    let test = {};
+  checkTestResult (test) {
+    if (!checkTest(test)) {
+      console.log('$ r2', test.spawnArgs.join(' '));
+      console.log(test.cmdScript);
+      console.log('---');
+      console.log(test.expect.trim().replace(/ /g, '~'));
+      console.log('+++');
+      console.log(test.stdout.trim().replace(/ /g, '~'));
+      console.log('===');
+    }
+  }
+
+  runTests (source, lines) {
+    let test = {from: source};
     for (let l of lines) {
       const line = l.trim();
       if (line.length === 0) {
@@ -117,9 +135,9 @@ class NewRegressions {
       }
       if (line === 'RUN') {
         if (test.file && test.cmds) {
-          this.promises.push(this.runTest(test));
+          this.promises.push(this.runTest(test, this.checkTestResult));
         }
-        test = {};
+        test = {from: source};
         continue;
       }
       const eq = l.indexOf('=');
@@ -133,7 +151,7 @@ class NewRegressions {
           test.name = v;
           break;
         case 'ARGS':
-          test.args = v;
+          test.args = v || [];
           break;
         case 'CMDS':
           test.cmdScript = debase64(v);
@@ -157,12 +175,12 @@ class NewRegressions {
   }
 
   load (fileName, cb) {
-    const blob = fs.readFileSync(path.join(__dirname, 'db', fileName));
+    const blob = fs.readFileSync(path.join(__dirname, fileName));
     zlib.gunzip(blob, (err, data) => {
       if (err) {
         throw new Error('Cannot gunzip', fileName);
       }
-      this.runTests(data.toString().split('\n'));
+      this.runTests(fileName, data.toString().split('\n'));
       Promise.all(this.promises).then(res => {
  //       console.log(res);
         cb(null, res);
@@ -173,8 +191,6 @@ class NewRegressions {
     });
   }
 }
-
-main();
 
 function createTemporaryFile () {
   return new Promise((resolve, reject) => {
@@ -191,17 +207,6 @@ function createTemporaryFile () {
   });
 }
 
-function main () {
-  const nr = new NewRegressions();
-  nr.load('t/cmd_pd', (err, data) => {
-    if (err) {
-//      console.error(err.message);
-      return 1;
-    }
-    // console.log(data);
-  });
-}
-
 function debase64 (msg) {
   return new Buffer(msg, 'base64').toString('utf8');
 }
@@ -213,10 +218,10 @@ function binPath (file) {
   return file;
 }
 
-function checkTest (test, stdout, stderr) {
-  test.passes = test.expectErr ? test.expectErr.trim() === stderr.trim() : true;
+function checkTest (test) {
+  test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
   if (test.passes) {
-    test.passes = test.expect.trim() === stdout.trim();
+    test.passes = test.expect.trim() === test.stdout.trim();
   }
   const status = (test.passes)
     ? (test.broken ? colors.yellow('FX') : colors.green('OK'))
@@ -224,3 +229,5 @@ function checkTest (test, stdout, stderr) {
   console.log(status, test.name);
   return test.passes;
 }
+
+module.exports = NewRegressions;

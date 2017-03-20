@@ -7,8 +7,8 @@ all:
 	mkdir -p db
 	cd .. ; for a in $(TESTS) ; do \
 		d=$$(dirname $$a) ; \
-		mkdir -p new/db/$$d ; \
-		DUMP=1 $$a | gzip -9 > new/db/$$a ; \
+		mkdir -p new/db/cmd/$$d ; \
+		DUMP=1 $$a | gzip -9 > new/db/cmd/$$a ; \
 	done
 
 run:

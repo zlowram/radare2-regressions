@@ -1,5 +1,5 @@
 {
-  "name": "r2r2",
+  "name": "r2r",
   "version": "0.1.0",
   "description": "new testsuite for r2 written in nodejs",
   "main": "index.js",
@@ -11,7 +11,8 @@
     "co": "*"
   },
   "scripts": {
-    "test": "semistandard"
+    "test": "semistandard",
+    "fix": "semistandard --fix"
   },
   "author": "pancake <pancake@nopcode.org>",
   "license": "MIT"
