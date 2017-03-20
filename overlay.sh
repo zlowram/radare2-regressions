@@ -35,14 +35,14 @@ create() {
 
 	for a in $MF ; do
 		d=`dirname $a`
-		mkdir -p $O/$B/$d
-		git diff $a > $O/$B/$a.patch
+		mkdir -p "$O/$B/$d"
+		git diff $a > "$O/$B/$a.patch"
 	done
 
 	for a in $NF ; do
 		d=`dirname $a`
-		mkdir -p $O/$B/$d
-		cp $a $O/$B/$a
+		mkdir -p "$O/$B/$d"
+		cp $a "$O/$B/$a"
 	done
 	(
 		cd ../t
@@ -71,8 +71,10 @@ apply() {
 		F=`cd "$O/$o" 2> /dev/null && find . -type f`
 		for a in $F ; do
 			if [ -n "`echo $a | grep .patch`" ]; then
+				echo "Patch $a"
 				patch -p1 < "$O/$o/$a"
 			else
+				echo "Add $a"
 				d=`dirname "$a"`
 				mkdir -p "$d"
 				cp -f "$O/$o/$a" "$a"
