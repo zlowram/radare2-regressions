@@ -82,7 +82,7 @@ dump_test() {
   if [ 1 = "$BROKEN" ]; then
     echo "BROKEN=1"
   fi
-  printf "EXPECT="
+  printf "EXPECT64="
   echo "$EXPECT" | base64
   if [ -n "$EXPECT_ERR" ]; then
     printf "EXPECT_ERR="

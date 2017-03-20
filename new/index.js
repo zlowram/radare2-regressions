@@ -6,18 +6,66 @@ const tmp = require('tmp');
 const zlib = require('zlib');
 const path = require('path');
 const spawn = require('child_process').spawn;
-// const r2promise = require('r2pipe-promise');
+const r2promise = require('r2pipe-promise');
 
 // set this to false to avoid creating files
-const useScript = false;
+let useScript = true;
 
 class NewRegressions {
-  constructor (argv) {
+  constructor (argv, cb) {
     this.argv = argv;
+    useScript = !argv.c;
     this.promises = [];
+    // reduce startup times of r2
     process.env.RABIN2_NOPLUGINS = 1;
     process.env.RASM2_NOPLUGINS = 1;
     process.env.R2_NOPLUGINS = 1;
+    r2promise.open('-').then(r2 => {
+      this.r2 = r2;
+      cb(null, r2);
+    }).catch(e => {
+      cb(e);
+    });
+  }
+
+  quit () {
+    const promise = this.r2 !== null
+      ? this.r2.quit()
+      : new Promise(resolve => resolve());
+    this.r2 = null;
+    return promise;
+  }
+
+  runTestAsm (test, cb) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      // return resolve(cb(test));
+      try {
+        co(function * () {
+          const arch = path.basename(test.from);
+        // a playground session.. we may probably want to bump some more
+          const cmd = 'pa ' + test.name + ' @a:' + arch;
+          test.stdout = yield self.r2.cmd(cmd);
+          yield self.r2.quit();
+          return resolve(cb(test));
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  runTestDis (test, cb) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      co(function * () {
+        const arch = path.basename(test.from);
+        // a playground session.. we may probably want to bump some more
+        const cmd = 'pad ' + test.name + ' @a:' + arch;
+        test.stdout = yield self.r2.cmd(cmd);
+        return resolve(cb(test));
+      });
+    });
   }
 
   runTest (test, cb) {
@@ -114,28 +162,25 @@ class NewRegressions {
     });
   }
 
-  checkTestResult (test) {
-    if (!checkTest(test)) {
-      console.log('$ r2', test.spawnArgs.join(' '));
-      console.log(test.cmdScript);
-      console.log('---');
-      console.log(test.expect.trim().replace(/ /g, '~'));
-      console.log('+++');
-      console.log(test.stdout.trim().replace(/ /g, '~'));
-      console.log('===');
-    }
-  }
-
   runTests (source, lines) {
     let test = {from: source};
     for (let l of lines) {
       const line = l.trim();
-      if (line.length === 0) {
-        break;
+      if (line.length === 0 || line[0] === '#') {
+        continue;
       }
-      if (line === 'RUN') {
+      // TODO: run specific test type depending on directory db/[asm|cmd|unit]
+      if (line === 'RUN_ASM') {
+        this.promises.push(this.runTestAsm(test, checkTestResult));
+        test = {from: source};
+        continue;
+      } else if (line === 'RUN_DIS') {
+        this.promises.push(this.runTestDis(test, checkTestResult));
+        test = {from: source};
+        continue;
+      } else if (line === 'RUN') {
         if (test.file && test.cmds) {
-          this.promises.push(this.runTest(test, this.checkTestResult));
+          this.promises.push(this.runTest(test, checkTestResult));
         }
         test = {from: source};
         continue;
@@ -155,16 +200,28 @@ class NewRegressions {
           break;
         case 'CMDS':
           test.cmdScript = debase64(v);
-          test.cmds = test.cmdScript.trim().split('\n');
+          test.cmds = test.cmdScript ? test.cmdScript.trim().split('\n') : [];
+          break;
+        case 'ARCH':
+          test.arch = v;
+          break;
+        case 'BITS':
+          test.bits = v;
+          break;
+        case 'BROKEN':
+          test.broken = true;
           break;
         case 'EXPECT':
+          test.expect = v;
+          break;
+        case 'EXPECT64':
           test.expect = debase64(v);
           break;
         case 'FILE':
           test.file = v;
           break;
         default:
-          throw new Error('Invalid database, key =', k);
+          throw new Error('Invalid database, key =(', l, ')');
       }
     }
     if (Object.keys(test) !== 0) {
@@ -178,9 +235,10 @@ class NewRegressions {
     const blob = fs.readFileSync(path.join(__dirname, fileName));
     zlib.gunzip(blob, (err, data) => {
       if (err) {
-        throw new Error('Cannot gunzip', fileName);
+        this.runTests(fileName, blob.toString().split('\n'));
+      } else {
+        this.runTests(fileName, data.toString().split('\n'));
       }
-      this.runTests(fileName, data.toString().split('\n'));
       Promise.all(this.promises).then(res => {
  //       console.log(res);
         cb(null, res);
@@ -220,7 +278,7 @@ function binPath (file) {
 
 function checkTest (test) {
   test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
-  if (test.passes) {
+  if (test.passes && test.stdout && test.expect) {
     test.passes = test.expect.trim() === test.stdout.trim();
   }
   const status = (test.passes)
@@ -231,3 +289,19 @@ function checkTest (test) {
 }
 
 module.exports = NewRegressions;
+
+function checkTestResult (test) {
+  if (!checkTest(test)) {
+    console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
+    console.log(test.cmdScript);
+    if (test.expect !== null) {
+      console.log('---');
+      console.log(test.expect.trim().replace(/ /g, '~'));
+    }
+    if (test.stdout !== null) {
+      console.log('+++');
+      console.log(test.stdout.trim().replace(/ /g, '~'));
+    }
+    console.log('===');
+  }
+}

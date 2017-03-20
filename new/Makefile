@@ -1,6 +1,7 @@
 TESTS=t/cmd_pd
 #TESTS+=t.formats/dex/radare2installer
 TESTS+=t/cmd_ph
+TESTS+=t/malloc
 
 all:
 	rm -rf db
@@ -12,4 +13,4 @@ all:
 	done
 
 run:
-	time node index.js
+	time node bin/r2r.js

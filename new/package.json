@@ -6,7 +6,9 @@
   "dependencies": {
     "rc": "*",
     "colors": "*",
+    "walk": "*",
     "tmp": "*",
+    "promisify-node": "*",
     "r2pipe-promise": "*",
     "co": "*"
   },
