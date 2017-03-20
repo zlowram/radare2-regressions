@@ -14,6 +14,13 @@ let useScript = true;
 class NewRegressions {
   constructor (argv, cb) {
     this.argv = argv;
+    this.report = {
+      total: 0,
+      success: 0,
+      failed: 0,
+      broken: 0,
+      fixed: 0
+    };
     useScript = !argv.c;
     this.promises = [];
     // reduce startup times of r2
@@ -27,6 +34,19 @@ class NewRegressions {
       cb(e);
     });
   }
+
+callbackFromPath (name) {
+  if (name.indexOf('db/cmd') !== -1) {
+    return this.runTest;
+  }
+  if (name.indexOf('db/asm') !== -1) {
+    return this.runTestAsm;
+  }
+  if (name.indexOf('db/dis') !== -1) {
+    return this.runTestDis;
+  }
+  return null;
+}
 
   quit () {
     const promise = this.r2 !== null
@@ -57,6 +77,7 @@ class NewRegressions {
 
   runTestDis (test, cb) {
     const self = this;
+    console.log(self);
     return new Promise((resolve, reject) => {
       co(function * () {
         const arch = path.basename(test.from);
@@ -170,20 +191,13 @@ class NewRegressions {
         continue;
       }
       // TODO: run specific test type depending on directory db/[asm|cmd|unit]
-      if (line === 'RUN_ASM') {
-        this.promises.push(this.runTestAsm(test, checkTestResult));
-        test = {from: source};
-        continue;
-      } else if (line === 'RUN_DIS') {
-        this.promises.push(this.runTestDis(test, checkTestResult));
-        test = {from: source};
-        continue;
-      } else if (line === 'RUN') {
-        if (test.file && test.cmds) {
-          this.promises.push(this.runTest(test, checkTestResult));
+      if (line === 'RUN') {
+        const testCallback = this.callbackFromPath(test.from);
+        if (testCallback !== null) {
+          this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
+          test = {from: source};
+          continue;
         }
-        test = {from: source};
-        continue;
       }
       const eq = l.indexOf('=');
       if (eq === -1) {
@@ -221,11 +235,17 @@ class NewRegressions {
         case 'EXPECT64':
           test.expect = debase64(v);
           break;
+        case 'EXPECT_ERR':
+          test.expect = v;
+          break;
+        case 'EXPECT_ERR64':
+          test.expect = debase64(v);
+          break;
         case 'FILE':
           test.file = v;
           break;
         default:
-          throw new Error('Invalid database, key =(', l, ')');
+          throw new Error('Invalid database, key =(', k, ')');
       }
     }
     if (Object.keys(test) !== 0) {
@@ -246,12 +266,56 @@ class NewRegressions {
       Promise.all(this.promises).then(res => {
  //       console.log(res);
         console.log('Tests executed:', this.promises.length);
+        console.log(this.report);
         cb(null, res);
       }).catch(err => {
   //      console.log(err);
         cb(err);
       });
     });
+  }
+  checkTest (test) {
+    test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
+    if (test.passes && test.stdout && test.expect) {
+      test.passes = test.expect.trim() === test.stdout.trim();
+    }
+    const status = (test.passes)
+    ? (test.broken ? colors.yellow('FX') : colors.green('OK'))
+    : (test.broken ? colors.blue('BR') : colors.red('XX'));
+    this.report.total++;
+    if (test.passes) {
+      if (test.broken) {
+        this.report.fixed++;
+      } else {
+        this.report.success++;
+      }
+    } else {
+      if (test.broken) {
+        this.report.broken++;
+      } else {
+        this.report.failed++;
+      }
+    }
+// if (status.indexOf('OK') === -1) {
+    console.log('[' + status + ']', colors.yellow(test.name));
+// }
+    return test.passes;
+  }
+
+  checkTestResult (test) {
+    if (!this.checkTest(test)) {
+      console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
+      console.log(test.cmdScript);
+      if (test.expect !== null) {
+        console.log('---');
+        console.log(colors.red(test.expect.trim().replace(/ /g, '~')));
+      }
+      if (test.stdout !== null) {
+        console.log('+++');
+        console.log(colors.green(test.stdout.trim().replace(/ /g, '~')));
+      }
+      console.log('===');
+    }
   }
 }
 
@@ -281,34 +345,5 @@ function binPath (file) {
   return file;
 }
 
-function checkTest (test) {
-  test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
-  if (test.passes && test.stdout && test.expect) {
-    test.passes = test.expect.trim() === test.stdout.trim();
-  }
-  const status = (test.passes)
-    ? (test.broken ? colors.yellow('FX') : colors.green('OK'))
-    : (test.broken ? colors.blue('BR') : colors.red('XX'));
-// if (status.indexOf('OK') === -1) {
-  console.log('[' + status + ']', colors.yellow(test.name));
-// }
-  return test.passes;
-}
-
 module.exports = NewRegressions;
 
-function checkTestResult (test) {
-  if (!checkTest(test)) {
-    console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
-    console.log(test.cmdScript);
-    if (test.expect !== null) {
-      console.log('---');
-      console.log(colors.red(test.expect.trim().replace(/ /g, '~')));
-    }
-    if (test.stdout !== null) {
-      console.log('+++');
-      console.log(colors.green(test.stdout.trim().replace(/ /g, '~')));
-    }
-    console.log('===');
-  }
-}

@@ -85,7 +85,7 @@ dump_test() {
   printf "EXPECT64="
   echo "$EXPECT" | base64
   if [ -n "$EXPECT_ERR" ]; then
-    printf "EXPECT_ERR="
+    printf "EXPECT_ERR64="
     echo "$EXPECT_ERR" | base64
   fi
   if [ -n "$ARGS" ]; then
