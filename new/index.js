@@ -264,12 +264,10 @@ class NewRegressions {
         this.runTests(fileName, data.toString().split('\n'));
       }
       Promise.all(this.promises).then(res => {
- //       console.log(res);
-        console.log('Tests executed:', this.promises.length);
-        console.log(this.report);
+        console.log('[--]', this.report);
         cb(null, res);
       }).catch(err => {
-  //      console.log(err);
+        console.log(err);
         cb(err);
       });
     });

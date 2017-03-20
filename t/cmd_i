@@ -849,9 +849,8 @@ run_test
 NAME='i (no rbin - file x86_64)'
 FILE=../bins/elf/analysis/hello-linux-x86_64
 ARGS="-n"
-CMDS="i"
-EXPECT='file     ../bins/elf/analysis/hello-linux-x86_64
-fd       42
+CMDS="i~!file"
+EXPECT='fd       42
 size     0x1a36
 iorw     false
 blksz    0x0
