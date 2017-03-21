@@ -18,7 +18,7 @@ IGNORE_ERR=1
 CMDS='wx 2f @ 0x101
 / \x00/
 ?v hit0_0'
-EXPECT='0x00000100 hit0_0 "\\u0000/"
+EXPECT='0x00000100 hit0_0 "\u0000/"
 0x100
 '
 run_test
