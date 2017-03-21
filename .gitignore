@@ -12,3 +12,5 @@ stats.csv
 /bins/other/ragg2/hi.c.text
 /bins/other/ragg2/hi.c.s
 unit/*.dSYM/
+node_modules/
+

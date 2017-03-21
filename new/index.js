@@ -356,9 +356,13 @@ class NewRegressions {
         this.report.failed++;
       }
     }
-// if (status.indexOf('OK') === -1) {
-    console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
-// }
+    if (process.env.NOOK) {
+      if (status !== colors.green('OK')) {
+        console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
+      }
+    } else {
+      console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
+    }
     return test.passes;
   }
 
