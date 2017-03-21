@@ -34,7 +34,7 @@ Usage: r2r [options] [file] [name] ([cmds])
         from: argv.a,
         name: argv._[0],
         cmdScript: argv._[1],
-        file: argv._[2] || 'malloc://128'
+        file: argv._[2] || 'malloc://128' // maybe -- ?
       };
       nr.runTest(test, (res) => {
         delete res.spawnArgs;

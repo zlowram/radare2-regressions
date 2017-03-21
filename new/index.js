@@ -1,6 +1,7 @@
 const co = require('co');
 const colors = require('colors');
 const promisify = require('promisify-node');
+const walk = require('walk').walk;
 const fs = promisify('fs');
 const tmp = require('tmp');
 const zlib = require('zlib');
@@ -35,15 +36,17 @@ class NewRegressions {
     });
   }
 
-  callbackFromPath (name) {
-    if (name.indexOf('db/cmd') !== -1) {
-      return this.runTest;
-    }
-    if (name.indexOf('db/asm') !== -1) {
-      return this.runTestAsm;
-    }
-    if (name.indexOf('db/dis') !== -1) {
-      return this.runTestDis;
+  callbackFromPath (from) {
+    for (let row of [
+      ['db/cmd', this.runTest],
+      ['db/asm', this.runTestAsm],
+      ['db/dis', this.runTestDis],
+      ['db/bin', this.runTestBin]
+    ]) {
+      const [txt, cb] = row;
+      if (from.indexOf(txt) !== -1) {
+        return cb;
+      }
     }
     return null;
   }
@@ -68,6 +71,61 @@ class NewRegressions {
           test.stdout = yield self.r2.cmd(cmd);
           yield self.r2.quit();
           return resolve(cb(test));
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  runTestBin (test, cb) {
+    const testPath = test.path;
+    return new Promise((resolve, reject) => {
+      const promises = [];
+      const walker = walk(test.path, {followLinks: false});
+      walker.on('file', (root, stat, next) => {
+        const newTest = Object.assign({}, test);
+        newTest.path = path.join(testPath, stat.name);
+        promises.push(this.runTestBinFile(newTest, cb));
+        next();
+      });
+      walker.on('end', () => {
+        Promise.all(promises).then(res => {
+          console.log('Bins Done');
+          resolve();
+        }).catch(reject);
+      });
+    });
+  }
+
+  runTestBinFile (test, cb) {
+    return new Promise((resolve, reject) => {
+      try {
+        co(function * () {
+          const args = [
+            '-escr.utf8=0',
+            '-escr.color=0',
+            '-c', '?e init',
+            '-qcq',
+            '-AA', // configurable to AAA, or just A somehow
+            test.path
+          ];
+          test.birth = null;
+          const child = spawn('r2', args);
+          child.stdout.on('data', data => {
+          // console.log(data.toString());
+            if (test.birth === null) {
+              test.birth = new Date();
+            }
+          });
+          child.stderr.on('data', data => {
+    //      console.error(data.toString());
+          });
+          child.on('close', data => {
+            test.death = new Date();
+            test.lifetime = test.death - test.birth;
+            return resolve(cb(test));
+          });
         });
       } catch (e) {
         reject(e);
@@ -209,6 +267,9 @@ class NewRegressions {
         case 'NAME':
           test.name = v;
           break;
+        case 'PATH':
+          test.path = v;
+          break;
         case 'ARGS':
           test.args = v || [];
           break;
@@ -272,6 +333,7 @@ class NewRegressions {
       });
     });
   }
+
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
     if (test.passes && test.stdout && test.expect) {
@@ -295,7 +357,7 @@ class NewRegressions {
       }
     }
 // if (status.indexOf('OK') === -1) {
-    console.log('[' + status + ']', colors.yellow(test.name));
+    console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
 // }
     return test.passes;
   }

@@ -1,0 +1,3 @@
+NAME=fuzzed elfs
+PATH=/tmp/elf
+RUN
