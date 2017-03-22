@@ -25,7 +25,7 @@ fi
 BITS=32
 
 # Multiline label test
-TESTFILE=../../../bin/asm/multiline.asm
+TESTFILE=../../../bins/other/asm/multiline.asm
 NAME='labels replacements (multiline)'
 BROKEN=
 CMDS='!rasm2 -a '${PLUGIN}' -b '${BITS}' -f "'${TESTFILE}'"

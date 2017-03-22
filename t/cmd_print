@@ -587,7 +587,7 @@ EXPECT='0x00000000 1 PE  for MS Windows (console) Intel 80386 32-bit
 run_test
 
 NAME='print raw lines'
-FILE=../bin/other/projects/resetc64
+FILE=../bins/other/projects/resetc64
 ARGS=
 BROKEN=
 CMDS='

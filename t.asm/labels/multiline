@@ -1,6 +1,6 @@
 for a in . .. ../.. ../../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh; done
 
-TESTFILE=../../bin/asm/multiline.asm
+TESTFILE=../../bins/other/asm/multiline.asm
 NAME='labels replacements (multiline)'
 BROKEN=
 FILE=malloc://1024
