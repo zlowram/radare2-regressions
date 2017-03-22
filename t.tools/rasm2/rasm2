@@ -247,14 +247,14 @@ EXPECT='invalid
 run_test
 
 NAME='Rasm2  SPP include directive'
-CMDS="!rasm2 -a x86 -b 32 -p -f ../../files/rasm2/include.asm"
+CMDS="!rasm2 -a x86 -b 32 -p -f ../../bin/other/rasm2/asm/include.asm"
 BROKEN=
 EXPECT='9083e803bb00000000cd80c3
 '
 run_test
 
 NAME='Rasm2  SPP nested conditionals'
-CMDS="!rasm2 -a x86 -b 32 -p -f ../../files/rasm2/nest.asm"
+CMDS="!rasm2 -a x86 -b 32 -p -f ../../bin/other/rasm2/asm/nest.asm"
 BROKEN=
 EXPECT='83c10283e90583c301b90200000090
 '

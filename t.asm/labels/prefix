@@ -1,6 +1,6 @@
 for a in . .. ../.. ../../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh; done
 
-TESTFILE=../../files/multiline_prefix.asm
+TESTFILE=../../bin/other/asm/multiline_prefix.asm
 NAME='labels replacements (common prefix)'
 BROKEN=1
 FILE=malloc://1024

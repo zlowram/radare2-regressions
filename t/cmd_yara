@@ -28,7 +28,7 @@ run_test
 NAME='yara add <file>'
 CMDS='
 yara2 clear
-yara2 add ../files/test_yara.rules
+yara2 add ../bin/other/test_yara.rules
 yara2 list
 '
 EXPECT='TEST
@@ -41,7 +41,7 @@ run_test
 NAME='yara add and scan'
 FILE=../bins/elf/analysis/hello-linux-x86_64
 CMDS='
-yara2 add ../files/test_yara.rules
+yara2 add ../bin/other/test_yara.rules
 yara2 scan
 '
 EXPECT='elf
@@ -51,7 +51,7 @@ run_test
 NAME='yara tags'
 CMDS='
 yara2 tags
-yara2 add ../files/test_yara.rules
+yara2 add ../bin/other/test_yara.rules
 yara2 tags
 '
 EXPECT='[YARA tags]
@@ -67,11 +67,11 @@ run_test
 NAME='yara add duplicate then original'
 FILE=../bins/elf/analysis/hello-linux-x86_64
 CMDS='
-yara2 add ../files/test_yara.rules
-yara2 add ../files/test_yara.rules
+yara2 add ../bin/other/test_yara.rules
+yara2 add ../bin/other/test_yara.rules
 yara2 add ../files/test_yara_2.rules
 '
-EXPECT_ERR='Error: duplicate rule identifier "elf" : ../files/test_yara.rules
+EXPECT_ERR='Error: duplicate rule identifier "elf" : ../bin/other/test_yara.rules
 '
 run_test
 
