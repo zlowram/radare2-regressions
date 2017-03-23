@@ -398,6 +398,42 @@ EXPECT='foobar m cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
+NAME='zaaf at offset'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaaf @ sym.main
+z~sym.main
+'
+EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+'
+run_test
+
+NAME='zaef at offset'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zaef @ sym.main
+z~sym.main
+'
+EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+'
+run_test
+
+NAME='zamf at offset'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+zs zigs
+zamf @ sym.main
+z~sym.main
+'
+EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+'
+run_test
+
 NAME='zs + zaaf + z/'
 FILE=../bins/elf/analysis/zigs
 CMDS='
