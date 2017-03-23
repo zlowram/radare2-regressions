@@ -112,7 +112,7 @@ run_test
 NAME='pd pseudo test for issue #7026'
 FILE='malloc://8'
 ARGS=
-BROKEN=1
+BROKEN=
 CMDS='e asm.arch=x86
 e asm.bits=64
 wx 31ed
@@ -136,7 +136,7 @@ ahb 8
 e scr.color=true
 pd 1
 '
-EXPECT="  [36m          [0m[7m[32m0x00000000[0m      [37ma9[33m7e[0m           [35mlda[36m #[33m0x7e[0m[0m[0m
+EXPECT="  [36m          [0m[7m[32m0x00000000[0m      [37ma9[33m7e[32m00[0m         [35mlda[36m #[33m0x007e[0m[0m[0m
 "
 run_test
 
