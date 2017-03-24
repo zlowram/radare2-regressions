@@ -72,35 +72,33 @@ strb w10, [x0], 7
 run_test
 
 NAME='endian tests: sparc'
-BROKEN=1
 FILE=-
 ARGS=
 CMDS='
 e asm.arch=sparc
 wx 554889e5
-e cfg.bigendian=false
-pi 1
 e cfg.bigendian=true
 pi 1
+e cfg.bigendian=false
+pi 1
 '
-EXPECT='call 0x15222794
+EXPECT='call 0x55222794
 invalid
 '
 run_test
 
 NAME='endian tests: sparc.gnu'
-BROKEN=1
 FILE=-
 ARGS=
 CMDS='
 e asm.arch=sparc.gnu
 wx 554889e5
-e cfg.bigendian=false
-pi 1
 e cfg.bigendian=true
 pi 1
+e cfg.bigendian=false
+pi 1
 '
-EXPECT='call 0x15222794
+EXPECT='call  0x55222794
 invalid
 '
 run_test

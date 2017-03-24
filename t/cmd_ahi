@@ -247,16 +247,15 @@ EXPECT='            0x100001000      c7055f440000.  mov dword [rip + 0x445f], 0 
 run_test
 
 NAME='ahi s'
-BROKEN=1
 CMDS='e asm.bits=64
 e asm.arch=x86
-wx c74424685265
+wx 67c744246864616572
 pi 1
 ahi s
 pi 1
 '
-EXPECT="mov dword [rsp + 0x68], 0x6c896552
-mov dword [rsp + 0x68], 'Read'
+EXPECT="mov dword [esp + 0x68], 0x72656164
+mov dword [esp + 0x68], 'read'
 "
 run_test
 

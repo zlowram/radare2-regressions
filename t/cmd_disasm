@@ -20,7 +20,6 @@ run_test
 
 NAME='pd@x:90909090'
 FILE=-
-BROKEN=1
 ARGS="-a x86 -b 32"
 CMDS='pd@x:90909090'
 EXPECT='            0x00000000      90             nop
