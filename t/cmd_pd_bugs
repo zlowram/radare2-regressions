@@ -116,6 +116,21 @@ e asm.arch=x86
 e asm.bits=32
 e asm.lines=false
 e asm.comments=false
+pD@x:8d15d0830408
+'
+EXPECT=" 0x00000000      8d15d0830408   lea edx, [0x80483d0]
+"
+run_test
+
+NAME='lea edx bug segfault for x86 32bit #5710@radare2'
+BROKEN=1
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.arch=x86
+e asm.bits=32
+e asm.lines=false
+e asm.comments=false
 pd@x:8d15d0830408
 '
 EXPECT=" 0x00000000      8d15d0830408   lea edx, [0x80483d0]
