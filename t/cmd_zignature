@@ -13,7 +13,6 @@ zae bar2 aabbccdd
 zs test3
 zae foo3 aabbccdd
 zae bar3 aabbccdd
-zs test1
 zs *
 zs-test2
 z~foo1
@@ -50,6 +49,95 @@ z~foo2
 z~bar2
 '
 EXPECT=''
+run_test
+
+NAME='zsr newname'
+CMDS='
+zs test1
+zae foo1 aabbccdd
+zae bar1 aabbccdd
+zs test2
+zae foo2 aabbccdd
+zae bar2 aabbccdd
+zs test3
+zae foo3 aabbccdd
+zae bar3 aabbccdd
+zs test2
+zsr newtest2
+zs *
+z~foo1
+z~bar1
+z~foo2
+z~bar2
+z~foo3
+z~bar3
+'
+EXPECT='(test1) foo1 e aabbccdd
+(test1) bar1 e aabbccdd
+(newtest2) foo2 e aabbccdd
+(newtest2) bar2 e aabbccdd
+(test3) foo3 e aabbccdd
+(test3) bar3 e aabbccdd
+'
+run_test
+
+NAME='zsr newname (dupplicated name)'
+CMDS='
+zs test1
+zae foo1 aabbccdd
+zae bar1 aabbccdd
+zs test2
+zae foo2 aabbccdd
+zae bar2 aabbccdd
+zs test3
+zae foo3 aabbccdd
+zae bar3 aabbccdd
+zs test2
+zsr test1
+zs *
+z~foo1
+z~bar1
+z~foo2
+z~bar2
+z~foo3
+z~bar3
+'
+EXPECT='(test1) foo1 e aabbccdd
+(test1) bar1 e aabbccdd
+(test2) foo2 e aabbccdd
+(test2) bar2 e aabbccdd
+(test3) foo3 e aabbccdd
+(test3) bar3 e aabbccdd
+'
+run_test
+
+NAME='zsr newname (root zs)'
+CMDS='
+zs test1
+zae foo1 aabbccdd
+zae bar1 aabbccdd
+zs test2
+zae foo2 aabbccdd
+zae bar2 aabbccdd
+zs test3
+zae foo3 aabbccdd
+zae bar3 aabbccdd
+zs *
+zsr newtest
+z~foo1
+z~bar1
+z~foo2
+z~bar2
+z~foo3
+z~bar3
+'
+EXPECT='(test1) foo1 e aabbccdd
+(test1) bar1 e aabbccdd
+(test2) foo2 e aabbccdd
+(test2) bar2 e aabbccdd
+(test3) foo3 e aabbccdd
+(test3) bar3 e aabbccdd
+'
 run_test
 
 NAME='z and binmasks'
