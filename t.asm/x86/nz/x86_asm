@@ -130,6 +130,7 @@ test_vector "${PLUGIN}" "call 4" e8ffffffff
 test_vector "${PLUGIN}" "call 5" e800000000
 test_vector "${PLUGIN}" "call dword [eax]" ff10
 test_vector "${PLUGIN}" "call ebx" ffd3
+test_vector "${PLUGIN}" "bnd call ebx" f2ffd3
 test_vector "${PLUGIN}" "cbw" 6698
 test_vector "${PLUGIN}" "cdq" 99
 test_vector "${PLUGIN}" "cdqe" 98
@@ -360,6 +361,7 @@ test_vector "${PLUGIN}" "jmp 0x82" e97d000000
 test_vector "${PLUGIN}" "jmp 2" eb00
 test_vector "${PLUGIN}" "jmp 3" eb01
 test_vector "${PLUGIN}" "jmp ecx" ffe1
+test_vector "${PLUGIN}" "bnd jmp 0x82" f2e97d000000
 test_vector "${PLUGIN}" "jne 6" 0f8500000000
 test_vector "${PLUGIN}" "jno 2" 0f81fcffffff
 test_vector "${PLUGIN}" "jno 6" 0f8100000000
@@ -949,6 +951,7 @@ test_vector "${PLUGIN}" "rdtscp" 0f01f9
 test_vector "${PLUGIN}" "repne movsb byte es:[edi], byte ptr [esi]" f2a4 "br"
 test_vector "${PLUGIN}" "repz movsb" f3a4 "br" #or repe
 test_vector "${PLUGIN}" "ret" c3
+test_vector "${PLUGIN}" "bnd ret" f2c3
 test_vector "${PLUGIN}" "retf 0" ca0000
 test_vector "${PLUGIN}" "retf" cb
 test_vector "${PLUGIN}" "retw" 66c3
