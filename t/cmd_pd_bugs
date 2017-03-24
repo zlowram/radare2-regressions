@@ -137,6 +137,29 @@ EXPECT=" 0x00000000      8d15d0830408   lea edx, [0x80483d0]
 "
 run_test
 
+NAME='p8@x'
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.comments=false
+p8@x:8d15d0830408
+'
+EXPECT="8d15d0830408
+"
+run_test
+
+NAME='px@x'
+BROKEN=1
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.comments=false
+e hex.header=false
+px@x:8d15d0830408
+'
+EXPECT="0x00000000  8d15 d083 0408                           ......
+"
+run_test
 
 NAME='size of function in elf x64 stub'
 FILE=../bins/other/radiff2/hellocxx-osx-fat-intel_1
