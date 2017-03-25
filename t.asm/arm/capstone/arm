@@ -120,3 +120,12 @@ CMDS="!rasm2 -a ${PLUGIN} -b 32 -o 0xFF7A46EC -d 8374211b"
 EXPECT="blne 0x1900
 "
 run_test
+
+NAME="${PLUGIN}: arm bnd jmp"
+BROKEN=
+ARGS=""
+CMDS="wx f2eb3e
+pi 1"
+EXPECT='bnd jmp 0x41
+'
+run_test
