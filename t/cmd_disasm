@@ -39,7 +39,25 @@ EXPECT='            0x00000000      90             nop
 '
 run_test
 
-NAME='pd 3;?v'
+NAME='pd 4;?='
+FILE=-
+ARGS=
+CMDS='
+wx 00000000000000000000
+e asm.arch=x86
+e asm.bits=32
+pd 4
+?=
+'
+EXPECT='            0x00000000      0000           add byte [eax], al
+            0x00000002      0000           add byte [eax], al
+            0x00000004      0000           add byte [eax], al
+            0x00000006      0000           add byte [eax], al
+0x8
+'
+run_test
+NAME='pd 4 > /dev/null; ?='
+BROKEN=1
 FILE=-
 ARGS=
 CMDS='
