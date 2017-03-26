@@ -120,7 +120,7 @@ bool test_r_list_sort2(void) {
 static int cmp_range(const void *a, const void *b) {
 	int ra = *(int *)a;
 	int rb = *(int *)b;
-	return ra - rb;
+	return ra > rb;
 }
 
 bool test_r_list_sort3(void) {
