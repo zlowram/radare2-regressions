@@ -178,6 +178,7 @@ EXPECT='  md5
   blowfish
   cps2
   des-ecb
+  xor
 '
 
 run_test
