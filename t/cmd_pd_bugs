@@ -149,7 +149,7 @@ EXPECT="8d15d0830408
 run_test
 
 NAME='px@x'
-BROKEN=1
+BROKEN=
 FILE=malloc://128
 ARGS=
 CMDS='

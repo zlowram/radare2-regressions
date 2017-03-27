@@ -57,7 +57,7 @@ EXPECT='            0x00000000      0000           add byte [eax], al
 '
 run_test
 NAME='pd 4 > /dev/null; ?='
-BROKEN=1
+BROKEN=
 FILE=-
 ARGS=
 CMDS='

@@ -238,13 +238,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='data 0x1457 lea eax, str.Take_the_Red_Pill____n in main
-data 0x148e lea eax, str.use:_._exploit1_PILL in main
-data 0x14eb lea eax, str.Red_Pill__0x50444552 in main
-data 0x1502 lea eax, str.Your_Pill_0x_08x_n in main
-data 0x1523 lea eax, str._n__Red_Pill in main
-data 0x1557 lea eax, str.fwhibbit_ in main
-data 0x161d lea eax, str._n__Blue_Pill in main
+EXPECT='strg 0x1457 lea eax, str.Take_the_Red_Pill____n in main
+strg 0x148e lea eax, str.use:_._exploit1_PILL in main
+strg 0x14eb lea eax, str.Red_Pill__0x50444552 in main
+strg 0x1502 lea eax, str.Your_Pill_0x_08x_n in main
+strg 0x1523 lea eax, str._n__Red_Pill in main
+strg 0x1557 lea eax, str.fwhibbit_ in main
+strg 0x161d lea eax, str._n__Blue_Pill in main
 '
 run_test
 
@@ -302,7 +302,7 @@ aa
 aae
 axt@0x80484e0
 '
-EXPECT='data 0x8048432 lea eax, str.Hello_PIC_ in main
+EXPECT='strg 0x8048432 lea eax, str.Hello_PIC_ in main
 '
 run_test
 
@@ -321,13 +321,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='data 0x1457 lea eax, [esi - 0x2277] in main
-data 0x148e lea eax, [esi - 0x2260] in main
-data 0x14eb lea eax, [esi - 0x2249] in main
-data 0x1502 lea eax, [esi - 0x222f] in main
-data 0x1523 lea eax, [esi - 0x2218] in main
-data 0x1557 lea eax, [esi - 0x220c] in main
-data 0x161d lea eax, [esi - 0x21f7] in main
+EXPECT='strg 0x1457 lea eax, [esi - 0x2277] in main
+strg 0x148e lea eax, [esi - 0x2260] in main
+strg 0x14eb lea eax, [esi - 0x2249] in main
+strg 0x1502 lea eax, [esi - 0x222f] in main
+strg 0x1523 lea eax, [esi - 0x2218] in main
+strg 0x1557 lea eax, [esi - 0x220c] in main
+strg 0x161d lea eax, [esi - 0x21f7] in main
 '
 run_test
 
@@ -341,8 +341,19 @@ aa
 aae
 axt@0x80484e0
 '
-EXPECT='data 0x8048432 lea eax, [ebx - 0x1b20] in main
+EXPECT='strg 0x8048432 lea eax, [ebx - 0x1b20] in main
 '
 run_test
 
-
+NAME='refs on PIC binary disassembly'
+FILE=../../bins/elf/analysis/xrefpic
+ARGS=
+CMDS='
+e anal.strings=true
+aa
+aae
+pd 1 @ 0x08048432
+'
+EXPECT='|           0x08048432      8d83e0e4ffff   lea eax, str.Hello_PIC_     ; "Hello PIC!" @ 0x80484e0
+'
+run_test
