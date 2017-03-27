@@ -531,3 +531,51 @@ b 0x100
 /bx 41424344'
 EXPECT=''
 run_test
+
+
+# {{{ Search by file
+c1b='../bins/other/radiff2/radiff2_c_2'
+c50b='../bins/elf/analysis/hello.raw'
+FILE='malloc://64'
+ARGS=
+
+NAME="search by whole file"
+CMDS='wx 90 @ 0x10
+/f '"$c1b"
+EXPECT='0x00000010 hit0_0 90
+'
+run_test
+
+NAME="search by rest of file"
+BROKEN=1
+CMDS='wx 210a @ 0x10
+/f '"$c50b"' 48'
+EXPECT='0x00000010 hit0_0 210a
+'
+run_test
+
+NAME="search by rest of file dec/dec"
+BROKEN=1
+CMDS='wx 0e @ 0x10
+/f '"$c50b"' 1 1'
+EXPECT='0x00000010 hit0_0 0e
+'
+run_test
+
+NAME="search by part of file dec/hex"
+BROKEN=1
+CMDS='wx 8048 @ 0x10
+/f '"$c50b"' 12 0x2'
+EXPECT='0x00000010 hit0_0 8048
+'
+run_test
+
+NAME="search by part of file hex/dec"
+BROKEN=1
+CMDS='wx 8048 @ 0x10
+/f '"$c50b"' 0xc 2'
+EXPECT='0x00000010 hit0_0 8048
+'
+run_test
+
+# }}} Search by file
