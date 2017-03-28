@@ -223,21 +223,25 @@ FILE=malloc://1024
 BROKEN=1
 ARGS=
 FILTER="cut -d' '  -f3"
-EXPECT='differ:'
+EXPECT='File size'
 TMPDIR=$PWD'/.tmp'
-cd $TMPDIR
+if [ -d "$TMPDIR" ]; then
+  rm -rf $TMPDIR
+fi
+
+mkdir $TMPDIR
+cp ../bins/pe/b.exe $TMPDIR/.b.exe.orig
+cp ../bins/pe/b.exe $TMPDIR/.b.exe.new
+
 CMDS='
 e io.cache=true
-cp ../../bins/pe/b.exe .b.exe.orig
-cp ../../bins/pe/b.exe .b.exe.new
-o+ b.exe.new
+o+ $TMPDIR/.b.exe.new
 wx ff
 wci
-!cmp .b.exe.orig .b.exe.new
-
-rm .b.exe.orig
-rm .b.exe.new
+e.src.null=true
+!radiff2 $TMPDIR/.b.exe.orig $TMPDIR/.b.exe.new
 '
+rm -rf $TMPDIR/
 run_test
 
 ## "wen" - insert null bytes
