@@ -8,3 +8,17 @@ aaa
 Cvb local_10'
 EXPECT=''
 run_test
+
+NAME='CC.'
+FILE=-
+CMDS='CC hello @ 10
+CC.
+CC.10
+CC.@10
+CC@10
+'
+EXPECT='hello
+hello
+0x0000000a CCu "hello"
+'
+run_test
