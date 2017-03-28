@@ -1,6 +1,29 @@
 #!/bin/sh
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='pd v8 and cortex'
+FILE=malloc://128
+ARGS="-a arm -b 16"
+CMDS='?e
+pad fff7c0ea@e:asm.cpu=v8
+pad fff7c0ea@e:asm.cpu=cortex
+pad fff7c0ea@e:asm.cpu=v8
+pad fff7c0ea@e:asm.cpu=cortex
+pad fff7c0ea@e:asm.cpu=v8
+pad fff7c0ea@e:asm.cpu=
+pad fff7c0ea@e:asm.cpu=tetris
+'
+EXPECT='
+blx 0xfffff584
+invalid
+blx 0xfffff584
+invalid
+blx 0xfffff584
+blx 0xfffff584
+blx 0xfffff584
+'
+run_test
+
 NAME='pd 0'
 FILE=malloc://128
 ARGS=
