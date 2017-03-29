@@ -70,6 +70,7 @@ EXPECT='            ;-- $d_2:
                ; UNKNOWN XREF from 0x00010988 (section_end..eh_frame + 1160)
             0x00010328      .dword 0x000104e0 ; sym.__libc_csu_fini
             0x0001032c      .dword 0x00010450 ; sym.main
+            ;-- sym.0x00010330:
                ; UNKNOWN XREF from 0x000102c4 (loc._d_19 + 0)
             0x00010330      .dword 0x0001047c ; sym.__libc_csu_init
 '
@@ -77,7 +78,6 @@ run_test
 
 NAME="ELF ARM: af and aav"
 FILE=../../bins/elf/arm1.bin
-BROKEN=1
 CMDS='e asm.arch=arm
 e asm.bits=32
 e asm.comments=false
