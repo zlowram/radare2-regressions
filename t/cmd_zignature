@@ -5,14 +5,14 @@
 NAME='zs unset'
 CMDS='
 zs test1
-zae foo1 aabbccdd
-zae bar1 aabbccdd
+za foo1 b aabbccdd
+za bar1 b aabbccdd
 zs test2
-zae foo2 aabbccdd
-zae bar2 aabbccdd
+za foo2 b aabbccdd
+za bar2 b aabbccdd
 zs test3
-zae foo3 aabbccdd
-zae bar3 aabbccdd
+za foo3 b aabbccdd
+za bar3 b aabbccdd
 zs *
 zs-test2
 z~foo1
@@ -22,26 +22,26 @@ z~bar2
 z~foo3
 z~bar3
 '
-EXPECT='(test1) foo1 e aabbccdd
-(test1) bar1 e aabbccdd
-foo2 e aabbccdd
-bar2 e aabbccdd
-(test3) foo3 e aabbccdd
-(test3) bar3 e aabbccdd
+EXPECT='(test1) foo1:
+(test1) bar1:
+foo2:
+bar2:
+(test3) foo3:
+(test3) bar3:
 '
 run_test
 
 NAME='zs delete'
 CMDS='
 zs test1
-zae foo1 aabbccdd
-zae bar1 aabbccdd
+za foo1 b aabbccdd
+za bar1 b aabbccdd
 zs test2
-zae foo2 aabbccdd
-zae bar2 aabbccdd
+za foo2 b aabbccdd
+za bar2 b aabbccdd
 zs test3
-zae foo3 aabbccdd
-zae bar3 aabbccdd
+za foo3 b aabbccdd
+za bar3 b aabbccdd
 zs test2
 z-*
 zs *
@@ -54,14 +54,14 @@ run_test
 NAME='zsr newname'
 CMDS='
 zs test1
-zae foo1 aabbccdd
-zae bar1 aabbccdd
+za foo1 b aabbccdd
+za bar1 b aabbccdd
 zs test2
-zae foo2 aabbccdd
-zae bar2 aabbccdd
+za foo2 b aabbccdd
+za bar2 b aabbccdd
 zs test3
-zae foo3 aabbccdd
-zae bar3 aabbccdd
+za foo3 b aabbccdd
+za bar3 b aabbccdd
 zs test2
 zsr newtest2
 zs *
@@ -72,26 +72,26 @@ z~bar2
 z~foo3
 z~bar3
 '
-EXPECT='(test1) foo1 e aabbccdd
-(test1) bar1 e aabbccdd
-(newtest2) foo2 e aabbccdd
-(newtest2) bar2 e aabbccdd
-(test3) foo3 e aabbccdd
-(test3) bar3 e aabbccdd
+EXPECT='(test1) foo1:
+(test1) bar1:
+(newtest2) foo2:
+(newtest2) bar2:
+(test3) foo3:
+(test3) bar3:
 '
 run_test
 
 NAME='zsr newname (dupplicated name)'
 CMDS='
 zs test1
-zae foo1 aabbccdd
-zae bar1 aabbccdd
+za foo1 b aabbccdd
+za bar1 b aabbccdd
 zs test2
-zae foo2 aabbccdd
-zae bar2 aabbccdd
+za foo2 b aabbccdd
+za bar2 b aabbccdd
 zs test3
-zae foo3 aabbccdd
-zae bar3 aabbccdd
+za foo3 b aabbccdd
+za bar3 b aabbccdd
 zs test2
 zsr test1
 zs *
@@ -102,26 +102,26 @@ z~bar2
 z~foo3
 z~bar3
 '
-EXPECT='(test1) foo1 e aabbccdd
-(test1) bar1 e aabbccdd
-(test2) foo2 e aabbccdd
-(test2) bar2 e aabbccdd
-(test3) foo3 e aabbccdd
-(test3) bar3 e aabbccdd
+EXPECT='(test1) foo1:
+(test1) bar1:
+(test2) foo2:
+(test2) bar2:
+(test3) foo3:
+(test3) bar3:
 '
 run_test
 
 NAME='zsr newname (root zs)'
 CMDS='
 zs test1
-zae foo1 aabbccdd
-zae bar1 aabbccdd
+za foo1 b aabbccdd
+za bar1 b aabbccdd
 zs test2
-zae foo2 aabbccdd
-zae bar2 aabbccdd
+za foo2 b aabbccdd
+za bar2 b aabbccdd
 zs test3
-zae foo3 aabbccdd
-zae bar3 aabbccdd
+za foo3 b aabbccdd
+za bar3 b aabbccdd
 zs *
 zsr newtest
 z~foo1
@@ -131,60 +131,50 @@ z~bar2
 z~foo3
 z~bar3
 '
-EXPECT='(test1) foo1 e aabbccdd
-(test1) bar1 e aabbccdd
-(test2) foo2 e aabbccdd
-(test2) bar2 e aabbccdd
-(test3) foo3 e aabbccdd
-(test3) bar3 e aabbccdd
+EXPECT='(test1) foo1:
+(test1) bar1:
+(test2) foo2:
+(test2) bar2:
+(test3) foo3:
+(test3) bar3:
 '
 run_test
 
-NAME='z and binmasks'
+NAME='za b and binmasks'
 CMDS='
-zae test .abbc.dd..
+za test b .abbc.dd..
 z
 '
-EXPECT='test e .abbc.dd..
+EXPECT='test:
+  bytes: .abbc.dd..
 '
 run_test
 
-NAME='zae zero mask'
+NAME='za b zero mask'
 CMDS='
-zae test ....
+za test b ....
 z
 '
 EXPECT=''
 run_test
 
-NAME='zae + z/'
+NAME='za b + z/'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
-zae sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+za sym.fmt.Println b 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 z/
-?v sign.sym.fmt.Println_0
+?v sign.bytes.sym.fmt.Println_0
 '
 EXPECT='0x805b030
 '
 run_test
 
-NAME='zaa + z/'
+NAME='za a + z/'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
-zaa sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+za sym.fmt.Println a 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 z/
-?v sign.sym.fmt.Println_1
-'
-EXPECT='0x805b030
-'
-run_test
-
-NAME='zaa + z/'
-FILE=../bins/elf/analysis/go_stripped
-CMDS='
-zaa sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
-z/
-?v sign.sym.fmt.Println_1
+?v sign.bytes.sym.fmt.Println_1
 '
 EXPECT='0x805b030
 '
@@ -193,20 +183,20 @@ run_test
 NAME='z/ with search.in'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
-zae date_string 323030362d30312d30322031353a30343a30352e393939393939393939202d30373030204d535400
-zae sym.fmt.Println 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
+za date_string b 323030362d30312d30322031353a30343a30352e393939393939393939202d30373030204d535400
+za sym.fmt.Println b 653b2530000000724b53b834e7150883ec188b15401c22088d4c24048b5c242083ec08ff742434ff742434ff742434525051e829ffffff8b44242089038b4424248943048b44242889430889d883c4345bc204006a106a1ce85e350700c20400
 fs sign
 f~?
 e search.in=file
 z/
-?v sign.date_string_0
-?v sign.sym.fmt.Println_0
+?v sign.bytes.date_string_0
+?v sign.bytes.sym.fmt.Println_0
 f-*
 f~?
 e search.in=io.sections.exec
 z/
-?v sign.elf_header_0
-?v sign.sym.fmt.Println_0
+?v sign.bytes.elf_header_0
+?v sign.bytes.sym.fmt.Println_0
 '
 EXPECT='0
 0x81a5898
@@ -221,7 +211,7 @@ NAME='z/ with search.align'
 FILE=malloc://1024
 CMDS='
 wx 00112233445566778899aabbccddeeff
-zae foo 1122
+za foo b 1122
 fs *
 e search.align=2
 z/
@@ -239,23 +229,23 @@ NAME='z/ with search.{from, to}'
 FILE=malloc://1024
 CMDS='
 wx 00112233445566778899aabbccddeeff
-zae a 11223344
-zae b bbccddee
+za a b 11223344
+za b b bbccddee
 fs *
 f~?
 e search.in=raw
 e search.from=0x0
 e search.to=0x8
 z/
-?v sign.a_0
-?v sign.b_0
+?v sign.bytes.a_0
+?v sign.bytes.b_0
 f-*
 f~?
 e search.from=0x8
 e search.to=0xf
 z/
-?v sign.a_0
-?v sign.b_0
+?v sign.bytes.a_0
+?v sign.bytes.b_0
 '
 EXPECT='0
 0x1
@@ -266,294 +256,120 @@ EXPECT='0
 '
 run_test
 
-NAME='zae ; z/ ; aa ; axt'
+NAME='za b ; z/ ; aa ; axt'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
-zae sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
 z/
 e anal.hasnext=0
 aa
 axt 0x400536
 '
-EXPECT='call 0x40056f call sign.sym.print_0 in main
+EXPECT='call 0x40056f call sign.bytes.sym.print_0 in main
 '
 run_test
 
-NAME='zaaF'
+NAME='zaf'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
 zs zigs
-zaaF
-z~sym.main
+zaf sym.main
+z
 '
-EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
-'
-run_test
-
-NAME='zaaF (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zaaF
-z~sym.main
-'
-EXPECT='a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+EXPECT='zigs.sym.main:
+  bytes: 554889e54883ec1089....48......bf........e8........b800000000c9c3
+  graph: cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
-NAME='zaeF'
+
+NAME='zaf at offset'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
 zs zigs
-zaeF
-z~sym.main
+zaf @ sym.main
+z
 '
-EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+EXPECT='zigs.sym.main:
+  bytes: 554889e54883ec1089....48......bf........e8........b800000000c9c3
+  graph: cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
-NAME='zaeF (root zignspace)'
+NAME='zaf (root zignspace)'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
-zaeF
-z~sym.main
+zaf sym.main
+z
 '
-EXPECT='e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
-'
-run_test
-
-NAME='zamF'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zamF
-z~sym.main
-'
-EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
+EXPECT='sym.main:
+  bytes: 554889e54883ec1089....48......bf........e8........b800000000c9c3
+  graph: cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
-NAME='zamF (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zamF
-z~sym.main
-'
-EXPECT='m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zaaf'
+NAME='zaf zigname'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
 zs zigs
-zaaf sym.main
-z~sym.main
+zaf sym.main foobar
+z
 '
-EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
+EXPECT='foobar:
+  bytes: 554889e54883ec1089....48......bf........e8........b800000000c9c3
+  graph: cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
-NAME='zaaf (root zignspace)'
+NAME='zaf zigname (root zignspace)'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
-zaaf sym.main
-z~sym.main
+zaf sym.main foobar
+z
 '
-EXPECT='a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
-'
-run_test
-
-NAME='zaef'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaef sym.main
-z~sym.main
-'
-EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
+EXPECT='foobar:
+  bytes: 554889e54883ec1089....48......bf........e8........b800000000c9c3
+  graph: cc=1 nbbs=1 edges=0 ebbs=1
 '
 run_test
 
-NAME='zaef (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zaef sym.main
-z~sym.main
-'
-EXPECT='e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
-'
-run_test
-
-NAME='zamf'
+NAME='zs + zaf + z/'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
 zs zigs
-zamf sym.main
-z~sym.main
-'
-EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zamf (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zamf sym.main
-z~sym.main
-'
-EXPECT='m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zaaf zigname'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaaf sym.main foobar
-z~foobar
-'
-EXPECT='foobar a 554889e54883ec1089....48......bf........e8........b800000000c9c3
-'
-run_test
-
-NAME='zaaf zigname (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zaaf sym.main foobar
-z~foobar
-'
-EXPECT='foobar a 554889e54883ec1089....48......bf........e8........b800000000c9c3
-'
-run_test
-
-NAME='zaef zigname'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaef sym.main foobar
-z~foobar
-'
-EXPECT='foobar e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
-'
-run_test
-
-NAME='zaef zigname (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zaef sym.main foobar
-z~foobar
-'
-EXPECT='foobar e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
-'
-run_test
-
-NAME='zamf zigname'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zamf sym.main foobar
-z~foobar
-'
-EXPECT='foobar m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zamf zigname (root zignspace)'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zamf sym.main foobar
-z~foobar
-'
-EXPECT='foobar m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zaaf at offset'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaaf @ sym.main
-z~sym.main
-'
-EXPECT='zigs.a.sym.main a 554889e54883ec1089....48......bf........e8........b800000000c9c3
-'
-run_test
-
-NAME='zaef at offset'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaef @ sym.main
-z~sym.main
-'
-EXPECT='zigs.e.sym.main e 554889e54883ec10897dfc488975f0bf13064000e8c2ffffffb800000000c9c3
-'
-run_test
-
-NAME='zamf at offset'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zamf @ sym.main
-z~sym.main
-'
-EXPECT='zigs.m.sym.main m cc=1 nbbs=1 edges=0 ebbs=1
-'
-run_test
-
-NAME='zs + zaaf + z/'
-FILE=../bins/elf/analysis/zigs
-CMDS='
-aaa
-zs zigs
-zaaf sym.main
+zaf sym.main
 z/
-?v sign.zigs.a.sym.main_0
+?v sign.bytes.zigs.sym.main_0
 '
 EXPECT='0x40055b
 '
 run_test
 
-NAME='zs + zaaf + z/'
+NAME='zs + zaf + z/'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
-zaaf sym.main
+zaf sym.main
 z/
-?v sign.a.sym.main_0
+?v sign.bytes.sym.main_0
 '
 EXPECT='0x40055b
 '
 run_test
 
-NAME='zs + zaaf zigname + z/'
+NAME='zs + zaf zigname + z/'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
-zaaf sym.main foobar
+zaf sym.main foobar
 z/
-?v sign.foobar_0
+?v sign.bytes.foobar_0
 '
 EXPECT='0x40055b
 '
@@ -563,47 +379,47 @@ NAME='zc'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
-zae sym.print 5548....48......48......48......48....bf........b8........e8........90c9c3
+za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
 zc @@ fcn*
-?v sign.sym.print_0
+?v sign.bytes.sym.print_0
 '
 EXPECT='0x400536
 '
 run_test
 
-NAME='zc metric zign'
+NAME='zc graph zign'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
-zam sym.print cc=1 nbbs=1 edges=0 ebbs=1
+za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
 zc @@ fcn*
-?v sign.sym.print_0
+?v sign.graph.sym.print_0
 '
 EXPECT='0x400536
 '
 run_test
 
-NAME='z/ metric zign'
+NAME='z/ graph zign'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
-zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
+za sym.print_metric g cc=1 nbbs=1 edges=0 ebbs=1
 z/
-?v sign.sym.print_metric_2
+?v sign.graph.sym.print_metric_2
 '
 EXPECT='0x400536
 '
 run_test
 
-NAME='z/ anal + metric zign'
+NAME='z/ bytes + graph zign'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
-zae sym.print_anal 5548....48......48......48......48....bf........b8........e8........90c9c3
-zam sym.print_metric cc=1 nbbs=1 edges=0 ebbs=1
+za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
+za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
 z/
-?v sign.sym.print_anal_0
-?v sign.sym.print_metric_2
+?v sign.bytes.sym.print_0
+?v sign.graph.sym.print_2
 '
 EXPECT='0x400536
 0x400536
