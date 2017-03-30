@@ -466,6 +466,58 @@ EXPECT='0x400536
 '
 run_test
 
+NAME='z/ + zign.match.{bytes, graph}'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
+za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+fs sign
+e zign.match.bytes = true
+e zign.match.graph = false
+z/
+f~sign.bytes.sym.print?
+f~sign.graph.sym.print?
+f-*
+e zign.match.bytes = false
+e zign.match.graph = true
+z/
+f~sign.bytes.sym.print?
+f~sign.graph.sym.print?
+'
+EXPECT='1
+0
+0
+3
+'
+run_test
+
+NAME='zc + zign.match.{bytes, graph}'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
+za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+fs sign
+e zign.match.bytes = true
+e zign.match.graph = false
+zc @ 0x400536
+f~sign.bytes.sym.print?
+f~sign.graph.sym.print?
+f-*
+e zign.match.bytes = false
+e zign.match.graph = true
+zc @ 0x400536
+f~sign.bytes.sym.print?
+f~sign.graph.sym.print?
+'
+EXPECT='1
+0
+0
+1
+'
+run_test
+
 NAME='aa ; zfs libc.sig'
 FILE=../bins/elf/analysis/pid_stripped
 ARGS=
