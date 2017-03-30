@@ -31,26 +31,6 @@ bar2:
 '
 run_test
 
-NAME='zs delete'
-CMDS='
-zs test1
-za foo1 b aabbccdd
-za bar1 b aabbccdd
-zs test2
-za foo2 b aabbccdd
-za bar2 b aabbccdd
-zs test3
-za foo3 b aabbccdd
-za bar3 b aabbccdd
-zs test2
-z-*
-zs *
-z~foo2
-z~bar2
-'
-EXPECT=''
-run_test
-
 NAME='zsr newname'
 CMDS='
 zs test1
@@ -138,6 +118,66 @@ EXPECT='(test1) foo1:
 (test3) foo3:
 (test3) bar3:
 '
+run_test
+
+NAME='z-'
+CMDS='zs test
+za foo b aa
+zs test2
+za foo b aa
+za bar b bb
+zs *
+z-foo
+z
+zs test2
+z-foo
+z
+zs *
+z
+zs-test
+z
+z-foo
+z
+'
+EXPECT='(test2) foo:
+  bytes: aa
+(test2) bar:
+  bytes: bb
+(test) foo:
+  bytes: aa
+bar:
+  bytes: bb
+(test2) bar:
+  bytes: bb
+(test) foo:
+  bytes: aa
+foo:
+  bytes: aa
+(test2) bar:
+  bytes: bb
+(test2) bar:
+  bytes: bb
+'
+run_test
+
+NAME='z-*'
+CMDS='
+zs test1
+za foo1 b aabbccdd
+za bar1 b aabbccdd
+zs test2
+za foo2 b aabbccdd
+za bar2 b aabbccdd
+zs test3
+za foo3 b aabbccdd
+za bar3 b aabbccdd
+zs test2
+z-*
+zs *
+z~foo2
+z~bar2
+'
+EXPECT=''
 run_test
 
 NAME='za b and binmasks'
