@@ -81,5 +81,5 @@ test_vector "${PLUGIN}" "dsb nshld" 9f3503d5 "dsb nshld"
 test_vector "${PLUGIN}" "dsb osh" 9f3303d5 "dsb osh"
 test_vector "${PLUGIN}" "dsb oshst" 9f3203d5 "dsb oshst"
 test_vector "${PLUGIN}" "dsb oshld" 9f3103d5 "dsb oshld"
-
+test_vector "${PLUGIN}" "svc 6" c10000d4 "svc 0x6"
 test_vector "${PLUGIN}" "isb sy" df3f03d5 "isb"
