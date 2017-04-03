@@ -10,6 +10,7 @@ CMDS="i~!fd"
 EXPECT='type     ROM
 file     ../../bins/smd/LiquidSpaceDodgerV3.bin
 size     0x272f8
+humansz  156.7K
 iorw     false
 blksz    0x0
 mode     -r--
