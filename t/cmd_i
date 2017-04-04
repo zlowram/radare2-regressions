@@ -538,7 +538,6 @@ EXPECT='blksz    0x0
 block    0x100
 file     ../bins/elf/analysis/hello-linux-x86_64
 format   elf64
-size     0x1a36
 iorw     false
 mode     -r--
 size     0x1a36
