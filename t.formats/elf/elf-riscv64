@@ -323,12 +323,10 @@ block    0x100
 
 file     ../../bins/elf/analysis/guess-number-riscv64
 format   elf64
-size     0x9d5a8
-humansz  629.4K
 iorw     false
 mode     -r--
 size     0x9d5a8
-realsz   628K
+humansz  629.4K
 type     EXEC (Executable file)
 
 arch     riscv
