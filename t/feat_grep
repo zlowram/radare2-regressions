@@ -118,6 +118,7 @@ i~:1
 i~:2
 i~:..3
 i~:1..2
+i~:-2
 i~:-1
 '
 EXPECT='blksz    0x0
@@ -128,6 +129,7 @@ block    0x100
 fd       42
 block    0x100
 size     0x400
+humansz  1K
 '
 FILTER='sed "s/^fd       [0-9][0-9]*/fd       42/"'
 run_test
