@@ -159,7 +159,7 @@ ahb 8
 e scr.color=true
 pd 1
 '
-EXPECT="  [36m          [0m[7m[32m0x00000000[0m      [37ma9[33m7e[32m00[0m         [35m[35mlda[36m #[33m0x007e[0m[0m[0m
+EXPECT="  [36m          [0m[7m[32m0x00000000[0m      [37ma9[33m7e[32m00[0m         [35mlda[36m #[33m0x007e[0m[0m[0m
 "
 run_test
 
@@ -582,6 +582,17 @@ pd 1 @ 0x004010f0
 EXPECT='            0x004010f0      68b8214000     push 0x4021b8 ; num_cpu     ; "Number of CPU %d\x0a" @ 0x4021b8
 '
 run_test
+
+NAME='pd asm.filter color'
+FILE=../bins/elf/analysis/ls-alxchk
+ARGS=
+CMDS='e asm.bytes=false
+e asm.comments=false
+e scr.color=true
+pd 1 @ 0x0001145f
+'
+EXPECT='  [36m          [0m[32m0x0001145f[0m      [37mlea[36m rdi[0m,[36m[36m [33mstr.A_NULL_argv_0__was_passed_through_an_exec_system_call._n[0m[0m
+'
 
 NAME='no rep flag in cmt with gen str flag (lea) (asm.cmtright=false)'
 FILE=../bins/elf/analysis/ls-alxchk
