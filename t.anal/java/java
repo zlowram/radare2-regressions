@@ -183,37 +183,37 @@ wx cafebabe0000003300180700020100177261646172655f746573745f63617365732f6c6f6f707
 ib;af;pdf
 s sym.radare_test_cases_challenge.simple_case_stmt_4val; pdf
 '
-EXPECT='type     JAVA CLASS
-file     malloc://1023
+EXPECT='blksz    0x0
+block    0x100
 fd       42
+file     malloc://1023
+format   java
+iorw     true
+mode     -rwx
 size     0x3ff
 humansz  1023
-iorw     true
-blksz    0x0
-mode     -rwx
-block    0x100
-format   java
-havecode true
-pic      false
-canary   false
-nx       false
-crypto   false
-va       false
-bintype  class
-class    0x3300 0x0000
-lang     java
+type     JAVA CLASS
 arch     java
+binsz    1023
+bintype  class
 bits     32
-machine  jvm
-os       any
-subsys   any
+canary   false
+class    0x3300 0x0000
+crypto   false
 endian   little
-stripped false
-static   false
+havecode true
+lang     java
 linenum  true
 lsyms    true
+machine  jvm
+nx       false
+os       any
+pic      false
 relocs   false
-binsz    1023
+static   false
+stripped false
+subsys   any
+va       false
   ;-- entry0:
   ;-- sym.java_lang_Object._init_:
  0x0000012d      2a             aload_0
