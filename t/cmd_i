@@ -254,7 +254,6 @@ mode     -rwx
 size     0x400
 humansz  1K
 type     JAVA CLASS
-
 arch     java
 binsz    1024
 bintype  class
