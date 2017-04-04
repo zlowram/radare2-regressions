@@ -328,7 +328,6 @@ mode     -r--
 size     0x9d5a8
 humansz  629.4K
 type     EXEC (Executable file)
-
 arch     riscv
 binsz    643108
 bintype  elf
