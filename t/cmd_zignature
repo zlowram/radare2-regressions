@@ -250,6 +250,18 @@ EXPECT='0x805b030
 '
 run_test
 
+NAME='za r + z/'
+FILE=../bins/elf/analysis/zigs
+CMDS='
+aaa
+za sym.main r sym.print
+z/
+?v sign.refs.sym.main_0
+'
+EXPECT='0x40055b
+'
+run_test
+
 NAME='z/ with search.in'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
