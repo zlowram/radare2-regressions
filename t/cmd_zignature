@@ -1,5 +1,5 @@
 #!/bin/sh
-# GPL 3+ - Copyright (C) 2012  pancake, Edd Barrett, Simon Ruderich
+# GPL 3+ - Copyright (C) 2012  pancake, Edd Barrett, Simon Ruderich, nibble
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
 NAME='zs unset'
@@ -198,6 +198,36 @@ z
 EXPECT=''
 run_test
 
+NAME='za g'
+CMDS='
+za test g cc=1 nbbs=2 edges=3 ebbs=4
+z
+'
+EXPECT='test:
+  graph: cc=1 nbbs=2 edges=3 ebbs=4
+'
+run_test
+
+NAME='za o'
+CMDS='
+za test o 0x8048123
+z
+'
+EXPECT='test:
+  offset: 0x08048123
+'
+run_test
+
+NAME='za r'
+CMDS='
+za test r sym1 sym3 sym2
+z
+'
+EXPECT='test:
+  refs: sym1, sym3, sym2
+'
+run_test
+
 NAME='za b + z/'
 FILE=../bins/elf/analysis/go_stripped
 CMDS='
@@ -252,6 +282,8 @@ FILE=malloc://1024
 CMDS='
 wx 00112233445566778899aabbccddeeff
 za foo b 1122
+e zign.minsz = 0
+e zign.mincc = 0
 fs *
 e search.align=2
 z/
@@ -265,12 +297,14 @@ EXPECT='0
 '
 run_test
 
-NAME='z/ with search.{from, to}'
+NAME='z/ with search.{from,to}'
 FILE=malloc://1024
 CMDS='
 wx 00112233445566778899aabbccddeeff
 za a b 11223344
 za b b bbccddee
+e zign.minsz = 0
+e zign.mincc = 0
 fs *
 f~?
 e search.in=raw
@@ -293,6 +327,25 @@ EXPECT='0
 0
 0x0
 0xb
+'
+run_test
+
+NAME='z/ with zign.minsz'
+FILE=malloc://1024
+CMDS='
+wx 00112233445566778899aabbccddeeff
+za foo b 11223344
+e zign.minsz = 0
+fs *
+z/
+f~?
+f-*
+e zign.minsz = 5
+z/
+f~?
+'
+EXPECT='1
+0
 '
 run_test
 
@@ -447,10 +500,29 @@ FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
 za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.mincc = 0
 zc @@ fcn*
 ?v sign.graph.sym.print_0
 '
 EXPECT='0x400536
+'
+run_test
+
+NAME='zc graph zign with zign.mincc'
+FILE=../bins/elf/analysis/zigs_stripped
+CMDS='
+aa
+za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.mincc = 0
+zc @@ fcn*
+?v sign.graph.sym.print_0
+f-*
+e zign.mincc = 10
+zc @@ fcn*
+?v sign.graph.sym.print_0
+'
+EXPECT='0x400536
+0x0
 '
 run_test
 
@@ -459,6 +531,7 @@ FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
 za sym.print_metric g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.mincc = 0
 z/
 ?v sign.graph.sym.print_metric_2
 '
@@ -472,6 +545,8 @@ CMDS='
 aa
 za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
 za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.minsz = 0
+e zign.mincc = 0
 z/
 ?v sign.bytes.sym.print_0
 ?v sign.graph.sym.print_2
@@ -481,21 +556,23 @@ EXPECT='0x400536
 '
 run_test
 
-NAME='z/ + zign.match.{bytes, graph}'
+NAME='z/ + zign.{bytes,graph}'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
 za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
 za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.minsz = 0
+e zign.mincc = 0
 fs sign
-e zign.match.bytes = true
-e zign.match.graph = false
+e zign.bytes = true
+e zign.graph = false
 z/
 f~sign.bytes.sym.print?
 f~sign.graph.sym.print?
 f-*
-e zign.match.bytes = false
-e zign.match.graph = true
+e zign.bytes = false
+e zign.graph = true
 z/
 f~sign.bytes.sym.print?
 f~sign.graph.sym.print?
@@ -507,21 +584,23 @@ EXPECT='1
 '
 run_test
 
-NAME='zc + zign.match.{bytes, graph}'
+NAME='zc + zign.{bytes,graph}'
 FILE=../bins/elf/analysis/zigs_stripped
 CMDS='
 aa
 za sym.print b 5548....48......48......48......48....bf........b8........e8........90c9c3
 za sym.print g cc=1 nbbs=1 edges=0 ebbs=1
+e zign.minsz = 0
+e zign.mincc = 0
 fs sign
-e zign.match.bytes = true
-e zign.match.graph = false
+e zign.bytes = true
+e zign.graph = false
 zc @ 0x400536
 f~sign.bytes.sym.print?
 f~sign.graph.sym.print?
 f-*
-e zign.match.bytes = false
-e zign.match.graph = true
+e zign.bytes = false
+e zign.graph = true
 zc @ 0x400536
 f~sign.bytes.sym.print?
 f~sign.graph.sym.print?
