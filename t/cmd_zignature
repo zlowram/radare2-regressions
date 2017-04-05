@@ -313,6 +313,7 @@ NAME='zaf'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+e zign.mincc = 0
 zs zigs
 zaf sym.main
 z
@@ -330,6 +331,7 @@ NAME='zaf at offset'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+e zign.mincc = 0
 zs zigs
 zaf @ sym.main
 z
@@ -346,6 +348,7 @@ NAME='zaf (root zignspace)'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+e zign.mincc = 0
 zaf sym.main
 z
 '
@@ -361,6 +364,7 @@ NAME='zaf zigname'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+e zign.mincc = 0
 zs zigs
 zaf sym.main foobar
 z
@@ -377,6 +381,7 @@ NAME='zaf zigname (root zignspace)'
 FILE=../bins/elf/analysis/zigs
 CMDS='
 aaa
+e zign.mincc = 0
 zaf sym.main foobar
 z
 '
