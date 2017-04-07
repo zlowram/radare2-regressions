@@ -1,6 +1,16 @@
 #!/bin/sh
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='f?flag'
+BROKEN=
+CMDS='f foo=123
+f?foo;?? ?e hello
+f?bar;?? ?e world
+'
+EXPECT='hello
+'
+run_test
+
 NAME='fs-fd-flags-visibility'
 BROKEN=
 CMDS='fs jeje
