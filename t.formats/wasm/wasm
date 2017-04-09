@@ -1,0 +1,48 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+
+NAME='WASM: Wasm - open'
+BROKEN=
+FILE=../../bins/wasm/basic.wasm
+IGNORE_ERR=1
+ARGS='-A'
+CMDS="q!"
+EXPECT=''
+run_test
+
+NAME='WASM: Wasm - detection'
+BROKEN=
+FILE=../../bins/wasm/basic.wasm
+IGNORE_ERR=1
+ARGS=''
+CMDS="iI~os"
+EXPECT='os       Wasm
+'
+run_test
+
+NAME='WASM: Wasm - entrypoint'
+BROKEN=
+FILE=../../bins/wasm/start.wasm
+IGNORE_ERR=1
+ARGS=''
+CMDS="ie~:0"
+EXPECT='vaddr=0x0000002d paddr=0x0000002d baddr=0x00000000 laddr=0x00000000 haddr=-1 type=program
+'
+run_test
+
+NAME='WASM: Wasm - sections'
+BROKEN=
+FILE=../../bins/wasm/binary.wasm
+IGNORE_ERR=1
+ARGS=''
+CMDS="iS"
+EXPECT='[Sections]
+idx=00 vaddr=0x0000000a paddr=0x0000000a sz=16 vsz=16 perm=----- name=type
+idx=01 vaddr=0x0000001d paddr=0x0000001d sz=44 vsz=44 perm=----- name=function
+idx=02 vaddr=0x0000004d paddr=0x0000004d sz=476 vsz=476 perm=----- name=export
+idx=03 vaddr=0x0000022d paddr=0x0000022d sz=502 vsz=502 perm=----- name=code
+
+4 sections
+'
+run_test

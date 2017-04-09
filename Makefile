@@ -54,7 +54,7 @@ tools:
 io:
 	$(SHELL) run_tests.sh t.io
 
-asm: asm.8051 asm.arc asm.arm asm.avr asm.cr16 asm.dalvik asm.ebc asm.gb asm.h8300 asm.labels asm.lh5801 asm.java asm.mips asm.msp430	asm.tms320 asm.ws asm.x86 asm.z80 asm.pic18c asm.m68k
+asm: asm.8051 asm.arc asm.arm asm.avr asm.cr16 asm.dalvik asm.ebc asm.gb asm.h8300 asm.labels asm.lh5801 asm.java asm.mips asm.msp430	asm.tms320 asm.ws asm.x86 asm.z80 asm.pic18c asm.m68k asm.wasm
 asm.8051:
 	$(SHELL) run_tests.sh t.asm/8051
 asm.arc:
@@ -97,6 +97,9 @@ asm.pic18c:
 	$(SHELL) run_tests.sh t.asm/pic18c
 asm.m68k:
 	$(SHELL) run_tests.sh t.asm/m68k
+asm.wasm:
+	$(SHELL) run_tests.sh t.asm/wasm
+
 anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.6502
 anal.arc:
 	$(SHELL) run_tests.sh t.anal/arc
@@ -120,7 +123,7 @@ anal.6502:
 esil:
 	$(SHELL) run_tests.sh t.esil
 
-formats: format.bflt format.coff format.smd format.vsf format.dex format.elf format.firmware format.java format.mach0 format.mangling format.msil format.omf format.others format.pdb format.pe format.xbe format.zimg format.nes format.gba
+formats: format.bflt format.coff format.smd format.vsf format.dex format.elf format.firmware format.java format.mach0 format.mangling format.msil format.omf format.others format.pdb format.pe format.xbe format.zimg format.nes format.gba format.wasm
 format.vsf:
 	$(SHELL) run_tests.sh t.formats/vsf
 format.smd:
@@ -159,6 +162,8 @@ format.nes:
 	$(SHELL) run_tests.sh t.formats/nes
 format.gba:
 	$(SHELL) run_tests.sh t.formats/gba
+format.wasm:
+	$(SHELL) run_tests.sh t.formats/wasm
 
 
 tools: rabin2 radiff2 ragg2 ragg2-cc rahash2 rasm2 rax2 r2
