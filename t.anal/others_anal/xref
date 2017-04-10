@@ -103,13 +103,13 @@ EXPECT='data 0x804843c mov dword [esp], str.Password: in main
 run_test
 
 NAME="ax-"
-BROKEN=1
+BROKEN=
 FILE=-
 IGNORE_ERR=1
 ARGS=
 CMDS='ax 10 20
 ax
-ax-10 20
+ax-10 20 
 ax
 '
 EXPECT='ref.unk.0x14=0xa
@@ -120,7 +120,7 @@ types=code.jmp,code.call,data.mem,data.string
 run_test
 
 NAME="ax-@"
-BROKEN=1
+BROKEN=
 FILE=-
 IGNORE_ERR=1
 ARGS=
@@ -263,8 +263,6 @@ ax 10 20
 ax
 ax- 10
 ax
-ax- 20
-ax
 ax 10 20
 ax 30 40
 ax
@@ -272,9 +270,6 @@ ax-*
 ax
 '
 EXPECT='ref.unk.0x14=0xa
-xref.unk.0xa=0x14
-types=code.jmp,code.call,data.mem,data.string
-ref.unk.0x14=0xa
 xref.unk.0xa=0x14
 types=code.jmp,code.call,data.mem,data.string
 types=code.jmp,code.call,data.mem,data.string
