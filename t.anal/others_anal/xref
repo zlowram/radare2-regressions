@@ -103,7 +103,7 @@ EXPECT='data 0x804843c mov dword [esp], str.Password: in main
 run_test
 
 NAME="ax-"
-BROKEN=
+BROKEN=1
 FILE=-
 IGNORE_ERR=1
 ARGS=
@@ -120,7 +120,7 @@ types=code.jmp,code.call,data.mem,data.string
 run_test
 
 NAME="ax-@"
-BROKEN=
+BROKEN=1
 FILE=-
 IGNORE_ERR=1
 ARGS=
