@@ -19,7 +19,7 @@ EXPECT='            ;-- $a_10:
 |           0x00010424      04b08de2       add fp, sp, 4
 |           0x00010428      08d04de2       sub sp, sp, 8
 |           0x0001042c      08000be5       str r0, [fp - local_8h]
-|           0x00010430      14009fe5       ldr r0, [loc._d_15]         ; [0x1044c:4]=0x104f0 loc._d_14 ; LEA loc._d_15 ; loc._d_15
+|           0x00010430      14009fe5       ldr r0, [loc._d_15]         ; [0x1044c:4]=0x104f0 loc._d_14 ; loc._d_15
 |           0x00010434      08101be5       ldr r1, [fp - local_8h]
 |           0x00010438      a2ffffeb       bl sym.imp.printf
 |           0x0001043c      0030a0e3       mov r3, 0
