@@ -26,7 +26,7 @@ BROKEN=
 FILE=../../bins/wasm/start.wasm
 IGNORE_ERR=1
 ARGS=''
-CMDS="ie~:0"
+CMDS="ie~vaddr"
 EXPECT='vaddr=0x0000002d paddr=0x0000002d baddr=0x00000000 laddr=0x00000000 haddr=-1 type=program
 '
 run_test
