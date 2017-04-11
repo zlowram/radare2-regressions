@@ -34,3 +34,36 @@ EXPECT='39c1
 0d4a1185
 '
 run_test
+
+NAME="crca 'hello world'"
+CMDS="b 12
+w hello world
+!rahash2 -qa rahash2 -a crc8smbus,crc15can,crc16hdlc,crc16usb,crc16citt,crc24,crc32c,crc32ecma267 -s 'hello world'
+ph crc8smbus 11
+ph crc15can 11
+ph crc16hdlc 11
+ph crc16usb 11
+ph crc16citt 11
+ph crc24 11
+ph crc32c 11
+ph crc32ecma267 11
+"
+EXPECT='a8
+727a
+ae06
+2238
+efeb
+b03cb7
+c99465aa
+ac86f845
+a8
+727a
+ae06
+2238
+efeb
+b03cb7
+c99465aa
+ac86f845
+'
+run_test
+
