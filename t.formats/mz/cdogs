@@ -28,7 +28,6 @@ run_test
 
 NAME='MZ: cdogs.exe segments'
 FILE=../../bins/mz/cdogs.exe
-BROKEN=1
 CMDS='iS*'
 EXPECT='fs sections
 S 0x00000060 0x00000060 0x00002930 0x00002930 seg_000 23
