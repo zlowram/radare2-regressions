@@ -167,6 +167,17 @@ EXPECT='  md5
   xxhash
   adler32
   luhn
+  crc8smbus
+  crc15can
+  crc16hdlc
+  crc16usb
+  crc16citt
+  crc24
+  crc32c
+  crc32ecma267
+  base64
+  base91
+  punycode
   rc2
   rc4
   rc6
