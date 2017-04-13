@@ -24,6 +24,18 @@ blx 0xfffff584
 '
 run_test
 
+NAME='pd pseudo=1 cmtright=0'
+FILE=malloc://128
+ARGS=
+CMDS='wx 4889e5
+e asm.pseudo =1
+e asm.cmtright =0
+pd 1
+'
+EXPECT="            0x00000000      4889e5         rbp = rsp
+"
+run_test
+
 NAME='pd 0'
 FILE=malloc://128
 ARGS=
