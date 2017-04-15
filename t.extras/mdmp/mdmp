@@ -26,28 +26,28 @@ FILE=$F0
 ARGS=
 CMDS='iI
 '
-EXPECT='havecode true
-pic      false
-canary   false
-nx       false
-crypto   false
-va       true
-arch     x86
+EXPECT='arch     x86
+binsz    36724
 bits     64
-machine  AMD64
-os       Windows NT Workstation 6.1.7601
-minopsz  1
-maxopsz  16
-pcalign  0
+canary   false
+crypto   false
 endian   little
-stripped false
-static   true
+havecode true
+hdr.csum 0x00000000
 linenum  false
 lsyms    false
+machine  AMD64
+maxopsz  16
+minopsz  1
+nx       false
+os       Windows NT Workstation 6.1.7601
+pcalign  0
+pic      false
 relocs   false
 rpath    NONE
-binsz    36724
-hdr.csum 0x00000000
+static   true
+stripped false
+va       true
 '
 run_test
 
