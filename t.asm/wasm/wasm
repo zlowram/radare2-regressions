@@ -17,20 +17,20 @@ run_test
 test_wasm 00 "trap"
 test_wasm 01 "nop"
 test_wasm 0240 "block"
-test_wasm 0340 "loop 64"
+test_wasm 0340 "loop"
 test_wasm 0440 "if"
 test_wasm 0540 "else"
 test_wasm 0b "end"
-test_wasm 0c00 "br 0x0000"
+test_wasm 0c00 "br 0"
 test_wasm 0f "return"
 
 # Call operators
-test_wasm 1003 "call 0x0003"
-test_wasm 110000 "call_indirect 0x0000"
+test_wasm 1003 "call 3"
+test_wasm 110000 "call_indirect 0 0"
 
 # Parametric operators
 test_wasm 1a "drop"
 test_wasm 1b "select"
 
 # Variable access
-test_wasm 2007 "get_local 0x0007"
+test_wasm 2007 "get_local 7"
