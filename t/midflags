@@ -1,6 +1,223 @@
 #!/bin/sh
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='pi asm.midflags=2'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=2
+f dat.sym = 2
+pi 4
+'
+EXPECT="push rbp
+mov rbp, rsp
+mov ebp, esp
+push r15
+"
+run_test
+
+NAME='pi asm.midflags=1'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=1
+f dat.sym = 2
+pi 4
+'
+EXPECT="push rbp
+mov rbp, rsp
+push r15
+push r14
+"
+run_test
+
+NAME='pi asm.midflags=0'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=0
+f dat.sym = 2
+pi 4
+'
+EXPECT="push rbp
+mov rbp, rsp
+push r15
+push r14
+"
+run_test
+
+NAME='pi asm.midflags=2'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=2
+f dat.sym = 2
+pid 4
+'
+EXPECT="0x00000000               55  push rbp
+0x00000001           4889e5  mov rbp, rsp
+0x00000002    dat.sym:
+0x00000002             89e5  mov ebp, esp
+0x00000004             4157  push r15
+"
+run_test
+
+NAME='pid asm.midflags=0'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=0
+f dat.sym = 2
+pid 4
+'
+EXPECT="0x00000000               55  push rbp
+0x00000001           4889e5  mov rbp, rsp
+0x00000004             4157  push r15
+0x00000006             4156  push r14
+"
+run_test
+
+NAME='pij asm.midflags=0'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=0
+f dat.sym = 2
+pij 4~{}
+'
+EXPECT='[
+  {
+    "offset": 0,
+    "esil": "rbp,8,rsp,-=,rsp,=[8]",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 1,
+    "opcode": "push rbp",
+    "bytes": "55",
+    "family": "cpu",
+    "type": "upush",
+    "type_num": 12,
+    "type2_num": 0
+  },
+  {
+    "offset": 1,
+    "esil": "rsp,rbp,=",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 3,
+    "opcode": "mov rbp, rsp",
+    "bytes": "4889e5",
+    "family": "cpu",
+    "type": "mov",
+    "type_num": 9,
+    "type2_num": 0
+  },
+  {
+    "offset": 4,
+    "esil": "r15,8,rsp,-=,rsp,=[8]",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 2,
+    "opcode": "push r15",
+    "bytes": "4157",
+    "family": "cpu",
+    "type": "upush",
+    "type_num": 12,
+    "type2_num": 0
+  },
+  {
+    "offset": 6,
+    "esil": "r14,8,rsp,-=,rsp,=[8]",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 2,
+    "opcode": "push r14",
+    "bytes": "4156",
+    "family": "cpu",
+    "type": "upush",
+    "type_num": 12,
+    "type2_num": 0
+  }
+]
+'
+run_test
+
+NAME='pij asm.midflags=2'
+FILE=malloc://1024
+ARGS=
+CMDS='wx 554889e54157415641554154534881ec
+e asm.midflags=2
+f dat.sym = 2
+pij 4~{}
+'
+EXPECT='[
+  {
+    "offset": 0,
+    "esil": "rbp,8,rsp,-=,rsp,=[8]",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 1,
+    "opcode": "push rbp",
+    "bytes": "55",
+    "family": "cpu",
+    "type": "upush",
+    "type_num": 12,
+    "type2_num": 0
+  },
+  {
+    "offset": 1,
+    "esil": "rsp,rbp,=",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 3,
+    "opcode": "mov rbp, rsp",
+    "bytes": "4889e5",
+    "family": "cpu",
+    "type": "mov",
+    "type_num": 9,
+    "type2_num": 0
+  },
+  {
+    "offset": 2,
+    "esil": "esp,ebp,=,0xffffffff,rbp,&=",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 2,
+    "opcode": "mov ebp, esp",
+    "bytes": "89e5",
+    "family": "cpu",
+    "type": "mov",
+    "type_num": 9,
+    "type2_num": 0,
+    "flags": [
+      "dat.sym"
+    ]
+  },
+  {
+    "offset": 4,
+    "esil": "r15,8,rsp,-=,rsp,=[8]",
+    "refptr": false,
+    "fcn_addr": 0,
+    "fcn_last": 0,
+    "size": 2,
+    "opcode": "push r15",
+    "bytes": "4157",
+    "family": "cpu",
+    "type": "upush",
+    "type_num": 12,
+    "type2_num": 0
+  }
+]
+'
+run_test
+
 NAME='pid asm.midflags=0'
 FILE=malloc://1024
 ARGS=
