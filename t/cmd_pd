@@ -564,7 +564,7 @@ e asm.cmtright=false
 pd 1 @ 0x0001145f
 '
 EXPECT='            0x0001145f      488d3d72a100.  lea rdi, str.A_NULL_argv_0__was_passed_through_an_exec_system_call._n ; 0x1b5d8 ; "A NULL argv[0] was passed through an exec system call.." @ 0x1b5d8
-               ; 0x1b5d8
+               ; 0x1b5d8 ; str.A_NULL_argv_0__was_passed_through_an_exec_system_call._n
                ; "A NULL argv[0] was passed through an exec system call.." @ 0x1b5d8
             0x0001145f      488d3d72a100.  lea rdi, str.A_NULL_argv_0__was_passed_through_an_exec_system_call._n
 '
@@ -627,6 +627,7 @@ pd 1 @ 0x004010fa
 '
 EXPECT='            0x004010fa      8b3500204000   mov esi, dword sym.imp.KERNEL32.dll_GetLastError ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244 ; sym.imp.KERNEL32.dll_GetLastError
                ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
+               ; LEA sym.imp.KERNEL32.dll_GetLastError
                ; sym.imp.KERNEL32.dll_GetLastError
             0x004010fa      8b3500204000   mov esi, dword sym.imp.KERNEL32.dll_GetLastError
 '
