@@ -19,13 +19,6 @@ irj
 EXPECT='[]'
 run_test
 
-
-NAME="JSON: /j Well-formed"
-CMDS="!r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
-EXPECT='1
-'
-run_test
-
 type jq 2>/dev/null >&2
 if [ $? = 0 ]; then
 # if we have jq installed...
@@ -91,6 +84,13 @@ IFS=`printf "\t"`
 '
 		run_test
 	done
+
+	NAME="JSON: /j Well-formed"
+	CMDS="!r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
+	EXPECT='1
+	'
+	run_test
+
 fi
 
 else
