@@ -21,7 +21,7 @@ run_test
 
 
 NAME="JSON: /j Well-formed"
-CMDS="!r2 -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
+CMDS="!r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
 EXPECT='1
 '
 run_test
