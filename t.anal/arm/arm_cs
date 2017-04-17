@@ -14,8 +14,8 @@ e asm.arch='$PLUGIN'
 e asm.bits=32
 # pd 2 - note different colors
 pi 2
-ao~type[2]
-ao@4~type[2]
+ao~type[1]
+ao@4~type[1]
 '
 EXPECT='ldr ip, [pc, 0x20]
 ldr ip, [sl, ip]
