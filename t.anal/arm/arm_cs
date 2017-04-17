@@ -19,31 +19,8 @@ ao@4~type[2]
 '
 EXPECT='ldr ip, [pc, 0x20]
 ldr ip, [sl, ip]
-address: 0x0
-opcode: ldr ip, [pc, 0x20]
-mnemonic: ldr
-prefix: 0
-id: 75
-bytes: 20c09fe5
-ptr: 0x00000028
-refptr: 4
-size: 4
-type: load
-esil: 2,2,8,$$,+,>>,<<,32,+,[4],ip,=
-stack: null
-family: cpu
-address: 0x4
-opcode: ldr ip, [sl, ip]
-mnemonic: ldr
-prefix: 0
-id: 75
-bytes: 0cc09ae7
-refptr: 0
-size: 4
-type: load
-esil: ip,sl,+,[4],ip,=
-stack: null
-family: cpu
+load
+load
 '
 run_test
 
