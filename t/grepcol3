@@ -1,0 +1,16 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+CMDS='?e a\na b\na b c~[0]
+?e a\na b\na b c~[1]
+?e a\na b\na b c~[2]
+'
+EXPECT='a
+a
+a
+b
+b
+c
+'
+
+run_test
