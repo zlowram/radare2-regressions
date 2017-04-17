@@ -22,7 +22,8 @@ run_test
 type jq 2>/dev/null >&2
 if [ $? = 0 ]; then
 # if we have jq installed...
-if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+case "$TRAVIS_OS_NAME" in
+linux|'')
   arr='
 	"aa ; pdfj"
 	"izzj"
@@ -75,7 +76,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	"aeaj"
 '
 
-IFS=`printf "\t"`
+  IFS=`printf "\t"`
 	for i in $arr ; do
 		c="`echo $i`"
 		NAME="JSON: $c Well-formed"
@@ -88,10 +89,10 @@ IFS=`printf "\t"`
 	NAME="JSON: /j Well-formed"
 	CMDS="!r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
 	EXPECT='1
-	'
+'
 	run_test
-
-fi
+	;;
+esac
 
 else
 	echo "Not running this because there's no jq installed"
