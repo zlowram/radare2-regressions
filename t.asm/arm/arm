@@ -114,6 +114,18 @@ test_vector "${PLUGIN}" "mrc p4, 4, r5, c2, c2" 125492ee "mrc 4, 4, r5, cr2, cr2
 test_vector "${PLUGIN}" "mrc p3, 0, r5, c3, c5, 6" d55313ee "mrc 3, 0, r5, cr3, cr5, {6}"
 test_vector "${PLUGIN}" "bic r1, r2, r3" 0310c2e1 "bic r1, r2, r3"
 test_vector "${PLUGIN}" "bic r3, r2" 0230c3e1 "bic r3, r3, r2"
+test_vector "${PLUGIN}" "strb r2, [r3, r4]" 0420c3e7 "strb r2, [r3, r4]"
+test_vector "${PLUGIN}" "strb r2, [r3, 6]" 0620c3e5 "strb r2, [r3, 6]"
+test_vector "${PLUGIN}" "strbt r3, [r7]" 0030e7e4 "strbt r3, [r7], 0"
+test_vector "${PLUGIN}" "strbt r1, [r2]" 0010e2e4 "strbt r1, [r2], 0"
+test_vector "${PLUGIN}" "strd r6, r7, [r7, 86]" f665c7e1 "strd r6, [r7, 86]"
+test_vector "${PLUGIN}" "strd r2, r3, [r3]" f020c3e1 "strd r2, [r3]"
+test_vector "${PLUGIN}" "strexb r2, r5, [r6]" 952fc6e1 "strexb r2, r5, [r6]"
+test_vector "${PLUGIN}" "strexb r5, r2, [r4]" 925fc4e1 "strexb r5, r2, [r4]"
+test_vector "${PLUGIN}" "strexh r2, r5, [r6]" 952fe6e1 "strexh r2, r5, [r6]"
+test_vector "${PLUGIN}" "strexh r5, r2, [r4]" 925fe4e1 "strexh r5, r2, [r4]"
+test_vector "${PLUGIN}" "strh r5, [r2, r4]" b45082e1 "strh r5, [r2, r4]"
+test_vector "${PLUGIN}" "strxh r5, [r2, 4]" b450c2e1 "strh r5, [r2, 4]"
 
 NAME="${PLUGIN}: [BLNE 0x1900 @ 0xFF7A46EC]"
 FILE=malloc://32
