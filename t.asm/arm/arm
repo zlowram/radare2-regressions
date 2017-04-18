@@ -112,6 +112,8 @@ test_vector "${PLUGIN}" "ldr r1, [r2, r3, ror 9]" e31492e7 "ldr r1, [r2, r3, ror
 test_vector "${PLUGIN}" "mrc p5, 1, r4, c2, c4, 6" d44532ee "mrc 5, 1, r4, cr2, cr4, {6}"
 test_vector "${PLUGIN}" "mrc p4, 4, r5, c2, c2" 125492ee "mrc 4, 4, r5, cr2, cr2, {0}"
 test_vector "${PLUGIN}" "mrc p3, 0, r5, c3, c5, 6" d55313ee "mrc 3, 0, r5, cr3, cr5, {6}"
+test_vector "${PLUGIN}" "bic r1, r2, r3" 0310c2e1 "bic r1, r2, r3"
+test_vector "${PLUGIN}" "bic r3, r2" 0230c3e1 "bic r3, r3, r2"
 
 NAME="${PLUGIN}: [BLNE 0x1900 @ 0xFF7A46EC]"
 FILE=malloc://32
