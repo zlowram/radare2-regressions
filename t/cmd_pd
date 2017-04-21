@@ -103,7 +103,7 @@ e asm.bits=64
 wx fa67bba9
 pd 1
 '
-EXPECT="            0x00000000      fa67bba9       stp x26, x25, [sp, -0x50]!  ; 'P'
+EXPECT="            0x00000000      fa67bba9       stp x26, x25, [sp, -0x50]!
 "
 run_test
 
@@ -117,7 +117,7 @@ e asm.bits=64
 wx fa67bba9
 pd 1
 '
-EXPECT="            0x00000000      fa67bba9       stp x26, x25, [sp, -0x50]!  ; 'P'
+EXPECT="            0x00000000      fa67bba9       stp x26, x25, [sp, -0x50]!
 "
 run_test
 
