@@ -411,7 +411,6 @@ run_test
 
 NAME="b 0x174"
 FILE=malloc://0x200
-BROKEN=1
 CMDS='
 e asm.arch=arm
 e asm.bits=64
@@ -426,7 +425,6 @@ run_test
 
 NAME="cmp x0, x1; b.le 0x14"
 FILE=malloc://0x200
-BROKEN=1
 CMDS='
 e asm.arch=arm
 e asm.bits=64
