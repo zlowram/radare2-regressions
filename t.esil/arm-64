@@ -522,3 +522,84 @@ EXPECT='0x00000000
 '
 run_test
 
+NAME="cmp, cset, cinc"
+
+# 7f010c6b cmp w11, w12
+# ea179f1a cset w10, eq
+# af090a0b add w15, w13, w10, lsl 2
+# ea158f1a cinc w10, w15, eq
+
+FILE=malloc://0x200
+BROKEN=
+CMDS='
+e asm.arch=arm
+e asm.bits=64
+wx 7f010c6bea179f1aaf090a0bea158f1a
+aer w11=0x20
+aer w12=0x20
+aer w13=1
+aeip
+4 aes
+aer w10
+aer w12=0x21
+aeip
+4 aes
+aer w10
+'
+EXPECT='0x00000006
+0x00000001
+'
+run_test
+
+NAME="csel tests"
+
+# 7f010c6b cmp w11, w12
+# ee138a1a csel w14, wzr, w10, ne
+# ef038a1a csel w15, wzr, w10, eq
+# f0b38a1a csel w16, wzr, w10, lt
+# f3c38a1a csel w19, wzr, w10, gt
+
+FILE=malloc://0x200
+BROKEN=
+CMDS='
+e asm.arch=arm
+e asm.bits=64
+wx 7f010c6bee138a1aef038a1af0b38a1af3c38a1a
+aer w10=1
+aer w11=0x20
+aer w12=0x20
+aeip
+5 aes
+aer w14
+aer w15
+aer w16
+aer w19
+aer w12=0x21
+aeip
+5 aes
+aer w14
+aer w15
+aer w16
+aer w19
+aer w12=0x10
+aeip
+5 aes
+aer w14
+aer w15
+aer w16
+aer w19
+'
+EXPECT='0x00000001
+0x00000000
+0x00000001
+0x00000001
+0x00000000
+0x00000001
+0x00000000
+0x00000001
+0x00000000
+0x00000001
+0x00000001
+0x00000000
+'
+run_test
