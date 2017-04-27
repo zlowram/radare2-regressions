@@ -7,10 +7,10 @@ ARGS=''
 CMDS="?v entry0;pid 4"
 EXPECT='0x401280
 0x00401280    entry0:
-0x00401280               55  push ebp
-0x00401281             89e5  mov ebp, esp
-0x00401283           83ec08  sub esp, 8
-0x00401286   c7042401000000  mov dword [esp], 1
+0x00401280                   55  push ebp
+0x00401281                 89e5  mov ebp, esp
+0x00401283               83ec08  sub esp, 8
+0x00401286       c7042401000000  mov dword [esp], 1
 '
 run_test
 

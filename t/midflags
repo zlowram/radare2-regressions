@@ -54,11 +54,11 @@ e asm.midflags=2
 f dat.sym = 2
 pid 4
 '
-EXPECT="0x00000000               55  push rbp
-0x00000001           4889e5  mov rbp, rsp
+EXPECT="0x00000000                   55  push rbp
+0x00000001               4889e5  mov rbp, rsp
 0x00000002    dat.sym:
-0x00000002             89e5  mov ebp, esp
-0x00000004             4157  push r15
+0x00000002                 89e5  mov ebp, esp
+0x00000004                 4157  push r15
 "
 run_test
 
@@ -70,10 +70,10 @@ e asm.midflags=0
 f dat.sym = 2
 pid 4
 '
-EXPECT="0x00000000               55  push rbp
-0x00000001           4889e5  mov rbp, rsp
-0x00000004             4157  push r15
-0x00000006             4156  push r14
+EXPECT="0x00000000                   55  push rbp
+0x00000001               4889e5  mov rbp, rsp
+0x00000004                 4157  push r15
+0x00000006                 4156  push r14
 "
 run_test
 
@@ -229,9 +229,9 @@ f mid.flag = 4
 wx 31ed4989d15e4889e2
 pid 3
 '
-EXPECT="0x00000000             31ed  xor ebp, ebp
-0x00000002               49  dec ecx
-0x00000003             89d1  mov ecx, edx
+EXPECT="0x00000000                 31ed  xor ebp, ebp
+0x00000002                   49  dec ecx
+0x00000003                 89d1  mov ecx, edx
 "
 run_test
 
