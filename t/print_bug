@@ -1,0 +1,41 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='pi pdi with ahi2'
+FILE=malloc://1024
+ARGS=
+CMDS='
+e asm.arch=x86
+e asm.bits=64
+wx 48b96e74646c6c2e646c
+ahi 2
+pi 1
+pdi 1
+'
+EXPECT="movabs rcx, 'ld.lldtn'
+0x00000000 48b96e74646c6c2e646c  movabs rcx, 'ld.lldtn'
+"
+run_test
+
+NAME='uafbug pi pdi'
+BROKEN=1
+FILE=malloc://1024
+ARGS=
+CMDS='
+e asm.arch=x86
+e asm.bits=64
+wx 48b96e74646c6c2e646c
+ahi 2
+pi 1
+pdi 1
+ia > /dev/null
+pdi 1
+ia > /dev/null
+pdi 1
+'
+EXPECT="movabs rcx, 'ld.lldtn'
+0x00000000 48b96e74646c6c2e646c  movabs rcx, 'ld.lldtn'
+0x00000000 48b96e74646c6c2e646c  movabs rcx, 'ld.lldtn'
+0x00000000 48b96e74646c6c2e646c  movabs rcx, 'ld.lldtn'
+"
+run_test
