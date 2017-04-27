@@ -1,5 +1,75 @@
 #!/bin/sh
-for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+for a in . .. ../.. ; do [ -e "$a/tests.sh" ] && . $a/tests.sh ; done
+
+NAME="sar on x86-32"
+CMDS='
+e asm.arch=x86
+e asm.bits=32
+e anal.hasnext=0
+# testing mov eax, -4 sar
+# 64bit code seems to fail
+# wx 48c7c0fcffffff 48d1f8 48d1f8 48d1f8 48d1f8 48d1f8 48d1f8
+wx b8fcffffff d1f8 d1f8 d1f8 d1f8 d1f8 d1f8
+aes
+dr?eax
+aes
+dr?eax
+aes
+dr?eax
+aes
+dr?eax
+aes
+dr?eax
+'
+EXPECT='0xfffffffc
+0xfffffffe
+0xffffffff
+0xffffffff
+0xffffffff
+'
+run_test
+
+NAME="sar on x86-64"
+CMDS='
+e asm.arch=x86
+e asm.bits=64
+e anal.hasnext=0
+# testing mov eax, -4 sar
+wx 48c7c0fcffffff 48d1f8 48d1f8 48d1f8 48d1f8 48d1f8 48d1f8
+aes
+dr?rax
+aes
+dr?rax
+aes
+dr?rax
+aes
+dr?rax
+'
+EXPECT='0xfffffffffffffffc
+0xfffffffffffffffe
+0xffffffffffffffff
+0xffffffffffffffff
+'
+run_test
+
+NAME=""
+CMDS='
+e asm.arch=x86
+e asm.bits=64
+e anal.hasnext=0
+wx 48c7c0fcffffff 48d1f8 48d1f8 48d1f8
+aes
+dr?rax
+aes
+dr?rax
+aes
+dr?rax
+'
+EXPECT='0xfffffffffffffffc
+0xfffffffffffffffe
+0xffffffffffffffff
+'
+run_test
 
 CMDS='
 e asm.arch=x86.udis
