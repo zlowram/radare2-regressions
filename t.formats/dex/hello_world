@@ -88,7 +88,12 @@ EXPECT='0x00000372 6 str._init_
 0x000001d8 0 sym.imp.Ljava_lang_StringBuilder.method.append_Ljava_lang_String__Ljava_lang_StringBuilder_
 0x000001e0 0 sym.imp.Ljava_lang_StringBuilder.method.toString__Ljava_lang_String_
 0x000001e8 1 class.LHello
+0x00000238 1 method.public.constructor.LHello.LHello.method._init___V
+0x0000025c 1 method.static.public.LHello.LHello.method.main__Ljava_lang_String__V
+0x00000290 1 method.public.LHello.LHello.method.foo_I_V
 0x00000208 1 class.LWorld
+0x000002f4 1 method.public.constructor.LWorld.LWorld.method._init___V
+0x00000318 1 method.public.LWorld.LWorld.method.foo_I_V
 '
 run_test
 
