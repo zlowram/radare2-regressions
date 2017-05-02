@@ -86,6 +86,11 @@ test_vector "${PLUGIN}" "pop {r0-r2}" 07bc
 test_vector "${PLUGIN}" "pop {r0, r1, r2, r5}" 27bc
 test_vector "${PLUGIN}" "pop {r0-r2, r5}" 27bc
 
+test_vector "${PLUGIN}" "mov.w r0, 240" 4ff0f000
+test_vector "${PLUGIN}" "mov.w r3, 536" 4ff40673
+test_vector "${PLUGIN}" "mov.w r7, 1032" 4ff48167
+test_vector "${PLUGIN}" "mov.w r1, 2048" 4ff40061
+
 # Expected to fail
 test_invalid "${PLUGIN}" "b gh"
 
