@@ -23473,3 +23473,27 @@ Class #124            -
 
 "
 run_test
+
+NAME='DEX radare2installer.dex classes (ic command with name)'
+FILE=${APP}
+ARGS=''
+BROKEN=
+CMDS="ic  Lcom/stericson/RootTools/Installer"
+EXPECT="class Lcom/stericson/RootTools/Installer
+0x00011410 method Lcom/stericson/RootTools/Installer pC   Lcom/stericson/RootTools/Installer.method.<init>(Landroid/content/Context;)V
+0x00011440 method Lcom/stericson/RootTools/Installer r    Lcom/stericson/RootTools/Installer.method.installBinary(ILjava/lang/String;Ljava/lang/String;)Z
+0x00011814 method Lcom/stericson/RootTools/Installer r    Lcom/stericson/RootTools/Installer.method.isBinaryInstalled(Ljava/lang/String;)Z
+"
+run_test
+
+NAME='DEX radare2installer.dex classes (ic command with index)'
+FILE=${APP}
+ARGS=''
+BROKEN=
+CMDS="ic 17"
+EXPECT="class Lcom/stericson/RootTools/Installer
+0x00011410 method Lcom/stericson/RootTools/Installer pC   Lcom/stericson/RootTools/Installer.method.<init>(Landroid/content/Context;)V
+0x00011440 method Lcom/stericson/RootTools/Installer r    Lcom/stericson/RootTools/Installer.method.installBinary(ILjava/lang/String;Ljava/lang/String;)Z
+0x00011814 method Lcom/stericson/RootTools/Installer r    Lcom/stericson/RootTools/Installer.method.isBinaryInstalled(Ljava/lang/String;)Z
+"
+run_test
