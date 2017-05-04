@@ -85,6 +85,9 @@ test_vector "${PLUGIN}" "pop {r0, r1, r2}" 07bc
 test_vector "${PLUGIN}" "pop {r0-r2}" 07bc
 test_vector "${PLUGIN}" "pop {r0, r1, r2, r5}" 27bc
 test_vector "${PLUGIN}" "pop {r0-r2, r5}" 27bc
+test_vector "${PLUGIN}" "lsr r0, r3, 4" 4fea1310
+test_vector "${PLUGIN}" "lsr r5, r12, 20" 4fea1c55
+test_vector "${PLUGIN}" "lsr r2, r5, 2" 4fea9502
 
 test_vector "${PLUGIN}" "mov.w r0, 240" 4ff0f000
 test_vector "${PLUGIN}" "mov.w r3, 536" 4ff40673
@@ -93,5 +96,7 @@ test_vector "${PLUGIN}" "mov.w r1, 2048" 4ff40061
 
 # Expected to fail
 test_invalid "${PLUGIN}" "b gh"
-
+test_invalid "${PLUGIN}" "lsr r15, r5, 2"
+test_invalid "${PLUGIN}" "lsr r2, r15, 2"
+test_invalid "${PLUGIN}" "lsr r2, r5, 33"
 
