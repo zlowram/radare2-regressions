@@ -40,7 +40,7 @@ afva@main
 pdf@main
 '
 EXPECT='            ;-- main:
-            ;-- $a_11:
+            ;-- $a:
 / (fcn) sym.main 44
 |           ; var int local_ch @ fp-0xc
 |           ; var int local_8h @ fp-0x8
