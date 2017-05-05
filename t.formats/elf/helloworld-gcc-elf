@@ -103,11 +103,11 @@ NAME='flags spaces'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='fs
 '
-EXPECT='0    1 . strings
-1   32 . symbols
-2   78 . sections
-3    4 . relocs
-4    3 . imports
+EXPECT='0    1 * strings
+1   32 * symbols
+2   78 * sections
+3    4 * relocs
+4    3 * imports
 '
 run_test
 
@@ -117,12 +117,12 @@ CMDS='
 aa;fs *;fs
 afl~?
 '
-EXPECT='0    1 . strings
-1   32 . symbols
-2   78 . sections
-3    4 . relocs
-4    3 . imports
-5    0 . functions
+EXPECT='0    1 * strings
+1   32 * symbols
+2   78 * sections
+3    4 * relocs
+4    3 * imports
+5    0 * functions
 14
 '
 run_test
@@ -131,12 +131,12 @@ NAME='flags spaces after analysis'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='s entry0+4; af;fs *;fs
 '
-EXPECT='0    1 . strings
-1   32 . symbols
-2   78 . sections
-3    4 . relocs
-4    3 . imports
-5    1 . functions
+EXPECT='0    1 * strings
+1   32 * symbols
+2   78 * sections
+3    4 * relocs
+4    3 * imports
+5    1 * functions
 '
 run_test
 
