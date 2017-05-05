@@ -61,7 +61,7 @@ BROKEN=
 CMDS='fs *
 fs~?*
 '
-EXPECT='0
+EXPECT='5
 '
 run_test
 
@@ -228,7 +228,7 @@ CMDS='f blah 0x0000000a @ 0x0000000b
 f bloh 0x00000003 @ 0x00000002
 fj
 '
-EXPECT='[{"name":"blah","size":"10","offset":11},{"name":"bloh","size":"3","offset":2}]
+EXPECT='[{"name":"blah","size":10,"offset":11},{"name":"bloh","size":3,"offset":2}]
 '
 run_test
 
@@ -370,7 +370,7 @@ f kryten 32 666
 f+skutter 1 @ 12
 fj
 '
-EXPECT='[{"name":"cat","size":"1","offset":0},{"name":"rimmer","size":"12","offset":0},{"name":"lister","size":"32","offset":666},{"name":"kryten","size":"32","offset":666},{"name":"skutter","size":"1","offset":12}]
+EXPECT='[{"name":"cat","size":1,"offset":0},{"name":"rimmer","size":12,"offset":0},{"name":"lister","size":32,"offset":666},{"name":"kryten","size":32,"offset":666},{"name":"skutter","size":1,"offset":12}]
 '
 run_test
 
