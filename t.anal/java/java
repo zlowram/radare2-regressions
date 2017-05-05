@@ -309,7 +309,7 @@ va       false
 | 0x000001a9      3c             istore_1
 | 0x000001aa      1a             iload_0
 | 0x000001ab      100a           bipush 10
-| 0x000001ad      a1ffc4         if_icmplt 0x0171
+| 0x000001ad      a1ffc4         if_icmplt section_end.attrs._init_
 | 0x000001b0      1b             iload_1
 \ 0x000001b1      ac             ireturn
 '
