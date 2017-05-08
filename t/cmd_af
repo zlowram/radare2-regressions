@@ -1,0 +1,14 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='af import'
+FILE=../bins/mach0/ls-osx-x86_64
+# fixed in fix-plt branch
+BROKEN=1
+CMDS='s sym.imp.write
+af
+?v $FS
+'
+EXPECT="before:
+"
+run_test
