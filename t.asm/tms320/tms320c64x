@@ -4,7 +4,8 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 BROKEN=
 NAME="320c64 OPEX"
 FILE=malloc://512280
-CMDS='e asm.arch=tms320c64x
+CMDS='e asm.arch=tms320
+e asm.cpu=c64x
 wx 0041bd10
 aoj~{}
 '
