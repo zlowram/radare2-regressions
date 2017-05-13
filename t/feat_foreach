@@ -13,3 +13,24 @@ EXPECT='0xa
 '
 run_test
 
+NAME='@@c:/c fs:'
+FILE=../bins/mach0/mac-ls
+ARGS=
+CMDS='?v $$ @@c:/c fs:[ra'
+EXPECT='0x100004cd7
+0x100004d95
+0x100004e1d
+0x100005078
+'
+run_test
+
+NAME='@@= 10   20   30'
+FILE=-
+ARGS=
+CMDS='?v $$ @@= 10   20   30
+'
+EXPECT='0xa
+0x14
+0x1e
+'
+run_test
