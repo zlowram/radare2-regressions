@@ -110,3 +110,45 @@ EXPECT='/ (fcn) sym.Conditionals.check_if
 \           0x000001cb (58 byte folded function)
 '
 run_test
+
+NAME="pdf bounds"
+FILE=../bins/elf/crackme0x05
+CMDS="e asm.comments=false;e asm.lines=false;e asm.bytes=0;aa;s sym.check;pdf"
+EXPECT='/ (fcn) sym.check 48
+|   sym.check (int arg_8h);
+| ; var int local_ch @ ebp-0xc
+| ; var int local_8h @ ebp-0x8
+| ; arg int arg_8h @ ebp+0x8
+| 0x080484c8      push ebp
+| 0x080484c9      mov ebp, esp
+| 0x080484cb      sub esp, 0x28
+| 0x080484ce      mov dword [local_8h], 0
+| 0x080484d5      mov dword [local_ch], 0
+| 0x080484dc      mov eax, dword [arg_8h]
+| 0x080484df      mov dword [esp], eax
+| 0x080484e2      call sym.imp.strlen
+| 0x080484e7      cmp dword [local_ch], eax
+| 0x080484ea      jmp 0x8048526
+ 0x080484ec      mov eax, dword [ebp - 0xc]
+ 0x080484ef      add eax, dword [ebp + 8]
+ 0x080484f2      movzx eax, byte [eax]
+ 0x080484f5      mov byte [ebp - 0xd], al
+ 0x080484f8      lea eax, [ebp - 4]
+ 0x080484fb      mov dword [esp + 8], eax
+ 0x080484ff      mov dword [esp + 4], 0x8048668
+ 0x08048507      lea eax, [ebp - 0xd]
+ 0x0804850a      mov dword [esp], eax
+ 0x0804850d      call sym.imp.sscanf
+ 0x08048512      mov edx, dword [ebp - 4]
+ 0x08048515      lea eax, [ebp - 8]
+ 0x08048518      add dword [eax], edx
+ 0x0804851a      cmp dword [ebp - 8], 0x10
+ 0x0804851e      jne 0x804852b
+ 0x08048520      mov eax, dword [ebp + 8]
+ 0x08048523      mov dword [esp], eax
+| 0x08048526      call sym.parell
+| 0x0804852b      lea eax, [local_ch]
+| 0x0804852e      inc dword [eax]
+\ 0x08048530      jmp 0x80484dc
+'
+run_test
