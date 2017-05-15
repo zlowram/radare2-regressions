@@ -324,3 +324,17 @@ EXPECT='named_prj
 '
 run_test
 
+NAME='Checking e prj.name after saving again'
+FILE='../bins/elf/analysis/main'
+BROKEN=
+ARGS=
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+Po blah > /dev/null
+Ps blah > /dev/null
+Po blah > /dev/null
+e prj.name
+'
+EXPECT='blah
+'
+run_test
