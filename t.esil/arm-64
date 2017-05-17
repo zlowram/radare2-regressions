@@ -463,7 +463,6 @@ NAME="stp tests"
 #            0x0000000c      08410091       add x8, x8, 0x10
 #            0x00000010      041581a8       stp x4, x5, [x8], 0x10
 FILE=malloc://0x200
-BROKEN=1
 CMDS='
 e asm.arch=arm
 e asm.bits=64
