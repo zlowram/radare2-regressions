@@ -600,3 +600,36 @@ EXPECT='+1
 5
 '
 run_test
+
+NAME='pib from begining of bb'
+FILE=../bins/elf/analysis/x64-loop
+CMDS='
+s main
+af
+pib
+'
+EXPECT='push rbp
+mov rbp, rsp
+sub rsp, 0x20
+mov dword [rbp - 0x14], edi
+mov qword [rbp - 0x20], rsi
+mov dword [rbp - 4], 0
+jmp 0x400523
+'
+run_test
+
+NAME='pib inside bb'
+FILE=../bins/elf/analysis/x64-loop
+CMDS='
+s main
+af
+so 2
+pib
+'
+EXPECT='sub rsp, 0x20
+mov dword [rbp - 0x14], edi
+mov qword [rbp - 0x20], rsi
+mov dword [rbp - 4], 0
+jmp 0x400523
+'
+run_test
