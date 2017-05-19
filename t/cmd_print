@@ -633,3 +633,23 @@ mov dword [rbp - 4], 0
 jmp 0x400523
 '
 run_test
+
+NAME='pI size > bocksize'
+FILE=malloc://1024
+CMDS='
+wx 90909090909090909090
+b 1
+pI 10
+'
+EXPECT='nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+'
+run_test
