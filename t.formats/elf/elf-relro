@@ -44,7 +44,7 @@ ordinal=014 plt=0x00051fc0 bind=GLOBAL type=FUNC name=__errno_location
 ordinal=015 plt=0x00051fc8 bind=GLOBAL type=FUNC name=unlink
 ordinal=016 plt=0x00051fd0 bind=GLOBAL type=FUNC name=strncpy
 ordinal=017 plt=0x00051fd8 bind=GLOBAL type=FUNC name=strncmp
-ordinal=018 plt=0x00443a32 bind=UNKNOWN type=NOTYPE name=_ITM_deregisterTMCloneTable
+ordinal=018 plt=0x00443a32 bind=WEAK type=NOTYPE name=_ITM_deregisterTMCloneTable
 ordinal=019 plt=0x00051fe0 bind=GLOBAL type=FUNC name=_exit
 ordinal=020 plt=0x00051fe8 bind=GLOBAL type=FUNC name=strcpy
 ordinal=021 plt=0x00051ff0 bind=GLOBAL type=FUNC name=mkdir
@@ -133,7 +133,7 @@ ordinal=103 plt=0x00052278 bind=GLOBAL type=FUNC name=fprintf
 ordinal=104 plt=0x00052280 bind=GLOBAL type=FUNC name=sigemptyset
 ordinal=105 plt=0x00052288 bind=GLOBAL type=FUNC name=ftell
 ordinal=106 plt=0x00052290 bind=GLOBAL type=FUNC name=feof
-ordinal=107 plt=0x00443a32 bind=UNKNOWN type=NOTYPE name=__gmon_start__
+ordinal=107 plt=0x00443a32 bind=WEAK type=NOTYPE name=__gmon_start__
 ordinal=108 plt=0x00052298 bind=GLOBAL type=FUNC name=umask
 ordinal=109 plt=0x000522a0 bind=GLOBAL type=FUNC name=fopen64
 ordinal=110 plt=0x000522a8 bind=GLOBAL type=FUNC name=strtol
@@ -195,7 +195,7 @@ ordinal=165 plt=0x00052460 bind=GLOBAL type=FUNC name=dcngettext
 ordinal=166 plt=0x00052468 bind=GLOBAL type=FUNC name=perror
 ordinal=167 plt=0x00052470 bind=GLOBAL type=FUNC name=strtok
 ordinal=168 plt=0x00052478 bind=GLOBAL type=FUNC name=sysconf
-ordinal=169 plt=0x00443a32 bind=UNKNOWN type=NOTYPE name=_Jv_RegisterClasses
+ordinal=169 plt=0x00443a32 bind=WEAK type=NOTYPE name=_Jv_RegisterClasses
 ordinal=170 plt=0x00052480 bind=GLOBAL type=FUNC name=towlower
 ordinal=171 plt=0x00052488 bind=GLOBAL type=FUNC name=rename
 ordinal=172 plt=0x00052490 bind=GLOBAL type=FUNC name=tgetstr
@@ -217,7 +217,7 @@ ordinal=187 plt=0x00052508 bind=GLOBAL type=FUNC name=connect
 ordinal=188 plt=0x00052510 bind=GLOBAL type=FUNC name=fwrite
 ordinal=189 plt=0x00052518 bind=GLOBAL type=FUNC name=lseek64
 ordinal=190 plt=0x00052520 bind=GLOBAL type=FUNC name=__fprintf_chk
-ordinal=191 plt=0x00443a32 bind=UNKNOWN type=NOTYPE name=_ITM_registerTMCloneTable
+ordinal=191 plt=0x00443a32 bind=WEAK type=NOTYPE name=_ITM_registerTMCloneTable
 ordinal=192 plt=0x00052528 bind=GLOBAL type=FUNC name=sqrt
 ordinal=193 plt=0x00052530 bind=GLOBAL type=FUNC name=sigaltstack
 ordinal=194 plt=0x00052538 bind=GLOBAL type=FUNC name=strerror
@@ -226,7 +226,7 @@ ordinal=196 plt=0x00052548 bind=GLOBAL type=FUNC name=dlsym
 ordinal=197 plt=0x00052550 bind=GLOBAL type=FUNC name=ceil
 ordinal=198 plt=0x00052558 bind=GLOBAL type=FUNC name=sleep
 ordinal=199 plt=0x00052560 bind=GLOBAL type=FUNC name=Gpm_Close
-ordinal=200 plt=0x00052568 bind=UNKNOWN type=FUNC name=__cxa_finalize
+ordinal=200 plt=0x00052568 bind=WEAK type=FUNC name=__cxa_finalize
 ordinal=201 plt=0x00052570 bind=GLOBAL type=FUNC name=sigaddset
 ordinal=202 plt=0x00052578 bind=GLOBAL type=FUNC name=fork
 ordinal=203 plt=0x00052580 bind=GLOBAL type=FUNC name=strstr
