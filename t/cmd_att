@@ -89,10 +89,10 @@ EXPECT='  ;-- main:
 | 0x004004af      movq -8(%rsp), %rax
 | 0x004004b4      movq arg_8h_2, %rax
 | 0x004004b8      movq local_8h, %rax
-| 0x004004bc      movq arg_16h, %rax
-| 0x004004c1      movq -0x16(%rsp), %rax
-| 0x004004c6      movq arg_16h_2, %rax
-| 0x004004ca      movq local_16h, %rax
+| 0x004004bc      movq arg_18h, %rax
+| 0x004004c1      movq -0x18(%rsp), %rax
+| 0x004004c6      movq arg_18h_2, %rax
+| 0x004004ca      movq local_18h, %rax
 | 0x004004ce      leave
 \ 0x004004cf      retq
 '
@@ -117,10 +117,10 @@ EXPECT='  ;-- main:
 | 0x004004af      movq -8(%rsp), %rax
 | 0x004004b4      movq arg_8h_2(%rbp), %rax
 | 0x004004b8      movq local_8h(%rbp), %rax
-| 0x004004bc      movq arg_16h(%rsp), %rax
-| 0x004004c1      movq -0x16(%rsp), %rax
-| 0x004004c6      movq arg_16h_2(%rbp), %rax
-| 0x004004ca      movq local_16h(%rbp), %rax
+| 0x004004bc      movq arg_18h(%rsp), %rax
+| 0x004004c1      movq -0x18(%rsp), %rax
+| 0x004004c6      movq arg_18h_2(%rbp), %rax
+| 0x004004ca      movq local_18h(%rbp), %rax
 | 0x004004ce      leave
 \ 0x004004cf      retq
 '
