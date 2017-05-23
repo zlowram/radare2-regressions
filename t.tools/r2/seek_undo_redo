@@ -1,0 +1,22 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2017 Daniel Wagner
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME='seek undo/redo'
+BROKEN=
+FILE=-
+ARGS=
+CMDS='wx 01
+s 1
+s-
+s+
+pb 8
+'
+EXPECT='00000000
+'
+run_test
+
+CMDS='wx 01; s 1; s-; s+; pb 8'
+EXPECT='00000000
+'
+run_test
