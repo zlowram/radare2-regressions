@@ -1,6 +1,34 @@
 #!/bin/sh
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
+NAME="mac-ls switch count"
+FILE=../../bins/mach0/mac-ls
+ARGS='-e anal.jmptbl=true -A'
+CMDS="f~?switch"
+EXPECT="2
+"
+run_test
+
+NAME="mac-ls main switch"
+FILE=../../bins/mach0/mac-ls
+ARGS='-e anal.jmptbl=true'
+CMDS="s main;af
+f~switch
+f~?case
+"
+EXPECT="0x1000011a7 1 switch.0x1000011a7
+31
+"
+run_test
+
+NAME="mac-ls switch count"
+FILE=../../bins/mach0/mac-ls
+ARGS='-e anal.jmptbl=true -A'
+CMDS="f~?case"
+EXPECT="40
+"
+run_test
+
 FILE=../../bins/pe/test.exe
 CMDS='e anal.jmptbl=true
 s 0x402cb6
