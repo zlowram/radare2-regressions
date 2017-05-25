@@ -5,7 +5,7 @@ NAME='cxx compatibility'
 BROKEN=
 ARGS=
 CMDS='"!rabin2 -D rust _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev"'
-EXPECT="std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::~basic_string
+EXPECT="std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::~basic_string()
 "
 run_test
 

@@ -9,18 +9,18 @@ av
 '
 EXPECT='
 Vtable Found at 0x00400ce8
-0x00400ce8 : sym.A::greet
-0x00400cf0 : sym.C::printValue
+0x00400ce8 : sym.A::greet__
+0x00400cf0 : sym.C::printValue__
 
 
 Vtable Found at 0x00400d08
-0x00400d08 : sym.A::greet
-0x00400d10 : sym.B::printValue
+0x00400d08 : sym.A::greet__
+0x00400d10 : sym.B::printValue__
 
 
 Vtable Found at 0x00400d28
-0x00400d28 : sym.A::greet
-0x00400d30 : sym.A::printValue
+0x00400d28 : sym.A::greet__
+0x00400d30 : sym.A::printValue__
 
 '
 run_test

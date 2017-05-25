@@ -308,7 +308,18 @@ CMDS='ic~_JNIEnv
 ic~FindClass
 '
 EXPECT='0x00000000 [0x00006060 - 0x0000697c] (sz 2332) class 0 _JNIEnv
-0x00006060 method 0      FindClass
+0x000074f8 method 0      inject(_JNIEnv*,_jobject*,_jstring*,_jstring*)
+0x0000699c method 1      findBaseDexClassloader(_JNIEnv*,_jobject*)
+0x00006a2c method 2      getField(_JNIEnv*,_jobject*,_jobject*,_jstring*)
+0x00006abc method 3      getPathList(_JNIEnv*,_jobject*)
+0x00006af4 method 4      getDexElements(_JNIEnv*,_jobject*)
+0x00006b1c method 5      setField(_JNIEnv*,_jobject*,_jobject*,_jstring*,_jobject*)
+0x00006bb0 method 6      combineArray(_JNIEnv*,_jobject*,_jobject*)
+0x00006d00 method 7      injectAboveEqualApiLevel14(_JNIEnv*,_jobject*,_jstring*,_jstring*)
+0x00006e5c method 8      appendArray(_JNIEnv*,_jobject*,_jobject*)
+0x00006f68 method 9      injectInAliyunOs(_JNIEnv*,_jobject*,_jstring*,_jstring*)
+0x0000720c method 10      injectBelowApiLevel14(_JNIEnv*,_jobject*,_jstring*,_jstring*)
+0x00006060 method 0      FindClass(charconst*)
 '
 run_test
 
