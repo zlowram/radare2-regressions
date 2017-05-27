@@ -4,6 +4,14 @@
 
 # "!" - run commands (via system)
 
+NAME="/j escaped"
+FILE=../bins/mach0/escaped
+CMDS="/j hello
+"
+EXPECT='[{"offset": 8019,"id:":0,"type":"string","data":"]c:\\hello\\worldM"}]
+'
+run_test
+
 NAME='/ search'
 FILE='malloc://1024'
 ARGS=
