@@ -80,5 +80,37 @@ CMDS="iiq"
 EXPECT='system
 __libc_start_main
 __gmon_start__
+__gmon_start__
+'
+run_test
+
+NAME='ELF: phdr override 2'
+FILE=../../bins/elf/busybox-phdr-shdr
+BROKEN=
+CMDS="ii~OBJECT"
+EXPECT='ordinal=007 plt=0x00400000 bind=GLOBAL type=OBJECT name=__environ
+ordinal=043 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_tolower
+ordinal=145 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdout
+ordinal=189 plt=0x00400000 bind=GLOBAL type=OBJECT name=stderr
+ordinal=409 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdin
+ordinal=410 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdin
+ordinal=417 plt=0x00400000 bind=GLOBAL type=OBJECT name=optind
+ordinal=468 plt=0x00400000 bind=GLOBAL type=OBJECT name=environ
+ordinal=588 plt=0x00400000 bind=GLOBAL type=OBJECT name=optarg
+ordinal=667 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_b
+ordinal=706 plt=0x00400000 bind=GLOBAL type=OBJECT name=allCountryList
+ordinal=718 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdout
+ordinal=007 plt=0x00400000 bind=GLOBAL type=OBJECT name=__environ
+ordinal=043 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_tolower
+ordinal=145 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdout
+ordinal=189 plt=0x00400000 bind=GLOBAL type=OBJECT name=stderr
+ordinal=409 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdin
+ordinal=410 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdin
+ordinal=417 plt=0x00400000 bind=GLOBAL type=OBJECT name=optind
+ordinal=468 plt=0x00400000 bind=GLOBAL type=OBJECT name=environ
+ordinal=588 plt=0x00400000 bind=GLOBAL type=OBJECT name=optarg
+ordinal=667 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_b
+ordinal=706 plt=0x00400000 bind=GLOBAL type=OBJECT name=allCountryList
+ordinal=718 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdout
 '
 run_test

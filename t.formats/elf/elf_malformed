@@ -142,7 +142,7 @@ vaddr=0x004003c0 paddr=0x000003c0 ord=001 fwd=NONE sz=16 bind=GLOBAL type=FUNC n
 vaddr=0x004003d0 paddr=0x000003d0 ord=002 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.__libc_start_main
 vaddr=0x00400000 paddr=0x00000000 ord=003 fwd=NONE sz=16 bind=WEAK type=NOTYPE name=imp.__gmon_start__
 
-32 symbols
+33 symbols
 call sym.imp.system
 '
 run_test
