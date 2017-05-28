@@ -25,3 +25,30 @@ pd 100
 '
 EXPECT=''
 run_test
+
+NAME='java classes'
+IGNORE_ERR=1
+BROKEN=1
+FILE=../../bins/java/DemoTest.class
+ARGS=
+CMDS='ic
+'
+EXPECT=''
+run_test
+
+NAME='java classes summary'
+IGNORE_ERR=1
+BROKEN=
+FILE=../../bins/java/DemoTest.class
+ARGS=
+CMDS='java summary
+'
+EXPECT='Summary for ../../bins/java/DemoTest.class:
+  Size 0x0:
+  Constants  size: 0x166 count: 34:
+  Methods    size: 0xb6 count: 4:
+  Fields     size: 0x2 count: 0:
+  Attributes size: 0xa count: 1:
+  Interfaces size: 0x2 count: 0:
+'
+run_test
