@@ -276,3 +276,12 @@ EXPECT_ERR='WARNING: WARN (line=1)
 ERROR: ERR (line=1)
 '
 run_test
+
+NAME='rasm2 x86.asm.32'
+FILE=-
+ARGS=
+CMDS='!rasm2 -f ../../bins/elf/analysis/hello.asm
+'
+EXPECT='ba0e000000b91d000000bb01000000b804000000cd80b801000000cd8048656c6c6f2c20776f726c64210a00
+'
+run_test
