@@ -22,6 +22,20 @@ EXPECT='0300a0e3
 '
 run_test
 
+NAME='rasm2 blx arm/thumb'
+NAME='Rasm2 blx arm/thumb'
+CMDS="!rasm2 -o 0x4000 -a arm -b 16 -d `rasm2 -o 0x4000 -a arm -b 16 "blx 0x84434"`"
+EXPECT='blx 0x84434
+'
+run_test
+
+NAME='rasm2 blx arm/thumb'
+NAME='Rasm2 blx arm/thumb 2'
+CMDS="!rasm2 -o 0x4000 -a arm -b 16 -d `rasm2 -o 0x4000 -a arm -b 16 "blx 0x84434"`"
+EXPECT='blx 0x84434
+'
+run_test
+
 
 NAME='Rasm2'
 NAME='Rasm2'
