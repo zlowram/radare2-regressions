@@ -653,3 +653,18 @@ nop
 nop
 '
 run_test
+
+NAME='p- with "r2 --"'
+FILE='--'
+CMDS='p-'
+EXPECT=''
+
+run_test
+
+NAME='p- with malloc://512'
+FILE='malloc://512'
+CMDS='p-'
+EXPECT='0x0 [^__________________________________________] 0x400
+'
+
+run_test
