@@ -21,3 +21,17 @@ f~?
 EXPECT='0
 '
 run_test
+
+NAME='fr foo bar'
+FILE=-
+BROKEN=
+CMDS='f foo
+fr foo bar
+f
+pd 1
+'
+EXPECT='0x00000000 1 bar
+            ;-- bar:
+            0x00000000      0000           add byte [rax], al
+'
+run_test
