@@ -87,6 +87,14 @@ va       false
 [Memory]
 
 fs imports
+e cfg.bigendian=false
+e asm.bits=64
+e asm.dwarf=false
+e asm.pcalign=0
+fs imports
+fs symbols
+fs symbols
+fs sections
 [Imports]
 
 0 imports
