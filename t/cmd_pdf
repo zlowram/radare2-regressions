@@ -15,6 +15,7 @@ e asm.cmtcol=0
 af; pdf
 '
 EXPECT='            ;-- entry1:
+            ;-- method.Conditionals.check_if:
 / (fcn) sym.Conditionals.check_if 58
 |           0x000001cb      1a             iload_0
 |           0x000001cc      100a           bipush 10
@@ -62,6 +63,7 @@ e asm.cmtcol=0
 af; pdf
 '
 EXPECT='            ;-- entry1:
+            ;-- method.Conditionals.check_if:
 / (fcn) sym.Conditionals.check_if 58
 |           0x000001cb      1a             iload_0
 |           0x000001cc      100a           bipush 10
