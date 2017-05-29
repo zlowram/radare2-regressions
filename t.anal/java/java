@@ -216,11 +216,13 @@ subsys   any
 va       false
   ;-- entry0:
   ;-- sym.java_lang_Object._init_:
+  ;-- method.radare_test_cases_challenge._init_:
  0x0000012d      2a             aload_0
  0x0000012e      b70008         invokespecial java/lang/Object/<init>()V
  0x00000131      b1             return
   ;-- entry1:
   ;-- sym.radare_test_cases_challenge.simple_case_stmt_4val:
+  ;-- method.radare_test_cases_challenge.simple_case_stmt_4val:
  0x0000016a      03             iconst_0
  0x0000016b      3b             istore_0
  0x0000016c      03             iconst_0
@@ -250,6 +252,7 @@ va       false
  0x000001b0      1b             iload_1
  0x000001b1      ac             ireturn
   ;-- entry2:
+  ;-- method.radare_test_cases_loops.simple_for_loop_multi_return:
 / (fcn) sym.radare_test_cases_loops.simple_for_loop_multi_return 43
 | 0x000001f1      46             fstore_3
 | 0x000001f2      00             nop
@@ -282,6 +285,7 @@ va       false
 | 0x00000219      fc             UNDEFINED
 | 0x0000021a      00             nop
 \ 0x0000021b      24             fload_2
+  ;-- method.radare_test_cases_challenge.simple_case_stmt_4val:
 / (fcn) sym.radare_test_cases_challenge.simple_case_stmt_4val 72
 | 0x0000016a      03             iconst_0
 | 0x0000016b      3b             istore_0
