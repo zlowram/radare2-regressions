@@ -58,6 +58,6 @@ ARGS=''
 BROKEN=
 IGNORE_ERR=1
 CMDS="ic*~main"
-EXPECT='f method.static.public.LHello.LHello.method.main([Ljava/lang/String;)V = 0x1c0
+EXPECT='"f method.static.public.LHello.LHello.method.main([Ljava/lang/String;)V = 0x1c0"
 '
 run_test
