@@ -50,6 +50,8 @@ irj
 EXPECT='[]'
 run_test
 
+# "iaj"
+
 type jq 2>/dev/null >&2
 if [ $? = 0 ]; then
 # if we have jq installed...
@@ -85,7 +87,6 @@ linux|'')
 	"fsj"
 	"p8j"
 	"pdfj"
-	"iaj"
 	"pdrj"
 	"af;pdrj"
 	"aa ; pdfj @ sym.main"
@@ -120,9 +121,9 @@ linux|'')
 
 	NAME="JSON: /j Well-formed"
 echo
-	r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server
+	r2 -nn -qc '/j 2622454d494' ../bins/elf/ts3server
 echo
-	CMDS="!r2 -nn -qc \"/j 2622454d494\" ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
+	CMDS="!r2 -nn -qc '/j 2622454d494' ../bins/elf/ts3server| jq . > /dev/null && echo \"1\""
 BROKEN=
 	EXPECT='1
 '
