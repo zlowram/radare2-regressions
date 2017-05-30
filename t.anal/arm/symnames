@@ -54,7 +54,7 @@ aa
 f~sym?
 afl~?
 '
-EXPECT='19
+EXPECT='18
 15
 '
 run_test
@@ -64,27 +64,23 @@ BROKEN=
 FILE=../../bins/elf/analysis/arm_32_flags0
 CMDS='
 aa
-f~sym
+afl
 '
-EXPECT='0x00010190 80 section..dynsym
-0x000101e0 0 section_end..dynsym
-0x00000000 1792 section..symtab
-0x00000700 0 section_end..symtab
-0x00010304 28 sym.call_weak_fn
-0x00010328 36 sym.deregister_tm_clones
-0x00010358 44 sym.register_tm_clones
-0x00010390 36 sym.__do_global_dtors_aux
-0x000103b8 44 sym.frame_dummy
-0x00010494 4 sym.__libc_csu_fini
-0x00010498 8 sym._fini
-0x000103ec 28 sym.func
-0x00010434 88 sym.__libc_csu_init
-0x000102c8 0 sym._start
-0x00010408 40 sym.main
-0x00010278 12 sym._init
-0x00010298 12 sym.imp.printf
-0x000102a4 12 sym.imp.__libc_start_main
-0x000102bc 12 sym.imp.abort
+EXPECT='0x00010278    1 12           sym._init
+0x00010298    1 12           sym.imp.printf
+0x000102a4    1 12           sym.imp.__libc_start_main
+0x000102bc    1 12           sym.imp.abort
+0x000102c8    1 44           entry0
+0x00010304    1 28           sym.call_weak_fn
+0x00010328    1 36           sym.deregister_tm_clones
+0x00010358    1 44           sym.register_tm_clones
+0x00010390    1 36           sym.__do_global_dtors_aux
+0x000103b8    4 44           sym.frame_dummy
+0x000103ec    1 28           sym.func
+0x00010408    1 40           sym.main
+0x00010434    3 88           sym.__libc_csu_init
+0x00010494    1 4            sym.__libc_csu_fini
+0x00010498    1 8            sym._fini
 '
 run_test
 
