@@ -149,13 +149,13 @@ EXPECT='|       ,=< 0x000113bd      je 0x1144e
 |     |||   0x000113e2      lea rsi, [rax - 6]
 |     |||   0x000113e6      mov ecx, 7
 |     |||   0x000113eb      lea rdi, [rip + 0x7ebb]                    ; str._.libs_ ; 0x192ad ; "/.libs/"
-|     |||   0x000113f2      repe cmpsb byte [rsi], byte ptr [rdi]      ; [0x2700000000:1]=255 ; 0
+|     |||   0x000113f2      repe cmpsb byte [rsi], byte ptr [rdi]      ; [0x2700000000:1]=255 ; 167503724544
 |    ,====< 0x000113f4      jne 0x11424
 |    ||||   0x000113f6      mov ecx, 3
 |    ||||   0x000113fb      mov rsi, rdx
 |    ||||   0x000113fe      mov rbx, rdx
 |    ||||   0x00011401      lea rdi, [rip + 0x7ead]                    ; "lt-" ; 0x192b5
-|    ||||   0x00011408      repe cmpsb byte [rsi], byte ptr [rdi]      ; [0x2700000000:1]=255 ; 0
+|    ||||   0x00011408      repe cmpsb byte [rsi], byte ptr [rdi]      ; [0x2700000000:1]=255 ; 167503724544
 |    ||||   0x0001140a      seta sil
 |    ||||   0x0001140e      setb cl
 |    ||||   0x00011411      cmp sil, cl
