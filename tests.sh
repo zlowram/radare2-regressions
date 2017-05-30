@@ -193,6 +193,7 @@ run_test_real() {
   TMP_OUT="${TMP_DIR}/out" # stdout
   TMP_EXP="${TMP_DIR}/exp" # expected output
   TMP_ERR="${TMP_DIR}/err" # stderr
+  TMP_EBR="${TMP_DIR}/ebr" # expected broken output
   TMP_EXR="${TMP_DIR}/exr" # expected error
   TMP_VAL="${TMP_DIR}/val" # valgrind output
   TMP_BIN="${TMP_DIR}/bin" # the binary used
@@ -237,6 +238,7 @@ __EOF__
   # Put expected outcome and program to run in files and run the test.
   printf "%s\n" "${CMDS}" > ${TMP_RAD}
   printf "%s" "${EXPECT}" > ${TMP_EXP}
+  printf "%s" "${EXPECT_BR}" > ${TMP_EBR}
   printf "%s" "${EXPECT_ERR}" > ${TMP_EXR}
   if [ -n "${TIMEOUT}" ]; then
     eval "rarun2 timeout=${TIMEOUT} -- ${R2CMD}"
@@ -390,6 +392,7 @@ test_reset() {
   CMDS=
   NOT_EXPECT=
   EXPECT=
+  EXPECT_BR=
   EXPECT_ERR=
   IGNORE_ERR=1
   FILTER=
@@ -435,7 +438,17 @@ test_failed() {
         print_failed "XX"
         print_issue "${*}"
       else
-        print_broken "BR"
+        if [ -n "${EXPECT_BR}" ]; then
+          ${DIFF} ${DIFF_ARG} -u "${TMP_EBR}" "${TMP_OUT}" > "${TMP_ODF}"
+          if [ $? = 0 ]; then
+            print_broken "BR"
+          else
+            print_failed "XB"
+            print_issue "${*}"
+          fi
+        else
+          print_broken "BR"
+        fi
       fi
     fi
   fi
