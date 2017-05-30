@@ -452,7 +452,6 @@ run_test
 
 NAME='flag renaming and reusing the old name for something new'
 FILE=malloc://1024
-BROKEN=1
 CMDS='f blah = 0x100
 fr blah bloh
 f blah = 0x200
