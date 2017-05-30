@@ -449,3 +449,16 @@ EXPECT='0x0049ad40 168 obj._IO_helper_jumps
 0x0049b680 168 obj._IO_helper_jumps_1
 '
 run_test
+
+NAME='flag renaming and reusing the old name for something new'
+FILE=malloc://1024
+BROKEN=1
+CMDS='f blah = 0x100
+fr blah bloh
+f blah = 0x200
+f
+'
+EXPECT='0x00000100 0 bloh
+0x00000200 0 blah
+'
+run_test
