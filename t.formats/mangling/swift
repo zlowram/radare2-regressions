@@ -12,10 +12,9 @@ run_test
 
 NAME='elf swift demangle (requires swift-demangle program)'
 FILE=../../bins/elf/analysis/hello-swift
-BROKEN=1
 ARGS=
 CMDS='isq~0x004009e0'
-EXPECT='0x004009e0 16 String.init(_builtinStringLiteral : Builtin.RawPointer, byteSize : Builtin.Word, isASCII : Builtin.Int1) -> String
+EXPECT='0x004009e0 16 Swift.String.init (_builtinStringLiteral(Builtin.RawPointer byteSize__Builtin.Word isASCII__Builtin.Int1 _) -> String
 '
 run_test
 
