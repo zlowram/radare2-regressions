@@ -54,7 +54,7 @@ aa
 f~sym?
 afl~?
 '
-EXPECT='19
+EXPECT='18
 15
 '
 run_test
