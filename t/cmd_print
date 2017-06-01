@@ -668,3 +668,11 @@ EXPECT='0x0 [^__________________________________________] 0x400
 '
 
 run_test
+
+NAME='psW 32 widestring'
+FILE=../bins/elf/crackme0x00b
+CMDS='psW @ obj.pass.1964'
+EXPECT='w0wgreat
+'
+
+run_test
