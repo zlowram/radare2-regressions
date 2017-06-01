@@ -676,3 +676,19 @@ EXPECT='w0wgreat
 '
 
 run_test
+
+NAME='psW 32 widestring leading zeros'
+FILE=../bins/elf/crackme0x00b
+CMDS='psW @ 0x0804a03e'
+EXPECT='w0wgreat
+'
+
+run_test
+
+NAME='ps leading zeros'
+FILE=../bins/elf/crackme0x00b
+CMDS='ps @ 0x0804a03e'
+EXPECT='w
+'
+
+run_test
