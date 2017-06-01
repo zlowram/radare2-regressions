@@ -37,10 +37,11 @@ FILE=../bins/elf/analysis/hello-linux-x86_64
 CMDS='e asm.arch=mips
 e asm.cpu=?
 '
-EXPECT='gp64
+EXPECT='mips32/64
 micro
 r6
 v3
+v2
 '
 
 run_test
