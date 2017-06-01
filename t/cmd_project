@@ -194,7 +194,7 @@ tk type.char **=**z
 tk type.char **.size=64
 Ps custom_types > /dev/null
 Pc custom_types~?char **
-"td struct Foo { int bar; int x, int y }"
+"td struct Foo { int bar; int x; int y; };"
 Ps custom_types > /dev/null
 Pc custom_types~?char **
 Pc custom_types~?Foo
@@ -202,7 +202,7 @@ Pd custom_types > /dev/null
 '
 EXPECT='7
 7
-5
+9
 '
 run_test
 
