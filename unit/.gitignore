@@ -9,3 +9,6 @@ test_bitmap
 test_stack
 test_glob
 test_tree
+test_diff
+test_range
+test_skiplist
