@@ -257,25 +257,36 @@ bool test_r_list_sort4(void) {
 	}
 
 	char *data;
+
+#if 0 // Debug Print
 	printf("after sorted 1 \n");
 	r_list_foreach (list, next, data) {
 		printf("l -> %s\n", data);
 	}
+#endif
 
 	char* exp_tests_even[] = {test1, test2, test3, test4, test5,
 		test6_later, test7, test8, test9, test10};
 	// Add test6 to make the length even
 	r_list_append (list, (void*)test6_later);
+
+#if 0 // Debug Printing
 	printf("after adding FFFF \n");
 	r_list_foreach (list, next, data) {
 		printf("l -> %s\n", data);
 	}
+#endif
+
 	// Sort
 	r_list_merge_sort (list, (RListComparator)strcmp);
+
+#if 0 // Debug Printing
 	printf("after sorting 2 \n");
 	r_list_foreach (list, next, data) {
 		printf("l -> %s\n", data);
 	}
+#endif
+
 	// Check that the list (even-length) is actually sorted.
 	next = list->head;
 	for (i = 0; i < R_ARRAY_SIZE (exp_tests_even); ++i) {
