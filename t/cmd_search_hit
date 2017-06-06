@@ -75,3 +75,54 @@ EXPECT='0x0000000a   # 1: nop
 33
 '
 run_test
+
+NAME='cmd.hit for /!x'
+BROKEN=
+FILE='malloc://1024'
+CMDS='e cmd.hit = p8 1
+wx 90 @ 10
+/!x 00
+'
+EXPECT='0x0000000a hit0_0 90
+90
+'
+run_test
+
+NAME='cmd.hit for /!'
+BROKEN=
+FILE='malloc://1024'
+CMDS='e cmd.hit = p8 1
+w AAAAAAAAAAB
+/! A
+'
+EXPECT='0x0000000a hit0_0 "AAAAAAAAAAB"
+42
+'
+run_test
+
+NAME='cmd.hit for /+'
+BROKEN=
+FILE='malloc://1024'
+CMDS='e cmd.hit = p8 3
+w ABCDEF
+/+ ABC
+'
+EXPECT='0x00000000 hit0_0 414243
+414243
+'
+run_test
+
+NAME='cmd.hit for //'
+BROKEN=
+FILE='malloc://1024'
+CMDS='e cmd.hit = p8 1
+w AAAAAAAAAAB
+/! A
+//
+'
+EXPECT='0x0000000a hit0_0 "AAAAAAAAAAB"
+42
+0x0000000a hit1_0 "AAAAAAAAAAB"
+42
+'
+run_test
