@@ -126,3 +126,64 @@ EXPECT='0x0000000a hit0_0 "AAAAAAAAAAB"
 42
 '
 run_test
+
+NAME='cmd.hit for /h'
+BROKEN=
+FILE='malloc://1024'
+BROKEN=1
+CMDS='e cmd.hit = p8 1
+e search.in =raw
+/h md5 348a9791dc41b89796ec3808b5b5262f
+'
+EXPECT='f hash.md5.348a9791dc41b89796ec3808b5b5262f = 0x0
+00
+'
+run_test
+
+NAME='cmd.hit for /a'
+FILE='malloc://1024'
+ARGS=
+BROKEN=
+CMDS='e cmd.hit = pi 4
+e asm.bits=32
+"wa add esp,8;pop ebx; pop ebp; ret"
+/a add esp, 8
+'
+EXPECT='0x00000000 hit0_0 83c408
+add esp, 8
+pop ebx
+pop ebp
+ret
+'
+run_test
+
+NAME='cmd.hit for /A'
+FILE='malloc://1024'
+ARGS=
+BROKEN=1
+CMDS='e cmd.hit = pi 4
+e asm.bits=32
+"wa add esp,8;pop ebx; pop ebp; ret"
+/A ret
+'
+EXPECT='0x00000005 1 ret
+add esp, 8
+pop ebx
+pop ebp
+ret
+'
+run_test
+
+NAME="cmd.hit for /bx"
+FILE=malloc://1024
+CMDS='e cmd.hit = p8 4
+w ABCD @ 0x100
+e search.from = 0x100
+e search.to = 0x104
+b 0x100
+/bx 41424344
+'
+EXPECT='0x00000100 hit0_0 41424344
+41424344
+'
+run_test
