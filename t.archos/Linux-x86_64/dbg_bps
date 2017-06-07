@@ -155,4 +155,28 @@ EXPECT='0x00000000
 0x00000249
 0x00000440
 '
+NAME='dbg.dbd+dbe'
+FILE=../../bins/elf/analysis/x64-loop
+ARGS=-d
+BROKEN=
+CMDS='e scr.color=0
+db 0x400523
+db 0x40051a
+dc
+dr PC
+dc
+dr PC
+dbd 0x400523
+dc
+dr PC
+dbe 0x400523
+dc
+dr PC
+'
+EXPECT='0x00400523
+0x0040051a
+0x0040051a
+0x00400523
+'
+
 run_test
