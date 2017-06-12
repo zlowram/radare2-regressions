@@ -16,8 +16,8 @@ idda _IO_marker._sbuf._IO_read_base
 EXPECT='_next = 0x400d90,
 _sbuf = 0x400db0,
 _pos = 0x22a0c0c7
-0x400ca0
-0x400dc8
+addr = 0x400ca0
+addr = 0x400dc8
 '
 run_test
 
@@ -65,7 +65,55 @@ CMDS='iddi ../../bins/elf/bomb
 iddt _IO_marker._sbuf
 iddt _IO_marker._pos
 '
-EXPECT='struct _IO_FILE * - 8
-int  - 4
+EXPECT='type : struct _IO_FILE *
+size : 8
+type : int 
+size : 4
+'
+run_test
+
+NAME="${PLUGIN}: iddd -- array"
+CMDS='iddi ../../bins/elf/ezpz
+iddd _IO_FILE
+'
+EXPECT='struct _IO_FILE {
+  int _flags;
+  char *_IO_read_ptr;
+  char *_IO_read_end;
+  char *_IO_read_base;
+  char *_IO_write_base;
+  char *_IO_write_ptr;
+  char *_IO_write_end;
+  char *_IO_buf_base;
+  char *_IO_buf_end;
+  char *_IO_save_base;
+  char *_IO_backup_base;
+  char *_IO_save_end;
+  struct _IO_marker *_markers;
+  struct _IO_FILE *_chain;
+  int _fileno;
+  int _flags2;
+  __off_t _old_offset;
+  short unsigned int _cur_column;
+  signed char _vtable_offset;
+  char _shortbuf[1];
+  _IO_lock_t *_lock;
+  __off64_t _offset;
+  void *__pad1;
+  void *__pad2;
+  void *__pad3;
+  void *__pad4;
+  size_t __pad5;
+  int _mode;
+  char _unused2[20];
+};
+'
+run_test
+
+NAME="${PLUGIN}: idddj"
+CMDS='iddi ../../bins/elf/ezpz
+idddj _IO_FILE
+'
+EXPECT='{"name":"_IO_FILE","size":216,"inbits":false,"struct":true,"members":[{"name":"_flags","type":"int ","size":4,"inbits":false,"offset":0},{"name":"_IO_read_ptr","type":"char *","size":8,"inbits":false,"offset":8,"pointer":true},{"name":"_IO_read_end","type":"char *","size":8,"inbits":false,"offset":16,"pointer":true},{"name":"_IO_read_base","type":"char *","size":8,"inbits":false,"offset":24,"pointer":true},{"name":"_IO_write_base","type":"char *","size":8,"inbits":false,"offset":32,"pointer":true},{"name":"_IO_write_ptr","type":"char *","size":8,"inbits":false,"offset":40,"pointer":true},{"name":"_IO_write_end","type":"char *","size":8,"inbits":false,"offset":48,"pointer":true},{"name":"_IO_buf_base","type":"char *","size":8,"inbits":false,"offset":56,"pointer":true},{"name":"_IO_buf_end","type":"char *","size":8,"inbits":false,"offset":64,"pointer":true},{"name":"_IO_save_base","type":"char *","size":8,"inbits":false,"offset":72,"pointer":true},{"name":"_IO_backup_base","type":"char *","size":8,"inbits":false,"offset":80,"pointer":true},{"name":"_IO_save_end","type":"char *","size":8,"inbits":false,"offset":88,"pointer":true},{"name":"_markers","type":"struct _IO_marker *","size":8,"inbits":false,"offset":96,"pointer":true},{"name":"_chain","type":"struct _IO_FILE *","size":8,"inbits":false,"offset":104,"pointer":true},{"name":"_fileno","type":"int ","size":4,"inbits":false,"offset":112},{"name":"_flags2","type":"int ","size":4,"inbits":false,"offset":116},{"name":"_old_offset","type":"__off_t ","size":8,"inbits":false,"offset":120},{"name":"_cur_column","type":"short unsigned int ","size":2,"inbits":false,"offset":128},{"name":"_vtable_offset","type":"signed char ","size":1,"inbits":false,"offset":130},{"name":"_shortbuf","type":"char ","size":1,"inbits":false,"offset":131,"array":true,"dimension":[1]},{"name":"_lock","type":"_IO_lock_t *","size":8,"inbits":false,"offset":136,"pointer":true},{"name":"_offset","type":"__off64_t ","size":8,"inbits":false,"offset":144},{"name":"__pad1","type":"void *","size":8,"inbits":false,"offset":152,"pointer":true},{"name":"__pad2","type":"void *","size":8,"inbits":false,"offset":160,"pointer":true},{"name":"__pad3","type":"void *","size":8,"inbits":false,"offset":168,"pointer":true},{"name":"__pad4","type":"void *","size":8,"inbits":false,"offset":176,"pointer":true},{"name":"__pad5","type":"size_t ","size":8,"inbits":false,"offset":184},{"name":"_mode","type":"int ","size":4,"inbits":false,"offset":192},{"name":"_unused2","type":"char ","size":20,"inbits":false,"offset":196,"array":true,"dimension":[20]}]}
 '
 run_test
