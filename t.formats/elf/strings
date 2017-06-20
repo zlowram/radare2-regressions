@@ -15,4 +15,25 @@ f~str.
 EXPECT='0x004005f4 25 str.This_is_a_dwarf_test__d_n
 '
 
+# This test verifies that rabin2 -z detects utf-16 strings
+
+NAME='iz'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-16
+ARGS=
+CMDS="iz~Hello
+"
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=24 len=11 section=.rodata type=wide string=Hello World
+'
+# This test verifies that rabin2 -z detects utf-32 strings
+
+NAME='iz'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-32
+ARGS=
+CMDS="iz~Hello
+"
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=56 len=13 section=.rodata type=wide32 string=Hello World
+'
+
 run_test
