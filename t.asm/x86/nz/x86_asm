@@ -1265,12 +1265,12 @@ test_vector "${PLUGIN}" "cmp rbx, rax" 4839c3
 test_vector "${PLUGIN}" "cmp rdx, rsi" 4839f2
 test_vector "${PLUGIN}" "inc rdx" 48ffc2
 test_vector "${PLUGIN}" "jmp rbx" ffe3
-test_vector "${PLUGIN}" "lea rax, [rax+0]" 488d4000 "br" # sbs: 488d00
-test_vector "${PLUGIN}" "lea rax, [rax+1]" 488d4001 "br"
-test_vector "${PLUGIN}" "lea rax, [rax-0]" 488d4000 "br" # sbs: 488d00
-test_vector "${PLUGIN}" "lea rax, [rax-1]" 488d40ff "br"
-test_vector "${PLUGIN}" "lea rax, [rax]" 488d00 "br"
-test_vector "${PLUGIN}" "lea rax,[rel -10]" 488d05f6ffffff "br"
+test_vector "${PLUGIN}" "lea rax, [rax+0]" 488d00 # sbs: 488d00
+test_vector "${PLUGIN}" "lea rax, [rax+1]" 488d4001 
+test_vector "${PLUGIN}" "lea rax, [rax-0]" 488d00 # sbs: 488d00
+test_vector "${PLUGIN}" "lea rax, [rax-1]" 488d40ff 
+test_vector "${PLUGIN}" "lea rax, [rax]" 488d00 
+test_vector "${PLUGIN}" "lea rax,[rel -10]" 488d06f6ffffff "br"
 test_vector "${PLUGIN}" "lea rax,[rel 0]" 488d0500000000 "br"
 test_vector "${PLUGIN}" "lea rax,[rel 10]" 488d050a000000 "br"
 test_vector "${PLUGIN}" "lea rax,[rip+0]" 488d0500000000 "br"
