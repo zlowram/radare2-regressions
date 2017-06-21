@@ -12,7 +12,74 @@ ARGS=
 CMDS='fs *
 f~str.
 '
-EXPECT='0x004005f4 25 str.This_is_a_dwarf_test__d_n
+EXPECT='0x004005c4 12 str.Hello_World
+'
+
+run_test
+
+# This test verifies that rabin2 -z detects utf-16 strings
+
+NAME='iz (utf-16)'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-16
+ARGS=
+CMDS='iz~Hello
+s sym.main
+af
+pdf~str.Hello
+'
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=24 len=11 section=.rodata type=wide string=Hello World
+|           0x0040052e      48c745f8e805.  mov qword [local_8h], str.Hello_World
+'
+
+run_test
+
+# This test verifies that rabin2 -z detects utf-32 strings
+
+NAME='iz (utf-32)'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-32
+ARGS=
+CMDS='iz~Hello
+s sym.main
+af
+pdf~str.Hello
+'
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=56 len=13 section=.rodata type=wide32 string=Hello World
+|           0x0040052e      48c745f8e805.  mov qword [local_8h], str.Hello_World
+'
+
+run_test
+# This test verifies that rabin2 -z detects utf-16 strings
+
+NAME='iz (utf-16le)'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-16le
+ARGS=
+CMDS='iz~Hello
+s sym.main
+af
+pdf~str.Hello
+'
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=24 len=11 section=.rodata type=wide string=Hello World
+|           0x0040052e      48c745f8e805.  mov qword [local_8h], str.Hello_World
+'
+
+run_test
+
+# This test verifies that rabin2 -z detects utf-32le strings
+
+NAME='iz (utf-32le)'
+BROKEN=1
+FILE=../../bins/elf/analysis/hello-utf-32le
+ARGS=
+CMDS='iz~Hello
+s sym.main
+af
+pdf~str.Hello
+'
+EXPECT='vaddr=0x004005e8 paddr=0x000005e8 ordinal=000 sz=56 len=13 section=.rodata type=wide32 string=Hello World
+|           0x0040052e      48c745f8e805.  mov qword [local_8h], str.Hello_World
 '
 
 # This test verifies that rabin2 -z detects utf-16 strings
