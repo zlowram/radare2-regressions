@@ -338,3 +338,21 @@ e prj.name
 EXPECT='blah
 '
 run_test
+
+NAME='Restoring xrefs'
+FILE=malloc://512
+ARGS=
+BROKEN=1
+CMDS='e asm.bits=32
+e dir.projects = /tmp/
+wx 5031c0e801000000c3b801000000c3
+af
+Ps blah > /dev/null
+Po blah > /dev/null
+ax
+'
+EXPECT='xref.code.call.0x9=0x3
+ref.code.call.0x3=0x9
+types=code.jmp,code.call,data.mem,data.string
+'
+run_test
