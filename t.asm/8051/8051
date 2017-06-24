@@ -83,8 +83,8 @@ run_test
 # NOTE: test_vector and test_jump are using 0x1200 as base address
 
 # ACALL
-test_vector "${PLUGIN}" "ACALL addr11"	f123	"acall 0x1723"	"br"
-test_jump   "${PLUGIN}"	"ACALL addr11"	f123	"0x00001723"	"br"
+test_vector "${PLUGIN}" "ACALL addr11"	f123	"acall 0x1723"
+test_jump   "${PLUGIN}"	"ACALL addr11"	f123	"0x00001723"
 # ADD
 test_vector "${PLUGIN}" "ADD a,imm"	2403	"add a, #0x03"
 test_vector "${PLUGIN}" "ADD a,dir"	2520	"add a, 0x20"
@@ -96,15 +96,15 @@ test_vector "${PLUGIN}"	"ADDC a,dir"	3530	"addc a, 0x30"
 test_vector "${PLUGIN}"	"ADDC a,@r0"	36	"addc a, @r0"
 test_vector "${PLUGIN}"	"ADDC a,r5"	3d	"addc a, r5"
 # AJMP
-test_vector "${PLUGIN}"	"AJMP addr11"	e123	"ajmp 0x1723"	"br"
-test_jump   "${PLUGIN}"	"AJMP addr11"	e123	"0x00001723"	"br"
+test_vector "${PLUGIN}"	"AJMP addr11"	e123	"ajmp 0x1723"
+test_jump   "${PLUGIN}"	"AJMP addr11"	e123	"0x00001723"
 # ANL
 test_vector "${PLUGIN}"	"ANL a,imm"	5401	"anl a, #0x01"
 test_vector "${PLUGIN}" "ANL a,dir"	5540	"anl a, 0x40"
 test_vector "${PLUGIN}" "ANL a,@r0"	56	"anl a, @r0"
 test_vector "${PLUGIN}" "ANL a,r4"	5c	"anl a, r4"
-test_vector "${PLUGIN}" "ANL c,bit"	8222	"anl c, 0x22"
-test_vector "${PLUGIN}" "ANL c,/bit"	b022	"anl c, /0x22"
+test_vector "${PLUGIN}" "ANL c,bit"	8222	"anl c, 0x24.2"	"br"
+test_vector "${PLUGIN}" "ANL c,/bit"	b022	"anl c, /0x24.2"	"br"
 test_vector "${PLUGIN}" "ANL dir,a"	5240	"anl 0x40, a"
 test_vector "${PLUGIN}" "ANL dir,imm"	53c9df	"anl 0xc9, #0xdf"
 # CJNE
@@ -118,11 +118,11 @@ test_vector "${PLUGIN}" "CJNE r7,imm,offs" bf0205 "cjne r7, #0x02, 0x1208"
 test_jump   "${PLUGIN}"	"CJNE r7,imm,offs" bf0205 "0x00001208"
 # CLR
 test_vector "${PLUGIN}"	"CLR a"		e4	"clr a"
-test_vector "${PLUGIN}" "CLR bit"	c2af	"clr 0xaf"
+test_vector "${PLUGIN}" "CLR bit"	c2af	"clr 0xa8.7"	"br"
 test_vector "${PLUGIN}"	"CLR c"		c3	"clr c"
 # CPL
 test_vector "${PLUGIN}"	"CPL a"		f4	"cpl a"
-test_vector "${PLUGIN}" "CPL bit"	b255	"cpl 0x55"
+test_vector "${PLUGIN}" "CPL bit"	b255	"cpl 0x2a.5"	"br"
 test_vector "${PLUGIN}"	"CPL c"		b3	"cpl c"
 # DA
 test_vector "${PLUGIN}"	"DA a"		d4	"da a"
@@ -147,10 +147,10 @@ test_vector "${PLUGIN}"	"INC dir"	0534	"inc 0x34"
 test_vector "${PLUGIN}"	"INC dptr"	a3	"inc dptr"
 test_vector "${PLUGIN}"	"INC r0"	08	"inc r0"
 # JB
-test_vector "${PLUGIN}"	"JB bit,offs"	207d03	"jb 0x7d, 0x1206"
+test_vector "${PLUGIN}"	"JB bit,offs"	207d03	"jb 0x2f.5, 0x1206"	"br"
 test_jump   "${PLUGIN}"	"JB bit,offs"	207d03	"0x00001206"
 # JBC
-test_vector "${PLUGIN}"	"JBC bit,offs"	101508	"jbc 0x15, 0x120b"
+test_vector "${PLUGIN}"	"JBC bit,offs"	101508	"jbc 0x22.5, 0x120b"	"br"
 test_jump   "${PLUGIN}"	"JBC bit,offs"	101508	"0x0000120b"
 # JC
 test_vector "${PLUGIN}"	"JC offs"	4003	"jc 0x1205"
@@ -158,7 +158,7 @@ test_jump   "${PLUGIN}"	"JC offs"	4003	"0x00001205"
 # JMP
 test_vector "${PLUGIN}"	"JMP @a+dptr"	73	"jmp @a+dptr"
 # JNB
-test_vector "${PLUGIN}"	"JNB bit,offs"	305108	"jnb 0x51, 0x120b"
+test_vector "${PLUGIN}"	"JNB bit,offs"	305108	"jnb 0x2a.1, 0x120b"	"br"
 test_jump   "${PLUGIN}"	"JNB bit,offs"	305108	"0x0000120b"
 # JNC
 test_vector "${PLUGIN}"	"JNC offs"	5007	"jnc 0x1209"
@@ -180,11 +180,11 @@ test_vector "${PLUGIN}"	"MOV a,imm"	74ff	"mov a, #0xff"
 test_vector "${PLUGIN}"	"MOV a,dir"	e520	"mov a, 0x20"
 test_vector "${PLUGIN}"	"MOV a,@r1"	e7	"mov a, @r1"
 test_vector "${PLUGIN}"	"MOV a,r6"	ee	"mov a, r6"
-test_vector "${PLUGIN}"	"MOV bit,c"	9222	"mov 0x22, c"
-test_vector "${PLUGIN}"	"MOV c,bit"	a222	"mov c, 0x22"
+test_vector "${PLUGIN}"	"MOV bit,c"	9222	"mov 0x24.2, c"	"br"
+test_vector "${PLUGIN}"	"MOV c,bit"	a222	"mov c, 0x24.2"	"br"
 test_vector "${PLUGIN}"	"MOV dir,a"	f544	"mov 0x44, a"
 test_vector "${PLUGIN}"	"MOV dir,imm"	75a07f	"mov 0xa0, #0x7f"
-test_vector "${PLUGIN}"	"MOV srcdir,destdir"	854455	"mov 0x55, 0x44"	"br"
+test_vector "${PLUGIN}"	"MOV srcdir,destdir"	854455	"mov 0x55, 0x44"
 test_vector "${PLUGIN}"	"MOV dir,@r1"	8744	"mov 0x44, @r1"	
 test_vector "${PLUGIN}" "MOV dir,r4"	8c83	"mov 0x83, r4"
 test_vector "${PLUGIN}" "MOV dptr,imm"	901234	"mov dptr, #0x1234"
@@ -211,8 +211,8 @@ test_vector "${PLUGIN}"	"ORL a,imm"	4480	"orl a, #0x80"
 test_vector "${PLUGIN}"	"ORL a,dir"	4532	"orl a, 0x32"
 test_vector "${PLUGIN}"	"ORL a,@r0"	46	"orl a, @r0"
 test_vector "${PLUGIN}"	"ORL a,r5"	4d	"orl a, r5"
-test_vector "${PLUGIN}"	"ORL c,bit"	7222	"orl c, 0x22"
-test_vector "${PLUGIN}"	"ORL c,/bit"	a022	"orl c, /0x22"
+test_vector "${PLUGIN}"	"ORL c,bit"	7222	"orl c, 0x24.2"	"br"
+test_vector "${PLUGIN}"	"ORL c,/bit"	a022	"orl c, /0x24.2"	"br"
 test_vector "${PLUGIN}"	"ORL dir,a"	4222	"orl 0x22, a"
 test_vector "${PLUGIN}" "ORL dir,imm"	43dc02	"orl 0xdc, #0x02"
 # POP
@@ -232,7 +232,7 @@ test_vector "${PLUGIN}"	"RR a"		03	"rr a"
 # RRC
 test_vector "${PLUGIN}"	"RRC a"		13	"rrc a"
 # SETB
-test_vector "${PLUGIN}"	"SETB bit"	d242	"setb 0x42"
+test_vector "${PLUGIN}"	"SETB bit"	d242	"setb 0x28.2"	"br"
 test_vector "${PLUGIN}"	"SETB c"	d3	"setb c"
 # SJMP
 test_vector "${PLUGIN}"	"SJMP offs"	8014	"sjmp 0x1216"
