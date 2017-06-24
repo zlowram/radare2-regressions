@@ -1,3 +1,2 @@
-NAME=bipush 33
-EXPECT=1021
-RUN
+ad "bipush 33" 1021
+ad "nop" 00

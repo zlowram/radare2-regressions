@@ -39,7 +39,7 @@ class NewRegressions {
   callbackFromPath (from) {
     for (let row of [
       ['db/cmd', this.runTest],
-      ['db/asm', this.runTestAsm],
+      ['db/asm', this.runTestCmd],
       ['db/dis', this.runTestDis],
       ['db/bin', this.runTestBin]
     ]) {
@@ -70,6 +70,21 @@ class NewRegressions {
           const cmd = 'pa ' + test.name + ' @a:' + arch;
           test.stdout = yield self.r2.cmd(cmd);
           yield self.r2.quit();
+          return resolve(cb(test));
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  runTestCmd (test, cb) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      try {
+        co(function * () {
+          test.stdout = yield self.r2.cmd(test.cmd);
+          //yield self.r2.quit();
           return resolve(cb(test));
         });
       } catch (e) {
@@ -249,6 +264,17 @@ class NewRegressions {
         continue;
       }
       // TODO: run specific test type depending on directory db/[asm|cmd|unit]
+      if (source.indexOf('asm') !== -1) {
+        const testCallback = this.callbackFromPath(test.from);
+        if (testCallback !== null) {
+          let p = parseTestAsm (source, line);
+          for (let t of p) {
+            test = t;
+            this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
+          }
+          continue;
+        }
+      }
       if (line === 'RUN') {
         const testCallback = this.callbackFromPath(test.from);
         if (testCallback !== null) {
@@ -396,6 +422,39 @@ function createTemporaryFile () {
       reject(e);
     }
   });
+}
+
+function parseTestAsm (source, line) {
+  /* Parse first argument */
+  let args = line.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
+  let type = args[0];
+  let asm = args[1].split('"').join('');
+  let expect = args[2];
+
+  // TODO '/' is not probably portable
+  let tmp = source.split('/');
+  const arch = tmp[tmp.length -1];
+  let cmd = '';
+  let name = '';
+  let tests = [];
+
+  /* Run tests */
+  for (let c of type) {
+    switch (c) {
+      case 'd':
+        cmd = 'pad ' + expect + ' @a:' + arch;
+        exp = asm;
+        name = arch + ': ' + expect + ' => "' + asm + '"';
+        break;
+      case 'a':
+        cmd = 'pa ' + asm + ' @a:' + arch;
+        exp = expect;
+        name = arch + ': "' + asm + '" => ' + expect;
+        break;
+    }
+    tests.push({from: source, cmd: cmd, name: name, expect: exp});
+  }
+  return tests;
 }
 
 function debase64 (msg) {
