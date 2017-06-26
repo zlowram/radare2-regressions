@@ -1,0 +1,25 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='asm.describe alignment with memory access'
+FILE=-
+CMDS='
+"wa mov eax, [0x100]"
+e asm.describe = true
+pd 1
+'
+EXPECT='            0x00000000      678b05000100.  mov eax, dword [eip + 0x100] ; [0x100:4]=0 ; moves data from src to dst
+'
+run_test
+
+
+NAME='asm.describe alignment'
+FILE=-
+CMDS='
+wa nop
+e asm.describe = true
+pd 1
+'
+EXPECT='            0x00000000      90             nop                         ; no operation
+'
+run_test
