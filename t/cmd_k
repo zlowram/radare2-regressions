@@ -1,0 +1,31 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2017  pancake
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='k syscall/'
+BROKEN=
+FILE=malloc://512
+ARGS=
+CMDS='e asm.arch=x86
+e asm.bits=64
+e asm.os=linux
+k syscall/0x80.4
+'
+EXPECT='stat
+
+'
+run_test
+
+NAME='k syscall/'
+BROKEN=
+FILE=malloc://512
+ARGS=
+CMDS='e asm.arch=x86
+e asm.bits=64
+e asm.os=linux
+k syscall/stat
+'
+EXPECT='0x80,4,2,
+
+'
+run_test
