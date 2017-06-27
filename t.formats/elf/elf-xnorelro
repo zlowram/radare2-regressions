@@ -6,7 +6,7 @@ FILE=../../bins/elf/analysis/elf-xnorelro
 ARGS=''
 CMDS="ik~relro"
 
-EXPECT='elf.relro=no relro
+EXPECT='elf.relro=no
 '
 run_test
 

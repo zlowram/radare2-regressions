@@ -15,18 +15,18 @@ FILE=../../bins/elf/analysis/elf-relro
 ARGS=''
 CMDS="ik~relro"
 
-EXPECT='elf.relro=partial relro
+EXPECT='elf.relro=partial
 '
 run_test
 
 
-NAME='ELF: imports partial relro'
+NAME='ELF: imports partial'
 FILE=../../bins/elf/vim
 ARGS=''
 CMDS="ik~relro
 ii"
 
-EXPECT='elf.relro=partial relro
+EXPECT='elf.relro=partial
 [Imports]
 ordinal=002 plt=0x00051f60 bind=GLOBAL type=FUNC name=__ctype_toupper_loc
 ordinal=003 plt=0x00051f68 bind=GLOBAL type=FUNC name=__strcat_chk

@@ -199,7 +199,7 @@ os       linux
 pcalign  0
 pic      false
 relocs   true
-relro    no relro
+relro    no
 rpath    NONE
 static   false
 stripped false
@@ -390,7 +390,7 @@ os       linux
 pcalign  0
 pic      false
 relocs   true
-relro    no relro
+relro    no
 rpath    NONE
 static   false
 stripped false
@@ -583,7 +583,7 @@ os       linux
 pcalign  0
 pic      false
 relocs   true
-relro    no relro
+relro    no
 rpath    NONE
 static   false
 stripped false
@@ -667,7 +667,7 @@ os       linux
 pcalign  0
 pic      false
 relocs   true
-relro    no relro
+relro    no
 rpath    NONE
 static   false
 stripped false
