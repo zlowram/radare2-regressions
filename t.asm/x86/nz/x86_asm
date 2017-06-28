@@ -291,10 +291,18 @@ test_vector "${PLUGIN}" "hlt" f4
 test_vector "${PLUGIN}" "hsubpd xmm0, xmmword [eax]" 660f7d00 "br"
 test_vector "${PLUGIN}" "hsubps xmm0, xmmword [eax]" f20f7d00 "br"
 test_vector "${PLUGIN}" "idiv byte [eax]" f638 "br"
-test_vector "${PLUGIN}" "imul byte [eax]" f628 "br"
-test_vector "${PLUGIN}" "imul eax, dword [eax], 0" 6b0000 "br"
-test_vector "${PLUGIN}" "imul eax, dword [eax]" 0faf00 "br"
-test_vector "${PLUGIN}" "imul eax, [eax], 0" 690000000000 "br"
+test_vector "${PLUGIN}" "imul eax" f7e8
+test_vector "${PLUGIN}" "imul edx" f7ea
+test_vector "${PLUGIN}" "imul edx, eax" 0fafd0
+test_vector "${PLUGIN}" "imul ecx, 23" 6bc917
+test_vector "${PLUGIN}" "imul edx, ecx, 34" 6bd122
+test_vector "${PLUGIN}" "imul byte [eax]" f628
+test_vector "${PLUGIN}" "imul dword [eax]" f728
+test_vector "${PLUGIN}" "imul ebx, [edx + ecx]" 0faf1c0a
+test_vector "${PLUGIN}" "imul ebx, dword [edx], 0" 6b1a00 
+test_vector "${PLUGIN}" "imul ebx, edx, 4" 6bda04 
+test_vector "${PLUGIN}" "imul eax, dword [eax]" 0faf00 
+test_vector "${PLUGIN}" "imul eax, [eax], 0" 6b0000
 test_vector "${PLUGIN}" "in al,0" e400
 test_vector "${PLUGIN}" "in al,dx" ec
 test_vector "${PLUGIN}" "inc byte [eax]" fe00
