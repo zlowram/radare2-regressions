@@ -26,7 +26,7 @@ ARGS=''
 CMDS="ik~relro
 ii"
 
-EXPECT='elf.relro=partial
+EXPECT='elf.relro=full
 [Imports]
 ordinal=002 plt=0x00051f60 bind=GLOBAL type=FUNC name=__ctype_toupper_loc
 ordinal=003 plt=0x00051f68 bind=GLOBAL type=FUNC name=__strcat_chk
