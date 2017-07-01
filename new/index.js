@@ -12,6 +12,9 @@ const r2promise = require('r2pipe-promise');
 // set this to false to avoid creating files
 let useScript = true;
 
+/* radare2 binary name */
+const r2bin = 'radare2';
+
 class NewRegressions {
   constructor (argv, cb) {
     this.argv = argv;
@@ -38,10 +41,9 @@ class NewRegressions {
 
   callbackFromPath (from) {
     for (let row of [
-      ['db/cmd', this.runTest],
-      ['db/asm', this.runTestCmd],
-      ['db/dis', this.runTestDis],
-      ['db/bin', this.runTestBin]
+      [path.join('db', 'cmd'), this.runTest],
+      [path.join('db', 'asm'), this.runTestAsm],
+      [path.join('db', 'bin'), this.runTestBin]
     ]) {
       const [txt, cb] = row;
       if (from.indexOf(txt) !== -1) {
@@ -62,25 +64,6 @@ class NewRegressions {
   runTestAsm (test, cb) {
     const self = this;
     return new Promise((resolve, reject) => {
-      // return resolve(cb(test));
-      try {
-        co(function * () {
-          const arch = path.basename(test.from);
-        // a playground session.. we may probably want to bump some more
-          const cmd = 'pa ' + test.name + ' @a:' + arch;
-          test.stdout = yield self.r2.cmd(cmd);
-          yield self.r2.quit();
-          return resolve(cb(test));
-        });
-      } catch (e) {
-        reject(e);
-      }
-    });
-  }
-
-  runTestCmd (test, cb) {
-    const self = this;
-    return new Promise((resolve, reject) => {
       try {
         co(function * () {
           test.stdout = yield self.r2.cmd(test.cmd);
@@ -88,6 +71,7 @@ class NewRegressions {
           return resolve(cb(test));
         });
       } catch (e) {
+        console.error(e);
         reject(e);
       }
     });
@@ -120,13 +104,14 @@ class NewRegressions {
           const args = [
             '-escr.utf8=0',
             '-escr.color=0',
-            '-c', '?e init',
+            '-c',
+            '?e init',
             '-qcq',
-            '-AA', // configurable to AAA, or just A somehow
+            '-A', // configurable to AAA, or just A somehow
             test.path
           ];
           test.birth = null;
-          const child = spawn('r2', args);
+          const child = spawn(r2bin, args);
           child.stdout.on('data', data => {
           // console.log(data.toString());
             if (test.birth === null) {
@@ -145,20 +130,6 @@ class NewRegressions {
       } catch (e) {
         reject(e);
       }
-    });
-  }
-
-  runTestDis (test, cb) {
-    const self = this;
-    console.log(self);
-    return new Promise((resolve, reject) => {
-      co(function * () {
-        const arch = path.basename(test.from);
-        // a playground session.. we may probably want to bump some more
-        const cmd = 'pad ' + test.name + ' @a:' + arch;
-        test.stdout = yield self.r2.cmd(cmd);
-        return resolve(cb(test));
-      });
     });
   }
 
@@ -198,7 +169,7 @@ class NewRegressions {
           let res = '';
           let ree = '';
           test.spawnArgs = args;
-          const child = spawn('r2', args);
+          const child = spawn(r2bin, args);
           child.stdout.on('data', data => {
             res += data.toString();
           });
@@ -272,6 +243,14 @@ class NewRegressions {
             test = t;
             this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
           }
+          continue;
+        }
+      }
+      if (source.indexOf('fuzzed') !== -1) {
+        const testCallback = this.runTestBinFile;
+        if (testCallback !== null) {
+          test = {from: source, name: 'fuzz', path: path.join(source, l)};
+          this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
           continue;
         }
       }
@@ -360,6 +339,19 @@ class NewRegressions {
     });
   }
 
+  loadFuzz (dir, cb) {
+    console.log('[--]', 'fuzz binaries');
+    const fuzzed = fs.readdirSync(dir);
+    this.runTests(dir, fuzzed);
+    Promise.all(this.promises).then(res => {
+      console.log('[--]', this.report);
+      cb(null, res);
+    }).catch(err => {
+      console.log(err);
+      cb(err);
+    });
+  }
+
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
     if (test.passes && test.stdout && test.expect) {
@@ -431,14 +423,14 @@ function parseTestAsm (source, line) {
   let asm = args[1].split('"').join('');
   let expect = args[2];
 
-  // TODO '/' is not probably portable
-  let tmp = source.split('/');
+  let tmp = source.split(path.sep);
   const arch = tmp[tmp.length -1];
   let cmd = '';
   let name = '';
   let tests = [];
+  /* TODO Handle _ in name to set bits ie: x86_64 x86_32 */
 
-  /* Run tests */
+  /* Generate tests */
   for (let c of type) {
     switch (c) {
       case 'd':

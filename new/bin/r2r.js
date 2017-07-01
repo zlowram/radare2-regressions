@@ -49,6 +49,7 @@ Usage: r2r [options] [file] [name] ([cmds])
       return 0;
     }
 
+    // Load tests
     const walker = walk('db', {followLinks: false});
     const filter = argv._[0] || '';
     walker.on('file', (root, stat, next) => {
@@ -69,6 +70,13 @@ Usage: r2r [options] [file] [name] ([cmds])
       });
     });
     walker.on('end', () => {
+      // Load fuzzed binaries
+      // TODO issue with sync
+      nr.loadFuzz('../bins/fuzzed', (err, data) => {
+        if (err) {
+          console.error(err.message);
+        }
+      });
       nr.quit().then(_ => {
         console.log('Done');
       });
