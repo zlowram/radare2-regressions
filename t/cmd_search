@@ -549,6 +549,15 @@ EXPECT='0x00000001 hit0_0 aaaabb
 '
 run_test
 
+NAME="/x with bin mask"
+BROKEN=1
+FILE='malloc://1024'
+CMDS='wx aaaaaabb
+/x ..aabb'
+EXPECT='0x00000001 hit0_0 aaaabb
+'
+run_test
+
 
 # {{{ Search by file
 c1b='../bins/other/radiff2/radiff2_c_2'
