@@ -275,8 +275,8 @@ NAME='enumerate value1 export test'
 BROKEN=
 FILE=../../bins/pdb/Project1.pdb
 ARGS=
-CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM1_R2=00000010'
-EXPECT='eENUM1_R2=00000010
+CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM1_R2_00000010'
+EXPECT='eENUM1_R2_00000010
 '
 run_test
 
@@ -284,8 +284,8 @@ NAME='enumerate value2 export test'
 BROKEN=
 FILE=../../bins/pdb/Project1.pdb
 ARGS=
-CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM2_R2=00000020'
-EXPECT='eENUM2_R2=00000020
+CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM2_R2_00000020'
+EXPECT='eENUM2_R2_00000020
 '
 run_test
 
@@ -293,8 +293,17 @@ NAME='enumerate value3 export test'
 BROKEN=
 FILE=../../bins/pdb/Project1.pdb
 ARGS=
-CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM_R2_MAX=00000021'
-EXPECT='eENUM_R2_MAX=00000021
+CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao eENUM_R2_MAX_00000021'
+EXPECT='eENUM_R2_MAX_00000021
+'
+run_test
+
+NAME='redirection test'
+BROKEN=
+FILE=../../bins/pdb/Project1.pdb
+ARGS=
+CMDS='!rabin2 -Pr ${R2_FILE} | grep -ao _unnamed_tag_ | head -n1'
+EXPECT='_unnamed_tag_
 '
 run_test
 ###############################################################################
