@@ -5,6 +5,17 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 F=../../bins/java/ExCaseTableSwitch.class
 
+NAME='detect kotlin in java classes'
+IGNORE_ERR=1
+FILE=../../bins/java/HiKt.class
+ARGS=
+CMDS='i~lang[1]
+'
+EXPECT='kotlin
+'
+run_test
+
+
 NAME='java disasm crash'
 IGNORE_ERR=1
 BROKEN=
