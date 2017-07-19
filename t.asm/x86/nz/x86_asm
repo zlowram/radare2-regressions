@@ -59,6 +59,9 @@ test_vector "${PLUGIN}" "adc byte [eax], al" 1000
 test_vector "${PLUGIN}" "adc dword [eax], eax" 1100
 test_vector "${PLUGIN}" "adc eax, dword [eax]" 1300
 test_vector "${PLUGIN}" "add al, 0" 0400
+test_vector "${PLUGIN}" "add ax, 0x4" 6683c004
+test_vector "${PLUGIN}" "add ax, 0x96" 66059600
+test_vector "${PLUGIN}" "add cx, 0x4" 6683c104
 test_vector "${PLUGIN}" "add al, byte [eax]" 0200
 test_vector "${PLUGIN}" "add byte [bx + si], al" 670001 "br"
 test_vector "${PLUGIN}" "add byte [eax], 0" 800000
@@ -94,6 +97,10 @@ test_vector "${PLUGIN}" "aesimc xmm0, xmm0" 660f38dbc0 "br"
 test_vector "${PLUGIN}" "aeskeygenassist xmm0, xmm0, 0x0" 660f3adfc000 "br"
 test_vector "${PLUGIN}" "amx" d5
 test_vector "${PLUGIN}" "and al, 0" 2400
+test_vector "${PLUGIN}" "and ax, 0x6" 6683e006
+test_vector "${PLUGIN}" "and ax, 0x97" 66259700
+test_vector "${PLUGIN}" "and bx, 0x7" 6683e307
+test_vector "${PLUGIN}" "and bx, 0x97" 6681e39700
 test_vector "${PLUGIN}" "and al, byte [eax]" 2200
 test_vector "${PLUGIN}" "and byte [eax], al" 2000
 test_vector "${PLUGIN}" "and dword [eax], eax" 2100
@@ -1237,6 +1244,11 @@ test_vector "${PLUGIN}" "xlatb" d7
 test_vector "${PLUGIN}" "xor al, 0" 3400
 test_vector "${PLUGIN}" "xor al, 0x80" 3480
 test_vector "${PLUGIN}" "xor ax, 0x8080" 66358080
+test_vector "${PLUGIN}" "xor ax, 0x8" 6683f008
+test_vector "${PLUGIN}" "xor cx, 0x8080" 6681f18080
+test_vector "${PLUGIN}" "xor sp, 0x8080" 6681f48080
+test_vector "${PLUGIN}" "xor bp, 0x8080" 6681f58080
+test_vector "${PLUGIN}" "xor si, 0x8" 6683f608
 test_vector "${PLUGIN}" "xor al, byte [eax]" 3200
 test_vector "${PLUGIN}" "xor byte [eax], al" 3000
 test_vector "${PLUGIN}" "xor dword [eax], eax" 3100
