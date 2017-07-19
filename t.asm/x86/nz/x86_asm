@@ -1236,7 +1236,7 @@ test_vector "${PLUGIN}" "xgetbv" 0f01d0
 test_vector "${PLUGIN}" "xlatb" d7
 test_vector "${PLUGIN}" "xor al, 0" 3400
 test_vector "${PLUGIN}" "xor al, 0x80" 3480
-test_vector "${PLUGIN}" "xor ax, 0x8080" 66358080 "br"
+test_vector "${PLUGIN}" "xor ax, 0x8080" 66358080
 test_vector "${PLUGIN}" "xor al, byte [eax]" 3200
 test_vector "${PLUGIN}" "xor byte [eax], al" 3000
 test_vector "${PLUGIN}" "xor dword [eax], eax" 3100
