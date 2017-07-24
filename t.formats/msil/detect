@@ -2,17 +2,17 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME='MSIL: hello.exe - detect'
-FILE=../../bins/msil/hello.exe
+FILE=../../bins/cil/hello.exe
 ARGS=''
 CMDS="i~^lang[1]"
-EXPECT='msil
+EXPECT='cil
 '
 run_test
 
 NAME='MSIL: AStyleWhore.exe - detect'
-FILE=../../bins/msil/AStyleWhore.exe
+FILE=../../bins/cil/AStyleWhore.exe
 ARGS=''
 CMDS="i~^lang[1]"
-EXPECT='msil
+EXPECT='cil
 '
 run_test
