@@ -7,6 +7,46 @@ EXPECT='70
 '
 run_test
 
+NAME='rax2 -E | rax2 -D'
+CMDS='!rax2 -E hello |rax2 -D |rax2 -E | rax2 -D  |rax2 -E|rax2 -D |rax2 -E | rax2 -D'
+EXPECT='hello'
+run_test
+
+NAME='rax2 -E | rax2 -D'
+CMDS='!rax2 -E hello |rax2 -D |rax2 -E | rax2 -D  |rax2 -E|rax2 -D |rax2 -E | rax2 -Dl'
+EXPECT='hello
+'
+run_test
+
+NAME='rax2 -E | rax2 -D'
+CMDS='!echo hello | rax2 -E |rax2 -D |rax2 -E | rax2 -D  |rax2 -E|rax2 -D |rax2 -E | rax2 -D'
+EXPECT='hello
+'
+run_test
+
+NAME='rax2 -S hello |rax2 -s'
+CMDS='!rax2 -S hello |rax2 -s'
+EXPECT='hello'
+run_test
+
+NAME='rax2 -S hello |rax2 -s'
+CMDS='!echo hello | rax2 -S | rax2 -s'
+EXPECT='hello
+'
+run_test
+
+NAME='rax2 -S hello | rax2 -s (2)'
+CMDS='!echo hello | rax2 -S | rax2 -s | rax2 -S | rax2 -s'
+EXPECT='hello
+'
+run_test
+
+NAME='rax2 -E | rax2 -D'
+CMDS='!echo hello | rax2 -E |rax2 -D |rax2 -E | rax2 -D  |rax2 -E|rax2 -D |rax2 -E | rax2 -D'
+EXPECT='hello
+'
+run_test
+
 NAME='rax2 -b 01101000011001010110110001101100011011110111011101101111011100100110110001100100'
 CMDS='!rax2 -b 01101000011001010110110001101100011011110111011101101111011100100110110001100100'
 EXPECT='helloworld'
