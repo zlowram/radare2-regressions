@@ -306,9 +306,9 @@ test_vector "${PLUGIN}" "imul edx, ecx, 34" 6bd122
 test_vector "${PLUGIN}" "imul byte [eax]" f628
 test_vector "${PLUGIN}" "imul dword [eax]" f728
 test_vector "${PLUGIN}" "imul ebx, [edx + ecx]" 0faf1c0a
-test_vector "${PLUGIN}" "imul ebx, dword [edx], 0" 6b1a00 
-test_vector "${PLUGIN}" "imul ebx, edx, 4" 6bda04 
-test_vector "${PLUGIN}" "imul eax, dword [eax]" 0faf00 
+test_vector "${PLUGIN}" "imul ebx, dword [edx], 0" 6b1a00
+test_vector "${PLUGIN}" "imul ebx, edx, 4" 6bda04
+test_vector "${PLUGIN}" "imul eax, dword [eax]" 0faf00
 test_vector "${PLUGIN}" "imul eax, [eax], 0" 6b0000
 test_vector "${PLUGIN}" "in al,0" e400
 test_vector "${PLUGIN}" "in al,dx" ec
@@ -512,8 +512,6 @@ test_vector "${PLUGIN}" "movbe eax, dword [eax]" 0f38f000 "br"
 test_vector "${PLUGIN}" "mov bh, 0" b700
 test_vector "${PLUGIN}" "mov bl, 0" b300
 test_vector "${PLUGIN}" "mov byte [0], al" 880500000000
-test_vector "${PLUGIN}" "mov byte [eax], 0" c60000
-test_vector "${PLUGIN}" "mov byte [eax], al" 8800
 test_vector "${PLUGIN}" "mov ch, 0" b500
 test_vector "${PLUGIN}" "mov cl, 0" b100
 test_vector "${PLUGIN}" "mov cr0, eax" 0f22 "br"
@@ -583,6 +581,7 @@ test_vector "${PLUGIN}" "mov eax,[eax*4-332]" 8b0485b4feffff
 test_vector "${PLUGIN}" "mov eax, [eax+4]" 8b8004000000
 test_vector "${PLUGIN}" "mov eax, [eax-4]" 8b80fcffffff
 test_vector "${PLUGIN}" "mov [eax], eax" 8900
+test_vector "${PLUGIN}" "mov byte [eax], al" 8800
 test_vector "${PLUGIN}" "mov eax, eax" 89c0
 test_vector "${PLUGIN}" "mov eax, [eax]" 8b00
 test_vector "${PLUGIN}" "mov [eax+eax], eax" 890400
@@ -1271,6 +1270,9 @@ test_invalid "${PLUGIN}" "mov [eax*6], 1" "br"
 test_invalid "${PLUGIN}" "mov [0x1122334455667788],eax" "br"
 test_invalid "${PLUGIN}" "mov fs:[1],[ds:1]" "br"
 test_invalid "${PLUGIN}" "mov [1], [2]"
+test_invalid "${PLUGIN}" "mov [cx], 2"
+test_invalid "${PLUGIN}" "mov [cl], 0xf"
+test_invalid "${PLUGIN}" "mov byte [eax], 0" c60000
 
 BITS=64
 test_vector "${PLUGIN}" "add r13, r15" 4d01fd
@@ -1287,10 +1289,10 @@ test_vector "${PLUGIN}" "cmp rdx, rsi" 4839f2
 test_vector "${PLUGIN}" "inc rdx" 48ffc2
 test_vector "${PLUGIN}" "jmp rbx" ffe3
 test_vector "${PLUGIN}" "lea rax, [rax+0]" 488d00 # sbs: 488d00
-test_vector "${PLUGIN}" "lea rax, [rax+1]" 488d4001 
+test_vector "${PLUGIN}" "lea rax, [rax+1]" 488d4001
 test_vector "${PLUGIN}" "lea rax, [rax-0]" 488d00 # sbs: 488d00
-test_vector "${PLUGIN}" "lea rax, [rax-1]" 488d40ff 
-test_vector "${PLUGIN}" "lea rax, [rax]" 488d00 
+test_vector "${PLUGIN}" "lea rax, [rax-1]" 488d40ff
+test_vector "${PLUGIN}" "lea rax, [rax]" 488d00
 test_vector "${PLUGIN}" "lea rax,[rel -10]" 488d06f6ffffff "br"
 test_vector "${PLUGIN}" "lea rax,[rel 0]" 488d0500000000 "br"
 test_vector "${PLUGIN}" "lea rax,[rel 10]" 488d050a000000 "br"
@@ -1300,8 +1302,6 @@ test_vector "${PLUGIN}" "lea rax,[rip-0]" 488d0500000000 "br"
 test_vector "${PLUGIN}" "lea rax,[rip-10]" 488d05f6ffffff "br"
 test_vector "${PLUGIN}" "lea rax,[rip]" 488d0500000000 "br"
 test_vector "${PLUGIN}" "mov [rsi], rbx" 48891e
-test_vector "${PLUGIN}" "mov byte [rbp-0x100], 2" c68500ffffff02
-test_vector "${PLUGIN}" "mov edx, [rbp-4]" 8b55fc
 test_vector "${PLUGIN}" "mov rax, 0x1122334455667788" 48b88877665544332211
 test_vector "${PLUGIN}" "mov rax, 0x112233445566778899" 00 "br"
 test_vector "${PLUGIN}" "mov rax, 3" 48c7c003000000
@@ -1320,6 +1320,7 @@ test_vector "${PLUGIN}" "mov rax,[rip-0]" 488b0500000000 "br"
 test_vector "${PLUGIN}" "mov rax,[rip-10]" 488b05f6ffffff "br"
 test_vector "${PLUGIN}" "mov rax,[rip]" 488b0500000000 "br"
 test_vector "${PLUGIN}" "mov rbx, 3" 48c7c303000000
+test_vector "${PLUGIN}" "mov edx, [rbp-4]" 8b55fc
 test_vector "${PLUGIN}" "mov rbx, rax" 4889c3
 test_vector "${PLUGIN}" "mov rcx, -0x1122334455667788" 48b9788899aabbccddee
 test_vector "${PLUGIN}" "mov rcx, -0x112233445566778899" 00 "br"
@@ -1349,3 +1350,6 @@ test_vector "${PLUGIN}" "xor [rax], rax" 483100
 test_vector "${PLUGIN}" "xor [rsi], rbx" 48311e
 test_vector "${PLUGIN}" "xor rax, rax" 4831c0
 test_vector "${PLUGIN}" "xor rdx, rdx" 4831d2
+
+test_invalid "${PLUGIN}" "mov byte [rbp-0x100], 2" c68500ffffff02
+
