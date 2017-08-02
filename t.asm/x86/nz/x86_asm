@@ -613,6 +613,7 @@ test_vector "${PLUGIN}" "mov [ebx], eax" 8903
 test_vector "${PLUGIN}" "mov ebx, eax" 89c3
 test_vector "${PLUGIN}" "mov ebx, [eax]" 8b18
 test_vector "${PLUGIN}" "mov [ebx+eax], eax" 890403
+test_vector "${PLUGIN}" "mov ebx, [ecx + edx]" 8b1c11
 test_vector "${PLUGIN}" "mov ecx, 0" b900000000
 test_vector "${PLUGIN}" "mov ecx, -432" b950feffff
 test_vector "${PLUGIN}" "mov ecx, [eax]" 8b08
