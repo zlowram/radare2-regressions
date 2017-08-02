@@ -28,10 +28,12 @@ CMDS='iI
 '
 EXPECT='arch     x86
 binsz    36724
+bintype  mdmp
 bits     64
 canary   false
 crypto   false
 endian   little
+flags    0x00040000
 havecode true
 hdr.csum 0x00000000
 linenum  false
@@ -46,6 +48,7 @@ pic      false
 relocs   false
 rpath    NONE
 static   true
+streams  13
 stripped false
 va       true
 '
