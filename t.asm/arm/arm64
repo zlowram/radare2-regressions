@@ -2,35 +2,35 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 test_vector() {
-NAME="${1}: [${2}]"
-FILE=malloc://32
-if [ "${5}" = "br" ]; then
-		BROKEN=1
-		if [ -n "${TRAVIS}" ]; then
-			unset BROKEN
-			return
-		fi
-	fi
-CMDS='
-e asm.arch='${1}'
-e asm.bits=64
-wx '${3}'
-pi 1
+NAME="${1} ${BITS}: [${2}]"
+if [ "${4}" = "br" ]; then
+    BROKEN=1
+    if [ -n "${TRAVIS}" ]; then
+        unset BROKEN
+        return
+    fi
+fi
+CMDS='!rasm2 -a '${1}' -b '64' "'${2}'"
 '
-EXPECT="${4}
+if [ "${IGNORE_ERR}" = 1 ]; then
+EXPECT="${3}
 "
+else
+EXPECT_ERR="${3}
+"
+fi
 run_test
 }
 
 PLUGIN=arm
 
-test_vector "${PLUGIN}" "msr sp_el0, x3" 034118d5 "msr sp_el0, x3"
-test_vector "${PLUGIN}" "msr SP_EL0, x3" 034118d5 "msr sp_el0, x3"
-test_vector "${PLUGIN}" "msr 0xc208, x3" 034118d5 "msr sp_el0, x3"
-test_vector "${PLUGIN}" "mrs x3, SP_EL0" 034138d5 "mrs x3, sp_el0"
-test_vector "${PLUGIN}" "nop" 1f2003d5 nop
-test_vector "${PLUGIN}" "b 0x7fffff8" feffff15 "b 0x7fffff8"
-test_vector "${PLUGIN}" "b 0x8" 02000014 "b 8"
+test_vector "${PLUGIN}" "msr sp_el0, x3" 034118d5 "br"
+test_vector "${PLUGIN}" "msr SP_EL0, x3" 034118d5 "br"
+test_vector "${PLUGIN}" "msr 0xc208, x3" 034118d5 "br"
+test_vector "${PLUGIN}" "mrs x3, SP_EL0" 034138d5 "br"
+test_vector "${PLUGIN}" "nop" 1f2003d5 
+test_vector "${PLUGIN}" "b 0x7fffff8" feffff15
+test_vector "${PLUGIN}" "b 0x8" 02000014
 test_vector "${PLUGIN}" "b 0xff4" fd030014 "b 0xff4"
 test_vector "${PLUGIN}" "b 0x7efd4" f5fb0114 "b 0x7efd4"
 test_vector "${PLUGIN}" "bl 0x8" 02000094 "bl 8"
@@ -83,3 +83,11 @@ test_vector "${PLUGIN}" "dsb oshst" 9f3203d5 "dsb oshst"
 test_vector "${PLUGIN}" "dsb oshld" 9f3103d5 "dsb oshld"
 test_vector "${PLUGIN}" "svc 6" c10000d4 "svc 0x6"
 test_vector "${PLUGIN}" "isb sy" df3f03d5 "isb"
+
+test_vector "${PLUGIN}" "str w0, [x6, 0xff]" c0f00fb8 
+test_vector "${PLUGIN}" "str w5, [x1, 0x10]" 251000b9 
+test_vector "${PLUGIN}" "str w2, [x3, 0x22]" 622002b8 
+test_vector "${PLUGIN}" "str w7, [x4, 0x3]" 873000b8 
+test_vector "${PLUGIN}" "str w2, [x5, -0xf]" a2101fb8 
+test_vector "${PLUGIN}" "str w1, [x0, -0x10]" 01001fb8 "br"
+
