@@ -342,7 +342,7 @@ run_test
 NAME='Restoring xrefs'
 FILE=malloc://512
 ARGS=
-BROKEN=1
+BROKEN=
 CMDS='e asm.bits=32
 e dir.projects = /tmp/
 wx 5031c0e801000000c3b801000000c3
