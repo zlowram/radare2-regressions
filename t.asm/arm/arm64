@@ -24,8 +24,8 @@ run_test
 
 PLUGIN=arm
 
-test_vector "${PLUGIN}" "msr sp_el0, x3" 034118d5 "br"
-test_vector "${PLUGIN}" "msr SP_EL0, x3" 034118d5 "br"
+test_vector "${PLUGIN}" "msr sp_el0, x3" 034118d5
+test_vector "${PLUGIN}" "msr SP_EL0, x3" 034118d5
 test_vector "${PLUGIN}" "msr 0xc208, x3" 034118d5 "br"
 test_vector "${PLUGIN}" "mrs x3, SP_EL0" 034138d5 "br"
 test_vector "${PLUGIN}" "nop" 1f2003d5 
@@ -84,10 +84,10 @@ test_vector "${PLUGIN}" "dsb oshld" 9f3103d5 "dsb oshld"
 test_vector "${PLUGIN}" "svc 6" c10000d4 "svc 0x6"
 test_vector "${PLUGIN}" "isb sy" df3f03d5 "isb"
 
-test_vector "${PLUGIN}" "str w0, [x6, 0xff]" c0f00fb8 
-test_vector "${PLUGIN}" "str w5, [x1, 0x10]" 251000b9 
-test_vector "${PLUGIN}" "str w2, [x3, 0x22]" 622002b8 
-test_vector "${PLUGIN}" "str w7, [x4, 0x3]" 873000b8 
-test_vector "${PLUGIN}" "str w2, [x5, -0xf]" a2101fb8 
+test_vector "${PLUGIN}" "str w0, [x6, 0xff]" c0f00fb8  br
+test_vector "${PLUGIN}" "str w5, [x1, 0x10]" 251000b9  br
+test_vector "${PLUGIN}" "str w2, [x3, 0x22]" 622002b8  br
+test_vector "${PLUGIN}" "str w7, [x4, 0x3]" 873000b8  br
+test_vector "${PLUGIN}" "str w2, [x5, -0xf]" a2101fb8 br
 test_vector "${PLUGIN}" "str w1, [x0, -0x10]" 01001fb8 "br"
 
