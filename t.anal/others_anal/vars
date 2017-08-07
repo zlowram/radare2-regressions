@@ -31,6 +31,21 @@ var int mylocal @ rbp-0x30
 '
 run_test
 
+NAME='afvn + afvn'
+FILE=../../bins/mach0/macho
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvn local_30h mylocal
+afvn mylocal local_30h
+afv~local_30h
+'
+EXPECT='var int local_30h @ rbp-0x30
+var int local_30h @ rbp-0x30
+'
+run_test
+
 NAME='afvt + afvn'
 FILE=../../bins/mach0/macho
 ARGS= 
