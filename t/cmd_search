@@ -405,7 +405,6 @@ run_test
 NAME='/x wrong entries'
 FILE='../bins/elf/analysis/go_stripped'
 ARGS=
-BROKEN=0
 CMDS='
 /x 653b2530000000724b53b834e7150883ec188
 '
