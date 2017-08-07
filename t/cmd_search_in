@@ -10,6 +10,7 @@ ARGS="-m 0x80000"
 BROKEN=
 CMDS='
 e search.in=io.maps
+e io.va=true
 / get~[0]
 '
 EXPECT='0x00080053
@@ -61,6 +62,7 @@ ARGS="-m 0x80000"
 BROKEN=
 CMDS='
 e search.in=io.maps
+e io.va=true
 / get~[0]
 '
 EXPECT='0x00080053
@@ -74,6 +76,7 @@ ARGS="-m 0x80000"
 BROKEN=
 CMDS='
 om ../bins/wasm/inc.wast 0x400000
+e io.va=true
 e search.in=io.maps
 / get~[0]
 '
