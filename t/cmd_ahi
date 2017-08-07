@@ -235,6 +235,7 @@ e asm.relsub=false
 e asm.leahints=false
 e asm.arch=x86
 e asm.bits=64
+e io.va=true
 wx c7055f44000000000000
 pd 1
 e asm.relsub=true; pd 1
