@@ -82,6 +82,7 @@ linux|'')
 	"aa ; axj @ sym.main"
 	"aa ; axtj @ sym.main"
 	"aa ; axfj @ sym.main"
+	"aa ; afvj @ 0x004010f4"
 	"drj"
 	"dbj"
 	"fj"
