@@ -2,6 +2,66 @@
 # GPL 3+ - Copyright (C) 2015  pancake
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME='afvt'
+FILE=../../bins/mach0/macho
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvt local_30h char
+afv~local_30h
+'
+EXPECT='var int local_30h @ rbp-0x30
+var char local_30h @ rbp-0x30
+'
+run_test
+
+NAME='afvn'
+FILE=../../bins/mach0/macho
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvn local_30h mylocal
+afv~mylocal
+'
+EXPECT='var int local_30h @ rbp-0x30
+var int mylocal @ rbp-0x30
+'
+run_test
+
+NAME='afvt + afvn'
+FILE=../../bins/mach0/macho
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvn local_30h mylocal
+afvt mylocal char
+afv~mylocal
+'
+EXPECT='var int local_30h @ rbp-0x30
+var char mylocal @ rbp-0x30
+'
+run_test
+
+NAME='afvn + afvt'
+FILE=../../bins/mach0/macho
+BROKEN=1
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvt local_30h char
+afvn local_30h mylocal
+afv~mylocal
+'
+EXPECT='var int local_30h @ rbp-0x30
+var char mylocal @ rbp-0x30
+'
+run_test
+
 NAME='afva for esp based vars'
 FILE=malloc://1024
 ARGS= 
