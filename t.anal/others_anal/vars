@@ -62,6 +62,22 @@ var char mylocal @ rbp-0x30
 '
 run_test
 
+NAME='afvt + afvt'
+FILE=../../bins/mach0/macho
+BROKEN=1
+ARGS= 
+CMDS='s 0x100000b60
+af
+afv~local_30h
+afvt local_30h char
+afvt local_30h int
+afv~local_30h
+'
+EXPECT='var int local_30h @ rbp-0x30
+var int mylocal @ rbp-0x30
+'
+run_test
+
 NAME='afva for esp based vars'
 FILE=malloc://1024
 ARGS= 
