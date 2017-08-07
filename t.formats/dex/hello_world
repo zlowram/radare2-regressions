@@ -34,21 +34,21 @@ ARGS=''
 BROKEN=
 IGNORE_ERR=1
 CMDS="f"
-EXPECT='0x00000372 6 str._init_
-0x0000037a 6 str.Findus
-0x00000382 10 str.Hello.java
-0x00000394 7 str.LHello_
-0x000003a1 7 str.LWorld_
-0x00000438 10 str.World.java
-0x00000459 6 str.append
-0x00000466 6 str.foo___
-0x0000046e 8 str.localVar
-0x00000478 9 str.localVar2
-0x0000048e 7 str.println
-0x00000497 8 str.toString
-0x000004a1 8 str.world___
-0x000004ab 8 str.worldVar
-0x000004b5 9 str.worldVar2
+EXPECT='0x00000373 6 str._init_
+0x0000037b 6 str.Findus
+0x00000383 10 str.Hello.java
+0x00000395 7 str.LHello_
+0x000003a2 7 str.LWorld_
+0x00000439 10 str.World.java
+0x0000045a 6 str.append
+0x00000467 6 str.foo___
+0x0000046f 8 str.localVar
+0x00000479 9 str.localVar2
+0x0000048f 7 str.println
+0x00000498 8 str.toString
+0x000004a2 8 str.world___
+0x000004ac 8 str.worldVar
+0x000004b6 9 str.worldVar2
 0x0000025c 1 entry0
 0x00000000 112 section.header
 0x00000070 0 section_end.header
