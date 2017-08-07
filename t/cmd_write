@@ -8,7 +8,9 @@ MAP_TEST_FILE=.wtmaptest.bin
 NAME='wt map'
 FILE=$MAP_TEST_FILE
 ARGS="-wm 0x800"
-CMDS="wx 90
+CMDS="
+e io.va=true
+wx 90
 ls -l ${MAP_TEST_FILE}~[3]
 "
 EXPECT='1
