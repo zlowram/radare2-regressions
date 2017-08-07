@@ -28,7 +28,7 @@ test_vector "${PLUGIN}" "msr sp_el0, x3" 034118d5
 test_vector "${PLUGIN}" "msr SP_EL0, x3" 034118d5
 test_vector "${PLUGIN}" "msr 0xc208, x3" 034118d5 "br"
 test_vector "${PLUGIN}" "mrs x3, SP_EL0" 034138d5 "br"
-test_vector "${PLUGIN}" "nop" 1f2003d5 
+test_vector "${PLUGIN}" "nop" 1f2003d5
 test_vector "${PLUGIN}" "b 0x7fffff8" feffff15
 test_vector "${PLUGIN}" "b 0x8" 02000014
 test_vector "${PLUGIN}" "b 0xff4" fd030014 "b 0xff4"
@@ -84,10 +84,207 @@ test_vector "${PLUGIN}" "dsb oshld" 9f3103d5 "dsb oshld"
 test_vector "${PLUGIN}" "svc 6" c10000d4 "svc 0x6"
 test_vector "${PLUGIN}" "isb sy" df3f03d5 "isb"
 
-test_vector "${PLUGIN}" "str w0, [x6, 0xff]" c0f00fb8  br
-test_vector "${PLUGIN}" "str w5, [x1, 0x10]" 251000b9  br
-test_vector "${PLUGIN}" "str w2, [x3, 0x22]" 622002b8  br
-test_vector "${PLUGIN}" "str w7, [x4, 0x3]" 873000b8  br
-test_vector "${PLUGIN}" "str w2, [x5, -0xf]" a2101fb8 br
-test_vector "${PLUGIN}" "str w1, [x0, -0x10]" 01001fb8 "br"
+test_vector "${PLUGIN}" "b.eq -0x24" e0feff54
+test_vector "${PLUGIN}" "b.eq 0x324" 20190054
+test_vector "${PLUGIN}" "b.eq 0x1000378d4" a0c61b54
+test_vector "${PLUGIN}" "b.eq -0x100024" e0fe7f54
 
+test_vector "${PLUGIN}" "b.hs -0x24" e2feff54
+test_vector "${PLUGIN}" "b.hs 0x324" 22190054
+test_vector "${PLUGIN}" "b.hs 0x1000378d4" a2c61b54
+test_vector "${PLUGIN}" "b.hs -0x100024" e2fe7f54
+
+test_vector "${PLUGIN}" "adrp x5, 0x0" 05000090
+
+test_vector "${PLUGIN}" "ldr x5, [x1, -0x32]" 25e05cf8
+test_vector "${PLUGIN}" "ldr x5, [x1, -0x20]" 25005ef8
+test_vector "${PLUGIN}" "ldr x4, [x6, 0x14]" c44041f8
+test_vector "${PLUGIN}" "ldr x8, [x3, 0x10]" 680840f9
+test_vector "${PLUGIN}" "ldr x8, [x3, x1]" 686861f8
+test_vector "${PLUGIN}" "ldrb w2, [x7, -256]" e2005038
+
+test_vector "${PLUGIN}" "ldrh w2, [x7, -256]" e2005078
+test_vector "${PLUGIN}" "ldrsh w2, [x7, -256]" e200d078
+test_vector "${PLUGIN}" "ldrsb w2, [x7, -256]" e200d038
+test_vector "${PLUGIN}" "strb w2, [x7, -256]" e2001038
+test_vector "${PLUGIN}" "strh w2, [x7, -256]" e2001078
+test_vector "${PLUGIN}" "ldrb w2, [x7, -133]" e2b05738
+test_vector "${PLUGIN}" "ldrh w2, [x7, -133]" e2b05778
+test_vector "${PLUGIN}" "ldrsh w2, [x7, -133]" e2b0d778
+test_vector "${PLUGIN}" "ldrsb w2, [x7, -133]" e2b0d738
+test_vector "${PLUGIN}" "strb w2, [x7, -133]" e2b01738
+test_vector "${PLUGIN}" "strh w2, [x7, -133]" e2b01778
+test_vector "${PLUGIN}" "ldrb w2, [x7, -10]" e2605f38
+test_vector "${PLUGIN}" "ldrh w2, [x7, -10]" e2605f78
+test_vector "${PLUGIN}" "ldrsh w2, [x7, -10]" e260df78
+test_vector "${PLUGIN}" "ldrsb w2, [x7, -10]" e260df38
+test_vector "${PLUGIN}" "strb w2, [x7, -10]" e2601f38
+test_vector "${PLUGIN}" "strh w2, [x7, -10]" e2601f78
+test_vector "${PLUGIN}" "ldrb w2, [x7, 113]" e2c44139
+test_vector "${PLUGIN}" "ldrh w2, [x7, 113]" e2104778
+test_vector "${PLUGIN}" "ldrsh w2, [x7, 113]" e210c778
+test_vector "${PLUGIN}" "ldrsb w2, [x7, 113]" e2c4c139
+test_vector "${PLUGIN}" "strb w2, [x7, 113]" e2c40139
+test_vector "${PLUGIN}" "strh w2, [x7, 113]" e2100778
+test_vector "${PLUGIN}" "ldrb w2, [x7, 236]" e2b04339
+test_vector "${PLUGIN}" "ldrh w2, [x7, 236]" e2d84179
+test_vector "${PLUGIN}" "ldrsh w2, [x7, 236]" e2d8c179
+test_vector "${PLUGIN}" "ldrsb w2, [x7, 236]" e2b0c339
+test_vector "${PLUGIN}" "strb w2, [x7, 236]" e2b00339
+test_vector "${PLUGIN}" "strh w2, [x7, 236]" e2d80179
+test_vector "${PLUGIN}" "ldrb w2, [x8, -256]" 02015038
+test_vector "${PLUGIN}" "ldrh w2, [x8, -256]" 02015078
+test_vector "${PLUGIN}" "ldrsh w2, [x8, -256]" 0201d078
+test_vector "${PLUGIN}" "ldrsb w2, [x8, -256]" 0201d038
+test_vector "${PLUGIN}" "strb w2, [x8, -256]" 02011038
+test_vector "${PLUGIN}" "strh w2, [x8, -256]" 02011078
+test_vector "${PLUGIN}" "ldrb w2, [x8, -133]" 02b15738
+test_vector "${PLUGIN}" "ldrh w2, [x8, -133]" 02b15778
+test_vector "${PLUGIN}" "ldrsh w2, [x8, -133]" 02b1d778
+test_vector "${PLUGIN}" "ldrsb w2, [x8, -133]" 02b1d738
+test_vector "${PLUGIN}" "strb w2, [x8, -133]" 02b11738
+test_vector "${PLUGIN}" "strh w2, [x8, -133]" 02b11778
+test_vector "${PLUGIN}" "ldrb w2, [x8, -10]" 02615f38
+test_vector "${PLUGIN}" "ldrh w2, [x8, -10]" 02615f78
+test_vector "${PLUGIN}" "ldrsh w2, [x8, -10]" 0261df78
+test_vector "${PLUGIN}" "ldrsb w2, [x8, -10]" 0261df38
+test_vector "${PLUGIN}" "strb w2, [x8, -10]" 02611f38
+test_vector "${PLUGIN}" "strh w2, [x8, -10]" 02611f78
+test_vector "${PLUGIN}" "ldrb w2, [x8, 113]" 02c54139
+test_vector "${PLUGIN}" "ldrh w2, [x8, 113]" 02114778
+test_vector "${PLUGIN}" "ldrsh w2, [x8, 113]" 0211c778
+test_vector "${PLUGIN}" "ldrsb w2, [x8, 113]" 02c5c139
+test_vector "${PLUGIN}" "strb w2, [x8, 113]" 02c50139
+test_vector "${PLUGIN}" "strh w2, [x8, 113]" 02110778
+test_vector "${PLUGIN}" "ldrb w2, [x8, 236]" 02b14339
+test_vector "${PLUGIN}" "ldrh w2, [x8, 236]" 02d94179
+test_vector "${PLUGIN}" "ldrsh w2, [x8, 236]" 02d9c179
+test_vector "${PLUGIN}" "ldrsb w2, [x8, 236]" 02b1c339
+test_vector "${PLUGIN}" "strb w2, [x8, 236]" 02b10339
+test_vector "${PLUGIN}" "strh w2, [x8, 236]" 02d90179
+test_vector "${PLUGIN}" "ldrb w3, [x7, -256]" e3005038
+test_vector "${PLUGIN}" "ldrh w3, [x7, -256]" e3005078
+test_vector "${PLUGIN}" "ldrsh w3, [x7, -256]" e300d078
+test_vector "${PLUGIN}" "ldrsb w3, [x7, -256]" e300d038
+test_vector "${PLUGIN}" "strb w3, [x7, -256]" e3001038
+test_vector "${PLUGIN}" "strh w3, [x7, -256]" e3001078
+test_vector "${PLUGIN}" "ldrb w3, [x7, -133]" e3b05738
+test_vector "${PLUGIN}" "ldrh w3, [x7, -133]" e3b05778
+test_vector "${PLUGIN}" "ldrsh w3, [x7, -133]" e3b0d778
+test_vector "${PLUGIN}" "ldrsb w3, [x7, -133]" e3b0d738
+test_vector "${PLUGIN}" "strb w3, [x7, -133]" e3b01738
+test_vector "${PLUGIN}" "strh w3, [x7, -133]" e3b01778
+test_vector "${PLUGIN}" "ldrb w3, [x7, -10]" e3605f38
+test_vector "${PLUGIN}" "ldrh w3, [x7, -10]" e3605f78
+test_vector "${PLUGIN}" "ldrsh w3, [x7, -10]" e360df78
+test_vector "${PLUGIN}" "ldrsb w3, [x7, -10]" e360df38
+test_vector "${PLUGIN}" "strb w3, [x7, -10]" e3601f38
+test_vector "${PLUGIN}" "strh w3, [x7, -10]" e3601f78
+test_vector "${PLUGIN}" "ldrb w3, [x7, 113]" e3c44139
+test_vector "${PLUGIN}" "ldrh w3, [x7, 113]" e3104778
+test_vector "${PLUGIN}" "ldrsh w3, [x7, 113]" e310c778
+test_vector "${PLUGIN}" "ldrsb w3, [x7, 113]" e3c4c139
+test_vector "${PLUGIN}" "strb w3, [x7, 113]" e3c40139
+test_vector "${PLUGIN}" "strh w3, [x7, 113]" e3100778
+test_vector "${PLUGIN}" "ldrb w3, [x7, 236]" e3b04339
+test_vector "${PLUGIN}" "ldrh w3, [x7, 236]" e3d84179
+test_vector "${PLUGIN}" "ldrsh w3, [x7, 236]" e3d8c179
+test_vector "${PLUGIN}" "ldrsb w3, [x7, 236]" e3b0c339
+test_vector "${PLUGIN}" "strb w3, [x7, 236]" e3b00339
+test_vector "${PLUGIN}" "strh w3, [x7, 236]" e3d80179
+test_vector "${PLUGIN}" "ldrb w3, [x8, -256]" 03015038
+test_vector "${PLUGIN}" "ldrh w3, [x8, -256]" 03015078
+test_vector "${PLUGIN}" "ldrsh w3, [x8, -256]" 0301d078
+test_vector "${PLUGIN}" "ldrsb w3, [x8, -256]" 0301d038
+test_vector "${PLUGIN}" "strb w3, [x8, -256]" 03011038
+test_vector "${PLUGIN}" "strh w3, [x8, -256]" 03011078
+test_vector "${PLUGIN}" "ldrb w3, [x8, -133]" 03b15738
+test_vector "${PLUGIN}" "ldrh w3, [x8, -133]" 03b15778
+test_vector "${PLUGIN}" "ldrsh w3, [x8, -133]" 03b1d778
+test_vector "${PLUGIN}" "ldrsb w3, [x8, -133]" 03b1d738
+test_vector "${PLUGIN}" "strb w3, [x8, -133]" 03b11738
+test_vector "${PLUGIN}" "strh w3, [x8, -133]" 03b11778
+test_vector "${PLUGIN}" "ldrb w3, [x8, -10]" 03615f38
+test_vector "${PLUGIN}" "ldrh w3, [x8, -10]" 03615f78
+test_vector "${PLUGIN}" "ldrsh w3, [x8, -10]" 0361df78
+test_vector "${PLUGIN}" "ldrsb w3, [x8, -10]" 0361df38
+test_vector "${PLUGIN}" "strb w3, [x8, -10]" 03611f38
+test_vector "${PLUGIN}" "strh w3, [x8, -10]" 03611f78
+test_vector "${PLUGIN}" "ldrb w3, [x8, 113]" 03c54139
+test_vector "${PLUGIN}" "ldrh w3, [x8, 113]" 03114778
+test_vector "${PLUGIN}" "ldrsh w3, [x8, 113]" 0311c778
+test_vector "${PLUGIN}" "ldrsb w3, [x8, 113]" 03c5c139
+test_vector "${PLUGIN}" "strb w3, [x8, 113]" 03c50139
+test_vector "${PLUGIN}" "strh w3, [x8, 113]" 03110778
+test_vector "${PLUGIN}" "ldrb w3, [x8, 236]" 03b14339
+test_vector "${PLUGIN}" "ldrh w3, [x8, 236]" 03d94179
+test_vector "${PLUGIN}" "ldrsh w3, [x8, 236]" 03d9c179
+test_vector "${PLUGIN}" "ldrsb w3, [x8, 236]" 03b1c339
+test_vector "${PLUGIN}" "strb w3, [x8, 236]" 03b10339
+test_vector "${PLUGIN}" "strh w3, [x8, 236]" 03d90179
+test_vector "${PLUGIN}" "ldrb w3, [x8, x2]" 03696238
+test_vector "${PLUGIN}" "ldrh w3, [x8, x6]" 03696678
+test_vector "${PLUGIN}" "ldrsh w3, [x8, x3]" 0369e378
+test_vector "${PLUGIN}" "ldrsb w3, [x8, x1]" 0369e138
+test_vector "${PLUGIN}" "strb w3, [x8, x4]" 03692438
+test_vector "${PLUGIN}" "strh w3, [x8, x2]" 03692278
+test_vector "${PLUGIN}" "ldr w2, [x7, -256]" e20050b8
+test_vector "${PLUGIN}" "stur w2, [x7, -256]" e20010b8
+test_vector "${PLUGIN}" "str w2, [x7, -256]" e20010b8
+test_vector "${PLUGIN}" "ldr w2, [x7, -133]" e2b057b8
+test_vector "${PLUGIN}" "stur w2, [x7, -133]" e2b017b8
+test_vector "${PLUGIN}" "str w2, [x7, -133]" e2b017b8
+test_vector "${PLUGIN}" "ldr w2, [x7, -10]" e2605fb8
+test_vector "${PLUGIN}" "stur w2, [x7, -10]" e2601fb8
+test_vector "${PLUGIN}" "str w2, [x7, -10]" e2601fb8
+test_vector "${PLUGIN}" "ldr w2, [x7, 113]" e21047b8
+test_vector "${PLUGIN}" "stur w2, [x7, 113]" e21007b8
+test_vector "${PLUGIN}" "str w2, [x7, 113]" e21007b8
+test_vector "${PLUGIN}" "ldr w2, [x7, 236]" e2ec40b9
+test_vector "${PLUGIN}" "stur w2, [x7, 236]" e2c00eb8
+test_vector "${PLUGIN}" "str w2, [x7, 236]" e2ec00b9
+test_vector "${PLUGIN}" "ldr w2, [x8, -256]" 020150b8
+test_vector "${PLUGIN}" "stur w2, [x8, -256]" 020110b8
+test_vector "${PLUGIN}" "str w2, [x8, -256]" 020110b8
+test_vector "${PLUGIN}" "ldr w2, [x8, -133]" 02b157b8
+test_vector "${PLUGIN}" "stur w2, [x8, -133]" 02b117b8
+test_vector "${PLUGIN}" "str w2, [x8, -133]" 02b117b8
+test_vector "${PLUGIN}" "ldr w2, [x8, -10]" 02615fb8
+test_vector "${PLUGIN}" "stur w2, [x8, -10]" 02611fb8
+test_vector "${PLUGIN}" "str w2, [x8, -10]" 02611fb8
+test_vector "${PLUGIN}" "ldr w2, [x8, 113]" 021147b8
+test_vector "${PLUGIN}" "stur w2, [x8, 113]" 021107b8
+test_vector "${PLUGIN}" "str w2, [x8, 113]" 021107b8
+test_vector "${PLUGIN}" "ldr w2, [x8, 236]" 02ed40b9
+test_vector "${PLUGIN}" "stur w2, [x8, 236]" 02c10eb8
+test_vector "${PLUGIN}" "str w2, [x8, 236]" 02ed00b9
+test_vector "${PLUGIN}" "ldr w3, [x7, -256]" e30050b8
+test_vector "${PLUGIN}" "stur w3, [x7, -256]" e30010b8
+test_vector "${PLUGIN}" "str w3, [x7, -256]" e30010b8
+test_vector "${PLUGIN}" "ldr w3, [x7, -133]" e3b057b8
+test_vector "${PLUGIN}" "stur w3, [x7, -133]" e3b017b8
+test_vector "${PLUGIN}" "str w3, [x7, -133]" e3b017b8
+test_vector "${PLUGIN}" "ldr w3, [x7, -10]" e3605fb8
+test_vector "${PLUGIN}" "stur w3, [x7, -10]" e3601fb8
+test_vector "${PLUGIN}" "str w3, [x7, -10]" e3601fb8
+test_vector "${PLUGIN}" "ldr w3, [x7, 113]" e31047b8
+test_vector "${PLUGIN}" "stur w3, [x7, 113]" e31007b8
+test_vector "${PLUGIN}" "str w3, [x7, 113]" e31007b8
+test_vector "${PLUGIN}" "ldr w3, [x7, 236]" e3ec40b9
+test_vector "${PLUGIN}" "stur w3, [x7, 236]" e3c00eb8
+test_vector "${PLUGIN}" "str w3, [x7, 236]" e3ec00b9
+test_vector "${PLUGIN}" "ldr w3, [x8, -256]" 030150b8
+test_vector "${PLUGIN}" "stur w3, [x8, -256]" 030110b8
+test_vector "${PLUGIN}" "str w3, [x8, -256]" 030110b8
+test_vector "${PLUGIN}" "ldr w3, [x8, -133]" 03b157b8
+test_vector "${PLUGIN}" "stur w3, [x8, -133]" 03b117b8
+test_vector "${PLUGIN}" "str w3, [x8, -133]" 03b117b8
+test_vector "${PLUGIN}" "ldr w3, [x8, -10]" 03615fb8
+test_vector "${PLUGIN}" "stur w3, [x8, -10]" 03611fb8
+test_vector "${PLUGIN}" "str w3, [x8, -10]" 03611fb8
+test_vector "${PLUGIN}" "ldr w3, [x8, 113]" 031147b8
+test_vector "${PLUGIN}" "stur w3, [x8, 113]" 031107b8
+test_vector "${PLUGIN}" "str w3, [x8, 113]" 031107b8
+test_vector "${PLUGIN}" "ldr w3, [x8, 236]" 03ed40b9
+test_vector "${PLUGIN}" "stur w3, [x8, 236]" 03c10eb8
+test_vector "${PLUGIN}" "str w3, [x8, 236]" 03ed00b9
