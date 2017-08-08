@@ -1475,6 +1475,7 @@ NAME="negative mem reference"
 ARGS='-m 0x410984'
 FILE=malloc://0x200
 CMDS='
+e io.va=true
 e asm.arch=mips
 e asm.bits=32
 e cfg.bigendian=true
@@ -1498,6 +1499,7 @@ NAME="complex function"
 ARGS='-m 0x0040092c'
 FILE=malloc://0x800
 CMDS='
+e io.va=true
 e asm.arch=mips
 e asm.bits=32
 ar > /dev/null
@@ -1521,6 +1523,7 @@ NAME="complex function 2"
 ARGS='-m 0x0040092c'
 FILE=malloc://0x800
 CMDS='
+e io.va=true
 e asm.arch=mips
 e asm.bits=32
 ar > /dev/null
@@ -1544,6 +1547,7 @@ NAME="complex function 3"
 ARGS='-m 0x00400ac0'
 FILE=malloc://0x800
 CMDS='
+e io.va=true
 e asm.arch=mips
 e asm.bits=32
 ar > /dev/null
