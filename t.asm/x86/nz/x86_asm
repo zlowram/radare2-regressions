@@ -1353,4 +1353,5 @@ test_vector "${PLUGIN}" "xor rax, rax" 4831c0
 test_vector "${PLUGIN}" "xor rdx, rdx" 4831d2
 
 test_invalid "${PLUGIN}" "mov byte [rbp-0x100], 2" c68500ffffff02
+test_invalid "${PLUGIN}" "mov ah, byte ptr [r8]" ccccccc
 
