@@ -138,26 +138,26 @@ wx f0b503af2de9000d95b0002001210222032340f2040940f2050c40f2060e07240825092614901
 aa
 pdf~var
 '
-EXPECT='|           ; var int local_0h @ r13+0x0
-|           ; var int local_4h @ r13+0x4
-|           ; var int local_8h @ r13+0x8
-|           ; var int local_ch @ r13+0xc
-|           ; var int local_10h @ r13+0x10
-|           ; var int local_14h @ r13+0x14
-|           ; var int local_18h @ r13+0x18
-|           ; var int local_1ch @ r13+0x1c
-|           ; var int local_20h @ r13+0x20
-|           ; var int local_24h @ r13+0x24
-|           ; var int local_28h @ r13+0x28
-|           ; var int local_2ch @ r13+0x2c
-|           ; var int local_30h @ r13+0x30
-|           ; var int local_34h @ r13+0x34
-|           ; var int local_38h @ r13+0x38
-|           ; var int local_3ch @ r13+0x3c
-|           ; var int local_40h @ r13+0x40
-|           ; var int local_44h @ r13+0x44
-|           ; var int local_48h @ r13+0x48
-|           ; var int local_4ch @ r13+0x4c
-|           ; var int local_50h @ r13+0x50
+EXPECT='|           ; var int local_0h @ sp+0x0
+|           ; var int local_4h @ sp+0x4
+|           ; var int local_8h @ sp+0x8
+|           ; var int local_ch @ sp+0xc
+|           ; var int local_10h @ sp+0x10
+|           ; var int local_14h @ sp+0x14
+|           ; var int local_18h @ sp+0x18
+|           ; var int local_1ch @ sp+0x1c
+|           ; var int local_20h @ sp+0x20
+|           ; var int local_24h @ sp+0x24
+|           ; var int local_28h @ sp+0x28
+|           ; var int local_2ch @ sp+0x2c
+|           ; var int local_30h @ sp+0x30
+|           ; var int local_34h @ sp+0x34
+|           ; var int local_38h @ sp+0x38
+|           ; var int local_3ch @ sp+0x3c
+|           ; var int local_40h @ sp+0x40
+|           ; var int local_44h @ sp+0x44
+|           ; var int local_48h @ sp+0x48
+|           ; var int local_4ch @ sp+0x4c
+|           ; var int local_50h @ sp+0x50
 '
 run_test
