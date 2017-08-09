@@ -4,6 +4,20 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME='afvt'
+FILE=../../bins/mach0/arg
+ARGS=
+BROKEN=!
+CMDS='s sym._call
+af
+afv
+'
+EXPECT='var int local_14h @ rbp-0x14
+arg int local_10h @ rbp-0x10
+arg int local_8h @ rbp-0x8
+'
+run_test
+
+NAME='afvt'
 FILE=../../bins/mach0/macho
 ARGS= 
 CMDS='s 0x100000b60
