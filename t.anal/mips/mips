@@ -28,7 +28,9 @@ NAME="mips LE back reference"
 BROKEN=1
 FILE=malloc://32
 ARGS='-m 0x80100000'
-CMDS="wx 0000000000000000010000100000000000000000
+CMDS="
+io.va=true
+wx 0000000000000000010000100000000000000000
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e asm.nbytes=4
@@ -104,7 +106,9 @@ NAME="mips LE correct relative jump reference if mapped from command line."
 BROKEN=
 FILE=malloc://40
 ARGS='-m 0x80100000'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e anal.eobjmp=false
@@ -141,7 +145,9 @@ run_test
 NAME="mips branch delay function sizing."
 FILE=malloc://20
 ARGS='-m 0x80100000'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e anal.depth=2
@@ -187,7 +193,9 @@ NAME="mips branch delay function sizing with conditional jump loop."
 BROKEN=
 FILE=malloc://40
 ARGS='-m 0x80100000'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e anal.eobjmp=false
@@ -217,6 +225,7 @@ NAME="mips branch delay function sizing with conditional jump forward."
 FILE=malloc://40
 ARGS='-m 0x80100000'
 CMDS="
+e io.va=true
 e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
@@ -248,7 +257,9 @@ NAME="mips branch delay function sizing with conditional jump back."
 BROKEN=
 FILE=malloc://40
 ARGS='-m 0x80100000'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.arch=${PLUGIN}
 e asm.bits=32
 e asm.comments=false
@@ -278,7 +289,9 @@ NAME="mips branch delay function sizing with conditional jump back then forward.
 BROKEN=
 FILE=malloc://56
 ARGS='-m 0x80100000'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.arch=${PLUGIN}
 e asm.bits=32
 e asm.comments=false
@@ -310,7 +323,9 @@ run_test
 NAME="mips branch delay function detection #1."
 FILE=malloc://160
 ARGS='-m 0x8060b4f8'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e asm.comments=0
@@ -374,7 +389,9 @@ NAME="GNU mips branch delay function detection #1."
 FILE=malloc://160
 BROKEN=1
 ARGS='-m 0x8060b4f8'
-CMDS="e asm.bits=32
+CMDS="
+e io.va=true
+e asm.bits=32
 e asm.arch=${PLUGIN}.gnu
 e asm.comments=0
 e anal.hasnext=1
@@ -439,7 +456,9 @@ run_test
 NAME="capstone: mips branch delay function detection #1."
 FILE=malloc://160
 ARGS='-m 0x8060b4f8'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e anal.noncode=1
@@ -503,7 +522,9 @@ run_test
 NAME="capstone: mips branch delay function detection #1."
 FILE=malloc://160
 ARGS='-m 0x8060b4f8'
-CMDS="e asm.calls=false
+CMDS="
+e io.va=true
+e asm.calls=false
 e asm.bits=32
 e asm.arch=${PLUGIN}
 e anal.noncode=1

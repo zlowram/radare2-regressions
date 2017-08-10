@@ -42,6 +42,7 @@ NAME="ldrsw x9, [x8, 0x468]"
 FILE=malloc://0x200
 ARGS='-m 0x464'
 CMDS='
+e io.va=true
 e asm.arch=arm
 e asm.bits=64
 ar > /dev/null

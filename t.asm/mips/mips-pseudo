@@ -21,7 +21,9 @@ NAME="mips pseudo sw + 0"
 BROKEN=
 FILE=malloc://32
 ARGS='-a mips -m 0x80100000'
-CMDS="wx 0000beaf
+CMDS="
+e io.va=true
+wx 0000beaf
 pd 1
 e asm.pseudo=true
 pd 1
