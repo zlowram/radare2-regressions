@@ -99,6 +99,7 @@ if [ -n "$KW" ]; then
 		fi
 		[ "${SKIP}" = 0 ] && ./${TESTRUNNER} "$a"
 	done
+	exit 0
 else
 	usage
 	exit 1
