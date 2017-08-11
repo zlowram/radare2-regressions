@@ -334,6 +334,22 @@ EXPECT='0x00000000 1 PE  for MS Windows Intel 80386 32-bit
 '
 run_test
 
+NAME='/o search offset of instructions backward'
+FILE='malloc://1024'
+ARGS='-a x86 -b 32'
+CMDS='
+wx 909089d89090
+s 4
+/o
+/o 2
+/o 3
+'
+EXPECT='0x00000002
+0x00000001
+0x00000000
+'
+run_test
+
 NAME='/x search from/to (seek 0)'
 FILE='malloc://1024'
 ARGS=
