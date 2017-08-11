@@ -444,7 +444,7 @@ s 0x0804843b
 afvd arg_ch
 afvd local_10h
 '
-EXPECT="pf d @ebp+0xc
-pf d @ebp-0x10
-"
+EXPECT='pxr $w @ebp+0xc
+pxr $w @ebp+0x10
+'
 run_test
