@@ -39,3 +39,42 @@ e cmd.esil.intr=?e SYSCALL
 EXPECT='SYSCALL 128 0
 '
 run_test
+
+NAME='x86-64 linux syscall'
+FILE=../bins/elf/syscall_x86
+CMDS='
+e asm.bytes=0
+e asm.lines=0
+e asm.emustr=1
+e asm.cmtcol=30
+pd 5~write
+'
+EXPECT=' 0x004000f1      syscall      ; 1 = write (1, "Hello, world!.", 14)
+'
+run_test
+
+NAME='x86-64 linux syscall emulation'
+FILE=../bins/elf/syscall_x86
+CMDS='
+s entry0
+dr rip=$$
+4aes
+s..f1
+as
+'
+EXPECT='1 = write (1, "Hello, world!.", 14)
+'
+run_test
+
+NAME='x86-64 linux syscall emulation'
+FILE=../bins/elf/syscall_x86
+CMDS='
+s entry0
+dr rip=$$
+4ds
+s..f1
+as
+'
+EXPECT='1 = write (1, "Hello, world!.", 14)
+'
+run_test
