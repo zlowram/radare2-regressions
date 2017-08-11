@@ -15,7 +15,7 @@ FILE=-
 ARGS=
 CMDS='e file.lastpath
 '
-EXPECT='malloc://512
+EXPECT='
 '
 run_test
 

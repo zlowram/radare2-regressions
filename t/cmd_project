@@ -313,6 +313,7 @@ run_test
 
 NAME='prj.name saved in project'
 FILE=malloc://512
+BROKEN=1
 ARGS=
 CMDS='e dir.projects = /tmp/
 Ps named_prj > /dev/null
