@@ -7,7 +7,7 @@ BROKEN=true
 CMDS='
 aa
 s sym.fastcaslled
-afC fastcall
+afc fastcall
 afva
 pdf~arg,local
 '

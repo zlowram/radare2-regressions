@@ -163,8 +163,8 @@ FILE=../../bins/elf/analysis/fast
 ARGS=
 CMDS='aa
 s sym.fastcaslled
-afC fastcall
-afC
+afc fastcall
+afc
 afva
 pdf
 '
@@ -207,7 +207,7 @@ ARGS=
 CMDS='e asm.calls=false
 aa
 s sym.nonfastcaslled
-afC
+afc
 afva
 pdf
 '

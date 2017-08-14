@@ -169,7 +169,7 @@ IGNORE_ERR=1
 CMDS='
 aa
 s entry0
-afC stdcall
+afc stdcall
 afi~call-convention
 '
 EXPECT='call-convention: stdcall
