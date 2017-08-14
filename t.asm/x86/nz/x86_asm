@@ -1351,6 +1351,12 @@ test_vector "${PLUGIN}" "xor [rax], rax" 483100
 test_vector "${PLUGIN}" "xor [rsi], rbx" 48311e
 test_vector "${PLUGIN}" "xor rax, rax" 4831c0
 test_vector "${PLUGIN}" "xor rdx, rdx" 4831d2
+test_vector "${PLUGIN}" "rep movsd" f3a5
+test_vector "${PLUGIN}" "repnz stosd" f2ab
+test_vector "${PLUGIN}" "repz monitor" f30f01c8
+test_vector "${PLUGIN}" "repe vmcall" f30f01c1
+test_vector "${PLUGIN}" "repne sfence" f20faef8
+test_vector "${PLUGIN}" "rep rdpmc" f30f33
 
 test_invalid "${PLUGIN}" "mov byte [rbp-0x100], 2" c68500ffffff02
 test_invalid "${PLUGIN}" "mov ah, byte ptr [r8]"
