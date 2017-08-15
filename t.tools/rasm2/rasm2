@@ -287,7 +287,7 @@ EXPECT='ba0e000000b91d000000bb01000000b804000000cd80b801000000cd8048656c6c6f2c20
 run_test
 
 NAME='rasm2 bswap x64 #8095'
-BROKEN=1
+BROKEN=
 CMDS="!rasm2 -a x86 -b 64 'bswap rax;bswap rbx;bswap rcx;bswap rdx'"
 EXPECT='480fc8480fcb480fc9480fca
 '
