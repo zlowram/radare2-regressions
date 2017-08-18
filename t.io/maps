@@ -53,14 +53,9 @@ FILE=malloc://128
 CMDS='
 e file.nowarn=true
 e file.loadmethod=append
-<<<<<<< Updated upstream
 om `o~[0]` 0x100
-||||||| merged common ancestors
-om `o~[2]` 0x100
-=======
 om `o~[2]` 0x100
 e io.va=true
->>>>>>> Stashed changes
 w pop @ 1
 p8 4 @ 0x100
 '
