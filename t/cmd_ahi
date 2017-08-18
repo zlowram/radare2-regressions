@@ -231,6 +231,7 @@ NAME='64bit ahi 10'
 FILE=-
 ARGS="-m 0x100001000"
 CMDS='
+e io.va
 e asm.relsub=false
 e asm.leahints=false
 e asm.arch=x86
@@ -241,7 +242,8 @@ pd 1
 e asm.relsub=true; pd 1
 ahi 10; pd 1
 '
-EXPECT='            0x100001000      c7055f440000.  mov dword [rip + 0x445f], 0 ; [0x100005469:4]=-1
+EXPECT='true
+            0x100001000      c7055f440000.  mov dword [rip + 0x445f], 0 ; [0x100005469:4]=-1
             0x100001000      c7055f440000.  mov dword [0x100005469], 0 ; [0x100005469:4]=-1
             0x100001000      c7055f440000.  mov dword [4294988905], 0  ; [0x100005469:4]=-1
 '
