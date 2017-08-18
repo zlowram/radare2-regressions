@@ -13,9 +13,17 @@ run_test
 NAME='o-'
 FILE=malloc://1024
 ARGS=
-CMDS='o-`o~[2]`;o'
+CMDS='o-`o~[0]`;o'
 EXPECT=
 run_test
+
+NAME='oj-'
+FILE=malloc://1024
+ARGS=
+CMDS='o-`oj~{[0].fd}`;o'
+EXPECT=
+run_test
+
 
 # 3, because one for the adress returned by o -,
 # and the two other are the opened files
@@ -32,7 +40,7 @@ run_test
 NAME='om'
 FILE=malloc://1024
 ARGS=
-CMDS='om `o~[1]` 0x4000
+CMDS='om `o~[0]` 0x4000
 om~?'
 EXPECT='2
 '
@@ -41,8 +49,8 @@ run_test
 NAME='om2'
 FILE=malloc://1024
 ARGS=
-CMDS='om `o~[1]` 0x4000
-om `o~[1]` 0x4000
+CMDS='om `o~[0]` 0x4000
+om `o~[0]` 0x4000
 om~?'
 EXPECT='2
 '
@@ -90,7 +98,7 @@ run_test
 
 NAME='oob consider laddr'
 FILE=../bins/mach0/fatmach0-3true
-ARGS=
+ARGS="-a x86 -b 32"
 CMDS='e bin.laddr = 0x5000
 e bin.baddr = -1
 oob
@@ -99,6 +107,20 @@ ie~baddr[5]
 '
 EXPECT='0x00005000
 0x00001000
+'
+run_test
+
+NAME='oob consider laddr'
+FILE=../bins/mach0/fatmach0-3true
+ARGS="-a x86 -b 64"
+CMDS='e bin.laddr = 0x5000
+e bin.baddr = -1
+oob
+ie~laddr[7]
+ie~baddr[5]
+'
+EXPECT='0x00005000
+0x100000000
 '
 run_test
 
@@ -172,7 +194,7 @@ o ../bins/elf/true32
 e scr.null=false
 isq~?
 # raise back
-o `o~:0[2]`
+o `o~:0[0]`
 isq~?
 '
 EXPECT='408

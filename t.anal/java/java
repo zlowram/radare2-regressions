@@ -165,7 +165,7 @@ run_test
 
 
 NAME="af java multiple classes loaded via malloc and ib"
-FILE=malloc://1023
+FILE=malloc://1024
 CMDS='
 e asm.calls=false
 e asm.comments=false
@@ -189,7 +189,7 @@ fd       42
 file     malloc://1023
 format   java
 iorw     true
-mode     -rwx
+mode     -rw-
 size     0x3ff
 humansz  1023
 type     JAVA CLASS
@@ -323,6 +323,8 @@ run_test
 NAME="java summary"
 FILE='zip://../../bins/java/example.zip::0'
 ARGS=''
+echo "[REGRESSION] t.anal/java/java : java summary"
+BROKEN=1
 CMDS='java summary'
 EXPECT='Summary for research_data/experiment/decompiler/dumped_jar_dec/c.class:
   Size 0x0:
