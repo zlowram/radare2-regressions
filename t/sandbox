@@ -12,7 +12,7 @@ run_test
 
 NAME='sandbox open'
 CMDS='e cfg.sandbox=true
-o~[3]
+o~[2]
 oc /bin/ls
 '
 EXPECT='malloc://512
