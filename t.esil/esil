@@ -4,6 +4,18 @@
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
+NAME='ar comma'
+FILE=-
+ARGS="-a x86 -b 64"
+CMDS='ar rax=33
+ar rbx=44
+ar rax,rbx
+'
+EXPECT='0x00000021
+0x0000002c
+'
+run_test
+
 NAME='add'
 FILE=-
 ARGS=
