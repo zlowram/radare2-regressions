@@ -6,7 +6,7 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 # This test verifies that rabin2 -z returns proper va address for strings
 
 NAME="pdf dwarf"
-BROKEN=1
+BROKEN=
 FILE=../../bins/elf/analysis/main
 ARGS=
 CMDS='fs *

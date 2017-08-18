@@ -18,7 +18,7 @@ EXPECT="movabs rcx, 'ld.lldtn'
 run_test
 
 NAME='uafbug pi pdi'
-BROKEN=1
+BROKEN=
 FILE=malloc://1024
 ARGS=
 CMDS='

@@ -12,7 +12,7 @@ run_test
 
 NAME="thumb ldr pc-rel analysis"
 FILE=malloc://32
-BROKEN=1
+BROKEN=
 CMDS="
 e asm.arch=arm
 e asm.bits=16
@@ -25,7 +25,7 @@ run_test
 
 NAME="thumb ldr pc-rel emulation"
 FILE=malloc://32
-BROKEN=1
+BROKEN=
 CMDS="
 e asm.arch=arm
 e asm.bits=16

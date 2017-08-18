@@ -186,7 +186,7 @@ s sym.radare_test_cases_challenge.simple_case_stmt_4val; pdf
 EXPECT='blksz    0x0
 block    0x100
 fd       42
-file     malloc://1023
+file     malloc://1024
 format   java
 iorw     true
 mode     -rw-
@@ -194,7 +194,7 @@ size     0x3ff
 humansz  1023
 type     JAVA CLASS
 arch     java
-binsz    1023
+binsz    1024
 bintype  class
 bits     32
 canary   false

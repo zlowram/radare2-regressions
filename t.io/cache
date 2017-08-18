@@ -28,7 +28,7 @@ run_test
 NAME='io.cache: Writing after end of file'
 FILE=../bins/other/0x3
 ARGS=
-BROKEN=1
+BROKEN=
 CMDS='
 e io.cache=1
 w hello

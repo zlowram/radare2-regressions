@@ -249,7 +249,7 @@ run_test
 ## "wen" - insert null bytes
 NAME='wen should insert X null bytes even if io.cache=false'
 FILE=malloc://8
-BROKEN=1
+BROKEN=
 ARGS=
 FILTER="grep size"
 EXPECT='size     0x34e1f
