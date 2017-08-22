@@ -1,32 +1,17 @@
 #!/bin/sh
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
-NAME='PE: corkami 65535sects.exe - open and analyze'
-FILE=../../bins/pe/65535sects.exe
+NAME='PE: corkami 65535sects.exe - section list, entrypoint, open and analyze'
 ARGS='-A'
-CMDS="q!"
-IGNORE_ERR=1
-run_test
-
-NAME='PE: corkami 65535sects.exe - sections list'
-FILE=../../bins/pe/65535sects.exe
-BROKEN=
-ARGS='-n'
-CMDS="!rabin2 -pS ${FILE}"
-FILTER='grep sections'
-EXPECT='65535 sections
-'
-IGNORE_ERR=1
-run_test
-
-IGNORE_ERR=
-NAME='PE: corkami 65535sects.exe - entrypoint'
 FILE=../../bins/pe/65535sects.exe
 CMDS='
+S~?
 s
 pi 1
+q!
 '
-EXPECT='0x8281120
+EXPECT='65535
+0x8281120
 mov edi, 0x7027aff9
 '
 IGNORE_ERR=1
