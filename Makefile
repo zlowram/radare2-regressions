@@ -33,7 +33,7 @@ all:
 	-$(MAKE) overlay-apply
 	$(MAKE) alltargets
 
-alltargets: radare2 commands formats tools io asm anal esil tools archos
+alltargets: radare2 commands formats tools io asm anal esil tools archos js-tests unit_tests
 
 radare2:
 	@if [ -f ../binr/radare2/radare2 ]; then $(SHELL) run_tests.sh ../t ; fi
@@ -242,6 +242,10 @@ untested:
 	@${MAKE} -s allbins > .b
 	@diff -ru .a .b | grep ^+ | grep -v +++ | cut -c 2-
 	@rm -f .a .b
+
+js-tests:
+	cd new && npm install
+	cd new && node bin/r2r.js
 
 allbins:
 	find bins -type f
