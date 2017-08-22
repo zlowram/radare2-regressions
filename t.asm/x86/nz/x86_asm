@@ -46,7 +46,7 @@ BITS=16
 test_vector "${PLUGIN}" "jmp 0x0" ebfe
 test_vector "${PLUGIN}" "jmp 0x10" eb0e
 test_vector "${PLUGIN}" "jmp 0x34" eb32
-test_vector "${PLUGIN}" "jne 0x14" 7512 
+test_vector "${PLUGIN}" "jne 0x14" 7512
 test_vector "${PLUGIN}" "jnz 0x94" 660f858d000000
 test_vector "${PLUGIN}" "jnz -0x94" 660f8565ffffff
 test_vector "${PLUGIN}" "jno -0x34" 71ca
@@ -380,6 +380,11 @@ test_vector "${PLUGIN}" "jmp 0x82" e97d000000
 test_vector "${PLUGIN}" "jmp 2" eb00
 test_vector "${PLUGIN}" "jmp 3" eb01
 test_vector "${PLUGIN}" "jmp ecx" ffe1
+test_vector "${PLUGIN}" "jmp [ecx]" ff21
+test_vector "${PLUGIN}" "jmp [ebx+43]" ff632b
+test_vector "${PLUGIN}" "jmp [ecx+200]" ffa1c8000000
+test_vector "${PLUGIN}" "jmp [edx-10]" ff62f6
+test_vector "${PLUGIN}" "jmp [eax-140]" ffa074ffffff
 test_vector "${PLUGIN}" "bnd jmp 0x82" f2e97d000000
 test_vector "${PLUGIN}" "jne 6" 7504
 test_vector "${PLUGIN}" "jno 2" 7100
@@ -389,7 +394,7 @@ test_vector "${PLUGIN}" "jnp 6" 7b04
 test_vector "${PLUGIN}" "jns 2" 7900
 test_vector "${PLUGIN}" "jns 6" 7904
 test_vector "${PLUGIN}" "jnz 2" 7500
-test_vector "${PLUGIN}" "jo 2" 7000 
+test_vector "${PLUGIN}" "jo 2" 7000
 test_vector "${PLUGIN}" "jo 6" 7004
 test_vector "${PLUGIN}" "jp 2" 7a00
 test_vector "${PLUGIN}" "jp 6" 7a04
