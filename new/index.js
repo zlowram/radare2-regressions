@@ -7,6 +7,7 @@ const tmp = require('tmp');
 const zlib = require('zlib');
 const path = require('path');
 const spawn = require('child_process').spawn;
+const spawnSync = require('child_process').spawnSync;
 const r2promise = require('r2pipe-promise');
 
 // set this to false to avoid creating files
@@ -113,19 +114,44 @@ class NewRegressions {
           test.birth = null;
           const child = spawn(r2bin, args);
           child.stdout.on('data', data => {
-          // console.log(data.toString());
+            // console.log(data.toString());
             if (test.birth === null) {
               test.birth = new Date();
             }
           });
           child.stderr.on('data', data => {
-    //      console.error(data.toString());
+          //  console.error(data.toString());
           });
           child.on('close', data => {
             test.death = new Date();
             test.lifetime = test.death - test.birth;
             return resolve(cb(test));
           });
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  runTestFuzz (test, cb) {
+    return new Promise((resolve, reject) => {
+      try {
+        co(function * () {
+          const args = ['-c', '?e init', '-qcq', '-A', test.path];
+          test.birth = new Date();
+          const child = spawnSync(r2bin, args, {timeout: 20000});
+          test.death = new Date();
+          test.lifetime = test.death - test.birth;
+          if (child.error) {
+            test.expectErr = 'N';
+            test.stderr = 'X';
+            test.spawnArgs = args;
+            test.cmdScript = '';
+            return reject(cb(test));
+          } else {
+            return resolve(cb(test));
+          }
         });
       } catch (e) {
         reject(e);
@@ -246,14 +272,6 @@ class NewRegressions {
           continue;
         }
       }
-      if (source.indexOf('fuzzed') !== -1) {
-        const testCallback = this.runTestBinFile;
-        if (testCallback !== null) {
-          test = {from: source, name: 'fuzz', path: path.join(source, l)};
-          this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
-          continue;
-        }
-      }
       if (line === 'RUN') {
         const testCallback = this.callbackFromPath(test.from);
         if (testCallback !== null) {
@@ -321,6 +339,15 @@ class NewRegressions {
     }
   }
 
+  runFuzz (dir, files) {
+    let test = {};
+    for (let f of files) {
+      test = {from: dir, name: 'fuzz', path: path.join(dir, f)};
+      this.promises.push(this.runTestFuzz.bind(this)(test, this.checkTestResult.bind(this)));
+    }
+  }
+
+
   load (fileName, cb) {
     const blob = fs.readFileSync(path.join(__dirname, fileName));
     zlib.gunzip(blob, (err, data) => {
@@ -342,7 +369,7 @@ class NewRegressions {
   loadFuzz (dir, cb) {
     console.log('[--]', 'fuzz binaries');
     const fuzzed = fs.readdirSync(dir);
-    this.runTests(dir, fuzzed);
+    this.runFuzz(dir, fuzzed);
     Promise.all(this.promises).then(res => {
       console.log('[--]', this.report);
       cb(null, res);

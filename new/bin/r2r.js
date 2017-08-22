@@ -12,9 +12,9 @@ function main (argv) {
   if (argv.h) {
     console.log(`
 Usage: r2r [options] [file] [name] ([cmds])
- -a    add new test 
+ -a    add new test
  -b    mark failing tests as broken
- -d    delete test 
+ -d    delete test
  -f    fix tests that are not passing
  -c    use -c instead of -i to run r2 (EXPERIMENTAL)
  -j    output in JSON
@@ -38,7 +38,7 @@ Usage: r2r [options] [file] [name] ([cmds])
       };
       nr.runTest(test, (res) => {
         delete res.spawnArgs;
-      // TODO: include this into the given test
+        // TODO: include this into the given test
         console.log(JSON.stringify(res, null, '  '));
       }).then(res => {
       // console.log('RESULT', res);
@@ -71,14 +71,13 @@ Usage: r2r [options] [file] [name] ([cmds])
     });
     walker.on('end', () => {
       // Load fuzzed binaries
-      // TODO issue with sync
       nr.loadFuzz('../bins/fuzzed', (err, data) => {
         if (err) {
           console.error(err.message);
         }
-      });
-      nr.quit().then(_ => {
-        console.log('Done');
+        nr.quit().then(_ => {
+          console.log('Done');
+        });
       });
     });
   });
