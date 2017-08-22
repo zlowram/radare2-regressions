@@ -86,13 +86,13 @@ va       false
 0 sections
 [Memory]
 
-fs imports
 e cfg.bigendian=false
 e asm.bits=64
 e asm.dwarf=false
 e asm.pcalign=0
 fs imports
 fs symbols
+fs exports
 fs symbols
 fs sections
 [Imports]
@@ -227,6 +227,7 @@ ARGS=
 CMDS='e bin.baddr=0x00
 e asm.calls=false
 ib
+e io.va=0
 pi 1
 ?p
 '
