@@ -1291,6 +1291,7 @@ test_vector "${PLUGIN}" "add rax, 44" 4883c02c
 test_vector "${PLUGIN}" "add rax, r8" 4c01c0
 test_vector "${PLUGIN}" "add r10, r9" 4d01ca
 test_vector "${PLUGIN}" "add rax, rcx" 4801c8
+test_vector "${PLUGIN}" "and dword [ebp + 128], eax" 48218580000000
 test_vector "${PLUGIN}" "call rbx" ffd3
 test_vector "${PLUGIN}" "cmp rax, 33" 4883f821
 test_vector "${PLUGIN}" "cmp rax, rbx" 4839d8
