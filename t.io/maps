@@ -98,7 +98,7 @@ run_test
 
 
 
-NAME='omfg'
+NAME='omfg all rwx'
 FILE=-
 CMDS='
 e scr.null=true
@@ -109,5 +109,25 @@ omfg
 om~rwx~?
 '
 EXPECT='2
+'
+run_test
+
+
+NAME='omf one mapping'
+FILE=-
+CMDS='
+omf 1 rwx
+om~rwx~?
+omf 1 r-x
+om~r-x~?
+omf 1 --x
+om~--x~?
+omf 1 -w-
+om~-w-~?
+'
+EXPECT='1
+1
+1
+1
 '
 run_test
