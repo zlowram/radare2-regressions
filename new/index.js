@@ -1,5 +1,5 @@
 const co = require('co');
-const colors = require('colors');
+const colors = require('colors/safe');
 const promisify = require('promisify-node');
 const walk = require('walk').walk;
 const fs = promisify('fs');
@@ -67,8 +67,10 @@ class NewRegressions {
     return new Promise((resolve, reject) => {
       try {
         co(function * () {
+          if (test.args) {
+            self.r2.cmd(test.args);
+          }
           test.stdout = yield self.r2.cmd(test.cmd);
-          //yield self.r2.quit();
           return resolve(cb(test));
         });
       } catch (e) {
@@ -264,10 +266,9 @@ class NewRegressions {
       if (source.indexOf('asm') !== -1) {
         const testCallback = this.callbackFromPath(test.from);
         if (testCallback !== null) {
-          let p = parseTestAsm (source, line);
-          for (let t of p) {
-            test = t;
-            this.promises.push(testCallback.bind(this)(test, this.checkTestResult.bind(this)));
+          let tests = parseTestAsm (source, line);
+          for (let t of tests) {
+            this.promises.push(testCallback.bind(this)(t, this.checkTestResult.bind(this)));
           }
           continue;
         }
@@ -381,7 +382,7 @@ class NewRegressions {
 
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
-    if (test.passes && test.stdout && test.expect) {
+    if (test.passes && typeof test.stdout !== undefined && test.expect) {
       test.passes = test.expect.trim() === test.stdout.trim();
     }
     const status = (test.passes)
@@ -401,6 +402,13 @@ class NewRegressions {
         this.report.failed++;
       }
     }
+    /* Hack to hide undefined */
+    if (test.path === undefined) {
+      test.path = '';
+    }
+    if (test.lifetime === undefined) {
+      test.lifetime = '';
+    }
     if (process.env.NOOK) {
       if (status !== colors.green('OK')) {
         console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
@@ -414,7 +422,9 @@ class NewRegressions {
   checkTestResult (test) {
     if (!this.checkTest(test)) {
       console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
-      console.log(test.cmdScript);
+      if (test.cmdScript !== undefined) {
+        console.log(test.cmdScript);
+      }
       if (test.expect !== null) {
         console.log('---');
         console.log(colors.red(test.expect.trim().replace(/ /g, '~')));
@@ -446,32 +456,53 @@ function createTemporaryFile () {
 function parseTestAsm (source, line) {
   /* Parse first argument */
   let args = line.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
+  if (args.length < 3) {
+    console.error(colors.red.bold('[XX]', 'Wrong test format in ' + source + ':' + line));
+    return [];
+  }
   let type = args[0];
   let asm = args[1].split('"').join('');
   let expect = args[2];
+  let baddr = null;
+  if (args.length >= 4) {
+    baddr = args[3];
+  }
 
+  let arch_suffix = '';
   let tmp = source.split(path.sep);
-  const arch = tmp[tmp.length -1];
-  let cmd = '';
-  let name = '';
-  let tests = [];
-  /* TODO Handle _ in name to set bits ie: x86_64 x86_32 */
+  let r2args = [];
+  const arch = tmp[tmp.length -1].split('_');
+  if (arch.length > 1) {
+    r2args.push('e asm.bits=' + arch[1]);
+  }
+  r2args.push('e asm.arch=' + arch[0]);
+  if (baddr) {
+    r2args.push('s ' + baddr);
+  }
 
   /* Generate tests */
+  let tests = [];
   for (let c of type) {
+    let t = {from: source, broken: false, args: r2args.join(';')};
     switch (c) {
       case 'd':
-        cmd = 'pad ' + expect + ' @a:' + arch;
-        exp = asm;
-        name = arch + ': ' + expect + ' => "' + asm + '"';
+        t.cmd = 'pad ' + expect;
+        t.expect = asm;
+        t.name = arch + ': ' + expect + ' => "' + asm + '"';
+        tests.push(t);
         break;
       case 'a':
-        cmd = 'pa ' + asm + ' @a:' + arch;
-        exp = expect;
-        name = arch + ': "' + asm + '" => ' + expect;
+        t.cmd = 'pa ' + asm;
+        t.expect = expect;
+        t.name = arch + ': "' + asm + '" => ' + expect;
+        tests.push(t);
         break;
+      default:
+        continue;
     }
-    tests.push({from: source, cmd: cmd, name: name, expect: exp});
+    if (type.indexOf('B') !== -1) {
+      t.broken = true;
+    }
   }
   return tests;
 }
