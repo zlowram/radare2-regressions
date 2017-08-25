@@ -127,6 +127,8 @@ ARGS=
 CMDS='
 s 0x100
 wx e801000000c350c3
+e asm.arch=x86
+e asm.bits=64
 aaaa
 e asm.pseudo=true
 e asm.offset=false
@@ -138,6 +140,7 @@ e asm.fcnlines=false
 e asm.calls=false
 e asm.functions=false
 e scr.color=false
+f-rip
 pd 1
 '
 EXPECT="fcn.00000106 ()
@@ -570,7 +573,7 @@ EXPECT='/ (fcn) fcn2.0x004017c0 13
 |           0x004017c0      51             push ecx
 |           0x004017c1      89e1           mov ecx, esp
 |           0x004017c3      83c108         add ecx, 8
-|           0x004017c6      3d00100000     cmp eax, 0x1000             ; "pop"
+|           0x004017c6      3d00100000     cmp eax, 0x1000
 |       ,=< 0x004017cb      7210           jb 0x4017dd
 '
 run_test
