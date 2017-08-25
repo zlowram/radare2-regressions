@@ -9,6 +9,7 @@ NAME='empty file+seek'
 FILE=.empty
 ARGS=-w
 CMDS='
+e io.va=0
 w hello world
 p8 12
 psz@6
@@ -25,6 +26,7 @@ NAME='empty file+resize'
 FILE=.empty
 ARGS=-w
 CMDS='
+e io.va=0
 w hello world
 p8 12
 r-6
