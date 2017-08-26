@@ -501,6 +501,10 @@ function parseTestAsm (source, line) {
     }
     if (type.indexOf('B') !== -1) {
       t.broken = true;
+      /* Do not show any broken asm test on travis */
+      if (process.env.TRAVIS) {
+        return [];
+      }
     }
   }
   return tests;
