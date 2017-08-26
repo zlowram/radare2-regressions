@@ -1,0 +1,47 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+BROKEN=
+NAME='ar file sections'
+FILE=ar://../../bins/ar/libgdbr.a//responses.o
+ARGS=''
+CMDS='iS~:2'
+EXPECT='idx=01 vaddr=0x08000040 paddr=0x00000040 sz=5246 vsz=5246 perm=m-r-x name=.text
+'
+run_test
+
+BROKEN=
+NAME='ar file symbols'
+FILE=ar://../../bins/ar/libgdbr.a//xml.o
+ARGS=''
+CMDS='is~xml'
+EXPECT='vaddr=0x080009b3 paddr=0x000009b3 ord=007 fwd=NONE sz=5373 bind=LOCAL type=FUNC name=gdbr_parse_target_xml
+vaddr=0x08000040 paddr=0x00000040 ord=017 fwd=NONE sz=152 bind=GLOBAL type=FUNC name=gdbr_read_target_xml
+'
+run_test
+
+BROKEN=
+NAME='ar file content'
+FILE=ar://../../bins/ar/libgdbr.a//xml.o
+ARGS=''
+CMDS='px 64'
+EXPECT='- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
+0x08000040  7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+0x08000050  0100 3e00 0100 0000 0000 0000 0000 0000  ..>.............
+0x08000060  0000 0000 0000 0000 f068 0000 0000 0000  .........h......
+0x08000070  0000 0000 4000 0000 0000 4000 1500 1400  ....@.....@.....
+'
+run_test
+
+BROKEN=
+NAME='ar file content'
+FILE=ar://../../bins/ar/libgdbr.a//core.o
+ARGS=''
+CMDS='px 64'
+EXPECT='- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
+0x08000040  7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+0x08000050  0100 3e00 0100 0000 0000 0000 0000 0000  ..>.............
+0x08000060  0000 0000 0000 0000 d085 0000 0000 0000  ................
+0x08000070  0000 0000 4000 0000 0000 4000 1500 1400  ....@.....@.....
+'
+run_test
