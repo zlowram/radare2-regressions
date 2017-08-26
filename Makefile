@@ -54,7 +54,7 @@ tools:
 io:
 	$(SHELL) run_tests.sh t.io
 
-asm: asm.8051 asm.arm asm.avr asm.labels asm.java asm.x86 asm.m68k
+asm: asm.arm asm.avr asm.labels asm.java asm.x86 asm.m68k asm.riscv asm.tms320
 asm.arm:
 	$(SHELL) run_tests.sh t.asm/arm
 asm.avr:
@@ -67,6 +67,10 @@ asm.x86:
 	$(SHELL) run_tests.sh t.asm/x86
 asm.m68k:
 	$(SHELL) run_tests.sh t.asm/m68k
+asm.riscv:
+		$(SHELL) run_tests.sh t.asm/riscv
+asm.tms320:
+		$(SHELL) run_tests.sh t.asm/tm320
 
 anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.ppc anal.6502 anal.8051
 anal.arc:
