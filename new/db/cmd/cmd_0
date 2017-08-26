@@ -1,0 +1,360 @@
+NAME=p= 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cD0gMAoK
+RUN
+NAME=p=b 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cD1iIDAKCg==
+RUN
+NAME=p=d 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cD1kIDAKCg==
+RUN
+NAME=p=e 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cD1lIDAKCg==
+RUN
+NAME=p=p 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cD1wIDAKCg==
+RUN
+NAME=p2 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cDIgMAoK
+RUN
+NAME=p3 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cgo=
+CMDS64=cDMgMAoK
+RUN
+NAME=p8 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cDggMAoK
+RUN
+NAME=pb 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGIgMAoK
+RUN
+NAME=pB 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cEIgMAoK
+RUN
+NAME=px 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHggMAoK
+RUN
+NAME=px/ 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHgvIDAKCg==
+RUN
+NAME=pxa 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhhIDAKCg==
+RUN
+NAME=pxA 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhBIDAKCg==
+RUN
+NAME=pxb 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhiIDAKCg==
+RUN
+NAME=pxd1 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhkMSAwCgo=
+RUN
+NAME=pxd2 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhkMiAwCgo=
+RUN
+NAME=pxd4 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhkNCAwCgo=
+RUN
+NAME=pxe 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhlIDAKCg==
+RUN
+NAME=pxh 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhoIDAKCg==
+RUN
+NAME=pxH 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhIIDAKCg==
+RUN
+NAME=pxl 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhsIDAKCg==
+RUN
+NAME=pxo 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhvIDAKCg==
+RUN
+NAME=pxq 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhxIDAKCg==
+RUN
+NAME=pxQ 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhRIDAKCg==
+RUN
+NAME=pxr 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhyIDAKCg==
+RUN
+NAME=pxs 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhzIDAKCg==
+RUN
+NAME=pxw 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHh3IDAKCg==
+RUN
+NAME=pxW 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHhXIDAKCg==
+RUN
+NAME=pc 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGMgMAoK
+RUN
+NAME=pc* 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGMqIDAKCg==
+RUN
+NAME=pcw 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGN3IDAKCg==
+RUN
+NAME=pcd 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNkIDAKCg==
+RUN
+NAME=pca 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNhIDAKCg==
+RUN
+NAME=pcs 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNzIDAKCg==
+RUN
+NAME=pcS 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNTIDAKCg==
+RUN
+NAME=pcJ 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNKIDAKCg==
+RUN
+NAME=pcp 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGNwIDAKCg==
+RUN
+NAME=pd 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGQgMAoK
+RUN
+NAME=pD 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cEQgMAoK
+RUN
+NAME=pda 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGRhIDAKCg==
+RUN
+NAME=pdc 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=YWEKcGRjIDAKCg==
+RUN
+NAME=pdc 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=YWEKcGRjIDAKCg==
+RUN
+NAME=pdj 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGRqIDAKCg==
+RUN
+NAME=pdr 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=YWEKcGRyIDAKCg==
+RUN
+NAME=pdf 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=YWEKcGRmIDAKCg==
+RUN
+NAME=pdi 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGRpIDAKCg==
+RUN
+NAME=pdl 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGRsIDAKCg==
+RUN
+NAME=pds 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGRzIDAKCg==
+RUN
+NAME=pdt 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGR0IDAKCg==
+RUN
+NAME=pi 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGkgMAoK
+RUN
+NAME=pid 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGlkIDAKCg==
+RUN
+NAME=pie 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGllIDAKCg==
+RUN
+NAME=pI 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cEkgMAoK
+RUN
+NAME=pId 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cElkIDAKCg==
+RUN
+NAME=pr 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHIgMAoK
+RUN
+NAME=prx 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHJ4IDAKCg==
+RUN
+NAME=prl 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHJsIDAKCg==
+RUN
+NAME=prg 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHJnIDAKCg==
+RUN
+NAME=pk 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cGsgMAoK
+RUN
+NAME=pK 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cEsgMAoK
+RUN
+NAME=ps 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cgo=
+CMDS64=cHMgMAoK
+RUN
+NAME=psi 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHNpIDAKCg==
+RUN
+NAME=psb 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHNiIDAKCg==
+RUN
+NAME=psx 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHN4IDAKCg==
+RUN
+NAME=psz 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHN6IDAKCg==
+RUN
+NAME=psp 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHNwIDAKCg==
+RUN
+NAME=psu 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHN1IDAKCg==
+RUN
+NAME=psw 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHN3IDAKCg==
+RUN
+NAME=pu 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHUgMAoK
+RUN
+NAME=puw 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHV3IDAKCg==
+RUN
+NAME=pz 0
+FILE=../bins/elf/analysis/hello-arm32
+EXPECT64=Cg==
+CMDS64=cHogMAoK
+RUN

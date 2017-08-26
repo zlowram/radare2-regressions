@@ -1,0 +1,10 @@
+NAME=hash_comments_noop
+FILE=-
+EXPECT64=Cg==
+CMDS64=CiMJfj8KIyB+PwojIn4/CiMjfj8KIyR+PwojJX4/CiMmfj8KIyh+PwojKX4/CiMqfj8KIyt+PwojLH4/CiMtfj8KIy5+PwojL34/CiMwfj8KIzp+PwojO34/CiM8fj8KIz1+PwojPn4/CiNAfj8KI0F+PwojWn4/CiNbfj8KI1x+PwojXX4/CiNefj8KI19+PwojYH4/CiNhfj8KI3p+Pwoje34/CiN8fj8KI31+Pwojfn4/Cgo=
+RUN
+NAME=hash_subcommands_not_noop
+FILE=-
+EXPECT64=MAowCjB4MAowCgo=
+CMDS64=Cj8hIGAjISB+P2AKP3YKPyEgYCM/IH4/IGAKP3YKPyEgYCNhIH4/IGAKP3YKCg==
+RUN

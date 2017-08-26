@@ -1,0 +1,20 @@
+NAME=psj ascii
+FILE=malloc://128
+EXPECT64=eyJzdHJpbmciOiJyYWRhcmUgaXMgY29vbCIsIm9mZnNldCI6MCwic2VjdGlvbiI6InVua25vd24iLCJsZW5ndGgiOjE0LCJ0eXBlIjoiYXNjaWkifQoK
+CMDS64=Cnd4IDcyNjE2NDYxNzI2NTIwNjk3MzIwNjM2ZjZmNmMKcHNqIDE0Cgo=
+RUN
+NAME=psj utf
+FILE=malloc://128
+EXPECT64=eyJzdHJpbmciOiJcdTAwZTlcdTAwYmJcdTAwOTFcdTAwZTVcdTAwYWVcdTAwYTIiLCJvZmZzZXQiOjAsInNlY3Rpb24iOiJ1bmtub3duIiwibGVuZ3RoIjo2LCJ0eXBlIjoidXRmIn0KCg==
+CMDS64=Cnd4IGU5YmI5MWU1YWVhMgpwc2ogNgoK
+RUN
+NAME=psj wide
+FILE=../bins/elf/analysis/x86-helloworld-gcc
+EXPECT64=eyJzdHJpbmciOiJcdTAwMGJcdTAwMDBcdTAwMDBcdTAwMDAiLCJvZmZzZXQiOjEzNDUxODI3Miwic2VjdGlvbiI6Ii5keW5hbWljIiwibGVuZ3RoIjo0LCJ0eXBlIjoid2lkZSJ9Cgo=
+CMDS64=CnMgMHgwODA0OTYwMApwc2ogNAoK
+RUN
+NAME=psj ascii 2
+FILE=../bins/elf/analysis/hello-android-arm
+EXPECT64=eyJzdHJpbmciOiJIZWxsbyBXb3JsZCIsIm9mZnNldCI6MzM2MjQsInNlY3Rpb24iOiIucm9kYXRhIiwibGVuZ3RoIjoxMSwidHlwZSI6ImFzY2lpIn0KCg==
+CMDS64=CnMgMHgwMDAwODM1OApwc2ogMTEKCg==
+RUN

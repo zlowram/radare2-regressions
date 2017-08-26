@@ -1,0 +1,55 @@
+NAME=pxw cfg.bigendian=true (elf64)
+FILE=../bins/elf/analysis/hello-linux-x86_64
+EXPECT64=MHgwMDQwMDQxMCAgMHgzMWVkNDk4OSAweGQxNWU0ODg5IDB4ZTI0ODgzZTQgMHhmMDUwNTQ0OSAgMS5JLi5eSC4uSC4uLlBUSQoK
+CMDS64=ZSBjZmcuYmlnZW5kaWFuPXRydWUKcHh3IDE2Cg==
+RUN
+NAME=pxw cfg.bigendian=false (elf64)
+FILE=../bins/elf/analysis/hello-linux-x86_64
+EXPECT64=MHgwMDQwMDQxMCAgMHg4OTQ5ZWQzMSAweDg5NDg1ZWQxIDB4ZTQ4MzQ4ZTIgMHg0OTU0NTBmMCAgMS5JLi5eSC4uSC4uLlBUSQoK
+CMDS64=ZSBjZmcuYmlnZW5kaWFuPWZhbHNlCnB4dyAxNgo=
+RUN
+NAME=pxw cfg.bigendian=false (pe32)
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MCAgMHg4M2U1ODk1NSAweDA0YzcwOGVjIDB4MDAwMDAxMjQgMHhjODE1ZmYwMCAgVS4uLi4uLi4kLi4uLi4uLgoK
+CMDS64=ZSBjZmcuYmlnZW5kaWFuPWZhbHNlCnB4dyAxNgo=
+RUN
+NAME=pxw cfg.bigendian=true (pe32)
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MCAgMHg1NTg5ZTU4MyAweGVjMDhjNzA0IDB4MjQwMTAwMDAgMHgwMGZmMTVjOCAgVS4uLi4uLi4kLi4uLi4uLgoK
+CMDS64=ZSBjZmcuYmlnZW5kaWFuPXRydWUKcHh3IDE2Cg==
+RUN
+NAME=pxw offsets 16
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MAoweDAwNDAxMjkwCgo=
+CMDS64=ZSBoZXguY29scz0xNgpweHcgMzJ+WzBdCg==
+RUN
+NAME=pxw offsets 12
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MAoweDAwNDAxMjhjCjB4MDA0MDEyOTgKCg==
+CMDS64=ZSBoZXguY29scz0xMgpweHcgMzJ+WzBdCg==
+RUN
+NAME=pxw offsets 10
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MAoweDAwNDAxMjhhCjB4MDA0MDEyOTQKMHgwMDQwMTI5ZQoK
+CMDS64=ZSBoZXguY29scz0xMApweHcgMzJ+WzBdCg==
+RUN
+NAME=pxw offsets
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHgwMDQwMTI4MAoweDAwNDAxMjg4CjB4MDA0MDEyOTAKMHgwMDQwMTI5OAoK
+CMDS64=ZSBoZXguY29scz04CnB4dyAzMn5bMF0K
+RUN
+NAME=pxw bytes < 4
+FILE=../bins/pe/hello-mingw32
+EXPECT64=Cg==
+CMDS64=ZSBoZXguY29scz04CnB4dyAyflsxXQo=
+RUN
+NAME=pxw bytes between 4 and 8
+FILE=../bins/pe/hello-mingw32
+EXPECT64=MHg4M2U1ODk1NQpVLi4uCgo=
+CMDS64=ZSBoZXguY29scz04CnB4dyA3flsxXQpweHcgN35bMl0K
+RUN
+NAME=pxq foo-bar
+FILE=-
+EXPECT64=MQoK
+CMDS64=ZiBmb289MTAKZiBiYXI9MgpweHEgZm9vLWJhcn4/Cg==
+RUN
