@@ -37,17 +37,3 @@ EXPECT='00009de404108de2014080e2042181e0
 ff00009de404108de2014080e2042181
 '
 run_test
-
-NAME="presection read with io.sectonly"
-FILE=../bins/mach0/ls-ios
-CMDS='
-e io.sectonly=true
-s 0x8000
-p8 16
-s 0x8000-1
-p8 16
-'
-EXPECT='00009de404108de2014080e2042181e0
-ff00009de404108de2014080e2042181
-'
-run_test

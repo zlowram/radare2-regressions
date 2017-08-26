@@ -225,7 +225,6 @@
 "e io.enforce = 0"
 "e io.ff = true"
 "e io.raw = false"
-"e io.sectonly = false"
 "e io.va = true"
 "e io.vio = false"
 "e key.S = "
