@@ -54,13 +54,11 @@ tools:
 io:
 	$(SHELL) run_tests.sh t.io
 
-asm: asm.8051 asm.arm asm.avr asm.dalvik asm.gb asm.labels asm.java asm.tms320 asm.x86 asm.z80 asm.m68k asm.wasm
+asm: asm.8051 asm.arm asm.avr asm.gb asm.labels asm.java asm.tms320 asm.x86 asm.z80 asm.m68k asm.wasm
 asm.arm:
 	$(SHELL) run_tests.sh t.asm/arm
 asm.avr:
 	$(SHELL) run_tests.sh t.asm/avr
-asm.dalvik:
-	$(SHELL) run_tests.sh t.asm/dalvik
 asm.gb:
 	$(SHELL) run_tests.sh t.asm/gb
 asm.java:
