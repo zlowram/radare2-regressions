@@ -70,14 +70,16 @@ Usage: r2r [options] [file] [name] ([cmds])
       });
     });
     walker.on('end', () => {
-      // Load fuzzed binaries
-      nr.loadFuzz('../bins/fuzzed', (err, data) => {
-        if (err) {
-          console.error(err.message);
-        }
-        nr.quit().then(_ => {
-          console.log('Done');
+      if (!filter) {
+        // Load fuzzed binaries
+        nr.loadFuzz('../bins/fuzzed', (err, data) => {
+          if (err) {
+            console.error(err.message);
+          }
         });
+      }
+      nr.quit().then(_ => {
+        console.log('Done');
       });
     });
   });
