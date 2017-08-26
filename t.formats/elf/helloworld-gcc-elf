@@ -49,7 +49,7 @@ EXPECT='0x00000000 CCu "section 37 va=0x00000000 pa=0x00000000 sz=0 vsz=0 rwx=m-
 0x08049690 CCu "section 22 va=0x08049690 pa=0x00000690 sz=4 vsz=4 rwx=--rw- .got"
 0x08049694 CCu "section 23 va=0x08049694 pa=0x00000694 sz=24 vsz=24 rwx=--rw- .got.plt"
 0x080496ac CCu "section 24 va=0x080496ac pa=0x000006ac sz=8 vsz=8 rwx=--rw- .data"
-0x080496b4 CCu "section 25 va=0x080496b4 pa=0x000006b4 sz=4 vsz=4 rwx=--rw- .bss"
+0x080496b4 CCu "section 25 va=0x080496b4 pa=0x000006b4 sz=0 vsz=4 rwx=--rw- .bss"
 0x08049690 data Cd 4
 0x080496a0 data Cd 4
 0x080496a4 data Cd 4
@@ -313,8 +313,8 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x080496ac 0 section_end..got.plt
 0x080496ac 8 section..data
 0x080496b4 0 section_end..data
-0x080496b4 4 section..bss
-0x080496b8 0 section_end..bss
+0x080496b4 0 section..bss
+0x080496b4 0 section_end..bss
 0x00000000 17 section..comment
 0x00000011 0 section_end..comment
 0x00000000 262 section..shstrtab

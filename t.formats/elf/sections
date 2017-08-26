@@ -34,7 +34,7 @@ idx=21 vaddr=0x006006f8 paddr=0x000006f8 sz=464 vsz=464 perm=--rw- name=.dynamic
 idx=22 vaddr=0x006008c8 paddr=0x000008c8 sz=8 vsz=8 perm=--rw- name=.got
 idx=23 vaddr=0x006008d0 paddr=0x000008d0 sz=48 vsz=48 perm=--rw- name=.got.plt
 idx=24 vaddr=0x00600900 paddr=0x00000900 sz=16 vsz=16 perm=--rw- name=.data
-idx=25 vaddr=0x00600910 paddr=0x00000910 sz=8 vsz=8 perm=--rw- name=.bss
+idx=25 vaddr=0x00600910 paddr=0x00000910 sz=0 vsz=8 perm=--rw- name=.bss
 idx=26 vaddr=0x00000000 paddr=0x00000910 sz=34 vsz=34 perm=----- name=.comment
 idx=27 vaddr=0x00000000 paddr=0x00000940 sz=208 vsz=208 perm=----- name=.debug_aranges
 idx=28 vaddr=0x00000000 paddr=0x00000a10 sz=392 vsz=392 perm=----- name=.debug_info
