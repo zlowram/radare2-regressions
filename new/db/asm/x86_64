@@ -1,2 +1,84 @@
 ad "nop" 90
 ad "ret" c3
+a "add r13, r15" 4d01fd
+a "add r15, rbx" 4901df
+a "add rax, 44" 4883c02c
+a "add rax, r8" 4c01c0
+a "add r10, r9" 4d01ca
+a "add rax, rcx" 4801c8
+aB "and dword [ebp + 128], eax" 48218580000000
+a "call rbx" ffd3
+a "cmp rax, 33" 4883f821
+a "cmp rax, rbx" 4839d8
+a "cmp rbx, rax" 4839c3
+a "cmp rdx, rsi" 4839f2
+a "inc rdx" 48ffc2
+a "jmp rbx" ffe3
+a "lea rax, [rax+0]" 488d00
+a "lea rax, [rax+1]" 488d4001
+a "lea rax, [rax-0]" 488d00
+a "lea rax, [rax-1]" 488d40ff
+a "lea rax, [rax]" 488d00
+aB "lea rax,[rel -10]" 488d06f6ffffff
+aB "lea rax,[rel 0]" 488d0500000000
+aB "lea rax,[rel 10]" 488d050a000000
+aB "lea rax,[rip+0]" 488d0500000000
+aB "lea rax,[rip+10]" 488d050a000000
+aB "lea rax,[rip-0]" 488d0500000000
+aB "lea rax,[rip-10]" 488d05f6ffffff
+aB "lea rax,[rip]" 488d0500000000
+a "mov [rsi], rbx" 48891e
+a "mov rax, 0x1122334455667788" 48b88877665544332211
+aB "mov rax, 0x112233445566778899" 00
+a "mov rax, 3" 48c7c003000000
+a "mov rax, 33" 48c7c021000000
+a "mov rax, [rax+0]" 488b00
+a "mov rax, [rax+1]" 488b4001
+a "mov rax, [rax-0]" 488b00
+a "mov rax, [rax-1]" 488b40ff
+a "mov rax, [rax]" 488b00
+aB "mov rax,[rel -10]" 488b05f6ffffff
+aB "mov rax,[rel 0]" 488b0500000000
+aB "mov rax,[rel 10]" 488b050a000000
+aB "mov rax,[rip+0]" 488b0500000000
+aB "mov rax,[rip+10]" 488b050a000000
+aB "mov rax,[rip-0]" 488b0500000000
+aB "mov rax,[rip-10]" 488b05f6ffffff
+aB "mov rax,[rip]" 488b0500000000
+a "mov rbx, 3" 48c7c303000000
+a "mov edx, [rbp-4]" 8b55fc
+a "mov rbx, rax" 4889c3
+a "mov rcx, -0x1122334455667788" 48b9788899aabbccddee
+aB "mov rcx, -0x112233445566778899" 00
+a "mov rsi, rbx" 4889de
+a "mov rcx, r9" 4c89c9
+a "mov r10, rax" 4989c2
+a "mov r12, r9" 4d89cc
+a "mov rcx, rbp" 4889e9
+aB "mov sil, 0" 40b600
+aB "mov dil, -5" 40b7fb
+aB "mov spl, bpl" 4088ec
+a "pop rax" 58
+aB "prefetcht1 [eax]" 670f1810
+aB "prefetcht1 [rax]" 0f1810
+aB "prefetcht1 byte [eax]" 670f1810
+aB "prefetcht1 byte [rax]" 0f1810
+a "shl rdx, 5" 48c1e205
+a "sub rax, 44" 4883e82c
+a "sub rax, rbx" 4829d8
+a "sub r9, rbx" 4929d9
+a "sub rcx, r10" 4c29d1
+a "sub r12, r11" 4d29dc
+a "test rax, rbx" 4885d8
+a "test rcx, rcx" 4885c9
+a "test rdx, rsi" 4885f2
+a "xor [rax], rax" 483100
+a "xor [rsi], rbx" 48311e
+a "xor rax, rax" 4831c0
+a "xor rdx, rdx" 4831d2
+aB "rep movsd" f3a5
+a "repnz stosd" f2ab
+aB "repz monitor" f30f01c8
+aB "repe vmcall" f30f01c1
+aB "repne sfence" f20faef8
+aB "rep rdpmc" f30f33

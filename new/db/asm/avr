@@ -49,11 +49,3 @@ ad "subi r18, 0xff" 2f5f
 ad "tst r24" 8823
 d "invalid" 0e
 d "call 0x16" 0e940b00 0x2d0
-d "brcc" 08f4 0x4
-a "brne" 9f40 0x6
-a "brpl" 0af4 0x8
-a "brvc" 0bf4 0xa
-a "brge" 0cf4 0xc
-a "brhc" 0df4 0xe 
-a "brtc" 0ef4 0x10
-a "brid" 0ff4 0x12
