@@ -11,9 +11,9 @@ run_test
 
 NAME='x86 - init_array detection'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
-CMDS='S~init_array
+CMDS='iS~init_array
 '
-EXPECT='[17] . 0x0000059c -rw- va=0x0804959c sz=0x0004 vsz=0x0004 .init_array
+EXPECT='idx=18 vaddr=0x0804959c paddr=0x0000059c sz=4 vsz=4 perm=--rw- name=.init_array
 '
 run_test
 
@@ -90,7 +90,7 @@ CCu base64:c2VjdGlvbiAzNCB2YT0weDA4MDQ5NWE4IHBhPTB4MDAwMDA1YTggc3o9MjMyIHZzej0yM
 CCu base64:c2VjdGlvbiAyMiB2YT0weDA4MDQ5NjkwIHBhPTB4MDAwMDA2OTAgc3o9NCB2c3o9NCByd3g9LS1ydy0gLmdvdA== @ 0x08049690
 CCu base64:c2VjdGlvbiAyMyB2YT0weDA4MDQ5Njk0IHBhPTB4MDAwMDA2OTQgc3o9MjQgdnN6PTI0IHJ3eD0tLXJ3LSAuZ290LnBsdA== @ 0x08049694
 CCu base64:c2VjdGlvbiAyNCB2YT0weDA4MDQ5NmFjIHBhPTB4MDAwMDA2YWMgc3o9OCB2c3o9OCByd3g9LS1ydy0gLmRhdGE= @ 0x080496ac
-CCu base64:c2VjdGlvbiAyNSB2YT0weDA4MDQ5NmI0IHBhPTB4MDAwMDA2YjQgc3o9NCB2c3o9NCByd3g9LS1ydy0gLmJzcw== @ 0x080496b4
+CCu base64:c2VjdGlvbiAyNSB2YT0weDA4MDQ5NmI0IHBhPTB4MDAwMDA2YjQgc3o9MCB2c3o9NCByd3g9LS1ydy0gLmJzcw== @ 0x080496b4
 Cd 4 @ 0x08049690
 Cd 4 @ 0x080496a0
 Cd 4 @ 0x080496a4
@@ -164,7 +164,7 @@ NAME='p-'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='p-
 '
-EXPECT='0x8048000 [c_ccs^sszcs_____________________________sss] 0x80496b8
+EXPECT='0x8048300 [^ssz_s______________________________ssss___] 0x80498be
 '
 run_test
 
