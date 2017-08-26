@@ -409,11 +409,7 @@ class NewRegressions {
     if (test.lifetime === undefined) {
       test.lifetime = '';
     }
-    if (process.env.NOOK) {
-      if (status !== colors.green('OK')) {
-        console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
-      }
-    } else {
+    if ((process.env.NOOK && status !== colors.green('OK')) || !process.env.NOOK) {
       console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
     }
     return test.passes;
@@ -477,10 +473,8 @@ function parseTestAsm (source, line) {
   let type = args[0];
   let asm = args[1].split('"').join('');
   let expect = args[2];
-  let baddr = null;
   if (args.length >= 4) {
-    baddr = args[3];
-    r2args.push('s ' + baddr);
+    r2args.push('s ' + args[3]);
   }
 
   /* Generate tests */
@@ -491,13 +485,13 @@ function parseTestAsm (source, line) {
       case 'd':
         t.cmd = 'pad ' + expect;
         t.expect = asm;
-        t.name = filename + ': ' + expect + ' => "' + asm + '"';
+        t.name = filename + ': ' + expect + ' => "' + asm + '"' + colors.blue(' (disassemble)');
         tests.push(t);
         break;
       case 'a':
         t.cmd = 'pa ' + asm;
         t.expect = expect;
-        t.name = filename + ': "' + asm + '" => ' + expect;
+        t.name = filename + ': "' + asm + '" => ' + expect + colors.blue(' (assemble)');
         tests.push(t);
         break;
       default:
