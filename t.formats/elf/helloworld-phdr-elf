@@ -6,9 +6,9 @@ IGNORE_ERR=1
 CMDS='
 S
 '
-EXPECT='[00] * 0x00000000 mr-x va=0x08048000 sz=0x0100 vsz=0x0100 LOAD0
-[01] . 0x00000130 mrwx va=0x08049130 sz=0x0100 vsz=0x0100 LOAD1
-[02] . 0x00000000 mrw- va=0x08048000 sz=0x0034 vsz=0x0034 ehdr
+EXPECT='[00:00] * pa=0x00000000 mr-x va=0x08048000 sz=0x0100 vsz=0x0100 LOAD0
+[01:00] . pa=0x00000130 mrwx va=0x08049130 sz=0x0100 vsz=0x0100 LOAD1
+[02:00] . pa=0x00000000 mrw- va=0x08048000 sz=0x0034 vsz=0x0034 ehdr
 '
 
 run_test
