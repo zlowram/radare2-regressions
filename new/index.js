@@ -464,7 +464,6 @@ function parseTestAsm (source, line) {
     return [];
   } else if (filename.length == 2) {
     r2args.push('e asm.bits=' + filename[1]);
-    r2args.push('e asm.cpu=x86');
   } else if (filename.length == 3) {
     r2args.push('e asm.cpu=' + filename[1]);
     r2args.push('e asm.bits=' + filename[2]);
@@ -476,6 +475,8 @@ function parseTestAsm (source, line) {
   let expect = args[2];
   if (args.length >= 4) {
     r2args.push('s ' + args[3]);
+  } else {
+    r2args.push('s 0');
   }
 
   /* Generate tests */
