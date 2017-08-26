@@ -49,48 +49,6 @@ mov r0, 33
 run_test
 
 NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa blx 0xfb000134 @ 0xfb00048a"
-EXPECT='fff754ee'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa blx 0x22211C @ 0x00005CE4"
-EXPECT='1cf21aea'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa bl 0xF4001260 @ 0xF40003B2"
-EXPECT='00f055ff'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa blx 0xF4002A6C @ 0xF40003A0"
-EXPECT='02f064eb'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa bl 0xF4002862 @ 0xF40028F6"
-EXPECT='fff7b4ff'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
-BROKEN=1
-ARGS="-a arm -b 16"
-CMDS="pa blx 0xF4002AF4 @ 0xF40006E4"
-EXPECT='02f006ea'
-run_test
-
-NAME="${PLUGIN}: arm-thumb-mclass"
 BROKEN=
 ARGS="-a arm -b 16"
 CMDS="pa b lr"
