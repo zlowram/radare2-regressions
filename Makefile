@@ -82,7 +82,7 @@ asm.m68k:
 asm.wasm:
 	$(SHELL) run_tests.sh t.asm/wasm
 
-anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.6502 anal.8051
+anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.ppc anal.6502 anal.8051
 anal.arc:
 	$(SHELL) run_tests.sh t.anal/arc
 anal.arm:
@@ -99,6 +99,8 @@ anal.x86:
 	$(SHELL) run_tests.sh t.anal/x86
 anal.others:
 	$(SHELL) run_tests.sh t.anal/others_anal
+anal.ppc:
+	$(SHELL) run_tests.sh t.anal/ppc
 anal.6502:
 	$(SHELL) run_tests.sh t.anal/6502
 anal.8051:
