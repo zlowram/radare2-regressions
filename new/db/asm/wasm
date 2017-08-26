@@ -1,0 +1,14 @@
+d "trap" 00
+d "nop" 01
+d "block" 0240
+d "loop" 0340
+d "if" 0440
+d "else" 05
+d "end" 0b
+d "br 0" 0c00
+d "return" 0f
+d "call 3" 1003
+dB "call_indirect 0 0" 11000
+d "drop" 1a
+d "select" 1b
+d "get_local 7" 2007
