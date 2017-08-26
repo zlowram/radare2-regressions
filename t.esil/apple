@@ -7,6 +7,7 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 NAME='iphone-arm-esil tests'
 FILE=../bins/mach0/FileDP
 CMDS='s main
+aei
 aeim
 e asm.emu=true
 e asm.emustr=false
@@ -71,6 +72,7 @@ run_test
 NAME='sectonly esil stack'
 FILE=../bins/mach0/FileDP
 CMDS='s main
+aei
 aeim
 e asm.emu=true
 e asm.emustr=true
