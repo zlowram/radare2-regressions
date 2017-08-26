@@ -49,7 +49,7 @@ fd       42
 file     malloc://1025
 format   any
 iorw     true
-mode     -rw-
+mode     -rwx
 size     0x401
 humansz  1K
 binsz    1025
@@ -133,7 +133,7 @@ fd       42
 file     malloc://1024
 format   any
 iorw     true
-mode     -rw-
+mode     -rwx
 size     0x400
 humansz  1K
 e cfg.bigendian=false
@@ -174,7 +174,7 @@ block    0x100
 file     ../bins/elf/analysis/x86-helloworld-gcc
 format   elf
 iorw     false
-mode     -r--
+mode     -r-x
 size     0x1323
 humansz  4.8K
 type     EXEC (Executable file)
@@ -259,7 +259,7 @@ fd       42
 file     malloc://1024
 format   java
 iorw     true
-mode     -rw-
+mode     -rwx
 size     0x400
 humansz  1K
 type     JAVA CLASS
@@ -559,7 +559,7 @@ block    0x100
 file     ../bins/elf/analysis/hello-linux-x86_64
 format   elf64
 iorw     false
-mode     -r--
+mode     -r-x
 size     0x1a36
 humansz  6.6K
 type     EXEC (Executable file)
@@ -884,7 +884,7 @@ EXPECT='blksz    0x0
 block    0x100
 fd       42
 iorw     false
-mode     -r--
+mode     -r-x
 size     0x1a36
 humansz  6.6K
 '
