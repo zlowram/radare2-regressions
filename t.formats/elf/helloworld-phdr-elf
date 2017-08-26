@@ -7,8 +7,7 @@ CMDS='
 S
 '
 EXPECT='[00:00] * pa=0x00000000 mr-x va=0x08048000 sz=0x0100 vsz=0x0100 LOAD0
-[01:00] . pa=0x00000130 mrwx va=0x08049130 sz=0x0100 vsz=0x0100 LOAD1
-[02:00] . pa=0x00000000 mrw- va=0x08048000 sz=0x0034 vsz=0x0034 ehdr
+[00:01] . pa=0x00000130 mrwx va=0x08049130 sz=0x0100 vsz=0x0100 LOAD1
 '
 
 run_test
