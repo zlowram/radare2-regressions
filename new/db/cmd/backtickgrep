@@ -1,0 +1,5 @@
+NAME=t/backtickgrep
+FILE=-
+EXPECT64=MHgwCndvcmtzCgo=
+CMDS64=P3YgYGl+c2l6ZVsxXWAtJHM7PyEgP2Ugd29ya3MK
+RUN

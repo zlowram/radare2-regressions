@@ -1,0 +1,5 @@
+NAME=t/bug_backtick
+FILE=-
+EXPECT64=MDAwMDAwCgo=
+CMDS64=cDggM2B+YAoK
+RUN

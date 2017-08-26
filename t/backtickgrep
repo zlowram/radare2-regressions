@@ -1,9 +1,0 @@
-#!/bin/sh
-[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
-
-CMDS='?v `i~size[1]`-$s;?! ?e works'
-EXPECT='0x0
-works
-'
-
-run_test
