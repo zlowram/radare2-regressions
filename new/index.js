@@ -455,28 +455,31 @@ function createTemporaryFile () {
 
 function parseTestAsm (source, line) {
   /* Parse first argument */
+  let r2args = [];
   let args = line.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
   if (args.length < 3) {
     console.error(colors.red.bold('[XX]', 'Wrong test format in ' + source + ':' + line));
     return [];
   }
+  let filetree = source.split(path.sep);
+  const filename = filetree[filetree.length - 1].split('_');
+  if (filename.length > 3) {
+    console.error(colors.red.bold('[XX]', 'Wrong filename: ' + source));
+    return [];
+  } else if (filename.length == 2) {
+    r2args.push('e asm.bits=' + filename[1]);
+  } else if (filename.length == 3) {
+    r2args.push('e asm.cpu=' + filename[1]);
+    r2args.push('e asm.bits=' + filename[2]);
+  }
+  r2args.push('e asm.arch=' + filename[0]);
+
   let type = args[0];
   let asm = args[1].split('"').join('');
   let expect = args[2];
   let baddr = null;
   if (args.length >= 4) {
     baddr = args[3];
-  }
-
-  let arch_suffix = '';
-  let tmp = source.split(path.sep);
-  let r2args = [];
-  const arch = tmp[tmp.length -1].split('_');
-  if (arch.length > 1) {
-    r2args.push('e asm.bits=' + arch[1]);
-  }
-  r2args.push('e asm.arch=' + arch[0]);
-  if (baddr) {
     r2args.push('s ' + baddr);
   }
 
@@ -488,13 +491,13 @@ function parseTestAsm (source, line) {
       case 'd':
         t.cmd = 'pad ' + expect;
         t.expect = asm;
-        t.name = arch + ': ' + expect + ' => "' + asm + '"';
+        t.name = filename + ': ' + expect + ' => "' + asm + '"';
         tests.push(t);
         break;
       case 'a':
         t.cmd = 'pa ' + asm;
         t.expect = expect;
-        t.name = arch + ': "' + asm + '" => ' + expect;
+        t.name = filename + ': "' + asm + '" => ' + expect;
         tests.push(t);
         break;
       default:

@@ -43,7 +43,11 @@ Example tests for `db/asm/*`:
 	aB "nop" 90
 	dB "nop" 90
 
-	The filename is very important. It is used to tell radare which architecture to use.
+        The filename is very important. It is used to tell radare which architecture to use.
+
+        Format:
+        arch[[_cpu]_bits]
 
 	Example:
 	x86_32 means -a x86 -b 32
+        arm_v7_64 means what it means
