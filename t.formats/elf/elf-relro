@@ -4,9 +4,9 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 NAME='ELF: corkami elf-relro - sections'
 FILE=../../bins/elf/analysis/elf-relro
 ARGS=''
-CMDS="S~rel"
-EXPECT='[00:08] . pa=0x0000027c -r-- va=0x0804827c sz=0x0008 vsz=0x0008 .rel.dyn
-[00:09] . pa=0x00000284 -r-- va=0x08048284 sz=0x0010 vsz=0x0010 .rel.plt
+CMDS="iS~rel"
+EXPECT='idx=09 vaddr=0x0804827c paddr=0x0000027c sz=8 vsz=8 perm=--r-- name=.rel.dyn
+idx=10 vaddr=0x08048284 paddr=0x00000284 sz=16 vsz=16 perm=--r-- name=.rel.plt
 '
 run_test
 
