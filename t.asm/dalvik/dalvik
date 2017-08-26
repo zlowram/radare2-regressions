@@ -24,13 +24,13 @@ PLUGIN=dalvik
 test_vector "${PLUGIN}" "nop" 0000
 test_vector "${PLUGIN}" "move v0, v1" 0110
 test_vector "${PLUGIN}" "move/from16 v0, v25" 02001900
-test_vector "${PLUGIN}" "move/16 v0, v0" 03000000
-test_vector "${PLUGIN}" "move-wide v0, v0" 04000000
+test_vector "${PLUGIN}" "move/16 v0, v0" 030000000000
+test_vector "${PLUGIN}" "move-wide v0, v0" 0400
 test_vector "${PLUGIN}" "move-wide/from16 v22, v0" 05160000
-test_vector "${PLUGIN}" "move-wide/16 v0, v0" 06000000
+test_vector "${PLUGIN}" "move-wide/16 v0, v0" 060000000000
 test_vector "${PLUGIN}" "move-object v1, v8" 0781
 test_vector "${PLUGIN}" "move-object/from16 v1, v21" 08011500
-test_vector "${PLUGIN}" "move-object/16 v0, v0" 0900
+test_vector "${PLUGIN}" "move-object/16 v0, v0" 090000000000
 test_vector "${PLUGIN}" "move-result v0" 0A00
 test_vector "${PLUGIN}" "move-result-wide v2" 0B02
 test_vector "${PLUGIN}" "move-result-object v0" 0C00
@@ -48,13 +48,13 @@ test_vector "${PLUGIN}" "const-wide/32 v2:v3, 0x00bc614e" 17024e61bc00 # const-w
 test_vector "${PLUGIN}" "const-wide v2:v3, 0x2bdc545d6b4b87" 1802874b6b5d54dc2b00 # const-wide  v2:v3, 0x2BDC545D6B4B87
 test_vector "${PLUGIN}" "const-wide/high16 v0:v1, 0x40240000" 19002440 #const-wide/high16 v0:v1, 0x4024000000000000
 test_vector "${PLUGIN}" "const-string v8, string+0" 1A080000
-test_vector "${PLUGIN}" "const-string/jumbo v8, string+0" 1B080000
+test_vector "${PLUGIN}" "const-string/jumbo v8, string+0" 1B0800000000
 test_vector "${PLUGIN}" "const-class v0, class+1" 1C000100
-test_vector "${PLUGIN}" "monitor-enter v3" 1D030000
-test_vector "${PLUGIN}" "monitor-exit v3" 1E030000
+test_vector "${PLUGIN}" "monitor-enter v3" 1D03
+test_vector "${PLUGIN}" "monitor-exit v3" 1E03
 test_vector "${PLUGIN}" "check-cast v4, class+1" 1F040100
 test_vector "${PLUGIN}" "instance-of v0, v4, class+1" 20400100
-test_vector "${PLUGIN}" "array-length v1, v1" 21110000
+test_vector "${PLUGIN}" "array-length v1, v1" 2111
 test_vector "${PLUGIN}" "new-instance v0, class+1" 22000100
 test_vector "${PLUGIN}" "new-array v2, v1, class+1" 23120100
 test_vector "${PLUGIN}" "filled-new-array {v0, v0}, class+1" 242001000000
@@ -65,7 +65,7 @@ test_vector "${PLUGIN}" "check-cast v3, class+2" 1F030200
 test_vector "${PLUGIN}" "check-cast v5, class+256" 1F050001
 test_vector "${PLUGIN}" "goto 0xffffffffffffffe0" 28F0 # goto 0005 // -0010
 test_vector "${PLUGIN}" "goto/16 0xfffffffffffffc1e" 29000FFE # goto/16 002f // -01f1
-test_vector "${PLUGIN}" "goto/32 0x0001fc1e" 2A000FFE # goto/32 002f // -01f1
+test_vector "${PLUGIN}" "goto/32 0x0001fc1e" 2A000FFE0000 # goto/32 002f // -01f1
 test_vector "${PLUGIN}" "packed-switch v2, 0x0000000c" 2B020C000000
 test_vector "${PLUGIN}" "sparse-switch v2, 0x0000000c" 2C020c000000
 test_vector "${PLUGIN}" "cmpl-float v0, v6, v7" 2D000607
@@ -255,5 +255,5 @@ test_vector "${PLUGIN}" "invoke-polymorphic {v3, v2, v5}, method+4124, proto+351
 test_vector "${PLUGIN}" "invoke-polymorphic {v0, v1, v2}, method+12, proto+6" FA300C0010020600
 test_vector "${PLUGIN}" "invoke-custom/range {v6..v9}, call_site+3091" FD04130C0600
 test_vector "${PLUGIN}" "invoke-custom {v0, v1}, call_site+0" FC2000001000
-test_vector "${PLUGIN}" "invoke-polymorphic/range  {v16..v21}, method+46, proto+15" FB062E0010000F00
+test_vector "${PLUGIN}" "invoke-polymorphic/range {v16..v21}, method+46, proto+15" FB062E0010000F00
 test_vector "${PLUGIN}" "+invoke-virtual-quick/range {v0..v5}, [001b]" F9061B000000
