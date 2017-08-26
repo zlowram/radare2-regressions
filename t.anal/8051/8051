@@ -1,0 +1,119 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+# Tests jump analysis
+test_jump() {
+NAME="${1}: [${2}] - jump check"
+FILE=malloc://10000
+if [ "${5}" = "br" ]; then
+	BROKEN=1
+fi
+CMDS='
+e asm.arch='${1}'
+s 0x1200
+wx '${3}'
+ao 1~jump
+'
+EXPECT="jump: ${4}
+"
+run_test
+}
+
+# Tests opcode length
+test_length() {
+NAME="${1}: [${2}] - length check"
+FILE=malloc://32
+if [ "${5}" = "br" ]; then
+	BROKEN=1
+fi
+CMDS='
+e asm.arch='${1}'
+wx '${3}'
+ao 1~size
+'
+EXPECT="size: ${4}
+"
+run_test
+}
+
+PLUGIN=8051
+
+# -------------------------------
+# bitness check
+NAME="8051: checking bitness (asm.bits)"
+FILE=malloc://32
+CMDS='
+e asm.arch=8051
+e asm.bits
+'
+EXPECT='8
+'
+run_test
+
+# -------------------------------
+# bitness writing check
+NAME="8051: checking bitness writing (asm.bits)"
+BROKEN=
+FILE=malloc://32
+CMDS='
+e asm.arch=8051
+e asm.bits=8
+'
+EXPECT=''
+run_test
+
+# ACALL
+test_jump   "${PLUGIN}"	"ACALL addr11"	f123	"0x00001723"
+# AJMP
+test_jump   "${PLUGIN}"	"AJMP addr11"	e123	"0x00001723"
+# CJNE
+test_jump   "${PLUGIN}"	"CJNE a,imm,offs" b4ab13 "0x00001216"
+test_jump   "${PLUGIN}"	"CJNE a,dir,offs" b56018 "0x0000121b"
+test_jump   "${PLUGIN}"	"CJNE @r1,imm,offs" b72432 "0x00001235"
+test_jump   "${PLUGIN}"	"CJNE r7,imm,offs" bf0205 "0x00001208"
+# DJNZ
+test_jump   "${PLUGIN}"	"DJNZ dir,offs"	d54088	"0x0000118b"
+test_jump   "${PLUGIN}"	"DJNZ r0,offs"	d8fc	"0x000011fe"
+test_length "${PLUGIN}"	"DJNZ r0,offs"	d8fc	"2"
+test_length "${PLUGIN}" "DJNZ r7,offs"	dffa	"2"
+# JB
+test_jump   "${PLUGIN}"	"JB bit,offs"	207d03	"0x00001206"
+# JBC
+test_jump   "${PLUGIN}"	"JBC bit,offs"	101508	"0x0000120b"
+# JC
+test_jump   "${PLUGIN}"	"JC offs"	4003	"0x00001205"
+# JNB
+test_jump   "${PLUGIN}"	"JNB bit,offs"	305108	"0x0000120b"
+# JNC
+test_jump   "${PLUGIN}"	"JNC offs"	5007	"0x00001209"
+# JNZ
+test_jump   "${PLUGIN}"	"JNZ offs"	7013	"0x00001215"
+# JZ
+test_jump "${PLUGIN}"	"JZ offs"	6015	"0x00001217"
+# LCALL
+test_jump "${PLUGIN}"	"LCALL add16"	12b6cf	"0x0000b6cf"
+# LJMP
+test_jump "${PLUGIN}"	"LJMP addr16"	022c0d	"0x00002c0d"
+# SJMP
+test_jump "${PLUGIN}"	"SJMP offs"	8014	"0x00001216"
+# SUBB
+
+
+# -------------------------------
+# 8051 instruction length
+NAME="8051 instruction length"
+FILE=malloc://32
+BROKEN=
+CMDS='
+e asm.arch=8051
+wx 30450d @ 0
+wx d268 @ 3
+wx ef @ 3+2
+ao 3~size
+'
+EXPECT='size: 3
+size: 2
+size: 1
+'
+run_test
+
