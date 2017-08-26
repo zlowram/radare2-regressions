@@ -54,7 +54,7 @@ tools:
 io:
 	$(SHELL) run_tests.sh t.io
 
-asm: asm.8051 asm.arc asm.arm asm.avr asm.cr16 asm.dalvik asm.ebc asm.gb asm.h8300 asm.labels asm.java asm.mips asm.msp430	asm.tms320 asm.x86 asm.z80 asm.pic18c asm.m68k asm.wasm
+asm: asm.8051 asm.arc asm.arm asm.avr asm.cr16 asm.dalvik asm.ebc asm.gb asm.h8300 asm.labels asm.java asm.mips asm.tms320 asm.x86 asm.z80 asm.pic18c asm.m68k asm.wasm
 asm.arc:
 	$(SHELL) run_tests.sh t.asm/arc
 asm.arm:
@@ -77,8 +77,6 @@ asm.labels:
 	$(SHELL) run_tests.sh t.asm/labels
 asm.mips:
 	$(SHELL) run_tests.sh t.asm/mips
-asm.msp430:
-	$(SHELL) run_tests.sh t.asm/msp430
 asm.tms320:
 	$(SHELL) run_tests.sh t.asm/tms320
 asm.x86:
