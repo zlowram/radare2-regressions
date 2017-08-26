@@ -14,7 +14,7 @@ pi 1
 '
 EXPECT="${4}
 "
-run_test
+echo "d \"${4}\" ${3}" 
 }
 
 PLUGIN=v810

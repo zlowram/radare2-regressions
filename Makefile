@@ -81,8 +81,6 @@ asm.msp430:
 	$(SHELL) run_tests.sh t.asm/msp430
 asm.tms320:
 	$(SHELL) run_tests.sh t.asm/tms320
-asm.v810:
-	$(SHELL) run_tests.sh t.asm/v810
 asm.x86:
 	$(SHELL) run_tests.sh t.asm/x86
 asm.z80:
