@@ -227,6 +227,7 @@ ARGS=
 CMDS='e bin.baddr=0x00
 e asm.calls=false
 ib
+o 3
 e io.va=0
 pi 1
 ?p
