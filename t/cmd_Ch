@@ -1,0 +1,12 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='Ch offset'
+FILE='malloc://1024'
+CMDS='
+Ch 1024
+pD 1024
+'
+EXPECT="            0x00000000 (1024 bytes hidden)
+"
+run_test
