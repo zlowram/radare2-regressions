@@ -265,7 +265,7 @@ d "mov dword fs:[eax], eax" 648900
 d "mov dword gs:[eax], eax" 658900
 d "mov dword ss:[eax], eax" 368900
 d "mov eax, 0" b800000000
-dB "mov eax, cr0" 0f2000
+d "mov eax, cr0" 0f2000
 d "mov eax, dr0" 0f2100
 d "mov cr0, eax" 0f2200
 d "mov eax, dword [0]" a100000000
@@ -1564,8 +1564,8 @@ aB "movshdup xmm0, xmmword [eax]" f30f1600
 aB "movsldup xmm0, xmmword [eax]" f30f1200
 aB "movss dword [eax], xmm0" f30f1100
 aB "movss xmm0, dword [eax]" f30f1000
-aB "movsx eax, byte [eax]" 0fbe00
-aB "movsx eax, word [eax]" 0fbf00
+a "movsx eax, byte [eax]" 0fbe00
+a "movsx eax, word [eax]" 0fbf00
 aB "movupd xmm0, xmmword [eax]" 660f1000
 aB "movupd xmmword [eax], xmm0" 660f1100
 aB "movups xmm0, xmmword [eax]" 0f10
