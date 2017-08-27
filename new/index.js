@@ -417,8 +417,8 @@ class NewRegressions {
 
   checkTestResult (test) {
     if (!this.checkTest(test)) {
-      /* Do not show diff if TRAVIS and if test is broken */
-      if (process.env.TRAVIS && test.broken) {
+      /* Do not show diff if TRAVIS or APPVEYOR and if test is broken */
+      if ((process.env.TRAVIS || process.env.APPVEYOR) && test.broken) {
         return;
       }
       console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
