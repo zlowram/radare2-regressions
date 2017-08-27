@@ -1,0 +1,25 @@
+NAME=test $alias
+FILE=-
+EXPECT64=aGVsbG8KCg==
+CMDS64=JGZvbz0/ZSBoZWxsbwokZm9vCgo=
+RUN
+NAME=test $alias quotes
+FILE=-
+EXPECT64=aGVsbG8Kd29ybGQKCg==
+CMDS64=IiRmb289P2UgaGVsbG87P2Ugd29ybGQiCiRmb28KCg==
+RUN
+NAME=test $alias args
+FILE=-
+EXPECT64=aGVsbG8gd29ybGQKCg==
+CMDS64=JGZvbz0hZWNobyBoZWxsbwokZm9vIHdvcmxkCgo=
+RUN
+NAME=list $alias
+FILE=-
+EXPECT64=JGZvbwokYmFyCgo=
+CMDS64=JGZvbz1hCiRiYXI9YgokCgo=
+RUN
+NAME=delete $alias
+FILE=-
+EXPECT64=JGZvbwoK
+CMDS64=JGZvbz1hCiRiYXI9YgokYmFyPQokCgo=
+RUN

@@ -6,7 +6,8 @@
 #TESTS+=t/cmd_i
 #TESTS+=t/cmd_json
 #TESTS+=t/cmd_open
-TESTS+=t/bug_backtick
+TESTS+=t/noreturn
+
 
 
 all:

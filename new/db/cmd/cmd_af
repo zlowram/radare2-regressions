@@ -1,0 +1,6 @@
+NAME=af import
+FILE=../bins/mach0/ls-osx-x86_64
+BROKEN=1
+EXPECT64=YmVmb3JlOgoK
+CMDS64=cyBzeW0uaW1wLndyaXRlCmFmCj92ICRGUwoK
+RUN

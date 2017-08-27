@@ -1,0 +1,33 @@
+NAME=/ search.in=io.maps without -m
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDA4MDA1MwoweDAwMDgwMDY3Cgo=
+ARGS=-m 0x80000
+CMDS64=CmUgc2VhcmNoLmluPWlvLm1hcHMKZSBpby52YT10cnVlCi8gZ2V0flswXQoK
+RUN
+NAME=/ search.in=io.maps without -m
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDAwMDA1MwoweDAwMDAwMDY3Cgo=
+CMDS64=CmUgc2VhcmNoLmluPWlvLm1hcHMKLyBnZXR+WzBdCgo=
+RUN
+NAME=/ search.in=(default)
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDAwMDA1MwoweDAwMDAwMDY3Cgo=
+CMDS64=Ci8gZ2V0flswXQoK
+RUN
+NAME=/ search.in=file
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDAwMDA1MwoweDAwMDAwMDY3Cgo=
+CMDS64=CmUgc2VhcmNoLmluPWZpbGUKLyBnZXR+WzBdCgo=
+RUN
+NAME=/ search io.maps with map
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDA4MDA1MwoweDAwMDgwMDY3Cgo=
+ARGS=-m 0x80000
+CMDS64=CmUgc2VhcmNoLmluPWlvLm1hcHMKZSBpby52YT10cnVlCi8gZ2V0flswXQoK
+RUN
+NAME=/ search io.maps 2
+FILE=../bins//wasm/inc.wast
+EXPECT64=MHgwMDA4MDA1MwoweDAwMDgwMDY3CjB4MDA0MDAwNTMKMHgwMDQwMDA2NwoK
+ARGS=-m 0x80000
+CMDS64=Cm9tIC4uL2JpbnMvd2FzbS9pbmMud2FzdCAweDQwMDAwMAplIGlvLnZhPXRydWUKZSBzZWFyY2guaW49aW8ubWFwcwovIGdldH5bMF0KCg==
+RUN

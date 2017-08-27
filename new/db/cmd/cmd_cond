@@ -1,0 +1,40 @@
+NAME=condition 33??
+FILE=-
+EXPECT64=d2luCgo=
+CMDS64=Pz0gMzMKPz8gP2Ugd2luCgo=
+RUN
+NAME=condition 33?!
+FILE=-
+EXPECT64=Cg==
+CMDS64=Pz0gMzMKPyEgP2Ugd2luCgo=
+RUN
+NAME=condition 0??
+FILE=-
+EXPECT64=Cg==
+CMDS64=Pz0gMAo/PyA/ZSB3aW4KCg==
+RUN
+NAME=condition 0?!
+FILE=-
+EXPECT64=d2luCgo=
+CMDS64=Pz0gMAo/ISA/ZSB3aW4KCg==
+RUN
+NAME=oneline condition 33??
+FILE=-
+EXPECT64=d2luCgo=
+CMDS64=Pz0gMzM7Pz8gP2Ugd2luCgo=
+RUN
+NAME=oneline condition 33?!
+FILE=-
+EXPECT64=Cg==
+CMDS64=Pz0gMzM7PyEgP2Ugd2luCgo=
+RUN
+NAME=oneline condition 0?!
+FILE=-
+EXPECT64=d2luCgo=
+CMDS64=Pz0gMDs/ISA/ZSB3aW4KCg==
+RUN
+NAME=oneline condition 0??
+FILE=-
+EXPECT64=Cg==
+CMDS64=Pz0gMDs/PyA/ZSB3aW4KCg==
+RUN

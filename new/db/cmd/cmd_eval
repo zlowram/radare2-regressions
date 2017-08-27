@@ -1,0 +1,20 @@
+NAME=et
+FILE=-
+EXPECT64=Ym9vbAppbnQKc3RyCmFkZHIKCg==
+CMDS64=ZXQgYXNtLnNsb3cKZXQgYXNtLmJpdHMKZXQgYXNtLmFyY2gKZXQgc2VhcmNoLmZyb20KCg==
+RUN
+NAME=e asm.os
+FILE=../bins/elf/analysis/hello-linux-x86_64
+EXPECT64=aW9zCmRvcwpkYXJ3aW4KbGludXgKZnJlZWJzZApvcGVuYnNkCm5ldGJzZAp3aW5kb3dzCgo=
+CMDS64=ZSBhc20ub3M9PwoK
+RUN
+NAME=e asm.cpu
+FILE=../bins/elf/analysis/hello-linux-x86_64
+EXPECT64=bWlwczMyLzY0Cm1pY3JvCnI2CnYzCnYyCgo=
+CMDS64=ZSBhc20uYXJjaD1taXBzCmUgYXNtLmNwdT0/Cgo=
+RUN
+NAME=e asm.syntax
+FILE=-
+EXPECT64=am1wIDEwaAoK
+CMDS64=d3ggZWIwZQplIGFzbS5hcmNoPXg4NgplIGFzbS5zeW50YXg9bWFzbQpwaSAxCgo=
+RUN
