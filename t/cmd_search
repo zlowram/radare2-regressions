@@ -29,6 +29,7 @@ FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 BROKEN=
 CMDS='
+e io.va = false
 s 0
 e search.from = 0
 e search.to = 0x00000050
@@ -43,6 +44,7 @@ FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 BROKEN=
 CMDS='
+e io.va = false
 s 0x1000
 e search.from = 0
 e search.to = 0x00000050
@@ -132,6 +134,7 @@ NAME='/a search from/to (seek 0)'
 FILE='../bins/elf/ioli/crackme0x00'
 ARGS=-n
 CMDS='
+e io.va = false
 s 0
 e search.from = 0
 e search.to = 0x50
@@ -146,6 +149,7 @@ NAME='/a search from/to (seek 0)'
 FILE='../bins/elf/ioli/crackme0x00'
 ARGS=-n
 CMDS='
+e io.va = false
 s 0
 e search.from = 0
 e search.to = 0x50
@@ -174,6 +178,7 @@ NAME='/a search from/to (seek beyond data)'
 FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 CMDS='
+e io.va = false
 s 0x1000
 e search.from = 0
 e search.to = 0x00000050
@@ -188,6 +193,7 @@ NAME='/x search from/to (seek beyond data)'
 FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 CMDS='
+e io.va = false
 s 0x1000
 e search.from = 0
 e search.to = 0x00000050
@@ -215,6 +221,7 @@ FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 BROKEN=
 CMDS='
+e io.va = false
 s 0
 e search.from = 0
 e search.to = 0x00000050
@@ -230,6 +237,7 @@ FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 BROKEN=
 CMDS='
+e io.va = false
 s 0x1000
 e search.from = 0
 e search.to = 0x00000050
@@ -312,6 +320,7 @@ NAME='/m search from/to (seek 0)'
 FILE='../bins/pe/standard.exe'
 ARGS=
 CMDS='
+e io.va = false
 s 0
 e search.from = 0
 e search.to = 0x10
@@ -325,6 +334,7 @@ NAME='/m search from/to (seek beyond data)'
 FILE='../bins/pe/standard.exe'
 ARGS=
 CMDS='
+e io.va = false
 s 0x1000
 e search.from = 0
 e search.to = 0x10
@@ -382,6 +392,7 @@ NAME='/m search seek'
 FILE='../bins/pe/standard.exe'
 ARGS=
 CMDS='
+e io.va = false
 s 0x1000
 /m
 s
@@ -394,6 +405,7 @@ NAME='/x search seek'
 FILE='../bins/pe/standard.exe'
 ARGS=
 CMDS='
+e io.va = false
 s 0x1000
 /x 9090cd80
 s
