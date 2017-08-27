@@ -9,6 +9,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 20000200
+aei
+aeim
+aeip
 aes
 ar zero
 '
@@ -24,6 +27,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 20280200
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -40,6 +46,9 @@ ar > /dev/null
 ar v0=0xFFFFFFFF
 ar v1=0x5
 wx 20284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -54,6 +63,9 @@ e asm.arch=mips
 e asm.bits=32
 ar > /dev/null
 wx 05000020
+aei
+aeim
+aeip
 aes
 ar zero
 '
@@ -69,6 +81,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 05000520
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -84,6 +99,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx fbff0520
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -99,6 +117,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=6
 wx fbff4520
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -114,6 +135,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 21000200
+aei
+aeim
+aeip
 aes
 ar zero
 '
@@ -129,6 +153,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 21280200
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -145,6 +172,9 @@ ar > /dev/null
 ar v0=0xFFFFFFFF
 ar v1=0x5
 wx 21284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -159,6 +189,9 @@ e asm.arch=mips
 e asm.bits=32
 ar > /dev/null
 wx 05000024
+aei
+aeim
+aeip
 aes
 ar zero
 '
@@ -174,6 +207,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx 05000524
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -189,6 +225,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=5
 wx fbff0524
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -204,6 +243,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=6
 wx fbff4524
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -220,6 +262,9 @@ ar > /dev/null
 ar v0=5
 ar v1=1
 wx 22004300
+aei
+aeim
+aeip
 aes
 ar zero
 '
@@ -236,6 +281,9 @@ ar > /dev/null
 ar v0=1
 ar v1=5
 wx 22284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -252,6 +300,9 @@ ar > /dev/null
 ar v0=0xFFFFFFFF
 ar v1=0x5
 wx 22284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -268,6 +319,9 @@ ar > /dev/null
 ar v0=1
 ar v1=5
 wx 23284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -284,6 +338,9 @@ ar > /dev/null
 ar v0=0xFFFFFFFF
 ar v1=0x5
 wx 23284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -300,6 +357,9 @@ ar > /dev/null
 ar v0=0xffffffff
 ar v1=0x10101010
 wx 24284300
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -315,6 +375,9 @@ e asm.bits=32
 ar > /dev/null
 ar v0=0xffffffff
 wx ffff4530
+aei
+aeim
+aeip
 aes
 ar a1
 '
@@ -586,6 +649,9 @@ ar v0=0x00000004
 s 4
 wx aabbccdd00004384
 s 8
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -603,6 +669,9 @@ ar v0=0x00000006
 s 4
 wx aabbccddfeff4384
 s 8
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -619,6 +688,9 @@ ar > /dev/null
 ar v0=0x00000000
 wx aabbccdd02004384
 s 4
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -636,6 +708,9 @@ ar v0=0x00000004
 s 4
 wx aabbccdd112233440000438c
 s +8
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -653,6 +728,9 @@ ar v0=0x00000008
 s 0x4
 wx aabbccdd11223344fcff438c
 s +8
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -669,6 +747,9 @@ ar > /dev/null
 ar v0=0x00000000
 wx aabbccdd112233440400438c
 s 8
+aei
+aeim
+aeip
 aes
 ar v1
 '
@@ -686,6 +767,9 @@ ar v0=0x11aa22bb
 ar v1=0x10
 s 4
 wx 000062ac
+aei
+aeim
+aeip
 aes
 p8 4 @ 0x10
 '
@@ -703,6 +787,9 @@ ar v0=0x11aa22bb
 ar v1=0x14
 s 4
 wx fcff62ac
+aei
+aeim
+aeip
 aes
 p8 4 @ 0x10
 '
@@ -720,6 +807,9 @@ ar v0=0x11aa22bb
 ar v1=0x10
 wx 00000000000062a4
 s 4
+aei
+aeim
+aeip
 aes
 p8 4 @ 0x10
 '
@@ -737,6 +827,9 @@ ar v0=0x11aa22bb
 ar v1=0x10
 wx 00000000020062a4
 s 4
+aei
+aeim
+aeip
 aes
 p8 4 @ 0x12
 '
@@ -754,6 +847,9 @@ ar v0=0x11aa22bb
 ar v1=0x10
 wx 00000000000062a0
 s 4
+aei
+aeim
+aeip
 aes
 p8 4 @ 0x10
 '
@@ -771,6 +867,9 @@ ar v0=0x11aa22bb
 ar v1=0
 wx 00000000030062a0
 s 4
+aei
+aeim
+aeip
 aes
 p8 5 @ 0
 '
@@ -1479,6 +1578,9 @@ e io.va=true
 e asm.arch=mips
 e asm.bits=32
 e cfg.bigendian=true
+aei
+aeim
+aeip
 ar > /dev/null
 ar t9=0
 ar gp=0
