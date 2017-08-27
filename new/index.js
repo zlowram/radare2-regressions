@@ -417,6 +417,10 @@ class NewRegressions {
 
   checkTestResult (test) {
     if (!this.checkTest(test)) {
+      /* Do not show diff if TRAVIS and if test is broken */
+      if (process.env.TRAVIS && test.broken) {
+        return;
+      }
       console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
       if (test.cmdScript !== undefined) {
         console.log(test.cmdScript);
@@ -501,10 +505,6 @@ function parseTestAsm (source, line) {
     }
     if (type.indexOf('B') !== -1) {
       t.broken = true;
-      /* Do not show any broken asm test on travis */
-      if (process.env.TRAVIS) {
-        return [];
-      }
     }
   }
   return tests;
