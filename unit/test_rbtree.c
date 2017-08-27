@@ -13,7 +13,7 @@ static void random_iota(int *a, int n) {
 	}
 }
 
-static int cmp_int(const void *a, const void *b) {
+static int cmp_int(void *user, const void *a, const void *b) {
 	return (int)(ptrdiff_t)a - (int)(ptrdiff_t)b;
 }
 
@@ -24,16 +24,16 @@ bool test_r_rbtree_bound(void) {
 	void *data;
 	int i;
 	for (i = 0; i < 99; i++)
-		r_rbtree_insert(tree, (void *)(ptrdiff_t)i);
+		r_rbtree_insert(tree, (void *)(ptrdiff_t)i, NULL);
 
 	// lower_bound
-	it = r_rbtree_lower_bound_forward(tree, (void *)(ptrdiff_t)key);
+	it = r_rbtree_lower_bound_forward(tree, (void *)(ptrdiff_t)key, NULL);
 	i = key;
 	r_rbtree_iter_while(it, data) {
 		mu_assert_eq(i, (ptrdiff_t)data, "lower_bound_forward");
 		i++;
 	}
-	it = r_rbtree_lower_bound_backward(tree, (void *)(ptrdiff_t)key);
+	it = r_rbtree_lower_bound_backward(tree, (void *)(ptrdiff_t)key, NULL);
 	i = key - 1;
 	r_rbtree_iter_while_prev(it, data) {
 		mu_assert_eq(i, (ptrdiff_t)data, "lower_bound_backward");
@@ -41,13 +41,13 @@ bool test_r_rbtree_bound(void) {
 	}
 
 	// upper_bound
-	it = r_rbtree_upper_bound_forward(tree, (void *)(ptrdiff_t)key);
+	it = r_rbtree_upper_bound_forward(tree, (void *)(ptrdiff_t)key, NULL);
 	i = key + 1;
 	r_rbtree_iter_while(it, data) {
 		mu_assert_eq(i, (ptrdiff_t)data, "upper_bound_forward");
 		i++;
 	}
-	it = r_rbtree_upper_bound_backward(tree, (void *)(ptrdiff_t)key);
+	it = r_rbtree_upper_bound_backward(tree, (void *)(ptrdiff_t)key, NULL);
 	i = key;
 	r_rbtree_iter_while_prev(it, data) {
 		mu_assert_eq(i, (ptrdiff_t)data, "upper_bound_backward");
@@ -64,18 +64,18 @@ static bool insert_delete(int *a, int n) {
 	int i, t;
 
 	for (i = 0; i < n; i++) {
-		t = r_rbtree_insert(tree, (void *)(ptrdiff_t)a[i]);
+		t = r_rbtree_insert(tree, (void *)(ptrdiff_t)a[i], NULL);
 		mu_assert_eq(1, t, "insert");
-		t = r_rbtree_insert(tree, (void *)(ptrdiff_t)a[i]);
+		t = r_rbtree_insert(tree, (void *)(ptrdiff_t)a[i], NULL);
 		mu_assert_eq(0, t, "insert a duplicate");
 		mu_assert_eq(i + 1, tree->size, "size");
 	}
 
 	random_iota(a, n);
 	for (int i = 0; i < n; i++) {
-		t = r_rbtree_delete (tree, (void *)(ptrdiff_t)a[i]);
+		t = r_rbtree_delete (tree, (void *)(ptrdiff_t)a[i], NULL);
 		mu_assert(t, "delete");
-		t = r_rbtree_delete (tree, (void *)(ptrdiff_t)a[i]);
+		t = r_rbtree_delete (tree, (void *)(ptrdiff_t)a[i], NULL);
 		mu_assert(!t, "delete non-existent");
 		mu_assert_eq(n - i - 1, tree->size, "size");
 	}
@@ -112,7 +112,7 @@ bool test_r_rbtree_traverse(void) {
 	int i;
 
 	for (i = 0; i < 99; i++)
-		r_rbtree_insert(tree, (void *)(ptrdiff_t)i);
+		r_rbtree_insert(tree, (void *)(ptrdiff_t)i, NULL);
 	i = 0;
 	r_rbtree_foreach (tree, it, data) {
 		mu_assert_eq(i, (ptrdiff_t)data, "foreach");
