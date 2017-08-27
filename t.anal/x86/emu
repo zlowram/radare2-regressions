@@ -57,13 +57,12 @@ e asm.bytes=0
 e asm.cmtcol=20
 e asm.lines=false
 e io.cache=true
-wx 00 @ 0
 aeim
 s 0x00402aee
 pd 10~LoadString
 '
 EXPECT=" 0x00402b00      call dword [sym.imp.user32.dll_LoadStringA] ; 0x402d40 ; esp=0x177ff0 ; eip=0x2cfa -> 0xffffff00 reloc.user32.dll_LoadStringA_250
-                     ; long LoadStringA(HINSTANCE hInstance : (*0x0) NULL, UINT uID : (*0x96)0x00177ff8 = 0x1de59203, LPSTR lpBuffer : (*0x402bfd)0x00177ffc = 0x00177ffc -> 0x00000000, int nBufferMax : (*0x1f)0x00178000 = 0)
+                     ; long LoadStringA(HINSTANCE hInstance : (*0x0) NULL, UINT uID : (*0x96)0x00177ff8 = 0xffffffff, LPSTR lpBuffer : (*0x402bfd)0x00177ffc = 0x00177ffc -> 0x00000000, int nBufferMax : (*0x1f)0x00178000 = 4294967295)
 "
 run_test
 
