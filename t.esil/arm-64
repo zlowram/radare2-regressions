@@ -49,6 +49,9 @@ ar > /dev/null
 ar x8=0
 wx 096984b9@0x464
 wx 8877665544332211cacacacacaca@0x468
+aei
+aeim
+aeip
 aes
 ar x9
 '
