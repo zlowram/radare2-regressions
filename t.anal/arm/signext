@@ -7,9 +7,8 @@ e asm.arch=arm
 e asm.bits=32
 e io.va=true
 wx ffffffea # bl 0x80000000
-S 0 0x7ffffffc 4 stuff m
-s 0x7ffffffc
-ao~jump
+om 3 0x7ffffffc
+ao @ 0x7ffffffc~jump
 '
 EXPECT='jump: 0x80000000
 '
@@ -22,9 +21,8 @@ e asm.arch=arm.gnu
 e asm.bits=32
 e io.va=true
 wx ffffffea # bl 0x80000000
-S 0 0x7ffffffc 4 stuff m
-s 0x7ffffffc
-ao~jump
+om 3 0x7ffffffc
+ao @ 0x7ffffffc~jump
 '
 EXPECT='jump: 0x80000000
 '
