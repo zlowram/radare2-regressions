@@ -29,7 +29,7 @@ BROKEN=1
 FILE=malloc://32
 ARGS='-m 0x80100000'
 CMDS="
-io.va=true
+e io.va=true
 wx 0000000000000000010000100000000000000000
 e asm.bits=32
 e asm.arch=${PLUGIN}
