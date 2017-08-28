@@ -61,19 +61,3 @@ EXPECT='- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
 EXPECT_ERR=''
 
 run_test
-
-NAME='sectonly true/false'
-FILE=../bins/pe/normal.exe
-BROKEN=
-ARGS=''
-CMDS='e io.va=true
-e io.sectonly=true
-p8 2 @ 0
-e io.sectonly=false
-p8 2 @ 0
-'
-EXPECT='ffff
-4d5a
-'
-
-run_test
