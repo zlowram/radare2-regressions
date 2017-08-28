@@ -7,7 +7,6 @@
 NAME="/j escaped"
 FILE=../bins/mach0/escaped
 CMDS="
-e search.in=io.sections
 /j hello
 "
 EXPECT='[{"offset": 8019,"id:":0,"type":"string","data":"]c:\\hello\\worldM"}]
@@ -167,7 +166,6 @@ NAME='/a push esp'
 FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 CMDS='
-e search.in=io.sections
 /a push esp
 '
 EXPECT='0x08048058 hit0_0 54
