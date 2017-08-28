@@ -77,20 +77,14 @@ run_test
 # _l32r a5, test
 
 NAME="load relative"
-FILE=malloc://0x200
+FILE='-a xtensa -b 32 malloc://0x200'
 CMDS='
-e asm.arch=xtensa
-e asm.bits=32
-s 0
-wx ddccbbaa
+wx ddccbbaa @ 0
 s 0x14
-wx 21fbff31faff41f9ff51f8ff
-f8ff
+wx 21fbff31faff41f9ff51f8fff8ff
+aei
 aeip
-aes
-aes
-aes
-aes
+4aes
 ar~a2,a3,a4,a5
 '
 EXPECT='a2 = 0xaabbccdd

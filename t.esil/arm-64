@@ -40,13 +40,8 @@ run_test
 
 NAME="ldrsw x9, [x8, 0x468]"
 FILE=malloc://0x200
-ARGS='-m 0x464'
+ARGS='-a arm -b 64 -m 0x464'
 CMDS='
-e io.va=true
-e asm.arch=arm
-e asm.bits=64
-ar > /dev/null
-ar x8=0
 wx 096984b9@0x464
 wx 8877665544332211cacacacacaca@0x468
 aei

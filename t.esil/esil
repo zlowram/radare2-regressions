@@ -281,8 +281,10 @@ run_test
 
 NAME='rep stosq'
 FILE='../bins/elf/analysis/x64-rep-stosq'
-ARGS=
+ARGS='-e io.cache=1'
 CMDS='
+aei
+aeip
 3aes
 ar rcx
 ar rdi
