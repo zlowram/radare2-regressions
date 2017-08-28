@@ -15,10 +15,7 @@ NAME='display mapped flag in sections list'
 FILE=../bins/elf/analysis/x86-simple
 CMDS='S
 '
-EXPECT='[00:00] * pa=0x00000060 -r-x va=0x08048060 sz=0x0012 vsz=0x0012 .text
-[00:01] . pa=0x00000072 ---- va=0x00000000 sz=0x0011 vsz=0x0011 .shstrtab
-[00:02] * pa=0x00000000 mr-x va=0x08048000 sz=0x0072 vsz=0x0072 LOAD0
-[00:03] . pa=0x00000000 mrw- va=0x08048000 sz=0x0034 vsz=0x0034 ehdr
+EXPECT='[00:00] * pa=0x00000000 mr-x va=0x08048000 sz=0x0072 vsz=0x0072 LOAD0
 '
 EXPECT_ERR=''
 
