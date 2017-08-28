@@ -7,7 +7,7 @@ HELLOWORLD=../../bins/dex/HelloWorld.dex
 NAME="Dalvik HelloWorld afl"
 BROKEN=
 FILE=${HELLOWORLD}
-CMDS="aa; afl"
+CMDS="e io.va=0; aa; afl"
 EXPECT='0x00000238    1 20           sym.LHello.method._init___V
 0x0000025c    1 34           entry0
 0x00000290    1 84           sym.LHello.method.foo_I_V
@@ -27,7 +27,7 @@ run_test
 NAME="Dalvik HelloWorld func xref"
 BROKEN=
 FILE=${HELLOWORLD}
-CMDS="aa; axt @ sym.LHello.method._init___V"
+CMDS="e io.va=0; aa; axt @ sym.LHello.method._init___V"
 EXPECT='call 0x26e invoke-direct {v0}, LHello.<init>()V ; 0x0 in entry0
 '
 run_test
