@@ -6,7 +6,9 @@
 
 NAME="/j escaped"
 FILE=../bins/mach0/escaped
-CMDS="/j hello
+CMDS="
+e search.in=io.sections
+/j hello
 "
 EXPECT='[{"offset": 8019,"id:":0,"type":"string","data":"]c:\\hello\\worldM"}]
 '
