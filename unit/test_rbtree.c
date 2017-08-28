@@ -1,6 +1,6 @@
+#include <r_util.h>
 #include <stddef.h>
 #include "minunit.h"
-#include "r_rbtree.h"
 
 static void random_iota(int *a, int n) {
 	a[0] = 0;
