@@ -6,7 +6,6 @@ NAME="ELF ARM: function arg"
 BROKEN=
 FILE=../../bins/elf/analysis/armcall
 CMDS='
-e io.sectonly=true
 e asm.calls=false
 afr@main
 afva@sym.call
@@ -19,9 +18,9 @@ EXPECT='            ;-- $a:
 |           0x00010420      00482de9       push {fp, lr}
 |           0x00010424      04b08de2       add fp, sp, 4
 |           0x00010428      08d04de2       sub sp, sp, 8
-|           0x0001042c      08000be5       str r0, [fp - local_8h]
+|           0x0001042c      08000be5       str r0, [fp - local_8h]     ; 8
 |           0x00010430      14009fe5       ldr r0, [loc._d_15]         ; [0x1044c:4]=0x104f0 loc._d_14
-|           0x00010434      08101be5       ldr r1, [fp - local_8h]
+|           0x00010434      08101be5       ldr r1, [fp - local_8h]     ; 8
 |           0x00010438      a2ffffeb       bl sym.imp.printf
 |           0x0001043c      0030a0e3       mov r3, 0
 |           0x00010440      0300a0e1       mov r0, r3
@@ -29,34 +28,6 @@ EXPECT='            ;-- $a:
 \           0x00010448      0088bde8       pop {fp, pc}
 '
 run_test
-
-NAME="ELF ARM: function arg .. without io.sectonly, wtf siol"
-BROKEN=1
-FILE=../../bins/elf/analysis/armcall
-CMDS='
-e asm.calls=false
-afr@main
-afva@sym.call
-pdf@sym.call
-'
-EXPECT='            ;-- $a:
-/ (fcn) sym.call 44
-|           ; var int local_8h @ fp-0x8
-|              ; CALL XREF from 0x00010468 (sym.main)
-|           0x00010420      00482de9       push {fp, lr}
-|           0x00010424      04b08de2       add fp, sp, 4
-|           0x00010428      08d04de2       sub sp, sp, 8
-|           0x0001042c      08000be5       str r0, [fp - local_8h]
-|           0x00010430      14009fe5       ldr r0, [loc._d_15]         ; [0x1044c:4]=0x104f0 loc._d_14
-|           0x00010434      08101be5       ldr r1, [fp - local_8h]
-|           0x00010438      a2ffffeb       bl sym.imp.printf
-|           0x0001043c      0030a0e3       mov r3, 0
-|           0x00010440      0300a0e1       mov r0, r3
-|           0x00010444      04d04be2       sub sp, fp, 4
-\           0x00010448      0088bde8       pop {fp, pc}
-'
-run_test
-
 
 NAME="ELF ARM: function args"
 BROKEN=
@@ -75,9 +46,9 @@ EXPECT='            ;-- main:
 |           0x00010450      00482de9       push {fp, lr}
 |           0x00010454      04b08de2       add fp, sp, 4
 |           0x00010458      08d04de2       sub sp, sp, 8
-|           0x0001045c      08000be5       str r0, [fp - local_8h]
-|           0x00010460      0c100be5       str r1, [fp - local_ch]     ; 0xc
-|           0x00010464      08001be5       ldr r0, [fp - local_8h]
+|           0x0001045c      08000be5       str r0, [fp - local_8h]     ; 8
+|           0x00010460      0c100be5       str r1, [fp - local_ch]     ; 0xc ; 12
+|           0x00010464      08001be5       ldr r0, [fp - local_8h]     ; 8
 |           0x00010468      ecffffeb       bl sym.call
 |           0x0001046c      0030a0e1       mov r3, r0
 |           0x00010470      0300a0e1       mov r0, r3
@@ -95,7 +66,6 @@ aav
 pd 3 @ 0x00010328
 '
 EXPECT='            ;-- $d:
-               ; UNKNOWN XREF from 0x00010988 (section_end..eh_frame + 1160)
             0x00010328      .dword 0x000104e0 ; loc._a_13 ; sym.__libc_csu_fini
             0x0001032c      .dword 0x00010450 ; main ; loc._a_11 ; sym.main
             ;-- sym.0x00010330:
