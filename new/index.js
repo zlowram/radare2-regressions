@@ -24,7 +24,8 @@ class NewRegressions {
       success: 0,
       failed: 0,
       broken: 0,
-      fixed: 0
+      fixed: 0,
+      totaltime: 0
     };
     useScript = !argv.c;
     this.promises = [];
@@ -38,6 +39,7 @@ class NewRegressions {
     }).catch(e => {
       cb(e);
     });
+    this.start = new Date();
   }
 
   callbackFromPath (from) {
@@ -361,7 +363,7 @@ class NewRegressions {
         this.runTests(fileName, data.toString().split('\n'));
       }
       Promise.all(this.promises).then(res => {
-        console.log('[--]', this.report);
+        this.printReport();
         cb(null, res);
       }).catch(err => {
         console.log(err);
@@ -375,7 +377,7 @@ class NewRegressions {
     const fuzzed = fs.readdirSync(dir);
     this.runFuzz(dir, fuzzed);
     Promise.all(this.promises).then(res => {
-      console.log('[--]', this.report);
+      this.printReport();
       cb(null, res);
     }).catch(err => {
       console.log(err);
@@ -438,6 +440,11 @@ class NewRegressions {
       }
       console.log('===');
     }
+  }
+
+  printReport () {
+    this.report.totaltime = new Date() - this.start;
+    console.log('[--]', this.report);
   }
 }
 
