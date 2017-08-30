@@ -401,7 +401,6 @@ FILE=../../bins/elf/analysis/guess-number-riscv64
 ARGS='-A'
 CMDS='e asm.calls=false;s sym.main;pdf'
 EXPECT='/ (fcn) sym.main 140
-|              ; UNKNOWN XREF from 0x0009b868 (section_end..debug_loc + 449480)
 |              ; CALL XREF from 0x00010040 (entry0)
 |           0x00010150      130101fe       addi sp, sp, -32
 |           0x00010154      233c1100       sd ra, 24(sp)
