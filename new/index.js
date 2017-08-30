@@ -180,9 +180,9 @@ class NewRegressions {
         }
         try {
           if (useScript) {
-            // much slower than just using -c
+            // TODO much slower than just using -c
             test.tmpScript = yield createTemporaryFile();
-          // TODO use yield here
+            // TODO use yield here
             yield fs.writeFile(test.tmpScript, test.cmdScript);
             args.push('-i', test.tmpScript);
           } else {
@@ -191,13 +191,14 @@ class NewRegressions {
             }
             args.push('-c', test.cmds.join(';'));
           }
-        // append testfile
+          // append testfile
           args.push(binPath(test.file));
 
           let res = '';
           let ree = '';
           test.spawnArgs = args;
           const child = spawn(r2bin, args);
+          test.birth = new Date();
           child.stdout.on('data', data => {
             res += data.toString();
           });
@@ -205,6 +206,7 @@ class NewRegressions {
             ree += data.toString();
           });
           child.on('close', data => {
+            test.death = new Date();
             try {
               if (test.tmpScript) {
                 // TODO use yield
@@ -215,6 +217,7 @@ class NewRegressions {
               console.error(e);
               // ignore
             }
+            test.lifetime = test.death - test.birth;
             test.stdout = res;
             test.stderr = ree;
             resolve(cb(test));
