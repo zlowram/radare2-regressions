@@ -68,7 +68,7 @@ pd 3 @ 0x00010328
 EXPECT='            ;-- $d:
             0x00010328      .dword 0x000104e0 ; loc._a_13 ; sym.__libc_csu_fini
             0x0001032c      .dword 0x00010450 ; main ; loc._a_11 ; sym.main
-            ;-- sym.0x00010330:
+            ;-- aav.0x00010330:
                ; UNKNOWN XREF from 0x000102c4 (loc._d_19 + 0)
             0x00010330      .dword 0x0001047c ; loc._a_12 ; sym.__libc_csu_init
 '
