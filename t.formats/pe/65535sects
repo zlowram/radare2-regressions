@@ -2,9 +2,10 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME='PE: corkami 65535sects.exe - section list, entrypoint, open and analyze'
-ARGS='-A'
+ARGS=''
 FILE=../../bins/pe/65535sects.exe
 CMDS='
+aa
 S~?
 s
 pi 1
