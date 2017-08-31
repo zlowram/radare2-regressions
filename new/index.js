@@ -444,7 +444,9 @@ class NewRegressions {
 
   printReport () {
     this.report.totaltime = new Date() - this.start;
-    console.log('[--]', this.report);
+    console.log('[**]', '{ total:', this.report.total, 'success:', this.report.success,
+    'failed:', this.report.failed, 'broken:', this.report.broken, 'fixed:', this.report.fixed,
+    'totaltime:', this.report.totaltime, '}');
   }
 }
 
