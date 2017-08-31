@@ -4,6 +4,14 @@
 #include <r_util.h>
 #include "minunit.h"
 
+#ifndef container_of
+#define container_of(ptr, type, member) \
+	 ((type *)                              \
+	     (  ((char *)(ptr))                   \
+			    - ((char *)(&((type*)0)->member)) ))
+
+#endif
+
 static void random_iota(int *a, int n) {
 	int i;
 	a[0] = 0;
@@ -178,6 +186,7 @@ bool test_r_rbtree_insert_delete(void) {
 	insert_delete (a, N, NULL);
 
 	mu_end;
+#undef N
 }
 
 bool test_r_rbtree_augmented_insert_delete(void) {
@@ -199,6 +208,7 @@ bool test_r_rbtree_augmented_insert_delete(void) {
 	insert_delete (a, N, size);
 
 	mu_end;
+#undef N
 }
 
 bool test_r_rbtree_augmented_insert_delete2(void) {
