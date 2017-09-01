@@ -1,11 +1,11 @@
 #!/bin/sh
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
-NAME='ahi 2 + endian'
+NAME='ahi s + endian'
 CMDS='
 wx b8410d4300
 e asm.arch=x86
-ahi 2
+ahi s
 e cfg.bigendian=false
 pi 1
 e cfg.bigendian=true
@@ -16,11 +16,11 @@ mov eax, 'A\\x0dC'
 "
 run_test
 
-NAME='ahi 2 + endian 2'
+NAME='ahi s + endian 2'
 CMDS='
 wx b841424300
 e asm.arch=x86
-ahi 2
+ahi s
 e cfg.bigendian=false
 pi 1
 e cfg.bigendian=true
@@ -61,7 +61,7 @@ e asm.arch=x86
 wx 4881ec48060000
 wx 4883f841 # cmp rax, 0x41
 pi 1
-ahi 2
+ahi s
 pi 1
 '
 EXPECT="cmp rax, 0x41
@@ -75,7 +75,7 @@ e asm.arch=x86
 wx 4881ec48060000
 wx 4883f80e # cmp rax, 0xe
 pi 1
-ahi 1
+ahi 2
 pi 1
 '
 EXPECT='cmp rax, 0xe
@@ -89,7 +89,7 @@ e asm.arch=x86
 wx 4881ec48060000
 wx 4883f804 # cmp rax, 4
 pi 1
-ahi 1
+ahi 2
 pi 1
 '
 EXPECT='cmp rax, 4
@@ -140,36 +140,36 @@ EXPECT='            0x00000000      4881ec480600.  sub rsp, 03110
 '
 run_test
 
-NAME='ahi 1'
+NAME='ahi 2'
 CMDS='e asm.bits=64
 e asm.arch=x86
 wx 4881ec48060000
-ahi 1
+ahi 2
 pd 1
 '
 EXPECT='            0x00000000      4881ec480600.  sub rsp, 11001001000b
 '
 run_test
 
-NAME='ahi 1 - pi'
+NAME='ahi 2 - pi'
 CMDS='e asm.bits=64
 e asm.arch=x86
 wx 4881ec48060000
-ahi 1
+ahi 2
 pi 1
 '
 EXPECT='sub rsp, 11001001000b
 '
 run_test
 
-NAME='ahi 1'
+NAME='ahi 2'
 FILE=malloc://16
 BROKEN=
 CMDS='
 e asm.arch=x86
 e asm.bits=64
 wx 4883e4f0
-ahi 1
+ahi 2
 pi 1
 '
 EXPECT='and rsp, 1111111111111111111111111111111111111111111111111111111111110000b
@@ -190,13 +190,13 @@ EXPECT='and rsp, -16
 '
 run_test
 
-NAME='ahi 2'
+NAME='ahi s'
 FILE=malloc://16
 CMDS='
 e asm.arch=x86
 e asm.bits=64
 wx b841414141
-ahi 2
+ahi s
 pi 1
 '
 EXPECT="mov eax, 'AAAA'
