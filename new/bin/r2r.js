@@ -80,7 +80,14 @@ Usage: r2r [options] [file] [name] ([cmds])
       }
       nr.quit().then(_ => {
         console.log('Done');
+        if (process.env.APPVEYOR) {
+          process.exit(0);
+        } else {
+          process.exit(nr.report.failed > 0);
+        }
       });
     });
+
+    return 0;
   });
 }
