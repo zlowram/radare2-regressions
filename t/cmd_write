@@ -5,11 +5,11 @@
 ## "wa" - write opcode
 
 MAP_TEST_FILE=.wtmaptest.bin
-NAME='wt map'
+NAME='w empty file'
 FILE=$MAP_TEST_FILE
-ARGS="-wm 0x800"
+ARGS="-w"
 CMDS="
-e io.va=true
+e io.va=0
 wx 90
 ls -l ${MAP_TEST_FILE}~[3]
 "
@@ -247,22 +247,25 @@ rm -rf $TMPDIR/
 run_test
 
 ## "wen" - insert null bytes
-NAME='wen should insert X null bytes even if io.cache=false'
-FILE=malloc://8
+NAME='wx pcache'
+FILE=../bins/pe/b.exe
 BROKEN=
 ARGS=
-FILTER="grep size"
-EXPECT='size     0x34e1f
-size     0x34e20
-'
 CMDS='
-cp ../bins/pe/b.exe .b.exe
-o+ .b.exe
-i
-s 0x200
-wen 1
-i
-rm .b.exe
+e io.va=0
+e io.pcache=true
+s 0
+ps 2
+wx 9090
+p8 2
+e io.pcache=0
+s +1
+s 0
+ps 2
+'
+EXPECT='MZ
+9090
+MZ
 '
 run_test
 
