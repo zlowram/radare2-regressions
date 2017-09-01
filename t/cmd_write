@@ -4,20 +4,6 @@
 
 ## "wa" - write opcode
 
-MAP_TEST_FILE=.wtmaptest.bin
-NAME='w empty file'
-FILE=$MAP_TEST_FILE
-ARGS="-w"
-CMDS="
-e io.va=0
-wx 90
-ls -l ${MAP_TEST_FILE}~[3]
-"
-EXPECT='1
-'
-run_test
-rm -f $MAP_TEST_FILE
-
 NAME='wa'
 FILE=malloc://1024
 ARGS='-a x86 -b 32'
