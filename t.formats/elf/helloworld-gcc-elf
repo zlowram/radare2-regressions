@@ -164,7 +164,7 @@ NAME='p-'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='p-
 '
-EXPECT='0x8048300 [^ssz_s______________________________ssss___] 0x80498be
+EXPECT='0x8048000 [c_ccs^sszcs_____________________________sss] 0x80496b7
 '
 run_test
 
@@ -314,7 +314,7 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x080496ac 8 section..data
 0x080496b4 0 section_end..data
 0x080496b4 0 section..bss
-0x080496b4 0 section_end..bss
+0x080496b8 0 section_end..bss
 0x00000000 17 section..comment
 0x00000011 0 section_end..comment
 0x00000000 262 section..shstrtab
@@ -330,7 +330,7 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x08048000 1436 section.LOAD0
 0x0804859c 0 section_end.LOAD0
 0x0804959c 280 section.LOAD1
-0x080496b4 0 section_end.LOAD1
+0x080496b8 0 section_end.LOAD1
 0x080495a8 232 section.DYNAMIC
 0x08049690 0 section_end.DYNAMIC
 0x08048148 68 section.NOTE
