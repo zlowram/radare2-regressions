@@ -252,7 +252,7 @@ FILE=../bins/elf/analysis/simple.elf
 CMDS='?p 0xdeadbeef
 ?P 0xdeadbeef
 '
-EXPECT='0xffffffffffffffff
-0xffffffffffffffff
+EXPECT='no section at 0xdeadbeef
+no section at 0xdeadbeef
 '
 run_test
