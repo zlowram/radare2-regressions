@@ -196,13 +196,13 @@ EXPECT='|           0x00003ca6      cmp eax, 2
 |      ||   0x00003cc3      call sym.imp.isatty                        ; int isatty(int fd)
 |      ||   0x00003cc8      test eax, eax
 |     ,===< 0x00003cca      je 0x4c2e
-|     |||   0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=-1
-|     |||   0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=255
+|     |||   0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=0
+|     |||   0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=0
 |    ,====< 0x00003ce1      jmp 0x3cf9
 |    ||||      ; JMP XREF from 0x00003cb2 (main)
 |    ||`--> 0x00003ce3      mov esi, 5
 |    || |   0x00003ce8      xor edi, edi
-|    || |   0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=-1
+|    || |   0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=0
 |    || |   0x00003cf4      call fcn.00012740
 |    || |      ; JMP XREF from 0x00004602 (main)
 |    || |      ; JMP XREF from 0x00004c38 (main)
@@ -237,13 +237,13 @@ EXPECT='|           0x00003ca6      cmp eax, 2
 |    | |    0x00003cc3      call sym.imp.isatty                        ; int isatty(int fd)
 |    | |    0x00003cc8      test eax, eax
 |  ,======< 0x00003cca      je 0x4c2e
-|  | | |    0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=-1
-|  | | |    0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=255
+|  | | |    0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=0
+|  | | |    0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=0
 | ========< 0x00003ce1      jmp 0x3cf9
 |  | | |       ; JMP XREF from 0x00003cb2 (main)
 |  | `----> 0x00003ce3      mov esi, 5
 |  |   |    0x00003ce8      xor edi, edi
-|  |   |    0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=-1
+|  |   |    0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=0
 |  |   |    0x00003cf4      call fcn.00012740
 |  |   |       ; JMP XREF from 0x00004602 (main)
 |  |   |       ; JMP XREF from 0x00004c38 (main)
@@ -278,13 +278,13 @@ EXPECT='|           0x00003ca6      cmp eax, 2
 |    | |    0x00003cc3      call sym.imp.isatty                        ; int isatty(int fd)
 |    | |    0x00003cc8      test eax, eax
 |  ,======< 0x00003cca      je 0x4c2e
-|  | | |    0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=-1
-|  | | |    0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=255
+|  | | |    0x00003cd0      mov dword [rip + 0x1d626], 2               ; [0x21300:4]=0
+|  | | |    0x00003cda      mov byte [rip + 0x1d33f], 1                ; [0x21020:1]=0
 | ========< 0x00003ce1      jmp 0x3cf9
 |  | | |       ; JMP XREF from 0x00003cb2 (main)
 |  | `----> 0x00003ce3      mov esi, 5
 |  |   |    0x00003ce8      xor edi, edi
-|  |   |    0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=-1
+|  |   |    0x00003cea      mov dword [rip + 0x1d60c], 0               ; [0x21300:4]=0
 |  |   |    0x00003cf4      call fcn.00012740
 |  |   |       ; JMP XREF from 0x00004602 (main)
 |  |   |       ; JMP XREF from 0x00004c38 (main)
