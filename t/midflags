@@ -1,6 +1,14 @@
 #!/bin/sh
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='f~?'
+FILE=-
+ARGS=
+CMDS='f~?'
+EXPECT="0
+"
+run_test
+
 NAME='pi asm.midflags=2'
 FILE=malloc://1024
 ARGS=
