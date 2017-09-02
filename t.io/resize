@@ -32,6 +32,7 @@ NAME='r/wx nn'
 FILE=$T
 ARGS=-w
 CMDS='
+e io.va=0
 i~^size[1]
 wx 010203
 i~^size[1]
