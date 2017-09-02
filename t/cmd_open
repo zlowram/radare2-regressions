@@ -121,7 +121,7 @@ ie~laddr[7]
 ie~baddr[5]
 '
 EXPECT='0x00005000
-0x100000000
+0x00001000
 '
 run_test
 
