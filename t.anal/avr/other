@@ -1,8 +1,8 @@
 #!/bin/sh
-[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME="search asm commands with internal grep"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='/c ldi~0x6d'
@@ -11,7 +11,7 @@ EXPECT='0x00000276   # 2: ldi r22, 0x6d
 run_test
 
 NAME="search asm commands with filter"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='/c ldi ~ 0x18'
@@ -21,7 +21,7 @@ EXPECT='0x00001672   # 2: ldi r24, 0x18
 run_test
 
 NAME="search asm commands with filter and align = 2"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='e search.align=2
@@ -32,7 +32,7 @@ EXPECT='0x00000282   # 2: in r24, 0x12
 run_test
 
 NAME="Search rop gadgets for in command"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='e search.align=2
@@ -68,7 +68,7 @@ EXPECT='  0x0000027e           0e947304  call 0x8e6
 run_test
 
 NAME="Search rop gadgets for IN command with align=2"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='e search.align=2
@@ -105,7 +105,7 @@ EXPECT='  0x0000027e           0e947304  call 0x8e6
 run_test
 
 NAME="disasm code after search command IN"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS='-a avr'
 BROKEN=
 CMDS='
@@ -122,7 +122,7 @@ EXPECT='0x00000296   # 2: in r24, 0x18
 run_test
 
 NAME="entry point and bin format - arduino"
-FILE=../bins/firmware/arduino_avr.bin
+FILE=../../bins/firmware/arduino_avr.bin
 ARGS=
 BROKEN=
 CMDS='
@@ -134,7 +134,7 @@ avr
 run_test
 
 NAME="entry point and bin format - jumpy"
-FILE=../bins/firmware/jumpy.bin
+FILE=../../bins/firmware/jumpy.bin
 ARGS=
 BROKEN=
 CMDS='
