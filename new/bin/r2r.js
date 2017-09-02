@@ -70,7 +70,7 @@ Usage: r2r [options] [file] [name] ([cmds])
       });
     });
     walker.on('end', () => {
-      if (!filter) {
+      if (!filter || filter === 'fuzz') {
         // Load fuzzed binaries
         nr.loadFuzz('../bins/fuzzed', (err, data) => {
           if (err) {
