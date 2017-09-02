@@ -12,6 +12,7 @@ NAME='write'
 FILE=.newfile
 ARGS=-w
 CMDS='
+e io.va=0
 w jeje
 i~size[1]
 p8 4
