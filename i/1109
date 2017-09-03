@@ -1,4 +1,0 @@
-#!/bin/sh
-t.formats/pe/mz
-t.formats/pe/hellocxx
-t.formats/elf/strings
