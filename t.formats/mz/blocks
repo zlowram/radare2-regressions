@@ -1,0 +1,40 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+# blocks.exe: MZ with negative initial CS
+
+NAME='MZ: blocks.exe - open'
+FILE=../../bins/mz/blocks.exe
+ARGS='-A'
+CMDS="q!"
+EXPECT=''
+run_test
+
+NAME='MZ: blocks.exe - entrypoint'
+FILE=../../bins/mz/blocks.exe
+CMDS='
+s
+'
+EXPECT='0x70
+'
+run_test
+
+NAME='MZ: blocks.exe - pi 1'
+FILE=../../bins/mz/blocks.exe
+CMDS='
+pi 1
+'
+EXPECT='mov ax, 0xba0
+'
+run_test
+
+NAME='MZ: blocks.exe segments'
+FILE=../../bins/mz/blocks.exe
+CMDS='iS*'
+EXPECT='fs sections
+S 0x00000070 0x00000070 0x0000385d 0x0000385d seg_000 23
+f section.seg_000 14429 0x00000070
+f section_end.seg_000 1 0x000038cd
+CC section 0 va=0x00000070 pa=0x00000070 sz=14429 vsz=14429 rwx=m-rwx seg_000 @ 0x00000070
+'
+run_test

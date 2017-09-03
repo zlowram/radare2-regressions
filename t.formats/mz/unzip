@@ -1,0 +1,36 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+# WATTCP unzip.exe as distributed with FreeDOS: MZ with positive, non-zero initial CS
+
+NAME='MZ: unzip.exe - open'
+FILE=../../bins/mz/unzip.exe
+ARGS='-A'
+CMDS="q!"
+EXPECT=''
+run_test
+
+NAME='MZ: unzip.exe - entrypoint'
+FILE=../../bins/mz/unzip.exe
+CMDS='
+s
+'
+EXPECT='0x158a0
+'
+run_test
+
+NAME='MZ: unzip.exe - pi 1'
+FILE=../../bins/mz/unzip.exe
+CMDS='
+pi 1
+'
+EXPECT='mov bp, ax
+'
+run_test
+
+NAME='MZ: unzip.exe segments'
+FILE=../../bins/mz/unzip.exe
+CMDS='iS*'
+EXPECT='fs sections
+'
+run_test
