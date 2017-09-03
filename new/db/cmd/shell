@@ -1,0 +1,15 @@
+NAME=stdin eof
+FILE=-
+EXPECT64=Cg==
+CMDS64=Cg==
+RUN
+NAME=stdin quit
+FILE=-
+EXPECT64=Cg==
+CMDS64=Cg==
+RUN
+NAME=stdin quit
+FILE=-
+EXPECT64=Cg==
+CMDS64=Cg==
+RUN

@@ -1,0 +1,10 @@
+NAME=t/simple-elf
+FILE=../bins/elf/analysis/x86-simple
+EXPECT64=NWJiODAxMDAwMDAwYmIyYTAwMDAKCg==
+CMDS64=CnA4IDEwIEAgMHg4MDQ4MDY1Cgo=
+RUN
+NAME=display mapped flag in sections list
+FILE=../bins/elf/analysis/x86-simple
+EXPECT64=WzAwOjAwXSAqIHBhPTB4MDAwMDAwMDAgbXIteCB2YT0weDA4MDQ4MDAwIHN6PTB4MDA3MiB2c3o9MHgwMDcyIExPQUQwCgo=
+CMDS64=UwoK
+RUN

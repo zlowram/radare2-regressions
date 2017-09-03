@@ -5,10 +5,11 @@
 #TESTS+=t/cmd_help
 #TESTS+=t/cmd_i
 #TESTS+=t/cmd_json
-#TESTS+=t/cmd_open
-TESTS+=t/noreturn
-
-
+TESTS+=t/sugar
+TESTS+=t/undoredo
+TESTS+=t/unified
+TESTS+=t/utf32
+TESTS+=t/va
 
 all:
 	

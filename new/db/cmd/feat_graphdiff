@@ -1,0 +1,5 @@
+NAME=graphdiff segfault
+FILE=-
+EXPECT64=Cg==
+CMDS64=Y2cgLyAyPi9kZXYvbnVsbAoK
+RUN

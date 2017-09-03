@@ -1,0 +1,5 @@
+NAME=search count
+FILE=../bins/elf/analysis/x86-helloworld-gcc
+EXPECT64=ODM2MThiOGEKZiBoYXNoLmNyYzMyLjgzNjE4YjhhID0gMHg4MDQ4MzBhCgo=
+CMDS64=cGggY3JjMzIgQCAkJCsxMAovaCBjcmMzMiA4MzYxOGI4YQo=
+RUN

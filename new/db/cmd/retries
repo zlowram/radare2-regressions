@@ -1,0 +1,5 @@
+NAME=t/retries
+FILE=-
+EXPECT64=MgozCjIwCgo=
+CMDS64=CmIgMTAKcGR+PwpwZCAzfj8KcGQgMjB+PwoK
+RUN

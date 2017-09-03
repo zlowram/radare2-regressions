@@ -1,0 +1,10 @@
+NAME=sandbox disable
+FILE=-
+EXPECT64=dHJ1ZQoK
+CMDS64=ZSBjZmcuc2FuZGJveD10cnVlCmUgY2ZnLnNhbmRib3g9ZmFsc2UKZSBjZmcuc2FuZGJveAoK
+RUN
+NAME=sandbox open
+FILE=-
+EXPECT64=bWFsbG9jOi8vNTEyCgo=
+CMDS64=ZSBjZmcuc2FuZGJveD10cnVlCm9+WzRdCm9jIC9iaW4vbHMKCg==
+RUN

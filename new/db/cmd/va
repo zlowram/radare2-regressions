@@ -1,0 +1,5 @@
+NAME=t/va
+FILE=../bins/elf/analysis/x86-simple
+EXPECT64=MHgwODA0ODA2NSBoaXQwXzAgNWIKcG9wIGVieAoK
+CMDS64=CmUgc2VhcmNoLmluPWlvLnNlY3Rpb24KL3ggNWIKcGkgMSBAIGhpdDBfMAoK
+RUN

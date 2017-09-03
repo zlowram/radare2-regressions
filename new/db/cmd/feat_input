@@ -1,0 +1,51 @@
+NAME=newline ?e 
+
+FILE=malloc://1024
+EXPECT64=CgoK
+CMDS64=CiMgVGhlIHRlc3Qgc3VpdGUgaXMgbm90IGFsbG93ZWQgdG8gaW50ZXJwcmV0IHRoZSBvdXRwdXQhCj9lIAoKCg==
+RUN
+NAME=comments
+FILE=malloc://1024
+EXPECT64=MHgwCgo=
+CMDS64=CiMgVGhpcyBpcyBhIGNvbW1lbnQuCiMgVGhpcyBpcyBhIGNvbW1lbnQgd2l0aCBhIDsgaW4gaXQgLSBhbmQgaXQgaXMgc3RpbGwgb25seSBhIGNvbW1lbnQuCiMgT3RoZXIgc3R1ZmYgaXMgYWxzbyBpZ25vcmVkOiBgLi5gIH4gLi4KCiMgQnV0IGluc2lkZSBhIGNvbW1hbmQgbGluZSBvbmx5IHRoZSBjb21tYW5kcyBhZnRlciB0aGUgIyBhcmUgaWdub3JlZC4KP3YgJCQgIyB0aGlzIG11c3QgYmVpZ25vcmVkIDsgP3YgJCQgfCBscwoK
+RUN
+NAME=w foo#bar
+FILE=malloc://1024
+EXPECT64=Zm9vI2JhcgoK
+CMDS64=CncgZm9vI2Jhcgpwc3oKCg==
+RUN
+NAME="quoted"
+FILE=malloc://1024
+EXPECT64=ZnVjazt5b3VAMjMKCg==
+CMDS64=CiJ3IGZ1Y2s7eW91QDIzIgpwc3oKCg==
+RUN
+NAME="quoted"@addr
+FILE=malloc://1024
+EXPECT64=ZnVjazt5b3VAMjMKCg==
+CMDS64=CiJ3IGZ1Y2s7eW91QDIzIkAweDEwCnBzekAweDEwCgo=
+RUN
+NAME="?e foo" "?e bar"
+FILE=malloc://1024
+EXPECT64=Zm9vCmJhcgoK
+CMDS64=CiI/ZSBmb28iOyI/ZSBiYXIiCgo=
+RUN
+NAME=at3 "?vi $$"@3;"?e bar"
+FILE=malloc://1024
+EXPECT64=MwpiYXIKCg==
+CMDS64=Ij92aSAkJCJAMzs/ZSBiYXIK
+RUN
+NAME=at3 "?vi $$"@3;"?e bar"
+FILE=malloc://1024
+EXPECT64=MwpiYXIKCg==
+CMDS64=Ij92aSAkJCJAMzsiP2UgYmFyIgo=
+RUN
+NAME=?e foo;?e bar
+FILE=malloc://1024
+EXPECT64=Zm9vCmJhcgoK
+CMDS64=Cj9lIGZvbzs/ZSBiYXIKCg==
+RUN
+NAME=;?e bar
+FILE=malloc://1024
+EXPECT64=YmFyCgo=
+CMDS64=Cjs/ZSBiYXIKCg==
+RUN

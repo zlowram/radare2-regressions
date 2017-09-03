@@ -158,3 +158,59 @@ format
 format
 '
 run_test
+
+NAME=colgrep
+CMDS='?e 0x3~[0]
+?e 0x999~[0]'
+EXPECT='0x3
+0x999
+'
+
+run_test
+
+NAME=colgrep
+CMDS='?e hello world~[0]
+?e hello world~[1]
+'
+EXPECT='hello
+world
+'
+
+run_test
+
+NAME=colgrep
+CMDS='?e a\na b\na b c~[0]
+?e a\na b\na b c~[1]
+?e a\na b\na b c~[2]
+'
+EXPECT='a
+a
+a
+b
+b
+c
+'
+
+run_test
+
+NAME=colgrep
+FILE=malloc://1024
+CMDS='
+wx 10203040
+px~:1[1]
+'
+EXPECT='1020
+'
+
+run_test
+
+NAME=count grep
+CMDS='
+wx 10203040
+b 128
+px~?
+'
+EXPECT='9
+'
+
+run_test
