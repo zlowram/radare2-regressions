@@ -28,6 +28,7 @@ class NewRegressions {
       totaltime: 0
     };
     useScript = !argv.c;
+    this.verbose = this.argv.v;
     this.promises = [];
     // reduce startup times of r2
     process.env.RABIN2_NOPLUGINS = 1;
@@ -355,6 +356,7 @@ class NewRegressions {
 
 
   load (fileName, cb) {
+    this.name = fileName;
     const blob = fs.readFileSync(path.join(__dirname, fileName));
     zlib.gunzip(blob, (err, data) => {
       if (err) {
@@ -415,28 +417,32 @@ class NewRegressions {
       test.lifetime = '';
     }
     if ((process.env.NOOK && status !== colors.green('OK')) || !process.env.NOOK) {
-      console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
+      // console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
+      process.stdout.write('[' + status + '] '+ colors.yellow(test.name) + test.path + test.lifetime + (this.verbose?'\n':'\r'));
     }
     return test.passes;
   }
 
   checkTestResult (test) {
+    if (!this.verbose && test.broken) {
+      return;
+    }
     if (!this.checkTest(test)) {
       /* Do not show diff if TRAVIS or APPVEYOR and if test is broken */
       if ((process.env.TRAVIS || process.env.APPVEYOR) && test.broken) {
         return;
       }
-      console.log('$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
+      console.log('\n$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
       if (test.cmdScript !== undefined) {
         console.log(test.cmdScript);
       }
       if (test.expect !== null) {
         console.log('---');
-        console.log(colors.red(test.expect.trim().replace(/ /g, '~')));
+        console.log(colors.red(test.expect.trim()));
       }
       if (test.stdout !== null) {
         console.log('+++');
-        console.log(colors.green(test.stdout.trim().replace(/ /g, '~')));
+        console.log(colors.green(test.stdout.trim()));
       }
       console.log('===');
       console.log('EXPECT64=' + base64(test.stdout));
@@ -445,9 +451,18 @@ class NewRegressions {
 
   printReport () {
     this.report.totaltime = new Date() - this.start;
-    console.log('[**]', '{ total:', this.report.total, 'success:', this.report.success,
-    'failed:', this.report.failed, 'broken:', this.report.broken, 'fixed:', this.report.fixed,
-    'totaltime:', this.report.totaltime, '}');
+    const r = {
+      name: this.name,
+      OK: this.report.success,
+      BR: this.report.broken,
+      XX: this.report.failed,
+      FX: this.report.fixed,
+      time: this.report.totaltime,
+    };
+    function n(x) {
+      return x.toString().padStart(4);
+    }
+    console.log('[**]', this.name.padStart(30) + '  ', 'OK', n(r.OK), 'BR', n(r.BR), 'XX', n(r.XX), 'FX', n(r.FX));
   }
 }
 

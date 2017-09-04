@@ -20,6 +20,7 @@ Usage: r2r [options] [file] [name] ([cmds])
  -j    output in JSON
  -l    list all tests
  -u    unmark broken in fixed tests
+ -v    be verbose (show broken tests and use more newlines)
 `);
     return 0;
   }
@@ -57,7 +58,7 @@ Usage: r2r [options] [file] [name] ([cmds])
       if (testFile.indexOf(filter) === -1) {
         return next();
       }
-      console.log('[--]', 'run', testFile);
+      // console.log('[--]', 'run', testFile);
       if (testFile.indexOf('/.') !== -1) {
       // skip hidden files
         return next();
@@ -80,11 +81,8 @@ Usage: r2r [options] [file] [name] ([cmds])
       }
       nr.quit().then(_ => {
         console.log('Done');
-        if (process.env.APPVEYOR) {
-          process.exit(0);
-        } else {
-          process.exit(nr.report.failed > 0);
-        }
+        const code = process.env.APPVEYOR? 0: nr.report.failed > 0;
+        process.exit(code);
       });
     });
 
