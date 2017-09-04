@@ -3,10 +3,20 @@
 const NewRegressions = require('..');
 
 const rc = require('rc');
+const minimist = require('minimist');
 const walk = require('walk').walk;
 const path = require('path');
 
-main(rc('r2r'));
+const flagMap = {
+  '-v': '--verbose'
+};
+const args = process.argv.slice(2).map(_=> {
+  return flagMap[_] || _;
+});
+
+main(minimist(args, {
+  boolean: ['verbose'],
+}));
 
 function main (argv) {
   if (argv.h) {

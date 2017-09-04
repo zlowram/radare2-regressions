@@ -28,7 +28,7 @@ class NewRegressions {
       totaltime: 0
     };
     useScript = !argv.c;
-    this.verbose = this.argv.v;
+    this.verbose = this.argv.verbose;
     this.promises = [];
     // reduce startup times of r2
     process.env.RABIN2_NOPLUGINS = 1;
@@ -424,7 +424,7 @@ class NewRegressions {
   }
 
   checkTestResult (test) {
-    if (!this.verbose && test.broken) {
+    if (!this.verbose && test.broken || test.fixed) {
       return;
     }
     if (!this.checkTest(test)) {
@@ -437,14 +437,14 @@ class NewRegressions {
         console.log(test.cmdScript);
       }
       if (test.expect !== null) {
-        console.log('---');
+        ///console.log('---');
         console.log(colors.red(test.expect.trim()));
       }
       if (test.stdout !== null) {
-        console.log('+++');
+        // console.log('+++');
         console.log(colors.green(test.stdout.trim()));
       }
-      console.log('===');
+      // console.log('===');
       console.log('EXPECT64=' + base64(test.stdout));
     }
   }
