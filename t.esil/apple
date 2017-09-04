@@ -81,7 +81,7 @@ e io.sectonly=false
 pxW 4 @ sp
 e io.sectonly=true
 pxW 4 @ sp
-S 0x100000 0x100000 983040 983040 stack
+S 0 0x100000 0 983040 stack rw- 0
 pxW 4 @ sp
 '
 EXPECT='0x00178000 0x00000000 sb
