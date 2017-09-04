@@ -439,6 +439,7 @@ class NewRegressions {
         console.log(colors.green(test.stdout.trim().replace(/ /g, '~')));
       }
       console.log('===');
+      console.log('EXPECT64=' + base64(test.stdout));
     }
   }
 
@@ -524,6 +525,10 @@ function parseTestAsm (source, line) {
 
 function debase64 (msg) {
   return new Buffer(msg, 'base64').toString('utf8');
+}
+
+function base64 (msg) {
+  return new Buffer(msg).toString('base64');
 }
 
 function binPath (file) {
