@@ -462,7 +462,8 @@ class NewRegressions {
     function n(x) {
       return x.toString().padStart(4);
     }
-    console.log('[**]', this.name.padStart(30) + '  ', 'OK', n(r.OK), 'BR', n(r.BR), 'XX', n(r.XX), 'FX', n(r.FX));
+    const name = (this.name || '').padStart(30);
+    console.log('[**]', name + '  ', 'OK', n(r.OK), 'BR', n(r.BR), 'XX', n(r.XX), 'FX', n(r.FX));
   }
 }
 
