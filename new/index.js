@@ -390,6 +390,11 @@ class NewRegressions {
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
     if (test.passes && typeof test.stdout !== undefined && test.expect) {
+      if (process.platform == 'win32') {
+        /* Delete \r on windows.
+         * Note that process.platform is always win32 even on Windows 64 bits*/
+        test.stdout = test.stdout.replace(/\r/g, '');
+      }
       test.passes = test.expect.trim() === test.stdout.trim();
     }
     const status = (test.passes)
@@ -424,14 +429,15 @@ class NewRegressions {
   }
 
   checkTestResult (test) {
+    const r = this.checkTest(test);
     if (!this.verbose && test.broken || test.fixed) {
       return;
     }
-    if (!this.checkTest(test)) {
-      /* Do not show diff if TRAVIS or APPVEYOR and if test is broken */
-      if ((process.env.TRAVIS || process.env.APPVEYOR) && test.broken) {
-        return;
-      }
+    /* Do not show diff if TRAVIS or APPVEYOR and if test is broken */
+    if ((process.env.TRAVIS || process.env.APPVEYOR) && test.broken) {
+      return;
+    }
+    if (!r) {
       console.log('\n$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
       if (test.cmdScript !== undefined) {
         console.log(test.cmdScript);
