@@ -325,6 +325,7 @@ class NewRegressions {
           break;
         case 'EXPECT64':
           test.expect = debase64(v);
+          test.expect64 = true;
           break;
         case 'EXPECT_ERR':
           test.expect = v;
@@ -451,7 +452,9 @@ class NewRegressions {
         console.log(colors.green(test.stdout.trim()));
       }
       // console.log('===');
-      console.log('EXPECT64=' + base64(test.stdout));
+      if (test.expect64) {
+        console.log('EXPECT64=' + base64(test.stdout));
+      }
     }
   }
 
