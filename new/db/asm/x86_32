@@ -546,7 +546,7 @@ dB "pinsrq xmm0, dword [eax], 0" 660f3a22
 dB "pmovmskb eax, mm0" 0fd7
 dB "popcnt eax, qword [eax]" f30fb8
 dB "prefetch byte [eax]" 0f0d00
-dB "repz movsb" f3a4
+d "repz movsb" f3a4
 dB "retw" 66c3
 dB "skinit" 0f01de
 dB "swapgs" 0f1ff8
@@ -1867,8 +1867,8 @@ a "rdmsr" 0f32
 a "rdpmc" 0f33
 a "rdtsc" 0f31
 a "rdtscp" 0f01f9
-aB "repne movsb byte es:[edi], byte ptr [esi]" f2a4
-aB "repz movsb" f3a4
+a "repne movsb byte es:[edi], byte ptr [esi]" f2a4
+a "repz movsb" f3a4
 a "ret" c3
 a "bnd ret" f2c3
 a "retf 0" ca0000

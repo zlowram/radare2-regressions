@@ -77,9 +77,9 @@ a "xor [rax], rax" 483100
 a "xor [rsi], rbx" 48311e
 a "xor rax, rax" 4831c0
 a "xor rdx, rdx" 4831d2
-aB "rep movsd" f3a5
+a "rep movsd" f3a5
 a "repnz stosd" f2ab
-aB "repz monitor" f30f01c8
-aB "repe vmcall" f30f01c1
-aB "repne sfence" f20faef8
-aB "rep rdpmc" f30f33
+a "repz monitor" f30f01c8
+a "repe vmcall" f30f01c1
+a "repne sfence" f20faef8
+a "rep rdpmc" f30f33
