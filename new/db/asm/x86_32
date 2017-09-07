@@ -524,7 +524,7 @@ d "xsave [eax]" 0fae20
 d "xsetbv" 0f01d1
 dB "adx" d4
 dB "amx" d5
-dB "cdqe" 98
+d "cdqe" 98
 dB "cmpxchg16b [eax]" 67480f0c7
 dB "cmpxchg8b dword [eax]" 0fc7c0
 dB "extrq xmm0, 0, 0" 660f78000000

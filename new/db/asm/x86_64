@@ -8,6 +8,7 @@ a "add r10, r9" 4d01ca
 a "add rax, rcx" 4801c8
 aB "and dword [ebp + 128], eax" 48218580000000
 a "call rbx" ffd3
+a "cdqe" 4898
 a "cmp rax, 33" 4883f821
 a "cmp rax, rbx" 4839d8
 a "cmp rbx, rax" 4839c3
