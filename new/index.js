@@ -46,7 +46,6 @@ class NewRegressions {
   callbackFromPath (from) {
     for (let row of [
       [path.join('db', 'cmd'), this.runTest],
-      [path.join('db', 'asm'), this.runTestAsm],
       [path.join('db', 'bin'), this.runTestBin]
     ]) {
       const [txt, cb] = row;
@@ -70,11 +69,15 @@ class NewRegressions {
     return new Promise((resolve, reject) => {
       try {
         co(function * () {
-          if (test.args) {
-            self.r2.cmd(test.args);
+          try {
+            if (test.args) {
+              self.r2.cmd(test.args);
+            }
+            test.stdout = yield self.r2.cmd(test.cmd);
+            return resolve(cb(test));
+          } catch (e) {
+            return reject(e);
           }
-          test.stdout = yield self.r2.cmd(test.cmd);
-          return resolve(cb(test));
         });
       } catch (e) {
         console.error(e);
@@ -268,16 +271,12 @@ class NewRegressions {
       if (line.length === 0 || line[0] === '#') {
         continue;
       }
-      // TODO: run specific test type depending on directory db/[asm|cmd|unit]
       if (source.indexOf('asm') !== -1) {
-        const testCallback = this.callbackFromPath(test.from);
-        if (testCallback !== null) {
-          let tests = parseTestAsm (source, line);
-          for (let t of tests) {
-            this.promises.push(testCallback.bind(this)(t, this.checkTestResult.bind(this)));
-          }
-          continue;
+        let tests = parseTestAsm (source, line);
+        for (let t of tests) {
+          this.promises.push(this.runTestAsm.bind(this)(t, this.checkTestResult.bind(this)));
         }
+        continue;
       }
       if (line === 'RUN') {
         const testCallback = this.callbackFromPath(test.from);
