@@ -66,3 +66,8 @@ EXPECT='5589e581ec80000000c745086869210ac7450c6e000000c74510000000008d4508898504
 '
 run_test
 
+NAME='ragg2 bugg8.r'
+BROKEN=
+CMDS='!ragg2 ../../bins/other/ragg2/bugg8.r > /dev/null'
+EXPECT=''
+run_test
