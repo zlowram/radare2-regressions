@@ -113,6 +113,19 @@ EXPECT='2
 '
 run_test
 
+NAME='Opening a new map doesnt set io.a to false'
+FILE=-
+CMDS='
+e io.va
+e scr.null=true
+o malloc://32 0x400
+e scr.null=false
+e io.va
+'
+EXPECT='true
+true
+'
+run_test
 
 NAME='omf one mapping'
 FILE=-
