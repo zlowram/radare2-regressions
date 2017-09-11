@@ -415,6 +415,16 @@ EXPECT='0x1000
 '
 run_test
 
+NAME='/x hit in the second map'
+FILE='../bins/elf/ioli/crackme0x00'
+ARGS=
+CMDS='
+/x f8820408
+'
+EXPECT='0x08049f2c hit1_0 f8820408
+'
+run_test
+
 NAME='/x wrong entries'
 FILE='../bins/elf/analysis/go_stripped'
 ARGS=
