@@ -10,6 +10,23 @@ const spawn = require('child_process').spawn;
 const spawnSync = require('child_process').spawnSync;
 const r2promise = require('r2pipe-promise');
 
+// support node < 8
+if (!String.prototype.padStart) {
+  String.prototype.padStart = function padStart(targetLength,padString) {
+    targetLength = targetLength>>0; //floor if number or convert non-number to 0;
+    padString = String(padString || ' ');
+    if (this.length > targetLength) {
+      return String(this);
+    } else {
+      targetLength = targetLength-this.length;
+      if (targetLength > padString.length) {
+          padString += padString.repeat(targetLength/padString.length); //append to original to ensure we are longer than needed
+      }
+      return padString.slice(0,targetLength) + String(this);
+    }
+  };
+}
+
 // set this to false to avoid creating files
 let useScript = true;
 
