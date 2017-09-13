@@ -32,17 +32,25 @@ control_c() {
 trap control_c 2
 
 usage() {
-	echo "Usage: r2r ([-s|-p|-P]) [keyword]"
+	echo "Usage: r2r (-options) [keyword]"
 	echo "  -s    search only. do not run any test"
+	echo "  -S    shell into the regressions repo"
 	echo "  -p    run test files in parallel"
 	echo "  -P    run every single test in parallel"
 	echo "  -v    show version"
+	echo "  -t    show travis status"
 }
 
 case "$KW" in
 -v)
-	echo "0.10.2"
+	echo "1.7.0"
 	exit 0
+	;;
+-S)
+	${SHELL}
+	;;
+-t)
+	node new/travis/bin.js
 	;;
 -h)
 	usage
