@@ -33,15 +33,101 @@ trap control_c 2
 
 usage() {
 	echo "Usage: r2r (-options) [keyword]"
+	echo "  -a [type] [test] [name] ([commands])  add test"
 	echo "  -s    search only. do not run any test"
 	echo "  -S    shell into the regressions repo"
 	echo "  -p    run test files in parallel"
 	echo "  -P    run every single test in parallel"
+	echo "  -r    run tests from new/db"
 	echo "  -v    show version"
 	echo "  -t    show travis status"
 }
 
 case "$KW" in
+-a)
+	TYPE="$2"
+	TEST="$3"
+	NAME="$4"
+	ARG0="$5" # hexpairs, commands
+	ARG1="$6" # file to open
+	ARG2="$7" # Broken or not
+	if [ -z "${TYPE}" ]; then
+		(cd new/db ; ls|cat)
+	elif [ -z "${TEST}" ]; then
+		(cd new/db/${TYPE} ; ls|cat)
+	else
+		if [ -z "${NAME}" ]; then
+			grep -re NAME= -e '^d ' -e '^ad ' -e '^a ' "new/db/${TYPE}" | cut -d : -f 2- | cut -d = -f 2-
+			#(cd new/db/${TYPE} ; grep|cat)
+		#	echo "Usage: -a [type] [test] [name] ([commands])"
+		else
+			case "${TYPE}" in
+			asm)
+				if [ -z "${ARG0}" ]; then
+					echo "Type expected hexpair string for ${NAME}"
+					read LINE
+				else
+					LINE="${ARG0}"
+				fi
+				echo "d \"${NAME}\" ${LINE}" new/db/asm/${TEST}
+				echo "d \"${NAME}\" ${LINE}" >> new/db/asm/${TEST}
+				;;
+			*)
+				if [ -z "${ARG0}" ]; then
+					echo "Type commands to run:"
+					CMDS=""
+					while : ; do
+						read LINE
+						[ -z "${LINE}" ] && break
+						CMDS="${CMDS}${LINE}"
+					done
+				else
+					CMDS=${ARG0}
+				fi
+
+				[ -z "${FILE}" ] && FILE=-
+				[ -z "${BROKEN}" ] && BROKEN=0
+
+				echo "NAME=${NAME}" > .tmp
+				echo "FILE=${FILE}" >> .tmp
+				if [ "${BROKEN}" = 1 ]; then
+					echo "BROKEN=1" >> .tmp
+				fi
+				CMDS64="`echo "${CMDS}" | rax2 -E`" >> .tmp
+				echo "CMDS64=${CMDS64}" >> .tmp
+				# ugly
+				echo "${CMDS}" > .tmp.test.r2
+				EXPECT=`r2 -qi .tmp.test.r2 ${FILE}`
+				rm -f .tmp.test.r2
+				EXPECT64="`echo "${EXPECT}" | rax2 -E`" >> .tmp
+				echo "Expect this (Y/n)? $EXPECT"
+				read YESNO
+				case "${YESNO}" in
+				''|y|Y|yes|Yes|true|True|YES)
+					echo "EXPECT64=${EXPECT64}" >> .tmp
+					echo RUN >> .tmp
+					cat .tmp
+					echo "Test added"
+					cat .tmp >> new/db/${TYPE}/${TEST}
+					;;
+				*)
+					echo "Nothing to do."
+					;;
+				esac
+				rm -f .tmp
+				pwd
+				;;
+			esac
+			echo Done
+			exit 0
+		fi
+	fi
+	exit 1
+	;;
+-r)
+	shift
+	(cd new ; node bin/r2r.js -v $@)
+	;;
 -v)
 	echo "1.7.0"
 	exit 0
