@@ -78,3 +78,16 @@ as
 EXPECT='1 = write (1, "Hello, world!.", 14)
 '
 run_test
+
+NAME='x86-16 dos syscall'
+FILE=-
+ARGS='-ax86 -b16 -kdos'
+IGNORE_ERR=0
+CMDS='
+"wa mov ah,0x30;int 0x21"
+aecu 0x4
+as
+'
+EXPECT='48 = GetDOSVersion ()
+'
+run_test
