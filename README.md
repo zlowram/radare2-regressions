@@ -66,7 +66,7 @@ run_tests.sh exits with the following exit codes:
 Reporting Radare2 Bugs
 ----------------------
 
-Please to not post Radare2 bugs on the r2-regressions github tracker. Instead
+Please do not post Radare2 bugs on the r2-regressions github tracker. Instead
 use the official r2 tracker:
 
 https://github.com/radare/radare2/issues?state=open

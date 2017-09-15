@@ -232,7 +232,6 @@ e.src.null=true
 rm -rf $TMPDIR/
 run_test
 
-## "wen" - insert null bytes
 NAME='wx pcache'
 FILE=../bins/pe/b.exe
 BROKEN=
@@ -271,3 +270,33 @@ EXPECT='a/b
 0|1
 '
 run_test
+
+## "wen" - insert null bytes
+
+NAME='wen'
+FILE=malloc://4
+ARGS=
+CMDS='
+wx 01020304
+wen 2 @ 1
+wen 1 @ 6
+p8 7
+'
+EXPECT='01000002030400
+'
+run_test
+
+NAME='wen should insert X null bytes even if io.cache=false'
+FILE=malloc://8
+ARGS=
+EXPECT='216607
+216608
+'
+CMDS='
+cp ../bins/pe/b.exe .b.exe
+o+ .b.exe
+r
+s 0x200
+wen 1
+r
+rm .b.exe
