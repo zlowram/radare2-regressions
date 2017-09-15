@@ -35,9 +35,10 @@ static void freefn(RBNode *a) {
 }
 
 static void size(RBNode *a_) {
+	int i;
 	struct Node *a = container_of (a_, struct Node, rb);
 	a->size = 1;
-	for (int i = 0; i < 2; i++) {
+	for (i = 0; i < 2; i++) {
 		if (a_->child[i]) {
 			a->size += container_of (a_->child[i], struct Node, rb)->size;
 		}
@@ -148,7 +149,7 @@ static bool insert_delete(int *a, int n, RBNodeSum sum) {
 	}
 
 	random_iota (a, n);
-	for (int i = 0; i < n; i++) {
+	for (i = 0; i < n; i++) {
 		struct Node x = {.key = a[i]};
 		t = r_rbtree_aug_delete (&tree, &x, cmp, freefn, sum);
 		mu_assert (t, "delete");
