@@ -470,7 +470,6 @@ process.exit(1);
   }
 
   checkTestResult (test) {
-console.log("run");
     const testHasFailed = !this.checkTest(test);
 if (this.interactive) {
 this.verbose = true;
