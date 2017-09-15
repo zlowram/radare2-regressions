@@ -8,6 +8,7 @@ const walk = require('walk').walk;
 const path = require('path');
 
 const flagMap = {
+  '-i': '--interactive',
   '-v': '--verbose'
 };
 const args = process.argv.slice(2).map(_=> {
@@ -24,9 +25,11 @@ function main (argv) {
 Usage: r2r [options] [file] [name] ([cmds])
  -a    add new test
  -b    mark failing tests as broken
- -d    delete test
- -f    fix tests that are not passing
  -c    use -c instead of -i to run r2 (EXPERIMENTAL)
+ -d    delete test
+ -e    edit test
+ -f    fix tests that are not passing
+ -i    interactive mode
  -j    output in JSON
  -l    list all tests
  -u    unmark broken in fixed tests
@@ -40,7 +43,13 @@ Usage: r2r [options] [file] [name] ([cmds])
       return 1;
     }
 
+    if (argv.e) {
+      // nr.quit();
+     // return 0;
+    }
     if (argv.a) {
+      console.error('Use: r2r -a instead of r2r.js for now');
+/*
       const test = {
         from: argv.a,
         name: argv._[0],
@@ -56,6 +65,7 @@ Usage: r2r [options] [file] [name] ([cmds])
       }).catch(err => {
         console.error(err);
       });
+*/
       nr.quit();
       return 0;
     }
@@ -70,12 +80,13 @@ Usage: r2r [options] [file] [name] ([cmds])
       }
       // console.log('[--]', 'run', testFile);
       if (testFile.indexOf('/.') !== -1) {
-      // skip hidden files
+        // skip hidden files
         return next();
       }
       nr.load(testFile, (err, data) => {
         if (err) {
           console.error(err.message);
+console.log("WAT DO")
         }
         next();
       });

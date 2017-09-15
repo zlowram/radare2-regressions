@@ -39,11 +39,32 @@ usage() {
 	echo "  -p    run test files in parallel"
 	echo "  -P    run every single test in parallel"
 	echo "  -r    run tests from new/db"
+	echo "  -e    edit test"
+	echo "  -R    interactive run tests from new/db"
 	echo "  -v    show version"
 	echo "  -t    show travis status"
 }
 
 case "$KW" in
+-e)
+	TYPE="$2"
+	TEST="$3"
+	NAME="$4"
+	if [ -z "${TYPE}" ]; then
+		(cd new/db ; ls|cat)
+	elif [ -z "${TEST}" ]; then
+		(cd new/db/${TYPE} ; ls|cat)
+	else
+		if [ -z "${NAME}" ]; then
+			grep -re NAME= -e '^d ' -e '^ad ' -e '^a ' "new/db/${TYPE}" | cut -d : -f 2- | cut -d = -f 2-
+			#(cd new/db/${TYPE} ; grep|cat)
+		#	echo "Usage: -a [type] [test] [name] ([commands])"
+		else
+			(cd new && bin/r2r.js -e "${TYPE}" "${TEST}" "${NAME}" )
+		fi
+	fi
+	exit 0
+	;;
 -a)
 	TYPE="$2"
 	TEST="$3"
@@ -127,6 +148,10 @@ case "$KW" in
 -r)
 	shift
 	(cd new ; node bin/r2r.js -v $@)
+	;;
+-R)
+	shift
+	(cd new ; node bin/r2r.js -i $@)
 	;;
 -v)
 	echo "1.7.0"

@@ -46,6 +46,7 @@ class NewRegressions {
     };
     useScript = !argv.c;
     this.verbose = this.argv.verbose;
+    this.interactive = this.argv.interactive;
     this.promises = [];
     // reduce startup times of r2
     process.env.RABIN2_NOPLUGINS = 1;
@@ -283,9 +284,29 @@ class NewRegressions {
 
   runTests (source, lines) {
     let test = {from: source};
+    const editMode = {
+      match: false,
+      name: '',
+      enabled: false,
+      str: '',
+    };
+if (this.argv.e) {
+  editMode.match = true;
+  editMode.name = 'cmd_graph'
+process.exit(1);
+}
     for (let l of lines) {
       const line = l.trim();
       if (line.length === 0 || line[0] === '#') {
+        continue;
+      }
+      if (editMode.enabled) {
+        if (editMode.match) {
+          console.log(line);
+        }
+        if (line === 'RUN') {
+          editMode.match = false;
+        }
         continue;
       }
       if (source.indexOf('asm') !== -1) {
@@ -312,6 +333,9 @@ class NewRegressions {
       switch (k) {
         case 'NAME':
           test.name = v;
+          if (editMode.enabled && editMode.name === v) {
+            editMode.match = true;
+          }
           break;
         case 'PATH':
           test.path = v;
@@ -446,15 +470,19 @@ class NewRegressions {
   }
 
   checkTestResult (test) {
-    const r = this.checkTest(test);
-    if (!this.verbose && test.broken || test.fixed) {
+console.log("run");
+    const testHasFailed = !this.checkTest(test);
+if (this.interactive) {
+this.verbose = true;
+}
+    if (!this.verbose && (test.broken || test.fixed)) {
       return;
     }
     /* Do not show diff if TRAVIS or APPVEYOR and if test is broken */
     if ((process.env.TRAVIS || process.env.APPVEYOR) && test.broken) {
       return;
     }
-    if (!r) {
+    if (testHasFailed) {
       console.log('\n$ r2', test.spawnArgs ? test.spawnArgs.join(' ') : '');
       if (test.cmdScript !== undefined) {
         console.log(test.cmdScript);
@@ -471,6 +499,9 @@ class NewRegressions {
       if (test.expect64) {
         console.log('EXPECT64=' + base64(test.stdout));
       }
+if (this.argv.interactive) {
+console.log('TODO: interactive thing should happen here');
+}
     }
   }
 
@@ -489,6 +520,12 @@ class NewRegressions {
     }
     const name = (typeof this.name === 'string') ? this.name.padStart(30): '';
     console.log('[**]', name + '  ', 'OK', n(r.OK), 'BR', n(r.BR), 'XX', n(r.XX), 'FX', n(r.FX));
+  }
+
+  fixTest(name, expect, cb) {
+  }
+
+  editTest(name, expect, cb) {
   }
 }
 
