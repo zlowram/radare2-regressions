@@ -45,6 +45,7 @@ usage() {
 	echo "  -R    interactive run tests from new/db"
 	echo "  -v    show version"
 	echo "  -t    show travis status"
+	echo "  -p    show travis pullreq status"
 }
 
 case "$KW" in
@@ -163,7 +164,10 @@ case "$KW" in
 	${SHELL}
 	;;
 -t)
-	node new/travis/bin.js
+	node new/travis/bin.js -m
+	;;
+-p)
+	node new/travis/bin.js -p
 	;;
 -h)
 	usage

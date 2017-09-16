@@ -41,7 +41,6 @@ run_test
 
 # Cache usage. Cache write, cache reset, cache commit.
 FILE=malloc://1024
-BROKEN=1
 ARGS='io.cache: basic usage'
 ARGS=
 CMDS='
