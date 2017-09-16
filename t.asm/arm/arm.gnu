@@ -3,30 +3,6 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 PLUGIN=arm.gnu
 
-NAME="${PLUGIN}: add r2, r2, r1, nop, bx r2, blx r5"
-CMDS='
-e asm.arch='${PLUGIN}'
-e asm.bits=32
-wa add r2, r2, r1
-s+$l
-wa nop
-s+$l
-wa bx r2
-s+$l
-wa blx r5
-s+$l
-?v $$
-pi 4 @0
-'
-EXPECT='0x10
-add r2, r2, r1
-nop   ; (mov r0, r0)
-bx r2
-blx r5
-'
-run_test
-
-
 NAME="${PLUGIN}: arm-endian"
 CMDS='
 e asm.arch='${PLUGIN}'
@@ -55,5 +31,3 @@ CMDS="pa b lr"
 EXPECT=''
 EXPECT_ERR='Invalid-instruction'
 run_test
-
-
