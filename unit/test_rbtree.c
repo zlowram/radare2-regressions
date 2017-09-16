@@ -4,14 +4,6 @@
 #include <r_util.h>
 #include "minunit.h"
 
-#ifndef container_of
-#define container_of(ptr, type, member) \
-	 ((type *)                              \
-	     (  ((char *)(ptr))                   \
-			    - ((char *)(&((type*)0)->member)) ))
-
-#endif
-
 static void random_iota(int *a, int n) {
 	int i;
 	a[0] = 0;
@@ -144,7 +136,7 @@ static bool insert_delete(int *a, int n, RBNodeSum sum) {
 		r_rbtree_aug_insert (&tree, x, &x->rb, cmp, sum);
 		if (sum) {
 			mu_assert_eq (i + 1, container_of (tree, struct Node, rb)->size, "size");
-			mu_assert (check (tree), "");
+			mu_assert ("shape", check (tree));
 		}
 	}
 
@@ -152,15 +144,15 @@ static bool insert_delete(int *a, int n, RBNodeSum sum) {
 	for (i = 0; i < n; i++) {
 		struct Node x = {.key = a[i]};
 		t = r_rbtree_aug_delete (&tree, &x, cmp, freefn, sum);
-		mu_assert (t, "delete");
+		mu_assert ("delete", t);
 		t = r_rbtree_aug_delete (&tree, &x, cmp, freefn, sum);
-		mu_assert (!t, "delete non-existent");
+		mu_assert ("delete non-existent", !t);
 		if (sum) {
 			if (i == n-1)
-				mu_assert_eq (NULL, tree, "size");
+				mu_assert ("size", tree == NULL);
 			else
 				mu_assert_eq (n - i - 1, container_of (tree, struct Node, rb)->size, "size");
-			mu_assert (check (tree), "");
+			mu_assert ("shape", check (tree));
 		}
 	}
 
@@ -227,14 +219,14 @@ bool test_r_rbtree_augmented_insert_delete2(void) {
 	for (i = 0; i < N; i++) {
 		struct Node x = {.key = a[i] * 2 + 1};
 		t = r_rbtree_aug_delete (&tree, &x, cmp, freefn, size);
-		mu_assert (!t, "delete non-existent");
-                mu_assert_eq (N - i, container_of (tree, struct Node, rb)->size, "size");
-		mu_assert (check (tree), "");
+		mu_assert ("delete non-existent", !t);
+		mu_assert_eq (N - i, container_of (tree, struct Node, rb)->size, "size");
+		mu_assert ("shape", check (tree));
 
 		x.key = a[i] * 2;
 		t = r_rbtree_aug_delete (&tree, &x, cmp, freefn, size);
-		mu_assert (t, "delete");
-		mu_assert (check (tree), "");
+		mu_assert ("delete", t);
+		mu_assert ("shape", check (tree));
 	}
 
 	mu_end;
