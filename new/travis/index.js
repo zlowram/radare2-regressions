@@ -71,12 +71,13 @@ async function processJob(job) {
   console.log(colors.green(`[BUILD] ${job.id} ${job.event_type} (${job.state}) ${job.message}`));
   console.log(colors.yellow(`[-----] ${job.id} ${job.started_at} ${job.commit}`));
   const buildInfo = await travis('builds/' + job.id, false);
+  const tmpDir = path.join(__dirname, 'tmp');
   for (let job of buildInfo.matrix) {
     try {
-      fs.mkdirSync('tmp');
+      fs.mkdirSync(tmpDir);
     } catch (e) {
     }
-    const logFile = 'tmp/log-' + job.id + '.txt';
+    const logFile = path.join(tmpDir, 'log-' + job.id + '.txt');
     const logExists = fs.existsSync(logFile);
     const travisLog = logExists
       ? { log: fs.readFileSync(logFile).toString() }
