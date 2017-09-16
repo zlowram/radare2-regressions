@@ -290,11 +290,12 @@ class NewRegressions {
       enabled: false,
       str: '',
     };
-if (this.argv.e) {
-  editMode.match = true;
-  editMode.name = 'cmd_graph'
-process.exit(1);
-}
+    // edit is work in progress. aka not working at all
+    if (this.argv.e) {
+      editMode.match = true;
+      editMode.name = 'cmd_graph'
+      process.exit(1);
+    }
     for (let l of lines) {
       const line = l.trim();
       if (line.length === 0 || line[0] === '#') {
@@ -395,7 +396,6 @@ process.exit(1);
     }
   }
 
-
   load (fileName, cb) {
     this.name = fileName;
     const blob = fs.readFileSync(path.join(__dirname, fileName));
@@ -439,8 +439,8 @@ process.exit(1);
       test.passes = test.expect.trim() === test.stdout.trim();
     }
     const status = (test.passes)
-    ? (test.broken ? colors.yellow('FX') : colors.green('OK'))
-    : (test.broken ? colors.blue('BR') : colors.red('XX'));
+    ? (test.broken ? colors.yellow('[FX]') : colors.green('[OK]'))
+    : (test.broken ? colors.blue('[BR]') : colors.red('[XX]'));
     this.report.total++;
     if (test.passes) {
       if (test.broken) {
@@ -462,18 +462,18 @@ process.exit(1);
     if (test.lifetime === undefined) {
       test.lifetime = '';
     }
-    if ((process.env.NOOK && status !== colors.green('OK')) || !process.env.NOOK) {
+    if ((process.env.NOOK && status !== colors.green('[OK]')) || !process.env.NOOK) {
       // console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
-      process.stdout.write('[' + status + '] '+ colors.yellow(test.name) + test.path + test.lifetime + (this.verbose?'\n':'\r'));
+      process.stdout.write(status + ' ' + colors.yellow(test.name) + test.path + test.lifetime + (this.verbose?'\n':'\r'));
     }
     return test.passes;
   }
 
   checkTestResult (test) {
     const testHasFailed = !this.checkTest(test);
-if (this.interactive) {
-this.verbose = true;
-}
+    if (this.interactive) {
+      this.verbose = true;
+    }
     if (!this.verbose && (test.broken || test.fixed)) {
       return;
     }
