@@ -68,7 +68,7 @@ function parseLogs(log) {
 }
 
 async function processJob(job) {
-  console.log(colors.green(`[BUILD] ${job.id} (${job.state}) ${job.message}`));
+  console.log(colors.green(`[BUILD] ${job.id} ${job.event_type} (${job.state}) ${job.message}`));
   console.log(colors.yellow(`[-----] ${job.id} ${job.started_at} ${job.commit}`));
   const buildInfo = await travis('builds/' + job.id, false);
   for (let job of buildInfo.matrix) {
@@ -98,8 +98,14 @@ async function main(opts) {
   try {
     const builds = await travis('builds', true);
     let lastBuild;
-    let limit = (typeof opts === 'object')? opts.limit: opts;
+    let limit = (typeof opts === 'object')? opts.limit: +opts;
     for (let build of builds) {
+      if (opts === '-p' && build.event_type !== 'pull_request') {
+        continue;
+      }
+      if (opts === '-m' && build.event_type !== 'push') {
+        continue;
+      }
       await processJob(build);
       if (--limit === 0) {
         break;
@@ -111,5 +117,5 @@ async function main(opts) {
 }
 
 module.exports = function (opts) {
-return main(opts);
+  return main(opts);
 }
