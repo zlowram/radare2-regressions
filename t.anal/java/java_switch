@@ -1,0 +1,159 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME='java simple switch statement 4 values no breaks'
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.arch=java
+wx 033b043ca700371a08703d1caa00000000000029000000000000000300000020000000230000002900000026840202840203840209033c1b1c823c1a100aa1ffc91bac
+pi 29 @ 0
+'
+EXPECT='iconst_0
+istore_0
+iconst_1
+istore_1
+goto 0x003b
+iload_0
+iconst_5
+irem
+istore_2
+iload_2
+tableswitch default: 0x0035
+case 0: goto 0x002c
+case 1: goto 0x002f
+case 2: goto 0x0035
+case 3: goto 0x0032
+iinc 2 2
+iinc 2 3
+iinc 2 9
+iconst_0
+istore_1
+iload_1
+iload_2
+ixor
+istore_1
+iload_0
+bipush 10
+if_icmplt 0x0007
+iload_1
+ireturn
+'
+
+run_test
+
+NAME='java simple switch statement 3 values no breaks'
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.arch=java
+wx 033b043ca7002c1a08703d1caa0000000000001e0000000000000001000000180000001b8402fe8402ff033c1b1c823c1a100aa1ffd41bac00000003000a0000
+pi 26 @ 0
+'
+EXPECT='iconst_0
+istore_0
+iconst_1
+istore_1
+goto 0x0030
+iload_0
+iconst_5
+irem
+istore_2
+iload_2
+tableswitch default: 0x002a
+case 0: goto 0x0024
+case 1: goto 0x0027
+iinc 2 254
+iinc 2 255
+iconst_0
+istore_1
+iload_1
+iload_2
+ixor
+istore_1
+iload_0
+bipush 10
+if_icmplt 0x0007
+iload_1
+ireturn
+'
+
+run_test
+
+NAME='java simple switch statement 4 values'
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.arch=java
+wx 033b033ca7003c1a08703d1caa0000000000003200000000000000030000002000000026000000320000002c840202a70011840203a7000b840209a70005033c1a100aa1ffc41bac00000003000a0000
+pi 28 @ 0
+'
+EXPECT='iconst_0
+istore_0
+iconst_0
+istore_1
+goto 0x0040
+iload_0
+iconst_5
+irem
+istore_2
+iload_2
+tableswitch default: 0x003e
+case 0: goto 0x002c
+case 1: goto 0x0032
+case 2: goto 0x003e
+case 3: goto 0x0038
+iinc 2 2
+goto 0x0040
+iinc 2 3
+goto 0x0040
+iinc 2 9
+goto 0x0040
+iconst_0
+istore_1
+iload_0
+bipush 10
+if_icmplt 0x0007
+iload_1
+ireturn
+'
+run_test
+
+NAME='java simple switch statement 3 values'
+FILE=malloc://128
+ARGS=
+CMDS='
+e asm.arch=java
+wx 033b033ca7003c1a08703d1caa0000000000003200000000000000030000002000000026000000320000002c840202a70011840203a7000b840209a70005033c1a100aa1ffc41bac00000003000a0000
+pi 28 @ 0
+'
+EXPECT='iconst_0
+istore_0
+iconst_0
+istore_1
+goto 0x0040
+iload_0
+iconst_5
+irem
+istore_2
+iload_2
+tableswitch default: 0x003e
+case 0: goto 0x002c
+case 1: goto 0x0032
+case 2: goto 0x003e
+case 3: goto 0x0038
+iinc 2 2
+goto 0x0040
+iinc 2 3
+goto 0x0040
+iinc 2 9
+goto 0x0040
+iconst_0
+istore_1
+iload_0
+bipush 10
+if_icmplt 0x0007
+iload_1
+ireturn
+'
+run_test
