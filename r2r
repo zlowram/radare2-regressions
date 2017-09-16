@@ -44,8 +44,7 @@ usage() {
 	echo "  -e    edit test"
 	echo "  -R    interactive run tests from new/db"
 	echo "  -v    show version"
-	echo "  -t    show travis status"
-	echo "  -p    show travis pullreq status"
+	echo "  -t [type]   show travis status for type (pr, master, any)"
 }
 
 case "$KW" in
@@ -164,10 +163,17 @@ case "$KW" in
 	${SHELL}
 	;;
 -t)
-	node new/travis/bin.js -m
-	;;
--p)
-	node new/travis/bin.js -p
+	case "$2" in
+	pr)
+		node new/travis/bin.js -p
+		;;
+	any)
+		node new/travis/bin.js
+		;;
+	*|master)
+		node new/travis/bin.js -m
+		;;
+	esac
 	;;
 -h)
 	usage
