@@ -35,7 +35,6 @@ CMDS='/j ConsoleApplication1.pdb~{}
 EXPECT='[
   {
     "offset": 4203952,
-    "id:": 0,
     "type": "string",
     "data": "cation1\\Release\\ConsoleApplication1.pdb  "
   }
