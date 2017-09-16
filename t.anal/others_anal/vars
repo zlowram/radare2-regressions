@@ -445,6 +445,6 @@ afvd arg_ch
 afvd local_10h
 '
 EXPECT='pxr $w @ebp+0xc
-pxr $w @ebp+0x10
+pxr $w @ebp-0x10
 '
 run_test
