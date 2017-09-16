@@ -37,3 +37,23 @@ EXPECT='00009de404108de2014080e2042181e0
 ff00009de404108de2014080e2042181
 '
 run_test
+
+NAME="pre-0x0-read1"
+FILE=malloc://32
+CMDS='
+e io.va=true
+p8 2 @ -1
+'
+EXPECT='ff00
+'
+run_test
+
+NAME="pre-0x0-read2"
+FILE=malloc://32
+CMDS='
+e io.va=true
+p8 4 @ -2
+'
+EXPECT='ffff0000
+'
+run_test

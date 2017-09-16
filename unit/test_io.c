@@ -26,13 +26,13 @@ bool test_r_io_pcache (void) {
 	RIO *io = r_io_new ();
 	ut8 buf[8];
 	int fd = r_io_fd_open (io, "malloc://3", R_IO_RW, 0);
-	r_io_map_add (io, fd, R_IO_RW, 0LL, 0LL, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 1, 1, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 1, 2, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 1, 3, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 1, 4, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 1, 5, 1, false);
-	r_io_map_add (io, fd, R_IO_RW, 2, 6, 1, false);
+	r_io_map_add (io, fd, R_IO_RW, 0LL, 0LL, 1, false); //8
+	r_io_map_add (io, fd, R_IO_RW, 1, 1, 1, false); //=
+	r_io_map_add (io, fd, R_IO_RW, 1, 2, 1, false); //=
+	r_io_map_add (io, fd, R_IO_RW, 1, 3, 1, false); //=
+	r_io_map_add (io, fd, R_IO_RW, 1, 4, 1, false); //=
+	r_io_map_add (io, fd, R_IO_RW, 1, 5, 1, false); //=
+	r_io_map_add (io, fd, R_IO_RW, 2, 6, 1, false); //D
 	io->p_cache = 2;
 	io->va = true;
 	r_io_fd_write_at (io, fd, 0, "8=D", 3);
@@ -40,13 +40,13 @@ bool test_r_io_pcache (void) {
 	mu_assert_streq (buf, "", "pcache read happened, but it shouldn't");
 	io->p_cache = 1;
 	r_io_read_at (io, 0x0, buf, 8);
-	mu_assert_streq (buf, "8======D", "expected an ascii-pn from pcache");
+	mu_assert_streq (buf, "8=====D", "expected an ascii-pn from pcache");
 	r_io_fd_write_at (io, fd, 0, "XXX", 3);
 	r_io_read_at (io, 0x0, buf, 8);
-	mu_assert_streq (buf, "8======D", "expected an ascii-pn from pcache");
+	mu_assert_streq (buf, "8=====D", "expected an ascii-pn from pcache");
 	io->p_cache = 0;
 	r_io_read_at (io, 0x0, buf, 8);
-	mu_assert_streq (buf, "XXXXXXXX", "expected censorship of the ascii-pn");
+	mu_assert_streq (buf, "XXXXXXX", "expected censorship of the ascii-pn");
 	r_io_free (io);
 	mu_end;
 }
