@@ -43,6 +43,8 @@ function parseLogs(log) {
         continue;
       }
       if (plain.indexOf('FX]') !== -1) {
+        const w = last.split(' ').slice(5).join(' ');
+        obj.issues.push(line + colors.yellow(w));
         obj.fx++;
       }
       if (plain.indexOf('XX]') !== -1) {

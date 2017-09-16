@@ -39,6 +39,8 @@ usage() {
 	echo "  -p    run test files in parallel"
 	echo "  -P    run every single test in parallel"
 	echo "  -r    run tests from new/db"
+	echo "  -R    run tests from new/db in verbose mode"
+	echo "  -i    run tests from new/db interactively"
 	echo "  -e    edit test"
 	echo "  -R    interactive run tests from new/db"
 	echo "  -v    show version"
