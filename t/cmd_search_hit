@@ -160,17 +160,15 @@ run_test
 NAME='cmd.hit for /A'
 FILE='malloc://1024'
 ARGS=
-BROKEN=1
-CMDS='e cmd.hit = pi 4
+CMDS='e cmd.hit = pi 1
 e asm.bits=32
 "wa add esp,8;pop ebx; pop ebp; ret"
-/A ret
+/A pop
 '
-EXPECT='0x00000005 1 ret
-add esp, 8
+EXPECT='0x00000003 1 pop ebx
 pop ebx
+0x00000004 1 pop ebp
 pop ebp
-ret
 '
 run_test
 
