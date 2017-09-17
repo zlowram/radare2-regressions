@@ -181,6 +181,7 @@ clean:
 	rm -rf tmp
 
 symstall:
+	mkdir -p $(BINDIR)
 	chmod +x r2-v r2r
 	ln -fs $(PWD)/r2-v $(BINDIR)/r2-v
 	ln -fs $(PWD)/r2r $(BINDIR)/r2r
