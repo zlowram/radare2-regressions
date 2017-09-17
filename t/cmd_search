@@ -9,7 +9,7 @@ FILE=../bins/mach0/escaped
 CMDS="
 /j hello
 "
-EXPECT='[{"offset": 8019,"type":"string","data":"]c:\\hello\\worldM"}]
+EXPECT='[{"offset":8019,"type":"string","data":"]c:\\hello\\worldM"}]
 '
 run_test
 
@@ -64,7 +64,7 @@ CMDS='
 wx 666f6f005c
 /j foo\x00\\
 '
-EXPECT='[{"offset": 0,"type":"string","data":"foo\u0000\\"}]
+EXPECT='[{"offset":0,"type":"string","data":"foo\u0000\\"}]
 '
 run_test
 
@@ -625,17 +625,8 @@ EXPECT='0x00000010 hit0_0 0e
 run_test
 
 NAME="search by part of file dec/hex"
-BROKEN=1
 CMDS='wx 8048 @ 0x10
-/F '"$c50b"' 12 0x2'
-EXPECT='0x00000010 hit0_0 8048
-'
-run_test
-
-NAME="search by part of file hex/dec"
-BROKEN=1
-CMDS='wx 8048 @ 0x10
-/F '"$c50b"' 0xc 2'
+/F '"$c50b"' 0x1c 0x2'
 EXPECT='0x00000010 hit0_0 8048
 '
 run_test
