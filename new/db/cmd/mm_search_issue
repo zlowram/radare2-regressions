@@ -1,5 +1,5 @@
 NAME=t/mm_search_issue
 FILE=../bins/elf/analysis/test_hex_search_issues
-EXPECT64=MHgwMDBmODYyYyBoaXQxXzAgMDEwMDAwMDAwMDAwMDAwMDAwMDAwMGZmCgo=
+EXPECT64=MHgwMDBmODYyYyBoaXQwXzAgMDEwMDAwMDAwMDAwMDAwMDAwMDAwMGZmCg==
 CMDS64=CmUgc2VhcmNoLmluPWlvLnNlY3Rpb25zCi94IDAxMDAwMDAwMDAwMDAwMDAwMDAwMDBmZgoK
 RUN
