@@ -86,12 +86,19 @@ async function processJob(job) {
     const result = parseLogs(log);
     const status = job.finished_at === null? '(running)': '(finished)';
     if (!logExists && job.finished_at) {
-      fs.writeFileSync(logFile, log);
+      if (log.length === 0) {
+        console.error('Empty log?');
+	return;
+      } else {
+        fs.writeFileSync(logFile, log);
+      }
     }
     console.log('  [JOB]', job.id, 'XX:', result.xx, 'BR:', result.br, 'FX:', result.fx, status);
     for (let issue of result.issues) {
       console.log('  ', issue);
     }
+    // only show results of 1st build
+    break;
   }
 }
 
@@ -104,7 +111,7 @@ async function main(opts) {
       if (opts === '-p' && build.event_type !== 'pull_request') {
         continue;
       }
-      if (opts === '-m' && build.event_type !== 'push') {
+      if (opts === '-m' && build.branch !== 'master') {
         continue;
       }
       await processJob(build);
