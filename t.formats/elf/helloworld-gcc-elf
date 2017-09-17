@@ -164,7 +164,7 @@ NAME='p-'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='p-
 '
-EXPECT='0x8048000 [c_ccs^sszcs_____________________________sss] 0x80496b7
+EXPECT='0x8048000 [cc_______cc_c__c_ccs.ss^sss_ss_ss__sz_c____] 0x804859c
 '
 run_test
 
