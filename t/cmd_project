@@ -114,10 +114,11 @@ e dir.projects = /tmp/
 Ps emu > /dev/null
 Po emu
 CC-
+om `o~[0]` 0
 pd 1
 rm /tmp/emu
 '
-EXPECT='            0x08000060      0d20a0e3       mov r2, 0xd                 ; 13 ; r2=0xd -> 0x2000000 
+EXPECT='            0x08000060      0d20a0e3       mov r2, 0xd                 ; 13 ; r2=0xd -> 0x2000000
 '
 run_test
 
