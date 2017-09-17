@@ -177,6 +177,12 @@ case "$KW" in
 	exit 0
 	;;
 -t)
+	if [ ! -d new/travis/node_modules ]; then
+		(
+		cd new/travis
+		npm install
+		)
+	fi
 	case "$2" in
 	pr)
 		node new/travis/bin.js -p
