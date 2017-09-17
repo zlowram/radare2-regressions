@@ -52,7 +52,7 @@ ARGS=
 CMDS='om `o~[0]` 0x4000
 om `o~[0]` 0x4000
 om~?'
-EXPECT='2
+EXPECT='3
 '
 run_test
 
