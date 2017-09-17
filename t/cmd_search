@@ -45,10 +45,11 @@ FILE='../bins/elf/ioli/crackme0x00'
 ARGS=
 BROKEN=
 CMDS='
+e scr.color = false
 e io.va = false
 s 0x1000
 e search.from = 0
-e search.to = 0x00000050
+e search.to = 0x50
 / ELF
 '
 EXPECT='0x00000001 hit0_0 "ELF"
@@ -395,10 +396,12 @@ ARGS=
 CMDS='
 e io.va = false
 s 0x1000
-/m
+/m~[0]
 s
+/fm
 '
-EXPECT='0x1000
+EXPECT='0x00000000
+0x1000
 '
 run_test
 
@@ -421,7 +424,7 @@ ARGS=
 CMDS='
 /x f8820408
 '
-EXPECT='0x08049f2c hit1_0 f8820408
+EXPECT='0x08049f2c hit0_0 f8820408
 '
 run_test
 
@@ -602,7 +605,7 @@ ARGS=
 
 NAME="search by whole file"
 CMDS='wx 90 @ 0x10
-/f '"$c1b"
+/F '"$c1b"
 EXPECT='0x00000010 hit0_0 90
 '
 run_test
@@ -610,7 +613,7 @@ run_test
 NAME="search by rest of file"
 BROKEN=1
 CMDS='wx 210a @ 0x10
-/f '"$c50b"' 48'
+/F '"$c50b"' 48'
 EXPECT='0x00000010 hit0_0 210a
 '
 run_test
@@ -618,7 +621,7 @@ run_test
 NAME="search by rest of file dec/dec"
 BROKEN=1
 CMDS='wx 0e @ 0x10
-/f '"$c50b"' 1 1'
+/F '"$c50b"' 1 1'
 EXPECT='0x00000010 hit0_0 0e
 '
 run_test
@@ -626,7 +629,7 @@ run_test
 NAME="search by part of file dec/hex"
 BROKEN=1
 CMDS='wx 8048 @ 0x10
-/f '"$c50b"' 12 0x2'
+/F '"$c50b"' 12 0x2'
 EXPECT='0x00000010 hit0_0 8048
 '
 run_test
@@ -634,7 +637,7 @@ run_test
 NAME="search by part of file hex/dec"
 BROKEN=1
 CMDS='wx 8048 @ 0x10
-/f '"$c50b"' 0xc 2'
+/F '"$c50b"' 0xc 2'
 EXPECT='0x00000010 hit0_0 8048
 '
 run_test
