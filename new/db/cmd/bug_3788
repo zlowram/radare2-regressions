@@ -5,7 +5,7 @@ CMDS64=cyAwCi94IGFjNmM2YzY4Cgo=
 RUN
 NAME=bug 3788 #2: search with multiple sections
 FILE=../bins/vsf/c64-rambo2-rom.vsf
-EXPECT64=MHgwMDAwMDA4YSBoaXQyXzAgYWM2ODZiNmQKCg==
+EXPECT64=MHgwMDAwMDA4YSBoaXQwXzAgYWM2ODZiNmQK
 CMDS64=cyAwCmUgc2VhcmNoLmluPWlvLnNlY3Rpb25zCi94IGFjNjg2YjZkCgo=
 RUN
 NAME=bug 3788 #3: cmd.hit
