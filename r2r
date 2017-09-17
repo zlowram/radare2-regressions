@@ -177,11 +177,11 @@ case "$KW" in
 	exit 0
 	;;
 -t)
+	if [ ! -d new/node_modules ]; then
+		( cd new && npm install )
+	fi
 	if [ ! -d new/travis/node_modules ]; then
-		(
-		cd new/travis
-		npm install
-		)
+		( cd new/travis && npm install )
 	fi
 	case "$2" in
 	pr)
