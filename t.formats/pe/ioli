@@ -13,10 +13,22 @@ EXPECT='1
 '
 run_test
 
-NAME='PE: ioli pocketpc 1'
+NAME='PE: ioli pocketpc 1 automatic via aaa'
 FILE=../../bins/pe/ioli/pocketpc/crackme0x00.arm.exe
 ARGS=''
 CMDS="aaa
+pd 1 @ 0x0001108c~?str.250382
+axt str.250382~?
+"
+EXPECT='1
+1
+'
+run_test
+
+NAME='PE: ioli pocketpc 1 manual via aae'
+FILE=../../bins/pe/ioli/pocketpc/crackme0x00.arm.exe
+ARGS=''
+CMDS="aae 0x0001108c
 pd 1 @ 0x0001108c~?str.250382
 axt str.250382~?
 "
