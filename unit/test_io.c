@@ -33,6 +33,7 @@ bool test_r_io_pcache (void) {
 	r_io_map_add (io, fd, R_IO_RW, 1, 4, 1, false); //=
 	r_io_map_add (io, fd, R_IO_RW, 1, 5, 1, false); //=
 	r_io_map_add (io, fd, R_IO_RW, 2, 6, 1, false); //D
+	r_io_map_calculate_skyline (io);
 	io->p_cache = 2;
 	io->va = true;
 	r_io_fd_write_at (io, fd, 0, "8=D", 3);
