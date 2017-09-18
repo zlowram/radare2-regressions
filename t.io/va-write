@@ -4,11 +4,26 @@ BINFILE=/tmp/.___binfile___.
 cp -f ../bins/elf/analysis/main ${BINFILE}
 
 NAME="va+write"
-BROKEN=
+BROKEN=1
 ARGS=-w
 IGNORE_ERR=1
 FILE=${BINFILE}
 CMDS='p8 2
+wx 9090
+p8 2
+'
+EXPECT='31ed
+9090
+'
+run_test
+
+NAME="va+write with omfg"
+BROKEN=
+ARGS=-w
+IGNORE_ERR=1
+FILE=${BINFILE}
+CMDS='omfg
+p8 2
 wx 9090
 p8 2
 '
