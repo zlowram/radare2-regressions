@@ -289,12 +289,11 @@ run_test
 NAME='wen should insert X null bytes even if io.cache=false'
 FILE=malloc://8
 ARGS=
+PRECMD="cp ../bins/pe/b.exe .b.exe"
 EXPECT='216607
 216608
 '
-CMDS='
-cp ../bins/pe/b.exe .b.exe
-o+ .b.exe
+CMDS='o+ .b.exe
 r
 s 0x200
 wen 1
