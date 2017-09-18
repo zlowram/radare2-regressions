@@ -98,6 +98,10 @@ dump_test() {
 }
 
 run_test() {
+  if [ -n "${PRECMD}" ]; then
+    ${PRECMD}
+    PRECMD=""
+  fi
   if [ "${DUMP}" = 1 ]; then
     dump_test
   elif [ "${HYPERPARALLEL}" = 1 ]; then
