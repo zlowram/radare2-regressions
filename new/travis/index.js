@@ -88,7 +88,7 @@ async function processJob(job) {
     if (!logExists && job.finished_at) {
       if (log.length === 0) {
         console.error('Empty log?');
-	return;
+	continue;
       } else {
         fs.writeFileSync(logFile, log);
       }
