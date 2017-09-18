@@ -8,7 +8,7 @@ FILE=../../bins/elf/analysis/mipsbe-busybox
 CMDS="aac
 afl~?
 "
-EXPECT="1270
+EXPECT="1271
 "
 run_test
 
