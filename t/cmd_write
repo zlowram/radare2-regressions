@@ -218,8 +218,10 @@ if [ -d "$TMPDIR" ]; then
 fi
 
 mkdir $TMPDIR
-cp ../bins/pe/b.exe $TMPDIR/.b.exe.orig
+PRECMD="
+cp ../bins/pe/b.exe $TMPDIR/.b.exe.orig ;
 cp ../bins/pe/b.exe $TMPDIR/.b.exe.new
+"
 
 CMDS='
 e io.cache=true
