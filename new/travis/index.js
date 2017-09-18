@@ -111,7 +111,7 @@ async function main(opts) {
       if (opts === '-p' && build.event_type !== 'pull_request') {
         continue;
       }
-      if (opts === '-m' && build.branch !== 'master') {
+      if (opts === '-m' && build.branch !== 'master' && build.event_type !== 'push') {
         continue;
       }
       await processJob(build);

@@ -300,3 +300,5 @@ s 0x200
 wen 1
 r
 rm .b.exe
+'
+run_test
