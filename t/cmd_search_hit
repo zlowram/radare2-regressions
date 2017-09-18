@@ -20,7 +20,7 @@ FILE='malloc://1024'
 CMDS='w hello @ 10
 psz @@/j hello
 '
-EXPECT='[{"offset": 10,"id:":0,"type":"string","data":"hello"}hello
+EXPECT='[{"offset":10,"type":"string","data":"hello"}hello
 ]
 '
 run_test
@@ -30,7 +30,7 @@ FILE='malloc://1024'
 CMDS='wx 005c
 /xj 005c
 '
-EXPECT='[{"offset": 0,"id:":0,"type":"hexpair","data":"005c"}]
+EXPECT='[{"offset":0,"type":"hexpair","data":"005c"}]
 '
 run_test
 
@@ -39,7 +39,7 @@ FILE='malloc://1024'
 CMDS='wx 005c
 /j \x00\\
 '
-EXPECT='[{"offset": 0,"id:":0,"type":"string","data":"\u0000\\"}]
+EXPECT='[{"offset": 0,"type":"string","data":"\u0000\\"}]
 '
 run_test
 
