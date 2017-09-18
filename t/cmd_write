@@ -190,7 +190,21 @@ EXPECT="03000000
 "
 run_test
 
-NAME='wx 0x should behave as wv'
+NAME='wv endian'
+FILE=malloc://1024
+ARGS=
+CMDS='e cfg.bigendian=false
+wv4 0x1234
+p8 2
+wv4 0x12345678
+p8 4
+'
+EXPECT='3412
+78563412
+'
+run_test
+
+NAME='wx 0x should behave like wv? imho nope'
 FILE=malloc://1024
 BROKEN=1
 ARGS=
@@ -213,14 +227,12 @@ ARGS=
 FILTER="cut -d' '  -f3"
 EXPECT='File size'
 TMPDIR=$PWD'/.tmp'
-if [ -d "$TMPDIR" ]; then
-  rm -rf $TMPDIR
-fi
 
-mkdir $TMPDIR
 PRECMD="
-cp ../bins/pe/b.exe $TMPDIR/.b.exe.orig ;
-cp ../bins/pe/b.exe $TMPDIR/.b.exe.new
+rm -rf '${TMPDIR}' ;
+mkdir -p '${TMPDIR}' ;
+cp -f ../bins/pe/b.exe '$TMPDIR/.b.exe.orig' ;
+cp -f ../bins/pe/b.exe '$TMPDIR/.b.exe.new'
 "
 
 CMDS='
@@ -231,7 +243,6 @@ wci
 e.src.null=true
 !radiff2 $TMPDIR/.b.exe.orig $TMPDIR/.b.exe.new
 '
-rm -rf $TMPDIR/
 run_test
 
 NAME='wx pcache'
@@ -289,9 +300,9 @@ EXPECT='01000002030400
 run_test
 
 NAME='wen should insert X null bytes even if io.cache=false'
-FILE=malloc://8
+FILE=--
 ARGS=
-PRECMD="cp ../bins/pe/b.exe .b.exe"
+PRECMD="cp -f ../bins/pe/b.exe .b.exe"
 EXPECT='216607
 216608
 '

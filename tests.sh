@@ -99,7 +99,7 @@ dump_test() {
 
 run_test() {
   if [ -n "${PRECMD}" ]; then
-    ${PRECMD}
+    eval ${PRECMD}
     PRECMD=""
   fi
   if [ "${DUMP}" = 1 ]; then
