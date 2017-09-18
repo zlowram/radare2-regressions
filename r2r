@@ -153,12 +153,10 @@ case "$KW" in
 	exit 1
 	;;
 -r)
-	shift
-	(cd new ; node bin/r2r.js -v $@)
+	(shift ; cd new ; node bin/r2r.js -v $@)
 	;;
 -R)
-	shift
-	(cd new ; node bin/r2r.js -i $@)
+	(shift ; cd new ; node bin/r2r.js -i $@)
 	;;
 -v)
 	echo "1.7.0"

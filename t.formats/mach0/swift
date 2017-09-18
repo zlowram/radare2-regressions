@@ -23,8 +23,10 @@ ARGS=
 CMDS='C*~Cd?
 aav
 C*~Cd?
+Cd~?
 '
 EXPECT='114
+269
 269
 '
 run_test
