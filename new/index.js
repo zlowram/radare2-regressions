@@ -10,6 +10,8 @@ const spawn = require('child_process').spawn;
 const spawnSync = require('child_process').spawnSync;
 const r2promise = require('r2pipe-promise');
 
+const timeoutFuzzed = 60 * 1000;
+
 // support node < 8
 if (!String.prototype.padStart) {
   String.prototype.padStart = function padStart(targetLength,padString) {
@@ -166,7 +168,7 @@ class NewRegressions {
         co(function * () {
           const args = ['-c', '?e init', '-qcq', '-A', test.path];
           test.birth = new Date();
-          const child = spawnSync(r2bin, args, {timeout: 20000});
+          const child = spawnSync(r2bin, args, {timeout: timeoutFuzzed});
           test.death = new Date();
           test.lifetime = test.death - test.birth;
           if (child.error) {
