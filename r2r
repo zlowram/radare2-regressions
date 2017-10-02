@@ -237,6 +237,7 @@ if [ -n "$KW" ]; then
 	echo "$TESTS"
 	echo
 	DIRS=""
+	FAIL=0
 	for a in ${TESTS} ; do
 		SKIP=0
 		if [ -d "$a" ]; then
@@ -250,9 +251,14 @@ if [ -n "$KW" ]; then
 				fi
 			done
 		fi
-		[ "${SKIP}" = 0 ] && ./${TESTRUNNER} "$a"
+		if [ "${SKIP}" = 0 ]; then
+			./${TESTRUNNER} "$a"
+			if [ $? != 0 ]; then
+				FAIL=1
+			fi
+		fi
 	done
-	exit 0
+	exit $FAIL
 else
 	usage
 	exit 1
