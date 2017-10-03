@@ -955,3 +955,22 @@ FILTER='grep -o "{[^}]*ordinal..13,[^}]*}"'
 EXPECT='{"vaddr":4195920,"paddr":1616,"ordinal":13,"size":44,"length":10,"section":".rodata","type":"utf32le","string":"YWJjZGVm8JCNiCAgZw==","blocks":["Basic Latin","Gothic"]}
 '
 run_test
+
+NAME='ik'
+FILE=../bins/elf/analysis/x86-helloworld-gcc
+ARGS=
+CMDS="ik~?elf.relro"
+EXPECT='1
+'
+
+run_test
+
+NAME='ibk use after free'
+FILE=../bins/elf/analysis/x86-helloworld-gcc
+ARGS=
+CMDS="ibk~?elf.relro"
+EXPECT='1
+'
+
+run_test
+
