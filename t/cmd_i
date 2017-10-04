@@ -974,3 +974,14 @@ EXPECT='1
 
 run_test
 
+for os in freebsd openbsd netbsd; do
+NAME="i on $os elf"
+FILE=../bins/elf/analysis/hello-$os-x86_64
+ARGS=
+CMDS="i~os"
+EXPECT="os       $os
+"
+
+run_test
+done
+
