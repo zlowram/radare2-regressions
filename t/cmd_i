@@ -985,3 +985,11 @@ EXPECT="os       $os
 run_test
 done
 
+NAME="i on hp-ux elf"
+FILE=../bins/elf/analysis/hello-hpux-ia64
+ARGS=
+CMDS="i~os"
+EXPECT="os       hpux
+"
+
+run_test
