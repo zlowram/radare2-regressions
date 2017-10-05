@@ -998,7 +998,7 @@ NAME="i on hp-ux elf (arch)"
 FILE=../bins/elf/analysis/hello-hpux-ia64
 ARGS=
 CMDS="i~arch"
-EXPECT="os       ia64
+EXPECT="arch     ia64
 "
 
 run_test
