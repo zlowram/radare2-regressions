@@ -1,0 +1,41 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+# Slow test
+#NAME='AFL - crash #1'
+#FILE='-'
+#CMDS='77777777777777777************************-;A;;;*777777777:;8;;*;;7I-;A;;;+;;;'
+#run_test
+
+NAME='AFL - crash #2'
+FILE='-'
+CMDS='ibbbbbbbk'
+run_test
+
+NAME='AFL - crash #3'
+FILE='-'
+CMDS='.dd dd)ddd dddr{G'
+FILTER='grep dummy_search_string'
+run_test
+
+NAME='AFL - crash #4'
+FILE='-'
+CMDS='*455%R*:**************'
+FILTER='grep dummy_search_string'
+run_test
+
+NAME='AFL - crash #5'
+FILE='-'
+CMDS='(((((((,(*;(((($(($(((((*<((()(((d'
+run_test
+
+# Slow test
+#NAME='AFL - crash #6'
+#FILE='/bin/ls'
+#CMDS='55ddd ddD@@ @ d'
+#run_test
+
+NAME='AFL - crash #7'
+FILE='/bin/ls'
+CMDS='22.22.22ddd d do@'
+run_test

@@ -230,3 +230,8 @@ EXPECT='0x400574
 Hello world
 '
 run_test
+
+NAME='ds JSON ident - crash'
+FILE='-'
+CMDS='ds 3~{'
+run_test

@@ -1,0 +1,14 @@
+#!/bin/sh
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='pvj JSON indent - crash'
+FILE='-'
+CMDS='pvj ~{'
+EXPECT='{"value":0,"string":""}
+'
+run_test
+
+NAME='p= - crash'
+FILE='-'
+CMDS='p=p" 1 " 1 EN'
+run_test

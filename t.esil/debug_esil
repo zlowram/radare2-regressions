@@ -41,3 +41,8 @@ EXPECT='1
 0
 '
 run_test
+
+NAME='aek- - crash'
+FILE='-'
+CMDS='aek-'
+run_test

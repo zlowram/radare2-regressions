@@ -398,3 +398,8 @@ func.foo.cc=cdecl
 func.foo.ret=int
 '
 run_test
+
+NAME='tk - crash'
+FILE='-'
+CMDS="tk -!!!! d'B%CCCC!9!!!!_"
+run_test
