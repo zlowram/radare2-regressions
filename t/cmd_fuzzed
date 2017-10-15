@@ -27,6 +27,7 @@ run_test
 NAME='AFL - crash #5'
 FILE='-'
 CMDS='(((((((,(*;(((($(($(((((*<((()(((d'
+FILTER='grep dummy_search_string'
 run_test
 
 # Slow test
