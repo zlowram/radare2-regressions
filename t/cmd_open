@@ -10,6 +10,14 @@ CMDS='oi-'
 EXPECT=
 run_test
 
+NAME='oi-'
+FILE=--
+ARGS=
+#CMDS='o-`o~[1]`;o'
+CMDS='o bins/mach0/fatmach0-3true'
+EXPECT=
+run_test
+
 NAME='o-'
 FILE=malloc://1024
 ARGS=
@@ -33,7 +41,7 @@ ARGS=
 CMDS='e file.nowarn=true
 e file.loadmethod=append
 o -;o~?'
-EXPECT='3
+EXPECT='2
 '
 run_test
 
