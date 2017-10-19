@@ -143,9 +143,7 @@ ARGS=
 CMDS='agn title1 body1
 agg'
 k='`'
-EXPECT="
-
-.--------------------.
+EXPECT=".--------------------.
 |  title1            |
 | body1              |
 $k--------------------'
@@ -163,7 +161,6 @@ af
 agf'
 k='`'
 EXPECT="[0x00000000]> VV @ fcn.00000000 (nodes 1 edges 0 zoom 100%) BB-NORM mouse:canvas-y movements-speed:5
-
 .----------------------.
 |  0x0 ;[ga]           |
 | (fcn) fcn.00000000 5 |
@@ -181,9 +178,7 @@ ARGS=
 CMDS='agn 0x0 base64:cHVzaCBlYnAKbW92IGVicCwgZXNwCnBvcCBlYnAKcmV0
 agg'
 k='`'
-EXPECT="
-
-.--------------------.
+EXPECT=".--------------------.
 |  0x0               |
 | push ebp           |
 | mov ebp, esp       |
@@ -245,7 +240,6 @@ e graph.title=This is the graph title
 agg
 '
 EXPECT="This is the graph title
-
 .--------------------.
 |  title1            |
 | body1              |
@@ -279,9 +273,7 @@ age title1 title1
 agg
 '
 k='`'
-EXPECT="
-
-.----.
+EXPECT=".----.
 |    |
 |.--------------------.
 ||  title1            |
