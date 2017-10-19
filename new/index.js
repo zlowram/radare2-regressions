@@ -490,7 +490,7 @@ class NewRegressions {
       }
       if (test.expect !== null) {
         ///console.log('---');
-        console.log(colors.red(test.expect.trim()));
+        console.log(colors.magenta(test.expect.trim()));
       }
       if (test.stdout !== null) {
         // console.log('+++');
