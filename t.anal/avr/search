@@ -31,7 +31,7 @@ CMDS='e asm.arch=avr
 aac @ 0
 axt 0x4ec
 '
-EXPECT='call 0x3e2 call fcn.000004ec in fcn.00000360
+EXPECT='fcn.00000360 0x3e2 [call] call fcn.000004ec
 '
 run_test
 
@@ -41,6 +41,6 @@ CMDS='e asm.arch=avr
 aaa
 axt 0x4ec
 '
-EXPECT='call 0x3e2 call fcn.000004ec in fcn.00000360
+EXPECT='fcn.00000360 0x3e2 [call] call fcn.000004ec
 '
 run_test
