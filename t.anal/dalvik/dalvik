@@ -20,7 +20,7 @@ NAME="Dalvik HelloWorld string xref"
 BROKEN=
 FILE=${HELLOWORLD}
 CMDS="aa; axt @ str.Findus"
-EXPECT='data 0x260 const-string v1, str.Findus in entry0
+EXPECT='entry0 0x260 [data] const-string v1, str.Findus
 '
 run_test
 
@@ -28,6 +28,6 @@ NAME="Dalvik HelloWorld func xref"
 BROKEN=
 FILE=${HELLOWORLD}
 CMDS="e io.va=0; aa; axt @ sym.LHello.method._init___V"
-EXPECT='call 0x26e invoke-direct {v0}, LHello.<init>()V ; 0x0 in entry0
+EXPECT='entry0 0x26e [call] invoke-direct {v0}, LHello.<init>()V ; 0x0
 '
 run_test
