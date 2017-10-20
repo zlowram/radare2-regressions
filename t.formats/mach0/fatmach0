@@ -195,7 +195,6 @@ EXPECT='10
 '
 run_test
 
-
 NAME='fatmach0 rebase'
 BROKEN=
 FILE=../../bins/mach0/fatmach0-3true
