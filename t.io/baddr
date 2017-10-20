@@ -68,7 +68,7 @@ p8 10 @ 0x00005f44
 EXPECT='0x00005f44
 0x00001f44
 6a0089e583e4f083ec10
-ffffffffffffffffffff
+6a0089e583e4f083ec10
 '
 run_test
 
