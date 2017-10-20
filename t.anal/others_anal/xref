@@ -13,7 +13,7 @@ e scr.color = false
 e scr.wheel = false
 aa
 axt @ str.Hello_World'
-EXPECT='data 0x40050a mov edi, str.Hello_World in sym.main
+EXPECT='sym.main 0x40050a [data] mov edi, str.Hello_World
 '
 run_test
 
@@ -27,7 +27,7 @@ e scr.color=false
 e scr.wheel = false
 aa
 axt @ str.Hello_World'
-EXPECT='data 0x40050a mov edi, str.Hello_World in sym.main
+EXPECT='sym.main 0x40050a [data] mov edi, str.Hello_World
 '
 run_test
 
@@ -42,7 +42,7 @@ e scr.color=false
 e scr.wheel = false
 aa
 axt @ str.Password:'
-EXPECT='data 0x804843c mov dword [esp], str.Password: in main
+EXPECT='main 0x804843c [data] mov dword [esp], str.Password:
 '
 run_test
 
@@ -53,9 +53,9 @@ ARGS=
 CMDS='
 aaa
 axt @ sym.imp.exit'
-EXPECT='call 0x804853d call sym.imp.exit in sub.printf_524
-call 0x80485ab call sym.imp.exit in sub.sscanf_542
-call 0x804866f call sym.imp.exit in sub.strlen_5b9
+EXPECT='sub.printf_524 0x804853d [call] call sym.imp.exit
+sub.sscanf_542 0x80485ab [call] call sym.imp.exit
+sub.strlen_5b9 0x804866f [call] call sym.imp.exit
 '
 run_test
 
@@ -66,9 +66,9 @@ ARGS=
 CMDS='
 aaaa
 axt @ sym.imp.exit'
-EXPECT='call 0x804853d call sym.imp.exit in sub.printf_524
-call 0x80485ab call sym.imp.exit in sub.sscanf_542
-call 0x804866f call sym.imp.exit in sub.strlen_5b9
+EXPECT='sub.printf_524 0x804853d [call] call sym.imp.exit
+sub.sscanf_542 0x80485ab [call] call sym.imp.exit
+sub.strlen_5b9 0x804866f [call] call sym.imp.exit
 '
 run_test
 
@@ -82,8 +82,8 @@ axt @ sym.imp.msvcrt.dll_printf
 e asm.relsub=true
 axt @ sym.imp.msvcrt.dll_printf
 '
-EXPECT='data 0xffffffffffff100a call qword [rip + 0xd8] in entry0
-data 0xffffffffffff100a call qword sym.imp.msvcrt.dll_printf in entry0
+EXPECT='entry0 0xffffffffffff100a [data] call qword [rip + 0xd8]
+entry0 0xffffffffffff100a [data] call qword sym.imp.msvcrt.dll_printf
 '
 run_test
 
@@ -98,7 +98,7 @@ e scr.color=false
 e scr.wheel = false
 aa
 axt @ str.Password:'
-EXPECT='data 0x804843c mov dword [esp], str.Password: in main
+EXPECT='main 0x804843c [data] mov dword [esp], str.Password:
 '
 run_test
 
@@ -161,7 +161,7 @@ ARGS=
 CMDS='aaa
 axt fcn.00401270
 '
-EXPECT='call 0x401a1d call fcn.00401270 in unknown function
+EXPECT='(nofunc) 0x401a1d [call] call fcn.00401270
 '
 
 
@@ -180,7 +180,7 @@ aa
 axt str.Sdvvzrug_RN______
 axf 0x804848a
 '
-EXPECT='data 0x804848a mov dword [esp], str.Sdvvzrug_RN______ in sym.test
+EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN______
 d 0x804848a mov dword [esp], str.Sdvvzrug_RN______
 '
 if [ -n "${TRAVIS}" ]; then
@@ -202,7 +202,7 @@ aa
 axt str.Sdvvzrug_RN______
 axf 0x804848a
 '
-EXPECT='data 0x804848a mov dword [esp], str.Sdvvzrug_RN______ in sym.test
+EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN______
 d 0x804848a mov dword [esp], str.Sdvvzrug_RN______
 '
 run_test
@@ -233,13 +233,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='strg 0x1457 lea eax, str.Take_the_Red_Pill____n in main
-strg 0x148e lea eax, str.use:_._exploit1_PILL in main
-strg 0x14eb lea eax, str.Red_Pill__0x50444552 in main
-strg 0x1502 lea eax, str.Your_Pill_0x_08x_n in main
-strg 0x1523 lea eax, str._n__Red_Pill in main
-strg 0x1557 lea eax, str.fwhibbit_ in main
-strg 0x161d lea eax, str._n__Blue_Pill in main
+EXPECT='main 0x1457 [strg] lea eax, str.Take_the_Red_Pill____n
+main 0x148e [strg] lea eax, str.use:_._exploit1_PILL
+main 0x14eb [strg] lea eax, str.Red_Pill__0x50444552
+main 0x1502 [strg] lea eax, str.Your_Pill_0x_08x_n
+main 0x1523 [strg] lea eax, str._n__Red_Pill
+main 0x1557 [strg] lea eax, str.fwhibbit_
+main 0x161d [strg] lea eax, str._n__Blue_Pill
 '
 run_test
 
@@ -251,7 +251,7 @@ CMDS='
 aaa
 axt@0x0804a01c
 '
-EXPECT='data 0x80483ee mov dword obj.a, 0x1337 in sym.main
+EXPECT='sym.main 0x80483ee [data] mov dword obj.a, 0x1337
 '
 run_test
 
@@ -293,7 +293,7 @@ aa
 aae
 axt@0x80484e0
 '
-EXPECT='strg 0x8048432 lea eax, str.Hello_PIC_ in main
+EXPECT='main 0x8048432 [strg] lea eax, str.Hello_PIC_
 '
 run_test
 
@@ -312,13 +312,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='strg 0x1457 lea eax, [esi - 0x2277] in main
-strg 0x148e lea eax, [esi - 0x2260] in main
-strg 0x14eb lea eax, [esi - 0x2249] in main
-strg 0x1502 lea eax, [esi - 0x222f] in main
-strg 0x1523 lea eax, [esi - 0x2218] in main
-strg 0x1557 lea eax, [esi - 0x220c] in main
-strg 0x161d lea eax, [esi - 0x21f7] in main
+EXPECT='main 0x1457 [strg] lea eax, [esi - 0x2277]
+main 0x148e [strg] lea eax, [esi - 0x2260]
+main 0x14eb [strg] lea eax, [esi - 0x2249]
+main 0x1502 [strg] lea eax, [esi - 0x222f]
+main 0x1523 [strg] lea eax, [esi - 0x2218]
+main 0x1557 [strg] lea eax, [esi - 0x220c]
+main 0x161d [strg] lea eax, [esi - 0x21f7]
 '
 run_test
 
@@ -332,7 +332,7 @@ aa
 aae
 axt@0x80484e0
 '
-EXPECT='strg 0x8048432 lea eax, [ebx - 0x1b20] in main
+EXPECT='main 0x8048432 [strg] lea eax, [ebx - 0x1b20]
 '
 run_test
 
