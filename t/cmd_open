@@ -210,7 +210,7 @@ o ../bins/elf/true32
 e scr.null=false
 isq~?
 # raise back
-o `o~:0[0]`
+op `o~:0[0]`
 isq~?
 '
 EXPECT='408
@@ -226,8 +226,7 @@ CMDS='o -
 o-*
 o~?
 '
-EXPECT='4
-0
+EXPECT='0
 '
 run_test
 
@@ -238,7 +237,6 @@ CMDS='o -
 o-3
 o~?
 '
-EXPECT='4
-1
+EXPECT='1
 '
 run_test

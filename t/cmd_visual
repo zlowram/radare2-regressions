@@ -74,7 +74,6 @@ EXPECT='ahi 10 @ 0x400419
 run_test
 
 NAME='V&q change bits'
-BROKEN=1
 FILE=../bins/elf/ioli/crackme0x00
 ARGS=
 CMDS='
