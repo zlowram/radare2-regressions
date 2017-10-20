@@ -185,3 +185,55 @@ EXPECT='0x00000100 hit0_0 41424344
 41424344
 '
 run_test
+
+NAME='cmd.hit for /B'
+FILE='malloc://1024'
+ARGS=
+CMDS='wx cffa edfe
+e cmd.hit = px 1
+e search.from = 0
+e search.to = 0x10
+/B
+'
+EXPECT='0x00000000  mach064
+'
+run_test
+
+NAME='cmd.hit for /i'
+BROKEN=
+FILE='malloc://1024'
+CMDS='e cmd.hit = ps
+e search.from = 0
+e search.to = 0x10
+w AAAAAAAAAAB
+/i aaaaaaaaaab
+'
+EXPECT='0x00000000 hit0_0 "AAAAAAAAAAB"
+AAAAAAAAAAB
+'
+run_test
+
+NAME='cmd.hit for /r from/to'
+BROKEN=1
+FILE='../bins/elf/analysis/ls-linux64'
+CMDS='e cmd.hit = pi 1
+e search.from = 0x00005c20
+e search.to = 0x00005c49
+/r sym.imp.__libc_start_main
+'
+EXPECT='(nofunc) 0x5c44 [call] call sym.imp.__libc_start_main
+call sym.imp.__libc_start_main
+'
+run_test
+
+NAME='from/to /r'
+BROKEN=1
+FILE='../bins/elf/analysis/ls-linux64'
+CMDS='e cmd.hit = pi 1
+e search.from = 0x00005c20
+e search.to = 0x00005c44
+/r sym.imp.__cxa_finalize
+'
+EXPECT='
+'
+run_test
