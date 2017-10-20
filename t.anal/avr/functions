@@ -9,7 +9,7 @@ e asm.arch=avr
 aaa
 axt 0x28a
 "
-EXPECT='code 0x328 jmp 0x28a in fcn.0000029e
+EXPECT='fcn.0000029e 0x328 [code] jmp 0x28a
 '
 run_test
 
@@ -28,5 +28,3 @@ int
 int.00000000
 '
 run_test
-
-
