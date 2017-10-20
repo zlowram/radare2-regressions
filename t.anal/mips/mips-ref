@@ -39,7 +39,7 @@ fs strings
 axt str.busybox
 "
 EXPECT='            0x00406228      fcc38424       addiu a0, a0, -0x3c04       ; 0x44c3fc ; "busybox" ; str.busybox
-data 0x406228 addiu a0, a0, -0x3c04 in unknown function; str.busybox
+(nofunc); str.busybox 0x406228 [data] addiu a0, a0, -0x3c04
 '
 
 run_test
