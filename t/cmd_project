@@ -234,7 +234,7 @@ run_test
 
 NAME='Save project for a binary and checking opened files'
 FILE='../bins/elf/analysis/main'
-BROKEN=
+BROKEN=1
 ARGS=
 CMDS='e dir.projects = /tmp/
 Ps blah > /dev/null
@@ -314,7 +314,6 @@ run_test
 
 NAME='prj.name saved in project'
 FILE=malloc://512
-BROKEN=1
 ARGS=
 CMDS='e dir.projects = /tmp/
 Ps named_prj > /dev/null
