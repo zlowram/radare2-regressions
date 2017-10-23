@@ -56,7 +56,7 @@ a "mov rcx, r9" 4c89c9
 a "mov r10, rax" 4989c2
 a "mov r12, r9" 4d89cc
 a "mov rcx, rbp" 4889e9
-a "mov rax, [0xbeef]" 488b0425efbe0000
+a "mov rax, [0xbeef]" 48a1efbe000000000000
 a "mov rax, [rax + 0xbeef]" 488b80efbe0000
 a "mov rax, [rbx + 0xbeef]" 488b83efbe0000
 a "mov rcx, [rbx + 0xbeef]" 488b8befbe0000

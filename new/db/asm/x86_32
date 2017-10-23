@@ -1404,7 +1404,7 @@ a "mov [33], esi" 893521000000
 a "mov [33], esp" 892521000000
 a "mov ah, 0" b400
 a "mov al, 0" b000
-a "mov al, byte [0]" 8a0500000000
+a "mov al, byte [0]" a000000000
 a "mov al, byte [eax]" 8a00
 a "mov al, [eax]" 8a00
 aB "movapd xmm0, xmmword [eax]" 660f2800
@@ -1471,7 +1471,7 @@ a "mov [eax+4], eax" 894004
 a "mov [eax+4], ecx" 894804
 aB "mov eax, cr0" 0f20
 aB "mov eax, dr0" 0f21
-a "mov eax, dword [0]" 8b0500000000
+a "mov eax, dword [0]" a100000000
 a "mov ecx, dword [0]" 8b0d00000000
 a "mov ecx, dword [1]" 8b0d01000000
 a "mov eax, dword [eax]" 8b00
