@@ -1472,11 +1472,15 @@ a "mov [eax+4], ecx" 894804
 aB "mov eax, cr0" 0f20
 aB "mov eax, dr0" 0f21
 a "mov eax, dword [0]" 8b0500000000
+a "mov ecx, dword [0]" 8b0d00000000
+a "mov ecx, dword [1]" 8b0d01000000
 a "mov eax, dword [eax]" 8b00
 a "mov eax, dword [ebp]" 8b4500
 a "mov eax, dword [esp]" 8b0424
 aB "mov eax, dword fs:[ebp]" 648b4500
 a "mov eax, [eax+1337]" 8b8039050000
+a "mov ecx, [eip+1337]" 8b0d39050000
+a "mov ecx, [eip+13]" 8b0d0d000000
 a "mov eax, [eax-1337]" 8b80c7faffff
 a "mov eax,[eax*4+32]" 8b048520000000
 a "mov eax,[eax*4-32]" 8b0485e0ffffff
