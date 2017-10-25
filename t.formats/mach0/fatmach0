@@ -3,6 +3,68 @@
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
+NAME='fatmach0 string location'
+BROKEN=1
+FILE=../../bins/mach0/BatteryLife
+CMDS="s str.batteryLevel
+ps
+"
+EXPECT='batteryLevel
+'
+run_test
+
+NAME='fatmach0 -b64'
+ARGS="-aarm -b64"
+FILE=../../bins/mach0/BatteryLife
+CMDS="e asm.bits
+e asm.bytes=0
+e asm.flags=0
+e asm.lines=0
+pd 1
+"
+EXPECT='64
+ 0x100010f7c      stp x22, x21, [sp, -0x30]!
+'
+run_test
+
+NAME='fatmach0 -b64'
+ARGS="-b64"
+BROKEN=1
+FILE=../../bins/mach0/BatteryLife
+CMDS="e asm.bits
+e asm.bytes=0
+e asm.flags=0
+e asm.lines=0
+pd 1
+"
+EXPECT='64
+ 0x100010f7c      stp x22, x21, [sp, -0x30]!
+'
+run_test
+
+NAME='fatmach0 arm64'
+BROKEN=
+FILE=../../bins/mach0/BatteryLife.arm_64.1
+CMDS="
+e asm.bytes=0
+e asm.flags=0
+e asm.lines=0
+pd 1
+"
+EXPECT=' 0x100010f7c      stp x22, x21, [sp, -0x30]!
+'
+run_test
+
+NAME='fatmach0 arm32 string location'
+BROKEN=
+FILE=../../bins/mach0/BatteryLife.arm_32.0
+CMDS="s str.batteryLevel
+ps
+"
+EXPECT='batteryLevel
+'
+run_test
+
 NAME='fatmach0 arm16 symbol alignment'
 FILE=../../bins/mach0/a.out
 ARGS=

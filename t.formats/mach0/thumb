@@ -32,3 +32,20 @@ CMDS='pi 1@ sym.imp.strcmp
 EXPECT='ldr pc, [pc, -4]
 '
 run_test
+
+NAME='BatteryLife thumb/arm'
+BROKEN=
+FILE=../../bins/mach0/BatteryLife.arm_32.0
+ARGS=
+CMDS='
+e asm.bytes=0
+e asm.lines=0
+e asm.comments=0
+pd 1~push
+aae
+pd 1~push
+'
+EXPECT=' 0x00015e24      push {r4, r5, r6, r7, lr}
+ 0x00015e24      push {r4, r5, r6, r7, lr}
+'
+run_test
