@@ -93,7 +93,7 @@ anal.8051:
 esil:
 	$(SHELL) run_tests.sh t.esil
 
-formats: format.bflt format.coff format.smd format.vsf format.dex format.elf format.firmware format.java format.mach0 format.mangling format.msil format.omf format.others format.pdb format.pe format.xbe format.zimg format.nes format.gba format.wasm
+formats: format.bflt format.coff format.smd format.vsf format.dex format.elf format.firmware format.java format.mach0 format.mangling format.mdmp format.msil format.omf format.others format.pdb format.pe format.xbe format.zimg format.nes format.gba format.wasm
 format.vsf:
 	$(SHELL) run_tests.sh t.formats/vsf
 format.smd:
@@ -114,6 +114,8 @@ format.mach0:
 	$(SHELL) run_tests.sh t.formats/mach0
 format.mangling:
 	$(SHELL) run_tests.sh t.formats/mangling
+format.mdmp:
+	$(SHELL) run_tests.sh t.formats/mdmp
 format.msil:
 	$(SHELL) run_tests.sh t.formats/msil
 format.omf:
@@ -162,9 +164,6 @@ swf:
 
 m68k-extras:
 	$(SHELL) run_tests.sh t.extras/m68k
-
-extras.mdmp:
-	$(SHELL) run_tests.sh t.extras/mdmp
 
 olly-extras:
 	$(SHELL) run_tests.sh t.extras/x86_olly
