@@ -2,6 +2,7 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 ###############################################################################
+
 NAME='PDB downloader check'
 FILE=../../bins/pdb/user32.dll
 ARGS="-e pdb.server=http://radare.org/"
@@ -18,7 +19,6 @@ else
 	test_reset
 fi
 
-
 NAME='find structure R2_TEST_STRUCT'
 BROKEN=
 FILE=../../bins/pdb/Project1.pdb
@@ -26,7 +26,6 @@ ARGS=
 CMDS='!rabin2 -P ${R2_FILE} | grep -ao R2_TEST_STRUCT'
 EXPECT='R2_TEST_STRUCT
 '
-
 run_test
 
 NAME='find union R2_TEST_UNION'
