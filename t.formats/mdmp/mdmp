@@ -144,8 +144,10 @@ NAME="${PLUGIN}: 32bit - entrypoints count"
 FILE=$F1
 ARGS=
 CMDS='ie~entrypoints
+iee~entrypoints
 '
-EXPECT='11 entrypoints
+EXPECT='9 entrypoints
+2 entrypoints
 '
 run_test
 

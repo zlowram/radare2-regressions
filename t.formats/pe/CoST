@@ -13,9 +13,18 @@ FILE=../../bins/pe/CoST.exe
 CMDS="ie"
 EXPECT='[Entrypoints]
 vaddr=0x7efd0000 paddr=0x00000000 baddr=0x7efd0000 laddr=0x00000000 haddr=0x0000506c type=program
+
+1 entrypoints
+'
+run_test
+
+NAME='PE: corkami CoST.exe - tls VA'
+FILE=../../bins/pe/CoST.exe
+CMDS="iee"
+EXPECT='[Entrypoints]
 vaddr=0x7efd0148 paddr=0x00000148 baddr=0x7efd0000 laddr=0x00000000 haddr=0x000001cc type=tls
 
-2 entrypoints
+1 entrypoints
 '
 run_test
 
