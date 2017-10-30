@@ -11,13 +11,16 @@ run_test
 NAME='PE: tls_noEP - entrypoint'
 FILE=../../bins/pe/tls_noEP.exe
 ARGS=''
-CMDS="ie"
+CMDS="ieee"
 
-EXPECT='[Entrypoints]
-vaddr=0x00401000 paddr=0x00000200 baddr=0x00400000 laddr=0x00000000 haddr=0x00000068 type=program
+EXPECT='[Constructors]
 vaddr=0x00401000 paddr=0x00000200 baddr=0x00400000 laddr=0x00000000 haddr=0x00000384 type=tls
 
-2 entrypoints
+1 entrypoints
+[Entrypoints]
+vaddr=0x00401000 paddr=0x00000200 baddr=0x00400000 laddr=0x00000000 haddr=0x00000068 type=program
+
+1 entrypoints
 '
 
 run_test

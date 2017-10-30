@@ -21,7 +21,7 @@ run_test
 NAME='PE: corkami CoST.exe - tls VA'
 FILE=../../bins/pe/CoST.exe
 CMDS="iee"
-EXPECT='[Entrypoints]
+EXPECT='[Constructors]
 vaddr=0x7efd0148 paddr=0x00000148 baddr=0x7efd0000 laddr=0x00000000 haddr=0x000001cc type=tls
 
 1 entrypoints

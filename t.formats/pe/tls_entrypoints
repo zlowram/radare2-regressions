@@ -9,7 +9,7 @@ EXPECT='[Entrypoints]
 vaddr=0x00401000 paddr=0x00000200 baddr=0x00400000 laddr=0x00000000 haddr=0x00000068 type=program
 
 1 entrypoints
-[Entrypoints]
+[Constructors]
 vaddr=0x00401020 paddr=0x00000220 baddr=0x00400000 laddr=0x00000000 haddr=0x00000384 type=tls
 
 1 entrypoints
@@ -24,7 +24,7 @@ EXPECT='[Entrypoints]
 vaddr=0x004014c8 paddr=0x000008c8 baddr=0x00400000 laddr=0x00000000 haddr=0x00000098 type=program
 
 1 entrypoints
-[Entrypoints]
+[Constructors]
 vaddr=0x00401618 paddr=0x00000a18 baddr=0x00400000 laddr=0x00000000 haddr=0x00007fb0 type=tls
 
 1 entrypoints
@@ -47,7 +47,7 @@ NAME='PE: tls 3'
 FILE=../../bins/pe/tls_obfuscation.exe
 ARGS='-A'
 CMDS="iee"
-EXPECT='[Entrypoints]
+EXPECT='[Constructors]
 vaddr=0x00401016 paddr=0x00000216 baddr=0x00400000 laddr=0x00000000 haddr=0x00000330 type=tls
 vaddr=0x00401001 paddr=0x00000201 baddr=0x00400000 laddr=0x00000000 haddr=0x00000334 type=tls
 vaddr=0x00401006 paddr=0x00000206 baddr=0x00400000 laddr=0x00000000 haddr=0x00000338 type=tls
