@@ -104,7 +104,7 @@ FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='fs
 '
 EXPECT='0    1 * strings
-1   32 * symbols
+1   34 * symbols
 2   78 * sections
 3    4 * relocs
 4    3 * imports
@@ -118,12 +118,12 @@ aa;fs *;fs
 afl~?
 '
 EXPECT='0    1 * strings
-1   32 * symbols
+1   34 * symbols
 2   78 * sections
 3    4 * relocs
 4    3 * imports
 5    0 * functions
-13
+14
 '
 run_test
 
@@ -132,7 +132,7 @@ FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='s entry0+4; af;fs *;fs
 '
 EXPECT='0    1 * strings
-1   32 * symbols
+1   34 * symbols
 2   78 * sections
 3    4 * relocs
 4    3 * imports
@@ -252,7 +252,7 @@ NAME='flags (total)'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='f~?
 '
-EXPECT='118
+EXPECT='120
 '
 run_test
 
@@ -263,6 +263,8 @@ CMDS='f
 EXPECT='0x080484b0 13 str.Hello_world_
 0x08048400 256 main
 0x08048300 1 entry0
+0x080483d0 1 entry1.init
+0x080483b0 1 entry2.fini
 0x00000000 0 section.
 0x00000000 0 section_end.
 0x08048134 19 section..interp

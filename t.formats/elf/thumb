@@ -21,7 +21,7 @@ FILE=../../bins/elf/arm-init
 ARGS=
 CMDS='iee
 '
-EXPECT='[Entrypoints]
+EXPECT='[Constructors]
 vaddr=0x000002e4 paddr=0x000002e4 baddr=0x00000000 laddr=0x00000000 haddr=0x00000ed0 type=fini
 vaddr=0x00000344 paddr=0x00000344 baddr=0x00000000 laddr=0x00000000 haddr=0x00000ed8 type=init
 
@@ -140,8 +140,6 @@ push {r7, lr}
 add r7, sp, 0
 '
 run_test
-
-
 
 NAME='arm at entry libsimplejni.so'
 FILE=../../bins/elf/analysis/libsimplejni.so
