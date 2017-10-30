@@ -2,6 +2,24 @@
 # GPL 3+ - Copyright (C) 2011-2015  pancake, Edd Barrett, Simon Ruderich
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='ib'
+BROKEN=
+FILE=../bins/elf/analysis/main
+ARGS=
+CMDS='e bin.baddr=0
+e asm.calls=false
+ib
+op 3
+e io.va=0
+s entry0
+pi 1
+?p
+'
+EXPECT='xor ebp, ebp
+0x00000410
+'
+run_test
+
 ## "i" - get info about opened file
 export BIT_SIZE=`getconf LONG_BIT`
 NAME='ih (file x86)'
@@ -217,23 +235,6 @@ FILE=../bins/elf/analysis/x86-helloworld-gcc
 ARGS=
 CMDS="iA"
 EXPECT='000 0x00000000 4899 x86_32
-'
-run_test
-
-NAME='ib'
-BROKEN=
-FILE=../bins/elf/analysis/main
-ARGS=
-CMDS='e bin.baddr=0x00
-e asm.calls=false
-ib
-op 3
-e io.va=0
-pi 1
-?p
-'
-EXPECT='xor ebp, ebp
-0x00000410
 '
 run_test
 

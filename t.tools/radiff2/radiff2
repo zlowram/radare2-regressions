@@ -66,7 +66,7 @@ run_test
 NAME='radiff2 -AC (elf files)'
 CMDS='!!radiff2 -AC ../../bins/other/radiff2/true ../../bins/other/radiff2/false~?(1.000000)'
 BROKEN=
-EXPECT='54
+EXPECT='55
 '
 run_test
 
