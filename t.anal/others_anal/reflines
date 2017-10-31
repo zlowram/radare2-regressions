@@ -1,3 +1,4 @@
+#!/bin/sh
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 NAME="reflines offset"
@@ -28,32 +29,32 @@ EXPECT='┌ (fcn) fcn.00000000 1015
        ││   0x00000008      nop
        ││   0x00000009      lea esi, [esi]
 │     ┌───> 0x00000010      lea edi, [esi + 1]
-│     ↑││   0x00000013      xor edx, edx
-│     ↑││   0x00000015      mov eax, ebp
-│     ↑││   0x00000017      div ecx
-│     ↑││   0x00000019      xor edx, edx
-│     ↑││   0x0000001b      mov dword [local_1ch], eax
-│     ↑││   0x0000001f      mov eax, edi
-│     ↑││   0x00000021      div ecx
-│     ↑││   0x00000023      cmp dword [local_1ch], eax
+│     ⁝││   0x00000013      xor edx, edx
+│     ⁝││   0x00000015      mov eax, ebp
+│     ⁝││   0x00000017      div ecx
+│     ⁝││   0x00000019      xor edx, edx
+│     ⁝││   0x0000001b      mov dword [local_1ch], eax
+│     ⁝││   0x0000001f      mov eax, edi
+│     ⁝││   0x00000021      div ecx
+│     ⁝││   0x00000023      cmp dword [local_1ch], eax
 │    ┌────< 0x00000027      jbe 0x90
-│    │↑││   0x00000029      mov edx, dword [ebx + 0x208]
-│    │↑││   0x0000002f      mov eax, dword [edx]
-│    │↑││   0x00000031      mov edx, dword [eax + 0x14]
-│    │↑││   0x00000034      cmp edx, dword [eax + 0x18]
+│    │⁝││   0x00000029      mov edx, dword [ebx + 0x208]
+│    │⁝││   0x0000002f      mov eax, dword [edx]
+│    │⁝││   0x00000031      mov edx, dword [eax + 0x14]
+│    │⁝││   0x00000034      cmp edx, dword [eax + 0x18]
 │   ┌─────< 0x00000037      jae 0xa6
-│   ││↑││   0x00000039      mov byte [edx], 9
-│   ││↑││   0x0000003c      add edx, 1
-│   ││↑││   0x0000003f      mov dword [eax + 0x14], edx
-│   ││↑││   0x00000042      mov eax, esi
-│   ││↑││   0x00000044      xor edx, edx
-│   ││↑││   0x00000046      add esi, ecx
-│   ││↑││   0x00000048      div ecx
-│   ││↑││   0x0000004a      sub esi, edx
-│   ││↑││   0x0000004c      cmp ebp, esi
+│   ││⁝││   0x00000039      mov byte [edx], 9
+│   ││⁝││   0x0000003c      add edx, 1
+│   ││⁝││   0x0000003f      mov dword [eax + 0x14], edx
+│   ││⁝││   0x00000042      mov eax, esi
+│   ││⁝││   0x00000044      xor edx, edx
+│   ││⁝││   0x00000046      add esi, ecx
+│   ││⁝││   0x00000048      div ecx
+│   ││⁝││   0x0000004a      sub esi, edx
+│   ││⁝││   0x0000004c      cmp ebp, esi
 │  ┌──────< 0x0000004e      jbe 0x7a
-│  │││↑│└─> 0x00000050      mov ecx, dword [ebx + 0x58c]
-│  │││↑│    0x00000056      test ecx, ecx
+│  │││⁝│└─> 0x00000050      mov ecx, dword [ebx + 0x58c]
+│  │││⁝│    0x00000056      test ecx, ecx
 │  │││└───< 0x00000058      jne 0x10
 │  │││ │    0x0000005a      add esi, 1
 │  │││ │    0x0000005d      mov edx, dword [ebx + 0x208]
@@ -90,32 +91,32 @@ EXPECT='/ (fcn) fcn.00000000 1015
        ||   0x00000008      nop
        ||   0x00000009      lea esi, [esi]
 |     .---> 0x00000010      lea edi, [esi + 1]
-|     !||   0x00000013      xor edx, edx
-|     !||   0x00000015      mov eax, ebp
-|     !||   0x00000017      div ecx
-|     !||   0x00000019      xor edx, edx
-|     !||   0x0000001b      mov dword [local_1ch], eax
-|     !||   0x0000001f      mov eax, edi
-|     !||   0x00000021      div ecx
-|     !||   0x00000023      cmp dword [local_1ch], eax
+|     :||   0x00000013      xor edx, edx
+|     :||   0x00000015      mov eax, ebp
+|     :||   0x00000017      div ecx
+|     :||   0x00000019      xor edx, edx
+|     :||   0x0000001b      mov dword [local_1ch], eax
+|     :||   0x0000001f      mov eax, edi
+|     :||   0x00000021      div ecx
+|     :||   0x00000023      cmp dword [local_1ch], eax
 |    ,====< 0x00000027      jbe 0x90
-|    |!||   0x00000029      mov edx, dword [ebx + 0x208]
-|    |!||   0x0000002f      mov eax, dword [edx]
-|    |!||   0x00000031      mov edx, dword [eax + 0x14]
-|    |!||   0x00000034      cmp edx, dword [eax + 0x18]
+|    |:||   0x00000029      mov edx, dword [ebx + 0x208]
+|    |:||   0x0000002f      mov eax, dword [edx]
+|    |:||   0x00000031      mov edx, dword [eax + 0x14]
+|    |:||   0x00000034      cmp edx, dword [eax + 0x18]
 |   ,=====< 0x00000037      jae 0xa6
-|   ||!||   0x00000039      mov byte [edx], 9
-|   ||!||   0x0000003c      add edx, 1
-|   ||!||   0x0000003f      mov dword [eax + 0x14], edx
-|   ||!||   0x00000042      mov eax, esi
-|   ||!||   0x00000044      xor edx, edx
-|   ||!||   0x00000046      add esi, ecx
-|   ||!||   0x00000048      div ecx
-|   ||!||   0x0000004a      sub esi, edx
-|   ||!||   0x0000004c      cmp ebp, esi
+|   ||:||   0x00000039      mov byte [edx], 9
+|   ||:||   0x0000003c      add edx, 1
+|   ||:||   0x0000003f      mov dword [eax + 0x14], edx
+|   ||:||   0x00000042      mov eax, esi
+|   ||:||   0x00000044      xor edx, edx
+|   ||:||   0x00000046      add esi, ecx
+|   ||:||   0x00000048      div ecx
+|   ||:||   0x0000004a      sub esi, edx
+|   ||:||   0x0000004c      cmp ebp, esi
 |  ,======< 0x0000004e      jbe 0x7a
-|  |||!|`-> 0x00000050      mov ecx, dword [ebx + 0x58c]
-|  |||!|    0x00000056      test ecx, ecx
+|  |||:|`-> 0x00000050      mov ecx, dword [ebx + 0x58c]
+|  |||:|    0x00000056      test ecx, ecx
 |  |||`===< 0x00000058      jne 0x10
 |  ||| |    0x0000005a      add esi, 1
 |  ||| |    0x0000005d      mov edx, dword [ebx + 0x208]

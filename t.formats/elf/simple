@@ -26,8 +26,8 @@ NAME='ELF: asm.midflags=0 + local symbols'
 FILE=../../bins/elf/analysis/example.elf
 ARGS=''
 CMDS="e asm.midflags=0;pd 3 @ 0x356"
-EXPECT='        !   0x00000356      00f033f9       bl sym.app_uart_get
-        !   0x0000035a      0028           cmp r0, 0
+EXPECT='        :   0x00000356      00f033f9       bl sym.app_uart_get
+        :   0x0000035a      0028           cmp r0, 0
         `=< 0x0000035c      fad1           bne 0x354
 '
 run_test
@@ -36,9 +36,9 @@ NAME='ELF: asm.midflags=1 + local symbols'
 FILE=../../bins/elf/analysis/example.elf
 ARGS=''
 CMDS="e asm.midflags=1;pd 3 @ 0x356"
-EXPECT='        !   ;-- $d:
-        !   0x00000356  ~   00f033f9       bl sym.app_uart_get
-        !   0x0000035a      0028           cmp r0, 0
+EXPECT='        :   ;-- $d:
+        :   0x00000356  ~   00f033f9       bl sym.app_uart_get
+        :   0x0000035a      0028           cmp r0, 0
         `=< 0x0000035c      fad1           bne 0x354
 '
 run_test
@@ -47,8 +47,8 @@ NAME='ELF: asm.midflags + local symbols'
 FILE=../../bins/elf/analysis/example.elf
 ARGS=''
 CMDS="pd 3 @ 0x356"
-EXPECT='        !   0x00000356  ~   00f033f9       bl sym.app_uart_get
-        !   0x0000035a      0028           cmp r0, 0
+EXPECT='        :   0x00000356  ~   00f033f9       bl sym.app_uart_get
+        :   0x0000035a      0028           cmp r0, 0
         `=< 0x0000035c      fad1           bne 0x354
 '
 run_test
@@ -58,8 +58,8 @@ FILE=../../bins/elf/analysis/example.elf
 ARGS=''
 CMDS="e asm.midflags=0
 pd 3 @ 0x356"
-EXPECT='        !   0x00000356      00f033f9       bl sym.app_uart_get
-        !   0x0000035a      0028           cmp r0, 0
+EXPECT='        :   0x00000356      00f033f9       bl sym.app_uart_get
+        :   0x0000035a      0028           cmp r0, 0
         `=< 0x0000035c      fad1           bne 0x354
 '
 run_test
