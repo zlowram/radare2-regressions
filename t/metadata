@@ -455,3 +455,25 @@ EXPECT='0x00000100 data Cd 4
 0x00000110 data Cd 4
 '
 run_test
+
+NAME="delete specific type of metadata from addr"
+ARGS=
+CMDS='s 0x100
+w abcd
+Csa 4
+Cf 8 xx
+C
+?e ----
+Cs-
+C
+?e ----
+Cf-
+C
+'
+EXPECT='0x00000100 format 8 xx
+0x00000100 ascii[4] "abcd"
+----
+0x00000100 format 8 xx
+----
+'
+run_test
