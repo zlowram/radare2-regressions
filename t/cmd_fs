@@ -2,6 +2,40 @@
 # GPL 3+ - Copyright (C) 2017 - pancake
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='m ext2 auto'
+FILE=../bins/fs/ext2.img
+CMDS='m
+'
+EXPECT='ext2	0x0	/root
+'
+run_test
+
+NAME='m hfs auto'
+FILE=../bins/fs/hfs.img
+CMDS='m
+'
+EXPECT='hfs	0x0	/root
+'
+run_test
+
+NAME='m fat auto'
+FILE=../bins/fs/fat.img
+CMDS='m
+'
+EXPECT='fat	0x0	/root
+'
+run_test
+
+NAME='md ext2 auto'
+FILE=../bins/fs/ext2.img
+ARGS=-n
+CMDS='m /root
+md /root~?
+'
+EXPECT='6
+'
+run_test
+
 NAME='md ext2'
 FILE=../bins/fs/ext2.img
 ARGS=-n
