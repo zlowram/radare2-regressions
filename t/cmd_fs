@@ -2,6 +2,14 @@
 # GPL 3+ - Copyright (C) 2017 - pancake
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='m iso9660 auto'
+FILE=../bins/fs/iso.img
+CMDS='m
+'
+EXPECT='iso9660	0x0	/root
+'
+run_test
+
 NAME='m ext2 auto'
 FILE=../bins/fs/ext2.img
 CMDS='m
