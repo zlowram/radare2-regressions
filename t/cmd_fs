@@ -17,6 +17,17 @@ f README.md
 '
 run_test
 
+NAME='md ext2 cat file'
+FILE=../bins/fs/ext2.img
+ARGS=-n
+CMDS='m /root ext2
+mg /root/README.md
+'
+EXPECT='This is an EXT2 partition
+
+'
+run_test
+
 NAME='md vfat'
 FILE=../bins/fs/fat.img
 ARGS=-n
@@ -26,6 +37,40 @@ md /root
 EXPECT='d etc
 d bin
 f README.md
+'
+run_test
+
+NAME='md fat cat file'
+FILE=../bins/fs/fat.img
+ARGS=-n
+CMDS='m /root fat
+mg /root/README.md
+'
+EXPECT='This is a FAT partition
+
+'
+run_test
+
+NAME='md hfs'
+FILE=../bins/fs/hfs.img
+ARGS=-n
+CMDS='m /root hfs
+md /root
+'
+EXPECT='d bin
+d etc
+f README.md
+'
+run_test
+
+NAME='md hfs cat file'
+FILE=../bins/fs/hfs.img
+ARGS=-n
+CMDS='m /root hfs
+mg /root/README.md
+'
+EXPECT='This is an HFS partition
+
 '
 run_test
 
