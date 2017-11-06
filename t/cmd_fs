@@ -2,6 +2,16 @@
 # GPL 3+ - Copyright (C) 2017 - pancake
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
+NAME='mp gpt'
+FILE=../bins/fs/gpt.img
+CMDS='mp gpt
+'
+EXPECT='0 00 0x0000100000 0x0020100000
+1 00 0x0020100000 0x1b24700000
+2 00 0x1b24700000 0x1d1eb00000
+'
+run_test
+
 NAME='m iso9660 auto'
 FILE=../bins/fs/iso.img
 CMDS='m
