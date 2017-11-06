@@ -1,0 +1,31 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2017 - pancake
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='md ext2'
+FILE=../bins/fs/ext2.img
+ARGS=-n
+CMDS='m /root ext2
+md /root
+'
+EXPECT='d .
+d ..
+d lost+found
+d bin
+d etc
+f README.md
+'
+run_test
+
+NAME='md vfat'
+FILE=../bins/fs/fat.img
+ARGS=-n
+CMDS='m /root fat
+md /root
+'
+EXPECT='d etc
+d bin
+f README.md
+'
+run_test
+
