@@ -1,0 +1,7 @@
+NAME=/s begin of file
+FILE=../bins/pe/a.exe
+BROKEN=1
+EXPECT64=MHgwMDAwMDAwMCBoaXQwXzAgLk1aLgo=
+ARGS=-n
+CMDS64=cy8gTVoK
+RUN
