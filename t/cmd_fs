@@ -2,7 +2,7 @@
 # GPL 3+ - Copyright (C) 2017 - pancake
 [ -e tests.sh ] && . ./tests.sh || . ../tests.sh
 
-NAME='mp iso2'
+NAME='md iso'
 FILE=../bins/fs/iso.img
 CMDS='md /root
 '
@@ -14,7 +14,7 @@ f SERVICES.
 '
 run_test
 
-NAME='mp iso3'
+NAME='md iso3'
 FILE=../bins/fs/iso3.img
 CMDS='md /root
 '
