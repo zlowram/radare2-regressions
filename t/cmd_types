@@ -270,8 +270,8 @@ t
 ts
 t addr
 '
-EXPECT_ERR='../bins/other/error.h:1: warning: #error this should be treated as warning
-'
+EXPECT_ERR="../bins/other/error.h:2: warning: #error your compiler doesn't have support to my API
+"
 EXPECT='char
 char *
 int
@@ -296,7 +296,7 @@ date
 name
 addr
 dox
-pf [127]z[40]zi street city zip
+pf [127]z[40]zd street city zip
 '
 run_test
 
@@ -332,7 +332,7 @@ date
 name
 addr
 dox
-pf [127]z[40]zi street city zip
+pf [127]z[40]zd street city zip
 '
 run_test
 
@@ -392,10 +392,10 @@ tk~foo
 '
 EXPECT_ERR=''
 EXPECT='foo=func
-func.foo.arg.0=int,bar
+func.foo.arg.0=int32_t,bar
 func.foo.args=1
 func.foo.cc=cdecl
-func.foo.ret=int
+func.foo.ret=int32_t
 '
 run_test
 
