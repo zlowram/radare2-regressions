@@ -477,3 +477,51 @@ EXPECT='0x00000100 format 8 xx
 ----
 '
 run_test
+
+NAME="C-"
+ARGS=
+CMDS='s 0x100
+w abcd
+Csa 4
+Cf 8 xx
+CCu a string
+C
+?e ----
+C-
+C
+'
+EXPECT='0x00000100 CCu "a string"
+0x00000100 format 8 xx
+0x00000100 ascii[4] "abcd"
+----
+'
+run_test
+
+NAME="Cd- and C- in issue #8648"
+ARGS=
+CMDS='s 0x100
+Cd 4 1
+C*~Cd
+?e --1--
+Cd- 4 1
+C*~Cd
+?e --2--
+Cd 4 1
+Cd-
+C*~Cd
+?e --3--
+Cd 4 1
+C-
+C*~Cd
+?e --4--
+Cd 4 1
+C- 4
+C*~Cd
+'
+EXPECT='Cd 4 @ 0x00000100
+--1--
+--2--
+--3--
+--4--
+'
+run_test
