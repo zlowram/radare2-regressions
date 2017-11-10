@@ -357,3 +357,20 @@ ref.code.call.0x3=0x9
 types=code.jmp,code.call,data.mem,data.string
 '
 run_test
+
+NAME='Reopening projects bin info loading'
+FILE=../bins/elf/analysis/main
+BROKEN=1
+ARGS=
+CMDS='e dir.projects = /tmp/
+Ps bininfo > /dev/null
+Po bininfo
+i~?
+ie~?
+ii~?
+'
+EXPECT='37
+3
+5
+'
+run_test
