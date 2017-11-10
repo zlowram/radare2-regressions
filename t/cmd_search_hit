@@ -213,7 +213,7 @@ AAAAAAAAAAB
 '
 run_test
 
-NAME='cmd.hit for /r from/to'
+NAME='cmd.hit for /r from/to in range'
 BROKEN=1
 FILE='../bins/elf/analysis/ls-linux64'
 CMDS='e cmd.hit = pi 1
@@ -226,7 +226,7 @@ call sym.imp.__libc_start_main
 '
 run_test
 
-NAME='from/to /r'
+NAME='from/to /r not in range'
 BROKEN=1
 FILE='../bins/elf/analysis/ls-linux64'
 CMDS='e cmd.hit = pi 1
@@ -236,4 +236,61 @@ e search.to = 0x00005c44
 '
 EXPECT='
 '
+run_test
+
+NAME='from/to /v'
+BROKEN=
+FILE='-'
+CMDS='wx 01
+e cmd.hit = pi 1
+e search.in =raw
+e search.from = 0x00000000
+e search.to = 0x00000004
+/v1 1
+'
+EXPECT='0x00000000 hit0_0 01
+add dword [rax], eax
+'
+run_test
+
+NAME='from/to /v not in range'
+BROKEN=
+FILE='-'
+CMDS='wx 01
+e cmd.hit = pi 1
+e search.in =raw
+e search.from = 0x00000000
+e search.to = 0x00000000
+/v1 1
+'
+EXPECT='
+'
+run_test
+
+NAME='from/to /V'
+BROKEN=
+FILE='-'
+CMDS='wx 05
+e cmd.hit = pi 1
+e search.in =raw
+e search.from = 0x00000000
+e search.to = 0x00000004
+/V1 1 5
+'
+EXPECT='0x00000000 hit0_0 05
+add dword [rax], eax
+'
+run_test
+
+NAME='from/to /V not in range'
+BROKEN=
+FILE='-'
+CMDS='wx 05
+e cmd.hit = pi 1
+e search.in =raw
+e search.from = 0x00000000
+e search.to = 0x00000000
+/V1 1 5
+'
+EXPECT=''
 run_test
