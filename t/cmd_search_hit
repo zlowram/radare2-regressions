@@ -263,12 +263,11 @@ e search.from = 0x00000000
 e search.to = 0x00000000
 /v1 1
 '
-EXPECT='
-'
+EXPECT=''
 run_test
 
 NAME='from/to /V'
-BROKEN=
+BROKEN=1
 FILE='-'
 CMDS='wx 05
 e cmd.hit = pi 1
