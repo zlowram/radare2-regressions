@@ -82,7 +82,6 @@ V&q
 af
 pi 1
 V&q
-V&q
 pi 1
 '
 EXPECT='xor ebp, ebp
