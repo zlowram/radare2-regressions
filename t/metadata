@@ -43,7 +43,7 @@ w 909090
 Cd 3
 pd 2
 '
-EXPECT='            0x00000000 hex length=3 delta=0
+EXPECT='            0x00000000      hex length=3 delta=0
 0x00000000  3930 39                                  909
 
             0x00000003      3039           xor byte [ecx], bh
