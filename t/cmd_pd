@@ -24,6 +24,17 @@ blx 0xfffff584
 '
 run_test
 
+NAME="immstr"
+FILE=malloc://128
+CMDS="
+wx 6833320000
+e asm.immstr=1
+pd 1
+"
+EXPECT="            0x00000000      6833320000     push 0x3233                 ; '32'
+"
+run_test
+
 NAME='pd pseudo=1 cmtright=0'
 FILE=malloc://128
 ARGS=
