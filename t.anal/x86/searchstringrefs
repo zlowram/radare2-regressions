@@ -2,7 +2,7 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 FILE=../../bins/pe/test.exe
-CMDS='e anal.searchstringrefs=true
+CMDS='e anal.refstr=true
 s 0x401000
 af
 afx
