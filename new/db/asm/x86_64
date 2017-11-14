@@ -93,3 +93,20 @@ a "mov eax, 33" b821000000
 a "mov rax, 33" 48c7c021000000
 a "mov [rbp+4],0" c7450400000000
 a "mov [ebp+4],0" 67c7450400000000
+ad "push r8" 4150
+ad "push r9" 4151
+ad "push r10" 4152
+ad "push r11" 4153
+ad "push r12" 4154
+ad "push r13" 4155
+ad "push r14" 4156
+ad "push r15" 4157
+
+ad "call r8" 41ffd0
+ad "call r9" 41ffd1
+ad "call r10" 41ffd2
+ad "call r11" 41ffd3
+ad "call r12" 41ffd4
+ad "call r13" 41ffd5
+ad "call r14" 41ffd6
+ad "call r15" 41ffd7
