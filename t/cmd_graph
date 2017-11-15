@@ -295,3 +295,41 @@ agf > /dev/null
 '
 EXPECT=""
 run_test
+
+NAME='super mario block (#8788)'
+FILE=../bins/elf/analysis/hello-android-mips
+ARGS=
+CMDS='e asm.emustr=true
+s 0x0008049c
+af+ 0x0008049c super_mario_fix
+afb+ 0x0008049c 0x0008049c 8
+e io.cache=true
+wx c2a2c2a2c2a2 @ 0x80510
+e asm.strenc=utf8
+agf
+e asm.asciidot=true
+agf
+'
+FILTER="tr \' \\\`"
+EXPECT='[0x0008049c]> VV @ super_mario_fix (nodes 1 edges 0 zoom 100%) BB-NORM mouse:canvas-y movements-speed:5
+.----------------------------------------------------.
+|  0x8049c ;[ga]                                     |
+| (fcn) super_mario_fix 8                            |
+|   super_mario_fix ();                              |
+|    ; section.ehdr                                  |
+| lui v0, 8                                          |
+|       ; "\u00a2\u00a2\u00a2World" section..rodata  |
+| addiu a0, v0, 0x510                                |
+`----------------------------------------------------`
+[0x0008049c]> VV @ super_mario_fix (nodes 1 edges 0 zoom 100%) BB-NORM mouse:canvas-y movements-speed:5
+.-------------------------------------.
+|  0x8049c ;[ga]                      |
+| (fcn) super_mario_fix 8             |
+|   super_mario_fix ();               |
+|    ; section.ehdr                   |
+| lui v0, 8                           |
+|       ; "...World" section..rodata  |
+| addiu a0, v0, 0x510                 |
+`-------------------------------------`
+'
+run_test
