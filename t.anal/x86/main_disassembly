@@ -15,3 +15,15 @@ pi 1 @ 0x0040488d
 EXPECT='mov rdi, main
 '
 run_test
+
+NAME='Main in disassembly'
+BROKEN=1
+FILE=../../bins/elf/analysis/ls_main_bug
+ARGS=
+CMDS='
+aa
+? $FB @ sym.imp.strcmp
+'
+EXPECT='14512 0x38b0 034260 14.2K 0000:08b0 14512 "\xb08" 0011100010110000 14512.0 14512.000000f 14512.000000
+'
+run_test
