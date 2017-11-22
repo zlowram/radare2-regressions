@@ -402,7 +402,7 @@ run_test
 NAME="Csg, Csa, Cs. and Cs.."
 FILE=../bins/pe/testapp-msvc64.exe
 ARGS=
-CMDS='e cfg.escbslash=true
+CMDS='e str.escbslash=true
 s 0x140016018
 Csa
 Cs*~0x140016018
@@ -433,7 +433,7 @@ run_test
 NAME="Cs8"
 FILE=../bins/elf/strenc
 ARGS=
-CMDS='e cfg.escbslash=true
+CMDS='e str.escbslash=true
 s 0x004021ff
 Cs..
 Cs8
@@ -446,14 +446,14 @@ Cs8 61 @ 0x004021ff # utf8> \\u00a2\\u20ac\\U00010348 in yellow:\x1b[33m \u00a2\
 '
 run_test
 
-NAME="cfg.escbslash and Cs"
+NAME="str.escbslash and Cs"
 FILE=../bins/pe/testapp-msvc64.exe
 ARGS=
 CMDS='s 0x140016000
 Csa
-e cfg.escbslash=true
+e str.escbslash=true
 Cs..
-e cfg.escbslash=false
+e str.escbslash=false
 Cs..
 '
 EXPECT='ascii[19] "\tANSI\\esc: \x1b[33m\r\n"
