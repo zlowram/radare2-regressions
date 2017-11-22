@@ -255,7 +255,6 @@ run_test
 
 NAME="${PLUGIN}: 32bit - relocs following"
 FILE=$F1
-BROKEN=1
 ARGS=
 CMDS='pd 12 @[0x004061cc]
 '
@@ -410,7 +409,6 @@ run_test
 
 NAME="${PLUGIN}: 64bit - relocs following"
 FILE=$F2
-BROKEN=1
 ARGS=
 CMDS='pd 9 @[0x004083ac]
 '
