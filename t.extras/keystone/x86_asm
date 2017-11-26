@@ -1184,17 +1184,17 @@ test_vector "${PLUGIN}" "mov rax, [rax]" 488b00 "br"
 test_vector "${PLUGIN}" "mov rax,[rel -10]" 488b05f6ffffff "br"
 test_vector "${PLUGIN}" "mov rax,[rel 0]" 488b0500000000
 test_vector "${PLUGIN}" "mov rax,[rel 10]" 488b050a000000 "br"
-test_vector "${PLUGIN}" "mov rax,[rip+0]" 488b0500000000 "br"
-test_vector "${PLUGIN}" "mov rax,[rip+10]" 488b050a000000 "br"
-test_vector "${PLUGIN}" "mov rax,[rip-0]" 488b0500000000 "br"
-test_vector "${PLUGIN}" "mov rax,[rip-10]" 488b05f6ffffff "br"
-test_vector "${PLUGIN}" "mov rax,[rip]" 488b0500000000 "br"
+test_vector "${PLUGIN}" "mov rax,[rip+0]" 488b0500000000
+test_vector "${PLUGIN}" "mov rax,[rip+10]" 488b050a000000
+test_vector "${PLUGIN}" "mov rax,[rip-0]" 488b0500000000
+test_vector "${PLUGIN}" "mov rax,[rip-10]" 488b05f6ffffff
+test_vector "${PLUGIN}" "mov rax,[rip]" 488b0500000000
 test_vector "${PLUGIN}" "mov rbx, 3" 48c7c303000000 # sbs: bb03000000
 test_vector "${PLUGIN}" "mov rbx, rax" 4889c3
 test_vector "${PLUGIN}" "mov rcx, -0x1122334455667788" 48b9788899aabbccddee
 test_vector "${PLUGIN}" "mov rcx, -0x112233445566778899" 00 "br"
 test_vector "${PLUGIN}" "mov rsi, rbx" 4889de
-test_vector "${PLUGIN}" "mov sil, 0" 40b600 
+test_vector "${PLUGIN}" "mov sil, 0" 40b600
 test_vector "${PLUGIN}" "mov dil, -5" 40b7fb
 test_vector "${PLUGIN}" "mov spl, bpl" 4088ec
 test_vector "${PLUGIN}" "pop rax" 58
