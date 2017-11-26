@@ -383,7 +383,7 @@ Cs~ANSI
 '
 EXPECT='0x1400160a0 latin1[18] "latin1 gate: \xce\xbb\xab\xce"
 0x1400160b8 ascii[50] "  -- in ConEmu, run `chcp 28591` to see the gate."
-0x140016000 ascii[19] "\tANSI\esc: \e[33m\r\n"
+0x140016000 ascii[19] "\tANSI\\esc: \e[33m\r\n"
 '
 run_test
 
@@ -440,7 +440,7 @@ Cs8
 Cs..
 Cs*~`s:`
 '
-EXPECT='latin1[61] "utf8> \u00a2\u20ac\U00010348 in yellow:\e[33m \xc2\xa2\xe2\x82\xac\xf0\x90\x8d\x88 \e[0m\n"
+EXPECT='latin1[61] "utf8> \\u00a2\\u20ac\\U00010348 in yellow:\e[33m \xc2\xa2\xe2\x82\xac\xf0\x90\x8d\x88 \e[0m\n"
 utf8[61] "utf8> \\u00a2\\u20ac\\U00010348 in yellow:\x1b[33m \u00a2\u20ac\U00010348 \x1b[0m\n"
 Cs8 61 @ 0x004021ff # utf8> \\u00a2\\u20ac\\U00010348 in yellow:\x1b[33m \u00a2\u20ac\U00010348 \x1b[0m\n
 '
