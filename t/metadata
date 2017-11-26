@@ -405,11 +405,11 @@ ARGS=
 CMDS='e str.escbslash=true
 s 0x140016018
 Csa
-Cs*~0x140016018
+Cs*~`s:`
 Cs.
 Cs..
 Csg
-Cs*~0x140016018
+Cs*~`s:`
 Cs.
 Cs..
 Csa 4
