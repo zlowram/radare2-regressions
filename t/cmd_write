@@ -314,3 +314,24 @@ r
 rm .b.exe
 '
 run_test
+
+## wxs: write hex and seek
+
+FILE=malloc://1024
+NAME="data written after multiple wxs"
+IGNORE_ERR=1
+CMDS='2 wxs 9090 @ 8
+x 16 @ 0'
+EXPECT='- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
+0x00000000  0000 0000 0000 0000 9090 9090 0000 0000  ................
+'
+run_test
+
+FILE=malloc://1024
+NAME="address after wxs at tmpseek"
+IGNORE_ERR=1
+CMDS='2 wxs 9090 @ 8
+?vi $$'
+EXPECT='0
+'
+run_test
