@@ -551,7 +551,8 @@ NAME='pds change name'
 FILE='../bins/mach0/mac-ls'
 ARGS=
 BROKEN=
-CMDS='s sym.func.100004401
+CMDS='e asm.flags=false
+s sym.func.100004401
 af
 afn newname
 s-
