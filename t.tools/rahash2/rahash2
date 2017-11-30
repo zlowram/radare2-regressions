@@ -190,6 +190,7 @@ EXPECT='  md5
   cps2
   des-ecb
   xor
+  serpent-ecb
 '
 
 run_test
@@ -863,5 +864,54 @@ NAME='rahash2 -D des-ecb STRING'
 CMDS='!rahash2 -D "des-ecb" -S s:"savethat" -x "c3868da6e3d787c88e5a61a7c333cd802e5cee17d7b09555572a35e120fb8e36dc9f0722976934b9453a3a4e741f27c8"'
 BROKEN=
 EXPECT='How does a passionate magic wipe a reactionary?.'
+
+run_test
+
+NAME='rahash2 -E serpent-ecb 128 bit'
+CMDS='!rahash2 -E serpent-ecb -S "BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF" -x "BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF" | rax2 -S'
+BROKEN=
+EXPECT='af39614e747b9331c38b797f527ebea6
+'
+
+
+run_test
+
+NAME='rahash2 -D serpent-ecb 128 bit'
+CMDS='!rahash2 -D serpent-ecb -S "2BD6459F82C5B300952C49104881FF48" -x "EA024714AD5C4D84EA024714AD5C4D84" | rax2 -S'
+BROKEN=
+EXPECT='beb6c069393822d3be73ff30525ec43e
+'
+
+run_test
+
+NAME='rahash2 -E serpent-ecb 192 bit'
+CMDS='!rahash2 -E serpent-ecb -S "C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C7" -x "C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C7" | rax2 -S'
+BROKEN=
+EXPECT='844a4ef08b4354c52593d3e907a163f7
+'
+
+run_test
+
+NAME='rahash2 -D serpent-ecb 192 bit'
+CMDS='!rahash2 -D serpent-ecb -S "2BD6459F82C5B300952C49104881FF482BD6459F82C5B300" -x "EA024714AD5C4D84EA024714AD5C4D84" | rax2 -S'
+BROKEN=
+EXPECT='e0208be278e21420c4b1b9747788a954
+'
+
+run_test
+
+NAME='rahash2 -E serpent-ecb 256 bit'
+CMDS='!rahash2 -E serpent-ecb -S "5757575757575757575757575757575757575757575757575757575757575756" -x "57575757575757575757575757575756" | rax2 -S'
+BROKEN=
+EXPECT='d35588cf3d2e74f2a0df437ffa0073b3
+'
+
+run_test
+
+NAME='rahash2 -D serpent-ecb 256 bit'
+CMDS='!rahash2 -D serpent-ecb -S "2BD6459F82C5B300952C49104881FF482BD6459F82C5B300952C49104881FF48" -x "EA024714AD5C4D84EA024714AD5C4D84" | rax2 -S'
+BROKEN=
+EXPECT='677c8dfaa08071743fd2b415d1b28af2
+'
 
 run_test
