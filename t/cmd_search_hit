@@ -213,8 +213,7 @@ AAAAAAAAAAB
 '
 run_test
 
-NAME='cmd.hit for /r from/to in range'
-BROKEN=1
+NAME='cmd.hit for /r'
 FILE='../bins/elf/analysis/ls-linux64'
 CMDS='e cmd.hit = pi 1
 e search.from = 0x00005c20
@@ -226,8 +225,7 @@ call sym.imp.__libc_start_main
 '
 run_test
 
-NAME='from/to /r not in range'
-BROKEN=1
+NAME='from/to for /r'
 FILE='../bins/elf/analysis/ls-linux64'
 CMDS='e cmd.hit = pi 1
 e search.from = 0x00005c20
