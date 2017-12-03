@@ -1186,7 +1186,7 @@ wa jmp 0x100
 w hello @ 0x100
 pd 1
 '
-EXPECT='        ,=< 0x00000000      e9fb000000     jmp 0x100                   
+EXPECT='        ,=< 0x00000000      e9fb000000     jmp 0x100
 '
 run_test
 

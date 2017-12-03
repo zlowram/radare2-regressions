@@ -740,7 +740,7 @@ wv 0x340000b5 @ 4
 w hello @ 0x18
 pd 2
 '
-EXPECT='            0x00000000      35008052       movz w21, 0x1               
+EXPECT='            0x00000000      35008052       movz w21, 0x1
         ,=< 0x00000004      b5000034       cbz w21, 0x18               ; likely
 '
 run_test
