@@ -11,8 +11,7 @@ aaa
 pdc @ main~str.250382
 pdc @ main~strcmp
 '
-EXPECT='       dword [local_4h] = "250382" //[0x804858f:4]=0x33303532 ; str.250382 
+EXPECT='       dword [local_4h] = "250382" //[0x804858f:4]=0x33303532 ; str.250382
        int strcmp(const char * s1 : (*0x177fe4)0x00177fb4 =, const char * s2 : (*0x804858f)0x00177fb8 = 250382)
 '
 run_test
-
