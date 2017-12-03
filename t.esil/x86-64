@@ -102,6 +102,9 @@ run_test
 
 NAME="esil x86-64 imul"
 CMDS='
+e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
 wx 69c389000000
 ao~opcode,esil
 '
@@ -112,6 +115,9 @@ run_test
 
 NAME="esil x86-64 imul emu"
 CMDS='
+e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
 wx 48c7c004000000
 wx 48c7c305000000 @ 7
 wx 69c303000000 @ 14

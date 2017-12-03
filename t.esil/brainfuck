@@ -8,6 +8,8 @@ NAME='hello world'
 FILE=../bins/bf/hello-ok.bf
 ARGS=-b32
 CMDS='
+e asm.arch = bf
+e anal.arch = bf
 f input 128 0x3000
 o malloc://128 0x3000~z
 f screen 80*25 0x4000
@@ -34,6 +36,8 @@ NAME='loopy hello world'
 FILE=../bins/bf/hello-loops.bf
 ARGS=-b32
 CMDS='
+e asm.arch = bf
+e anal.arch = bf
 f input 128 0x3000
 o malloc://128 0x3000~z
 f screen 80*25 0x4000

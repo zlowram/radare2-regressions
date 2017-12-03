@@ -210,7 +210,9 @@ NAME='/A search'
 FILE='malloc://1024'
 ARGS=
 BROKEN=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 "wa add esp,8;pop ebx; pop ebp; ret"
 /A ret
 '
@@ -254,7 +256,9 @@ NAME='Rop search'
 FILE='malloc://1024'
 ARGS=
 BROKEN=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 "wa add esp,8;pop ebx; pop ebp; ret"
 e scr.color=false
 /R
@@ -281,7 +285,9 @@ NAME='Rop search w/ regexp'
 FILE='malloc://1024'
 ARGS=
 BROKEN=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 "wa add esp,8;pop ebx; pop ebp; ret"
 e scr.color=false
 /R/ or.*bl

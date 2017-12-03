@@ -55,7 +55,9 @@ run_test
 NAME='conditional(?{)'
 FILE='malloc://1024'
 ARGS=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 "aetr zf,?{,0x800,eip,=,}"'
 EXPECT='0000.00:      JCC      R_zf:01 ,              ,       0x2:32
 0001.00:      STR     R_eip:32 ,              ,      V_00:32
@@ -79,7 +81,9 @@ run_test
 NAME='flags'
 FILE='malloc://1024'
 ARGS=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 aetr 0,0x2147a8,rip,+,[8],==,$z,zf,=,$b64,cf,=,$p,pf,=,$s,sf,='
 EXPECT='0000.00:      ADD       rip    ,  0x2147a8:32 ,      V_00:32
 0001.00:      LDM      V_00:32 ,              ,      V_01:32

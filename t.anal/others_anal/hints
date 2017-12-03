@@ -6,7 +6,10 @@ NAME='ahe'
 BROKEN=
 FILE=malloc://512
 ARGS=
-CMDS='ao~?
+CMDS='e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
+ao~?
 ahe test
 ao~?
 '
@@ -38,4 +41,3 @@ dr?rax
 EXPECT='0x00000021
 '
 run_test
-

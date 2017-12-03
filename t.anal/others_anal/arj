@@ -7,7 +7,10 @@ BROKEN=
 FILE=malloc://0x100
 IGNORE_ERR=1
 ARGS="-b 32"
-CMDS='arj
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
+arj
 '
 EXPECT='{"oeax":0,"eax":0,"ebx":0,"ecx":0,"edx":0,"esi":0,"edi":0,"esp":0,"ebp":0,"eip":0,"eflags":0}
 '
@@ -18,9 +21,10 @@ BROKEN=
 FILE=malloc://0x100
 IGNORE_ERR=1
 ARGS="-b 16"
-CMDS='arj
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=16
 '
 EXPECT='{"ip":0,"ax":0,"bx":0,"cx":0,"dx":0,"sp":0,"bp":0,"si":0,"di":0,"flags":0}
 '
 run_test
-

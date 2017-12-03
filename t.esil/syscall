@@ -32,6 +32,9 @@ FILE=-
 ARGS=''
 IGNORE_ERR=0
 CMDS='
+e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
 wx b8010000000f34b801000000cd80ebfe
 e cmd.esil.intr=?e SYSCALL
 10aes

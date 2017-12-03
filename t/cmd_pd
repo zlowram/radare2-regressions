@@ -27,6 +27,9 @@ run_test
 NAME="immstr"
 FILE=malloc://128
 CMDS="
+e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
 wx 6833320000
 e asm.immstr=1
 pd 1
@@ -85,7 +88,10 @@ run_test
 NAME='pd double comma'
 FILE=malloc://128
 ARGS=
-CMDS='wx b8ffffffff
+CMDS='e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
+wx b8ffffffff
 e asm.lines=0
 pd 1
 '

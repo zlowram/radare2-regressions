@@ -160,7 +160,9 @@ run_test
 NAME='cmd.hit for /A'
 FILE='malloc://1024'
 ARGS=
-CMDS='e cmd.hit = pi 1
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e cmd.hit = pi 1
 e asm.bits=32
 "wa add esp,8;pop ebx; pop ebp; ret"
 /A pop
@@ -215,7 +217,8 @@ run_test
 
 NAME='cmd.hit for /r'
 FILE='../bins/elf/analysis/ls-linux64'
-CMDS='e cmd.hit = pi 1
+CMDS='
+e cmd.hit = pi 1
 e search.from = 0x00005c20
 e search.to = 0x00005c49
 /r sym.imp.__libc_start_main

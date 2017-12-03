@@ -15,7 +15,10 @@ run_test
 NAME='Import project with overwriting'
 FILE=malloc://512
 ARGS=
-CMDS='e dir.projects = ../bin/
+CMDS='e asm.bits=64
+e asm.arch = x86
+e anal.arch = x86
+e dir.projects = ../bin/
 CC Some test @ 0x00404890
 Po import2 > /dev/null
 CC*
@@ -28,7 +31,9 @@ NAME='Import project with overwriting'
 FILE=malloc://512
 BROKEN=
 ARGS=
-CMDS='e dir.projects = /tmp/
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e dir.projects = /tmp/
 e asm.bits=64
 wx 31ed4989d15e4889e24883e4f0505449c7c09024410048c7c12024410048c7c7a0284000e857dcfffff4
 af test
@@ -118,7 +123,7 @@ om `o~[0]` 0
 pd 1
 rm /tmp/emu
 '
-EXPECT='            0x08000060      0d20a0e3       mov r2, 0xd                 ; r2=0xd -> 0x2000000 
+EXPECT='            0x08000060      0d20a0e3       mov r2, 0xd                 ; r2=0xd -> 0x2000000
 '
 run_test
 
@@ -178,7 +183,7 @@ ARGS=
 CMDS='fV 49 0x400410
 fV 50 0x400412
 Ps vmarks > /dev/null
-Pc vmarks~fV 
+Pc vmarks~fV
 Pd vmarks > /dev/null
 '
 EXPECT='fV 49 0x400410
@@ -344,7 +349,9 @@ NAME='Restoring xrefs'
 FILE=malloc://512
 ARGS=
 BROKEN=
-CMDS='e asm.bits=32
+CMDS='e asm.arch = x86
+e anal.arch = x86
+e asm.bits=32
 e dir.projects = /tmp/
 wx 5031c0e801000000c3b801000000c3
 af
