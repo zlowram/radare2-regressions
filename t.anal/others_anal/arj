@@ -20,10 +20,11 @@ NAME="arj x86 16 bits"
 BROKEN=
 FILE=malloc://0x100
 IGNORE_ERR=1
-ARGS="-b 16"
+ARGS=""
 CMDS='e asm.arch = x86
 e anal.arch = x86
 e asm.bits=16
+arj
 '
 EXPECT='{"ip":0,"ax":0,"bx":0,"cx":0,"dx":0,"sp":0,"bp":0,"si":0,"di":0,"flags":0}
 '

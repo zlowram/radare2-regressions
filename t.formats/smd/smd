@@ -27,11 +27,8 @@ havecode true
 linenum  false
 lsyms    false
 machine  Sega Megadrive
-maxopsz  16
-minopsz  1
 nx       false
 os       smd
-pcalign  0
 pic      false
 relocs   false
 static   true
