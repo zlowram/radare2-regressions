@@ -428,8 +428,8 @@ e search.from = 0x08048060
 e search.to = 0x0804806b
 /s
 '
-EXPECT='
-'
+EXPECT=''
+
 run_test
 
 NAME='/x search seek'
