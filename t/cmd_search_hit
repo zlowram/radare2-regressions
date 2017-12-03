@@ -236,6 +236,19 @@ EXPECT='
 '
 run_test
 
+NAME='cmd.hit for /s'
+FILE='../bins/elf/analysis/x86-simple'
+ARGS=
+CMDS='
+aeim
+aeip
+e cmd.hit = pi 1
+/s'
+EXPECT='0x08048070 exit
+int 0x80
+'
+run_test
+
 NAME='from/to /v'
 BROKEN=
 FILE='-'

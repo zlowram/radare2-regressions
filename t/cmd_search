@@ -405,6 +405,33 @@ EXPECT='0x00000000
 '
 run_test
 
+NAME='/s search syscall'
+FILE='../bins/elf/analysis/x86-simple'
+ARGS=
+CMDS='
+aeim
+aeip
+/s
+'
+EXPECT='0x08048070 exit
+'
+run_test
+
+NAME='search.from/to for /s'
+FILE='../bins/elf/analysis/x86-simple'
+ARGS=
+CMDS='
+aeim
+aeip
+e search.in = raw
+e search.from = 0x08048060
+e search.to = 0x0804806b
+/s
+'
+EXPECT='
+'
+run_test
+
 NAME='/x search seek'
 FILE='../bins/pe/standard.exe'
 ARGS=
