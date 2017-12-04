@@ -305,6 +305,9 @@ d "movupd xmm0, xmmword [eax]" 660f1000
 d "movupd xmmword [eax], xmm0" 660f1100
 d "movzx eax, byte [eax]" 0fb600
 d "movzx eax, word [eax]" 0fb700
+ad "mov byte [esp + eax + 0xf], 0" c644040f00
+ad "mov byte [eax + ecx + 0xf], 0" c644080f00
+ad "mov byte [edx + ecx + 2], 4" c6440a0204
 d "mul byte [eax]" f620
 d "mulsd xmm0, qword [eax]" f20f5900
 d "mulss xmm0, dword [eax]" f30f5900
