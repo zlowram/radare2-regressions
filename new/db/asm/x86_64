@@ -91,7 +91,9 @@ a "repne sfence" f20faef8
 a "rep rdpmc" f30f33
 a "mov eax, 33" b821000000
 a "mov rax, 33" 48c7c021000000
-a "mov [rbp+4],0" c7450400000000
+a "mov dword ptr [rbp+4],0" 67c7450400000000
+a "mov qword ptr [rbp+4],0" 48c7450400000000
+a "mov [rbp+4],0" 48c7450400000000
 a "mov [ebp+4],0" 67c7450400000000
 ad "push r8" 4150
 ad "push r9" 4151
