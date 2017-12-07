@@ -22,8 +22,8 @@ FILE=../../bins/elf/analysis/ls_main_bug
 ARGS=
 CMDS='
 aa
-? $FB @ sym.imp.strcmp
+afi @ main ~offset
 '
-EXPECT='14512 0x38b0 034260 14.2K 0000:08b0 14512 "\xb08" 0011100010110000 14512.0 14512.000000f 14512.000000
+EXPECT='offset: 0x000038b0
 '
 run_test
