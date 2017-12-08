@@ -2,7 +2,6 @@
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
 FILE=../../bins/mach0/ls-osx-x86_64
-BROKEN=1
 CMDS='e anal.noncode=false
 afr
 afl~?str.
@@ -13,7 +12,6 @@ EXPECT='0
 run_test
 
 FILE=../../bins/mach0/ls-osx-x86_64
-BROKEN=1
 CMDS='e anal.noncode=false
 e anal.calls=true
 af
