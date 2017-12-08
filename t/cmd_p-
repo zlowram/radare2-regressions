@@ -1,0 +1,22 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2017 Thomas Roth <code@stacksmashing.net>
+[ -e tests.sh ] && . ./tests.sh || . ../tests.sh
+
+NAME='pdc @ main ioli0x0'
+NAME='p-h out of bounds'
+FILE=../bins/mach0/mach0-x86-64
+ARGS=''
+BROKEN=
+CMDS='
+aaa
+p-h @0x100001010 @e:search.in=io.section
+'
+EXPECT=".-------------.----------------------------.
+|   offset    | flags funcs cmts syms str  |
+|-------------)----------------------------|
+| 0x100001010 |    2    0    1    0    0   |
+|-------------)----------------------------|
+|    total    |    2    0    1    0    0   |
+\`-------------'----------------------------'
+"
+run_test
