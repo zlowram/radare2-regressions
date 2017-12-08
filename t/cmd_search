@@ -438,6 +438,27 @@ EXPECT=''
 
 run_test
 
+NAME='/v4 search 4 byte'
+FILE=-
+CMDS='
+wx 0x12345678aabbccddeeff12345678
+/v4 0x78563412
+'
+EXPECT='0x00000000 hit0_0 12345678
+0x0000000a hit0_1 12345678
+'
+run_test
+
+NAME='/v4 search 8 byte'
+FILE=-
+CMDS='
+wx 0x12345678aabbccddeeff12345678
+/v4 0x78563412 0xddccbbaa
+'
+EXPECT='0x00000000 hit0_0 12345678aabbccdd
+'
+run_test
+
 NAME='/x search seek'
 FILE='../bins/pe/standard.exe'
 ARGS=
