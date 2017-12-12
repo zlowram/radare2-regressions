@@ -199,21 +199,47 @@ EXPECT='3
 '
 run_test
 
-NAME='cat ../../bins/other/shellcode.c | rax2 -F'
+NAME='cat ../../bins/other/shellcode.c | rax2 sF'
 CMDS='!cat ../../bins/other/shellcode.c | rax2 -F'
 EXPECT='31c050686e2f7368682f2f626989e35089e25389e1b00bcd80
 '
 run_test
 
-NAME='{0x33,33,23,32}'
+NAME='C array {0x33,33,23,32}'
 CMDS="echo 'main() {const char *foo = {0x33,33,23,23,23,23,4,13,32,23,32,23,32};}' | rax2 -F"
 EXPECT='332117171717040d2017201720
 '
 run_test
 
-NAME='"\x33\x44\x88"'
+NAME='C string "\x33\x44\x88"'
 CODE='main(){const char *foo = "\x33\x44\x88"; }'
 CMDS="echo '${CODE}' | rax2 -F"
+EXPECT='334488
+'
+run_test
+
+NAME='cat ../../bins/other/shellcode.py | rax2 sP'
+CMDS='!cat ../../bins/other/shellcode.py | rax2 -P'
+EXPECT='31c050686e2f7368682f2f626989e35089e25389e1b00bcd80
+'
+run_test
+
+NAME='Python array [0x33,33,23,32]'
+CMDS="echo 'foo = [0x33,33,23,23,23,23,4,13,32,23,32,23,32]' | rax2 -P"
+EXPECT='332117171717040d2017201720
+'
+run_test
+
+NAME="Python string '\x33\x44\x88'"
+CODE="foo = '\x33\x44\x88'"
+CMDS="echo '${CODE}' | rax2 -P"
+EXPECT='334488
+'
+run_test
+
+NAME='Python string "\x33\x44\x88"'
+CODE='foo = "\x33\x44\x88"'
+CMDS="echo '${CODE}' | rax2 -P"
 EXPECT='334488
 '
 run_test
