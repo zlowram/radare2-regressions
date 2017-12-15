@@ -1,0 +1,12 @@
+#!/bin/sh
+# GPL 3+ - Copyright (C) 2016 pancake
+
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME="aaa with axt"
+FILE=../../bins/anal/keygen.exe
+CMDS="aaa
+axt 0x4bffb0"
+EXPECT="(nofunc) 0x4bfe53 [data] mov edx, 0x4bffb0
+"
+run_test
