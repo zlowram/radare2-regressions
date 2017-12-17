@@ -72,10 +72,27 @@ bool test_r_hex_from_py() {
 	mu_end;
 }
 
+bool test_r_hex_no_code() {
+	char *s;
+	s = "\"ABCD\"";
+	mu_assert_streq (r_hex_no_code (s), "41424344", s);
+	s = "\"AB\" \"CD\"";
+	mu_assert_streq (r_hex_no_code (s), "41424344", s);
+	s = "\"AB\"\n\"CD\"\n";
+	mu_assert_streq (r_hex_no_code (s), "41424344", s);
+	s = "\"\x41\x42\x43\x44\"";
+	mu_assert_streq (r_hex_no_code (s), "41424344", s);
+	s = "\"\x41\x42\"  \"\x43\x44\";";
+	mu_assert_streq (r_hex_no_code (s), "41424344", s);
+
+	mu_end;
+}
+
 bool all_tests() {
 	mu_run_test (test_r_hex_from_c);
 	mu_run_test (test_r_hex_from_py);
 	mu_run_test (test_r_hex_from_code);
+	mu_run_test (test_r_hex_no_code);
 	return tests_passed != tests_run;
 }
 
