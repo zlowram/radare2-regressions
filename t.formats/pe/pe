@@ -115,7 +115,7 @@ e asm.bytes=false
 e asm.comments=false
 pd 1@0x0040131a~str.Hello
 '
-EXPECT=' 0x0040131a      mov dword [esp], str.Hello_n
+EXPECT=' 0x0040131a      mov dword [esp], str.Hello
 '
 run_test
 

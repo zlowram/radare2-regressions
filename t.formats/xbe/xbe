@@ -43,9 +43,9 @@ ARGS='-u'
 CMDS='iS~idx'
 EXPECT='idx=00 vaddr=0x00011000 paddr=0x00001000 sz=1728 vsz=1728 perm=m-r-x name=.0
 idx=01 vaddr=0x000116c0 paddr=0x00002000 sz=24 vsz=24 perm=m-r-- name=.1
-idx=02 vaddr=0x000116e0 paddr=0x00003000 sz=28280 vsz=1257188 perm=m-rw- name=_.2
-idx=03 vaddr=0x001445e0 paddr=0x0000a000 sz=60 vsz=64 perm=m-rwx name=_.3
-idx=04 vaddr=0x00144620 paddr=0x0000b000 sz=164 vsz=1188 perm=m-r-- name=_.4
+idx=02 vaddr=0x000116e0 paddr=0x00003000 sz=28280 vsz=1257188 perm=m-rw- name=.2
+idx=03 vaddr=0x001445e0 paddr=0x0000a000 sz=60 vsz=64 perm=m-rwx name=.3
+idx=04 vaddr=0x00144620 paddr=0x0000b000 sz=164 vsz=1188 perm=m-r-- name=.4
 '
 run_test
 
@@ -55,9 +55,9 @@ ARGS='-u'
 CMDS='S'
 EXPECT='[00:00] * pa=0x00001000 mr-x va=0x00011000 sz=0x06c0 vsz=0x06c0 .0
 [00:01] . pa=0x00002000 mr-- va=0x000116c0 sz=0x0018 vsz=0x0018 .1
-[00:02] . pa=0x00003000 mrw- va=0x000116e0 sz=0x6e78 vsz=0x132ee4 _.2
-[00:03] . pa=0x0000a000 mrwx va=0x001445e0 sz=0x003c vsz=0x0040 _.3
-[00:04] . pa=0x0000b000 mr-- va=0x00144620 sz=0x00a4 vsz=0x04a4 _.4
+[00:02] . pa=0x00003000 mrw- va=0x000116e0 sz=0x6e78 vsz=0x132ee4 .2
+[00:03] . pa=0x0000a000 mrwx va=0x001445e0 sz=0x003c vsz=0x0040 .3
+[00:04] . pa=0x0000b000 mr-- va=0x00144620 sz=0x00a4 vsz=0x04a4 .4
 '
 run_test
 

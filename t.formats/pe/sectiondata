@@ -85,7 +85,7 @@ CMDS='e anal.strings = true
 aaa
 pi 2 @ 0x004010b7'
 EXPECT='push str.CrackMe_v1.0
-push str.No_need_to_disasm_the_code_
+push str.No_need_to_disasm_the_code
 '
 run_test
  
@@ -95,8 +95,8 @@ ARGS=''
 CMDS='e anal.strings = true
 aaa
 pi 2 @ 0x0040136b'
-EXPECT='push str.No_luck_
-push str.No_luck_there__mate_
+EXPECT='push str.No_luck
+push str.No_luck_there__mate
 '
 run_test
 
@@ -106,8 +106,8 @@ ARGS=''
 CMDS='e anal.strings = true
 aaa
 pi 2 @ 0x004013af'
-EXPECT='push str.No_luck_
-push str.No_luck_there__mate_
+EXPECT='push str.No_luck
+push str.No_luck_there__mate
 '
 run_test
  
@@ -117,8 +117,8 @@ ARGS=''
 CMDS='e anal.strings = true
 aaa
 pi 2 @ 0x0040134f'
-EXPECT='push str.Good_work_
-push str.Great_work__mate__Now_try_the_next_CrackMe_
+EXPECT='push str.Good_work
+push str.Great_work__mate__Now_try_the_next_CrackMe
 '
 run_test
  

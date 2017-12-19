@@ -69,7 +69,7 @@ FILE=../../bins/elf/analysis/example.elf
 BROKEN=
 ARGS=''
 CMDS="is*~d_41"
-EXPECT='f sym._d_41 0 0x00000ae0
+EXPECT='f sym.d_41 0 0x00000ae0
 '
 run_test
 

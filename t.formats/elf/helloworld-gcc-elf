@@ -5,7 +5,7 @@ NAME='x86 - init_array detection'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='aa;afl~0x080482e0[3]
 '
-EXPECT='loc.imp.__gmon_start__
+EXPECT='loc.imp.__gmon_start
 '
 run_test
 
@@ -260,7 +260,7 @@ NAME='flags'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='f
 '
-EXPECT='0x080484b0 13 str.Hello_world_
+EXPECT='0x080484b0 13 str.Hello_world
 0x08048400 256 main
 0x08048300 1 entry0
 0x080483d0 1 entry1.init
@@ -347,7 +347,7 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x080496a0 4 reloc.puts_160
 0x080496a4 4 reloc.__gmon_start___164
 0x080496a8 4 reloc.__libc_start_main_168
-0x080495a4 0 obj.__JCR_LIST__
+0x080495a4 0 obj.__JCR_LIST
 0x08048340 0 sym.deregister_tm_clones
 0x08048370 0 sym.register_tm_clones
 0x080483b0 0 sym.__do_global_dtors_aux
@@ -355,12 +355,12 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x080495a0 0 obj.__do_global_dtors_aux_fini_array_entry
 0x080483d0 0 sym.frame_dummy
 0x0804959c 0 obj.__frame_dummy_init_array_entry
-0x08048598 0 obj.__FRAME_END__
-0x080495a4 0 obj.__JCR_END__
+0x08048598 0 obj.__FRAME_END
+0x080495a4 0 obj.__JCR_END
 0x080495a0 0 loc.__init_array_end
 0x080495a8 0 obj._DYNAMIC
 0x0804959c 0 loc.__init_array_start
-0x08049694 0 obj._GLOBAL_OFFSET_TABLE_
+0x08049694 0 obj._GLOBAL_OFFSET_TABLE
 0x08048490 2 sym.__libc_csu_fini
 0x08048330 4 sym.__x86.get_pc_thunk.bx
 0x080496ac 0 loc.data_start
@@ -375,10 +375,10 @@ EXPECT='0x080484b0 13 str.Hello_world_
 0x080484a8 4 obj._fp_hw
 0x080496b4 0 loc.__bss_start
 0x08048400 28 sym.main
-0x080496b4 0 obj.__TMC_END__
+0x080496b4 0 obj.__TMC_END
 0x08048290 0 sym._init
 0x080482d0 16 sym.imp.puts
-0x080482e0 16 loc.imp.__gmon_start__
+0x080482e0 16 loc.imp.__gmon_start
 0x080482f0 16 sym.imp.__libc_start_main
 '
 run_test

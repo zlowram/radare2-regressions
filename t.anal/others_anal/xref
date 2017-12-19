@@ -53,7 +53,7 @@ ARGS=
 CMDS='
 aaa
 axt @ sym.imp.exit'
-EXPECT='sub.Password_Incorrect__n_524 0x804853d [call] call sym.imp.exit
+EXPECT='sub.Password_Incorrect_524 0x804853d [call] call sym.imp.exit
 sub.sscanf_542 0x80485ab [call] call sym.imp.exit
 sub.strlen_5b9 0x804866f [call] call sym.imp.exit
 '
@@ -66,7 +66,7 @@ ARGS=
 CMDS='
 aaaa
 axt @ sym.imp.exit'
-EXPECT='sub.Password_Incorrect__n_524 0x804853d [call] call sym.imp.exit
+EXPECT='sub.Password_Incorrect_524 0x804853d [call] call sym.imp.exit
 sub.sscanf_542 0x80485ab [call] call sym.imp.exit
 sub.strlen_5b9 0x804866f [call] call sym.imp.exit
 '
@@ -177,11 +177,11 @@ e anal.arch = x86.udis
 e scr.color = false
 e scr.wheel = false
 aa
-axt str.Sdvvzrug_RN______
+axt str.Sdvvzrug_RN
 axf 0x804848a
 '
-EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN______
-d 0x804848a mov dword [esp], str.Sdvvzrug_RN______
+EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN
+d 0x804848a mov dword [esp], str.Sdvvzrug_RN
 '
 if [ -n "${TRAVIS}" ]; then
   unset BROKEN
@@ -199,11 +199,11 @@ e anal.arch = x86
 e scr.color = false
 e scr.wheel = false
 aa
-axt str.Sdvvzrug_RN______
+axt str.Sdvvzrug_RN
 axf 0x804848a
 '
-EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN______
-d 0x804848a mov dword [esp], str.Sdvvzrug_RN______
+EXPECT='sym.test 0x804848a [data] mov dword [esp], str.Sdvvzrug_RN
+d 0x804848a mov dword [esp], str.Sdvvzrug_RN
 '
 run_test
 
@@ -233,13 +233,13 @@ axt 0x00001de8
 axt 0x00001df4
 axt 0x00001e09
 '
-EXPECT='main 0x1457 [strg] lea eax, str.Take_the_Red_Pill____n
+EXPECT='main 0x1457 [strg] lea eax, str.Take_the_Red_Pill
 main 0x148e [strg] lea eax, str.use:_._exploit1_PILL
 main 0x14eb [strg] lea eax, str.Red_Pill__0x50444552
-main 0x1502 [strg] lea eax, str.Your_Pill_0x_08x_n
-main 0x1523 [strg] lea eax, str._n__Red_Pill
-main 0x1557 [strg] lea eax, str.fwhibbit_
-main 0x161d [strg] lea eax, str._n__Blue_Pill
+main 0x1502 [strg] lea eax, str.Your_Pill_0x_08x
+main 0x1523 [strg] lea eax, str.Red_Pill
+main 0x1557 [strg] lea eax, str.fwhibbit
+main 0x161d [strg] lea eax, str.Blue_Pill
 '
 run_test
 
@@ -293,7 +293,7 @@ aa
 aae
 axt@0x80484e0
 '
-EXPECT='main 0x8048432 [strg] lea eax, str.Hello_PIC_
+EXPECT='main 0x8048432 [strg] lea eax, str.Hello_PIC
 '
 run_test
 
@@ -345,7 +345,7 @@ aa
 aae
 pd 1 @ 0x08048432
 '
-EXPECT='|           0x08048432      8d83e0e4ffff   lea eax, str.Hello_PIC_     ; 0x80484e0 ; "Hello PIC!"
+EXPECT='|           0x08048432      8d83e0e4ffff   lea eax, str.Hello_PIC      ; 0x80484e0 ; "Hello PIC!"
 '
 run_test
 
@@ -361,6 +361,6 @@ aa
 aae
 pd 1 @ 0x08048432
 '
-EXPECT='[36m| [0m[36m          [0m[32m0x08048432[0m      [37mlea[36m eax[0m,[36m [0m[33mstr.Hello_PIC_[0m[36m[0m[0m
+EXPECT='[36m| [0m[36m          [0m[32m0x08048432[0m      [37mlea[36m eax[0m,[36m [0m[33mstr.Hello_PIC[0m[36m[0m[0m
 '
 run_test

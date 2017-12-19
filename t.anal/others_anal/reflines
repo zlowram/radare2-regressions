@@ -149,7 +149,7 @@ EXPECT='|       ,=< 0x000113bd      je 0x1144e
 |     ,===< 0x000113e0      jle 0x11424
 |     |||   0x000113e2      lea rsi, [rax - 6]
 |     |||   0x000113e6      mov ecx, 7
-|     |||   0x000113eb      lea rdi, [rip + 0x7ebb]                    ; str._.libs_ ; 0x192ad ; "/.libs/"
+|     |||   0x000113eb      lea rdi, [rip + 0x7ebb]                    ; str..libs ; 0x192ad ; "/.libs/"
 |     |||   0x000113f2      repe cmpsb byte [rsi], byte ptr [rdi]      ; [0x2700000000:1]=255 ; 167503724544
 |    ,====< 0x000113f4      jne 0x11424
 |    ||||   0x000113f6      mov ecx, 3

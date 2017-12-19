@@ -60,7 +60,7 @@ EXPECT='0x00002920 str.alloc
 0x00002ca0 bl sym.imp.objc_msgSend
 0x00002cc0 bl sym.imp.objc_msgSend
 0x00002cec bl sym.imp.objc_msgSend
-0x00002cfc str.cstr.file_name_is:_____protection_class:__
+0x00002cfc str.cstr.file_name_is:_____protection_class:
 0x00002d04 bl sym.imp.NSLog
 0x00002d50 bl sym.imp.objc_msgSend
 0x00002d84 str.Directory_Not_found
