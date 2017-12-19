@@ -9,7 +9,7 @@ CMDS='
 e asm.lines=0
 e asm.bytes=0
 e asm.comments=0
-s sym.__Test_callMeNot_
+s sym.__Test_callMeNot
 pd 20~?NSLog
 af
 pd 20~?NSLog
@@ -50,7 +50,7 @@ CMDS='
 e asm.lines=0
 e asm.bytes=0
 e asm.comments=0
-s sym.__Test_callMeNot_
+s sym.__Test_callMeNot
 # s+2
 pi 2
 '
