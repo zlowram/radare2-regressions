@@ -469,16 +469,16 @@ pd 3
 e asm.nbytes = 6
 pd 3
 '
-EXPECT=' 0x00000000      488d85c0f9ff.  lea rax, [rbp - 0x640]
+EXPECT=' 0x00000000      488d85c0f9ff.  lea rax, rbp - 0x640
  0x00000007      488985b8f9ff.  mov qword [rbp - 0x648], rax
  0x0000000e      4585f6         test r14d, r14d
- 0x00000000      488d85c0f9ffff         lea rax, [rbp - 0x640]
+ 0x00000000      488d85c0f9ffff         lea rax, rbp - 0x640
  0x00000007      488985b8f9ffff         mov qword [rbp - 0x648], rax
  0x0000000e      4585f6                 test r14d, r14d
- 0x00000000              488d85c0f9ffff  lea rax, [rbp - 0x640]
+ 0x00000000              488d85c0f9ffff  lea rax, rbp - 0x640
  0x00000007              488985b8f9ffff  mov qword [rbp - 0x648], rax
  0x0000000e                      4585f6  test r14d, r14d
- 0x00000000       488d85c0f9ff.  lea rax, [rbp - 0x640]
+ 0x00000000       488d85c0f9ff.  lea rax, rbp - 0x640
  0x00000007       488985b8f9ff.  mov qword [rbp - 0x648], rax
  0x0000000e              4585f6  test r14d, r14d
 '

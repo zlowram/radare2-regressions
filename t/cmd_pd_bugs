@@ -118,7 +118,7 @@ e asm.lines=false
 e asm.comments=false
 pD@x:8d15d0830408
 '
-EXPECT=" 0x00000000      8d15d0830408   lea edx, [0x80483d0]
+EXPECT=" 0x00000000      8d15d0830408   lea edx, 0x80483d0
 "
 run_test
 
