@@ -32,6 +32,7 @@ aoj~{}
 EXPECT='[
   {
     "opcode": "xor eax, eax",
+    "disasm": "xor eax, eax",
     "mnemonic": "xor",
     "prefix": 0,
     "id": 334,

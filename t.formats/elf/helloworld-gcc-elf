@@ -152,8 +152,8 @@ NAME='pxW 10'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='pxW 10
 '
-EXPECT='0x08048300 0x895eed31 
-0x08048304 0xf0e483e1 
+EXPECT='0x08048300 0x895eed31
+0x08048304 0xf0e483e1
 '
 run_test
 
@@ -398,6 +398,7 @@ EXPECT='[
     "fcn_last": 0,
     "size": 2,
     "opcode": "xor ebp, ebp",
+    "disasm": "xor ebp, ebp",
     "bytes": "31ed",
     "family": "cpu",
     "type": "xor",
@@ -419,6 +420,7 @@ EXPECT='[
     "fcn_last": 0,
     "size": 1,
     "opcode": "pop esi",
+    "disasm": "pop esi",
     "bytes": "5e",
     "family": "cpu",
     "type": "pop",
@@ -433,6 +435,7 @@ EXPECT='[
     "fcn_last": 0,
     "size": 2,
     "opcode": "mov ecx, esp",
+    "disasm": "mov ecx, esp",
     "bytes": "89e1",
     "family": "cpu",
     "type": "mov",
@@ -447,6 +450,7 @@ EXPECT='[
     "fcn_last": 0,
     "size": 3,
     "opcode": "and esp, 0xfffffff0",
+    "disasm": "and esp, 0xfffffff0",
     "bytes": "83e4f0",
     "family": "cpu",
     "type": "and",
