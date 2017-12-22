@@ -12,6 +12,7 @@ aoj~{}
 EXPECT='[
   {
     "opcode": "b 0x20de8",
+    "disasm": "b 0x20de8",
     "mnemonic": "b",
     "prefix": 0,
     "id": 17,
