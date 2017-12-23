@@ -20,7 +20,7 @@ run_test
 
 
 NAME='a2f jmp after ret - _size (symsize)'
-BROKEN=1
+BROKEN=
 FILE=malloc://512
 ARGS=
 CMDS='

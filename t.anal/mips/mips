@@ -25,7 +25,7 @@ run_test
 #   8010000c: 00000000 	nop
 #   80100010: 00000000  nop  <__ should report a JUMP XREF from fcn.80100008 instead of 0 UNK
 NAME="mips LE back reference"
-BROKEN=1
+BROKEN=
 FILE=malloc://32
 ARGS='-m 0x80100000'
 CMDS="

@@ -41,11 +41,11 @@ a "mov rax, [rax]" 488b00
 aB "mov rax,[rel -10]" 488b05f6ffffff
 aB "mov rax,[rel 0]" 488b0500000000
 aB "mov rax,[rel 10]" 488b050a000000
-aB "mov rax,[rip+0]" 488b0500000000
-aB "mov rax,[rip+10]" 488b050a000000
-aB "mov rax,[rip-0]" 488b0500000000
-aB "mov rax,[rip-10]" 488b05f6ffffff
-aB "mov rax,[rip]" 488b0500000000
+a "mov rax,[rip+0]" 488b0500000000
+a "mov rax,[rip+10]" 488b050a000000
+a "mov rax,[rip-0]" 488b0500000000
+a "mov rax,[rip-10]" 488b05f6ffffff
+a "mov rax,[rip]" 488b0500000000
 a "mov rbx, 3" 48c7c303000000
 a "mov edx, [rbp-4]" 8b55fc
 a "mov rbx, rax" 4889c3
