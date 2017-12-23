@@ -490,18 +490,20 @@ class NewRegressions {
         console.log(test.cmdScript);
       }
 
-      const changes = jsdiff.diffChars(test.expect, test.stdout);
+      const changes = jsdiff.diffLines(test.expect, test.stdout);
       changes.forEach(function (part) {
         const k = part.added ? colors.magenta : colors.green;
+        const v = part.value.replace(/\s*$/,"");
         if (part.added) {
-          console.log('+', k(part.value));
+          console.log('+', k(v.split(/\n/g).join('\n+')));
         } else if (part.removed) {
-          console.log('-', k(part.value));
+          console.log('-', k(v.split(/\n/g).join('\n-')));
         } else {
-          console.log(' ', part.value);
+          console.log(' ', v.split(/\n/g).join('\n '));
         }
       });
 /*
+      console.log('===');
       if (test.expect !== null) {
         ///console.log('---');
         console.log(colors.magenta(test.expect.trim()));
