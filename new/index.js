@@ -3,6 +3,7 @@ const colors = require('colors/safe');
 const promisify = require('promisify-node');
 const walk = require('walk').walk;
 const fs = promisify('fs');
+const jsdiff = require('diff');
 const tmp = require('tmp');
 const zlib = require('zlib');
 const path = require('path');
@@ -14,17 +15,17 @@ const timeoutFuzzed = 60 * 1000;
 
 // support node < 8
 if (!String.prototype.padStart) {
-  String.prototype.padStart = function padStart(targetLength,padString) {
-    targetLength = targetLength>>0; //floor if number or convert non-number to 0;
+  String.prototype.padStart = function padStart (targetLength, padString) {
+    targetLength = targetLength >> 0; // floor if number or convert non-number to 0;
     padString = String(padString || ' ');
     if (this.length > targetLength) {
       return String(this);
     } else {
-      targetLength = targetLength-this.length;
+      targetLength = targetLength - this.length;
       if (targetLength > padString.length) {
-          padString += padString.repeat(targetLength/padString.length); //append to original to ensure we are longer than needed
+        padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
       }
-      return padString.slice(0,targetLength) + String(this);
+      return padString.slice(0, targetLength) + String(this);
     }
   };
 }
@@ -290,12 +291,12 @@ class NewRegressions {
       match: false,
       name: '',
       enabled: false,
-      str: '',
+      str: ''
     };
     // edit is work in progress. aka not working at all
     if (this.argv.e) {
       editMode.match = true;
-      editMode.name = 'cmd_graph'
+      editMode.name = 'cmd_graph';
       process.exit(1);
     }
     for (let l of lines) {
@@ -313,7 +314,7 @@ class NewRegressions {
         continue;
       }
       if (source.indexOf('asm') !== -1) {
-        let tests = parseTestAsm (source, line);
+        let tests = parseTestAsm(source, line);
         for (let t of tests) {
           this.promises.push(this.runTestAsm.bind(this)(t, this.checkTestResult.bind(this)));
         }
@@ -432,10 +433,10 @@ class NewRegressions {
 
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
-    if (test.passes && typeof test.stdout !== undefined && test.expect) {
+    if (test.passes && typeof test.stdout !== undefined) { // && test.expect) {
       if (process.platform == 'win32') {
         /* Delete \r on windows.
-         * Note that process.platform is always win32 even on Windows 64 bits*/
+         * Note that process.platform is always win32 even on Windows 64 bits */
         test.stdout = test.stdout.replace(/\r/g, '');
       }
       test.passes = test.expect.trim() === test.stdout.trim();
@@ -466,7 +467,7 @@ class NewRegressions {
     }
     if ((process.env.NOOK && status !== colors.green('[OK]')) || !process.env.NOOK) {
       // console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
-      process.stdout.write('\x1b[0K\r' + status + ' ' + colors.yellow(test.name) + test.path + test.lifetime + (this.verbose?'\n':'\r'));
+      process.stdout.write('\x1b[0K\r' + status + ' ' + colors.yellow(test.name) + test.path + test.lifetime + (this.verbose ? '\n' : '\r'));
     }
     return test.passes;
   }
@@ -488,6 +489,19 @@ class NewRegressions {
       if (test.cmdScript !== undefined) {
         console.log(test.cmdScript);
       }
+
+      const changes = jsdiff.diffChars(test.expect, test.stdout);
+      changes.forEach(function (part) {
+        const k = part.added ? colors.magenta : colors.green;
+        if (part.added) {
+          console.log('+', k(part.value));
+        } else if (part.removed) {
+          console.log('-', k(part.value));
+        } else {
+          console.log(' ', part.value);
+        }
+      });
+/*
       if (test.expect !== null) {
         ///console.log('---');
         console.log(colors.magenta(test.expect.trim()));
@@ -496,13 +510,14 @@ class NewRegressions {
         // console.log('+++');
         console.log(colors.green(test.stdout.trim()));
       }
+*/
       // console.log('===');
       if (test.expect64) {
         console.log('EXPECT64=' + base64(test.stdout));
       }
-if (this.argv.interactive) {
-console.log('TODO: interactive thing should happen here');
-}
+      if (this.argv.interactive) {
+        console.log('TODO: interactive thing should happen here');
+      }
     }
   }
 
@@ -514,19 +529,19 @@ console.log('TODO: interactive thing should happen here');
       BR: this.report.broken,
       XX: this.report.failed,
       FX: this.report.fixed,
-      time: this.report.totaltime,
+      time: this.report.totaltime
     };
-    function n(x) {
+    function n (x) {
       return x.toString().padStart(4);
     }
-    const name = (typeof this.name === 'string') ? this.name.padStart(30): '';
+    const name = (typeof this.name === 'string') ? this.name.padStart(30) : '';
     console.log('[**]', name + '  ', 'OK', n(r.OK), 'BR', n(r.BR), 'XX', n(r.XX), 'FX', n(r.FX));
   }
 
-  fixTest(name, expect, cb) {
+  fixTest (name, expect, cb) {
   }
 
-  editTest(name, expect, cb) {
+  editTest (name, expect, cb) {
   }
 }
 

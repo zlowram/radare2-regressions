@@ -4,13 +4,15 @@
   "description": "new testsuite for r2 written in nodejs",
   "main": "index.js",
   "dependencies": {
-    "rc": "*",
+    "co": "*",
     "colors": "*",
-    "walk": "*",
-    "tmp": "*",
+    "diff": "*",
     "promisify-node": "*",
     "r2pipe-promise": "*",
-    "co": "*"
+    "rc": "*",
+    "semistandard": "^11.0.0",
+    "tmp": "*",
+    "walk": "*"
   },
   "scripts": {
     "test": "semistandard",
