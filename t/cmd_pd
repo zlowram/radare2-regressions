@@ -592,7 +592,7 @@ EXPECT='/ (fcn) fcn2.0x004017c0 13
 |           0x004017c1      89e1           mov ecx, esp
 |           0x004017c3      83c108         add ecx, 8
 |           0x004017c6      3d00100000     cmp eax, 0x1000
-|       ,=< 0x004017cb      7210           jb 0x4017dd
+\       ,=< 0x004017cb      7210           jb 0x4017dd
 '
 run_test
 
@@ -634,8 +634,8 @@ e asm.cmtright=false
 pd 1 @ 0x0001145f
 '
 EXPECT='            0x0001145f      488d3d72a100.  lea rdi, str.A_NULL_argv_0__was_passed_through_an_exec_system_call. ; 0x1b5d8 ; "A NULL argv[0] was passed through an exec system call.\n"
-               ; 0x1b5d8
-               ; "A NULL argv[0] was passed through an exec system call.\n"
+            ; 0x1b5d8
+            ; "A NULL argv[0] was passed through an exec system call.\n"
             0x0001145f      488d3d72a100.  lea rdi, str.A_NULL_argv_0__was_passed_through_an_exec_system_call.
 '
 run_test
@@ -651,8 +651,8 @@ e asm.cmtright=false
 pd 1 @ 0x0001145f
 '
 EXPECT='            0x0001145f      488d3d72a100.  lea rdi, 0x0001b5d8         ; NULL_error ; "A NULL argv[0] was passed through an exec system call.\n"
-               ; NULL_error
-               ; "A NULL argv[0] was passed through an exec system call.\n"
+            ; NULL_error
+            ; "A NULL argv[0] was passed through an exec system call.\n"
             0x0001145f      488d3d72a100.  lea rdi, 0x0001b5d8
 '
 run_test
@@ -666,8 +666,8 @@ e asm.cmtright=false
 pd 1 @ 0x004010f0
 '
 EXPECT='            0x004010f0      68b8214000     push str.Number_of_CPU__d   ; 0x4021b8 ; u"Number of CPU %d\n"
-               ; 0x4021b8
-               ; u"Number of CPU %d\n"
+            ; 0x4021b8
+            ; u"Number of CPU %d\n"
             0x004010f0      68b8214000     push str.Number_of_CPU__d
 '
 run_test
@@ -683,8 +683,8 @@ e asm.cmtright=false
 pd 1 @ 0x004010f0
 '
 EXPECT='            0x004010f0      68b8214000     push 0x4021b8               ; num_cpu ; u"Number of CPU %d\n"
-               ; num_cpu
-               ; u"Number of CPU %d\n"
+            ; num_cpu
+            ; u"Number of CPU %d\n"
             0x004010f0      68b8214000     push 0x4021b8
 '
 run_test
@@ -698,7 +698,7 @@ e asm.cmtright=false
 pd 1 @ 0x004010fa
 '
 EXPECT='            0x004010fa      8b3500204000   mov esi, dword sym.imp.KERNEL32.dll_GetLastError ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
-               ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
+            ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
             0x004010fa      8b3500204000   mov esi, dword sym.imp.KERNEL32.dll_GetLastError
 '
 run_test
@@ -714,8 +714,8 @@ e asm.cmtright=false
 pd 1 @ 0x004010fa
 '
 EXPECT='            0x004010fa      8b3500204000   mov esi, dword [0x402000]   ; ptr_GetLastError ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
-               ; ptr_GetLastError
-               ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
+            ; ptr_GetLastError
+            ; [0x402000:4]=0x29f4 reloc.KERNEL32.dll_GetLastError_244
             0x004010fa      8b3500204000   mov esi, dword [0x402000]
 '
 run_test
@@ -751,15 +751,15 @@ pd 1 @ 0x14000101c
 EXPECT='            0x140001004      488d05f54f01.  lea rax, str.ANSI__esc:__e_33m ; section..data ; 0x140016000 ; "\tANSI\\esc: \x1b[33m\r\n"
             0x140001010      488d05015001.  lea rax, str.wide__esc:__e_0m ; 0x140016018 ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x14000101c      488d051d5001.  lea rax, str.wide__in_Arabic: ; 0x140016040 ; u"\"wide\" in Arabic: \u0648\u0627\u0633\u0639"
-               ; section..data
-               ; 0x140016000
-               ; "\tANSI\\esc: \x1b[33m\r\n"
+            ; section..data
+            ; 0x140016000
+            ; "\tANSI\\esc: \x1b[33m\r\n"
             0x140001004      488d05f54f01.  lea rax, str.ANSI__esc:__e_33m
-               ; 0x140016018
-               ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            ; 0x140016018
+            ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x140001010      488d05015001.  lea rax, str.wide__esc:__e_0m
-               ; 0x140016040
-               ; u"\"wide\" in Arabic: \u0648\u0627\u0633\u0639"
+            ; 0x140016040
+            ; u"\"wide\" in Arabic: \u0648\u0627\u0633\u0639"
             0x14000101c      488d051d5001.  lea rax, str.wide__in_Arabic:
 '
 run_test
@@ -945,13 +945,13 @@ pd 1 @ 0x140001010
 '
 EXPECT='            0x140001010      488d05015001.  lea rax, 0x140016018       ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x140001028      488d05415001.  lea rax, 0x140016070       ; str.Formfeed_at_start
-               ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x140001010      488d05015001.  lea rax, 0x140016018
-               ; str.Formfeed_at_start
+            ; str.Formfeed_at_start
             0x140001028      488d05415001.  lea rax, 0x140016070
             0x140001010      488d05015001.  lea rax, 0x140016018       ; str.wide ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-               ; str.wide
-               ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            ; str.wide
+            ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x140001010      488d05015001.  lea rax, 0x140016018
 '
 run_test
@@ -967,8 +967,8 @@ e asm.cmtright=false
 pd 1 @ 0x140001010
 '
 EXPECT='            0x140001010      488d05015001.  lea rax, 0x140016018       ; str.wide__esc:__e_0m ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-               ; str.wide__esc:__e_0m
-               ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            ; str.wide__esc:__e_0m
+            ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             0x140001010      488d05015001.  lea rax, 0x140016018
 '
 run_test
@@ -994,8 +994,8 @@ e asm.cmtright=false
 pd 1 @ 0x004010c6
 '
 EXPECT='            0x004010c6      ff1508204000   call dword [0x402008]       ; sym.imp.KERNEL32.dll_GetProcAddress ; " *"
-               ; sym.imp.KERNEL32.dll_GetProcAddress
-               ; " *"
+            ; sym.imp.KERNEL32.dll_GetProcAddress
+            ; " *"
             0x004010c6      ff1508204000   call dword [0x402008]
 '
 run_test
@@ -1029,7 +1029,7 @@ e asm.cmtright=false
 pd 1 @ 0x00005c2f
 '
 EXPECT='            0x00005c2f      4c8d054ae200.  lea r8, 0x00013e80          ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
-               ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
+            ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
             0x00005c2f      4c8d054ae200.  lea r8, 0x00013e80
 '
 run_test
@@ -1045,7 +1045,7 @@ af
 pd 2 @ 0x004010e8
 '
 EXPECT='[35m[0m[36m| [0m[36m          [0m[32m0x004010e8[0m      [35mpush[36m esi[0m[0m
-[1;32m[0m[36m| [0m[36m          [0m   [31m; 0x402004
+[1;32m[36m| [0m[36m          [0m; 0x402004
 [0m[36m| [0m[36m          [0m[32m0x004010e9[0m      [1;32mcall dword [sym.imp.KERNEL32.dll_GetCurrentProcessorNumber][0m
 '
 run_test
@@ -1119,7 +1119,7 @@ e asm.cmtright=false
 pdJ 1'
 EXPECT='[{"offset":0,"text":" 0x00000000      90             nop               ; test"}]
 [{"offset":0,"text":" 0x00000000      90             nop               ; test \"with quotes\""}]
-[{"offset":0,"text":"     ; test \"with quotes\"\n"},{"offset":0,"text":" 0x00000000      90             nop"}]
+[{"offset":0,"text":" ; test \"with quotes\"\n"},{"offset":0,"text":" 0x00000000      90             nop"}]
 '
 run_test
 
