@@ -27,7 +27,7 @@ FILE=../../bins/elf/libmagic.so
 CMDS="aac
 afl~?
 "
-EXPECT="214
+EXPECT="215
 "
 run_test
 
