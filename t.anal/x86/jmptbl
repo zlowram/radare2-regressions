@@ -17,7 +17,7 @@ f~switch
 f~?case
 "
 EXPECT="0x1000011a7 1 switch.0x1000011a7
-32
+33
 "
 run_test
 
@@ -25,7 +25,7 @@ NAME="mac-ls switch count"
 FILE=../../bins/mach0/mac-ls
 ARGS='-e anal.jmptbl=true -A'
 CMDS="f~?case"
-EXPECT="62
+EXPECT="56
 "
 run_test
 
