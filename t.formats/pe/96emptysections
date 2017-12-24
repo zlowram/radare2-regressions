@@ -21,7 +21,7 @@ run_test
 
 NAME='PE: corkami 96emptysections.exe - entrypoint pif'
 FILE=../../bins/pe/96emptysections.exe
-BROKEN=
+BROKEN=1
 CMDS='aaa
 pif @ entry0
 '
