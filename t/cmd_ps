@@ -57,3 +57,12 @@ abcdefghijklmnopqrstuvw
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 '
 run_test
+
+NAME='psj ascii (#9064)'
+ARGS=
+CMDS='wz ..."..\xff\xff\xff\xff...
+psj 13
+'
+EXPECT='{"string":"...\u0022..\u00ff\u00ff\u00ff\u00ff...","offset":0,"section":"unknown","length":13,"type":"ascii"}
+'
+run_test
