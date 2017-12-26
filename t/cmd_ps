@@ -63,6 +63,6 @@ ARGS=
 CMDS='wz ..."..\xff\xff\xff\xff...
 psj 13
 '
-EXPECT='{"string":"...\u0022..\u00ff\u00ff\u00ff\u00ff...","offset":0,"section":"unknown","length":13,"type":"ascii"}
+EXPECT='{"string":"...\"..\u00ff\u00ff\u00ff\u00ff...","offset":0,"section":"unknown","length":13,"type":"ascii"}
 '
 run_test
