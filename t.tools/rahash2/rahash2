@@ -413,7 +413,7 @@ CMDS='!rahash2 -a md5 -s "admin" -c 21232f297a57a5a743894a0e4a801f'
 BROKEN=
 EXPECT=''
 IGNORE_ERR=0
-EXPECT_ERR='rahash2: Given -c hash has 15 bytes but the selected algorithm returns 16 bytes.
+EXPECT_ERR='rahash2: Given -c hash has 15 byte(s) but the selected algorithm returns 16 byte(s).
 '
 
 run_test
@@ -423,7 +423,7 @@ CMDS='!rahash2 -a sha1 -s "admin" -c 21232f297a57a5a743894a0e4a801f'
 BROKEN=
 EXPECT=''
 IGNORE_ERR=0
-EXPECT_ERR='rahash2: Given -c hash has 15 bytes but the selected algorithm returns 20 bytes.
+EXPECT_ERR='rahash2: Given -c hash has 15 byte(s) but the selected algorithm returns 20 byte(s).
 '
 
 run_test
