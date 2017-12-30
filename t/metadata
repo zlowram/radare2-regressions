@@ -391,6 +391,7 @@ NAME="Csj ascii/latin1"
 FILE=../bins/pe/testapp-msvc64.exe
 ARGS=
 CMDS='Csa @ 0x1400160a0
+Csg @ 0x1400160b8
 Csj
 '
 FILTER='grep -o "{[^}]*\(5368799392\|5368799416\),[^}]*}"'
