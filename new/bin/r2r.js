@@ -206,8 +206,37 @@ function markAsBroken (test, next) {
 }
 
 function fixTest (test, next) {
-  console.error();
-  console.error('TODO: f');
-  console.error();
-  next();
+  const filePath = test.from;
+  let output = '';
+  // read all lines from filepath and stop when finding the test that matches
+  try {
+    let lines = fs.readFileSync(filePath).toString().trim().split('\n');
+    let target = null;
+    for (let line of lines) {
+      if (target) {
+        if (line.startsWith('EXPECT64=')) {
+          const msg = new Buffer(test.stdout).toString('base64')
+          output += 'EXPECT64=' + msg + '\n';
+        } else {
+          output += line + '\n';
+        }
+      } else {
+        output += line + '\n';
+      }
+      if (line.startsWith('RUN')) {
+        target = null;
+      }
+      if (line.startsWith('NAME=')) {
+        const name = line.split('=', 2)[1];
+        if (name === test.name) {
+          target = name;
+        }
+      }
+    }
+    fs.writeFileSync(filePath, output);
+    next();
+  } catch (err) {
+    console.error(err);
+    next();
+  }
 }
