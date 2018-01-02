@@ -16,7 +16,7 @@ const args = process.argv.slice(2).map(_=> {
 });
 
 main(minimist(args, {
-  boolean: ['verbose'],
+  boolean: ['verbose', 'i', 'interactive'],
 }));
 
 function main (argv) {
