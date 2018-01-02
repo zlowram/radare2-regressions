@@ -39,6 +39,7 @@ const r2bin = 'radare2';
 class NewRegressions {
   constructor (argv, cb) {
     this.argv = argv;
+    this.queue = [];
     this.report = {
       total: 0,
       success: 0,
@@ -48,8 +49,8 @@ class NewRegressions {
       totaltime: 0
     };
     useScript = !argv.c;
-    this.verbose = this.argv.verbose;
-    this.interactive = this.argv.interactive;
+    this.verbose = this.argv.verbose || this.argv.v;
+    this.interactive = this.argv.interactive || this.argv.i;
     this.promises = [];
     // reduce startup times of r2
     process.env.RABIN2_NOPLUGINS = 1;
@@ -517,9 +518,10 @@ class NewRegressions {
       if (test.expect64) {
         console.log('EXPECT64=' + base64(test.stdout));
       }
-      if (this.argv.interactive) {
+      if (this.interactive) {
         console.log('TODO: interactive thing should happen here');
       }
+      this.queue.push(test);
     }
   }
 
