@@ -3,6 +3,8 @@
 const NewRegressions = require('..');
 
 const fs = require('fs');
+const jsdiff = require('diff');
+const colors = require('colors/safe');
 const minimist = require('minimist');
 const walk = require('walk').walk;
 const path = require('path');
@@ -141,8 +143,21 @@ Usage: r2r [options] [file] [name] ([cmds])
         console.log('This test has failed:');
         console.log('Script:', test.from);
         console.log('Name:', test.name);
-        console.log('-', test.expect);
-        console.log('+', test.stdout);
+      //  console.log('-', test.expect);
+       // console.log('+', test.stdout);
+
+      const changes = jsdiff.diffLines(test.expect, test.stdout);
+      changes.forEach(function (part) {
+        const k = part.added ? colors.magenta : colors.green;
+        const v = part.value.replace(/\s*$/,"");
+        if (part.added) {
+          console.log('+', k(v.split(/\n/g).join('\n+')));
+        } else if (part.removed) {
+          console.log('-', k(v.split(/\n/g).join('\n-')));
+        } else {
+          console.log(' ', v.split(/\n/g).join('\n '));
+        }
+      });
         console.log('Wat du? (f)ix (i)gnore (b)roken (q)uit');
         readLine((err, line) => {
           if (err) {

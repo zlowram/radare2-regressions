@@ -14,6 +14,10 @@ Example commands tests in `db/cmd/*`:
             0x100001178      4157           Push r15
 	RUN
 
+Import tests from the old scripts:
+
+	DUMP=1 t/cmd_i > new/db/cmd_i
+
 Example tests for `db/asm/*`:
 
 	General format:

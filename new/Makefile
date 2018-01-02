@@ -12,7 +12,6 @@ TESTS+=t/utf32
 TESTS+=t/va
 
 all:
-	
 	mkdir -p db/cmd
 	cd .. ; for a in $(TESTS) ; do \
 		d=$$(dirname $$a) ; \
