@@ -146,9 +146,10 @@ Usage: r2r [options] [file] [name] ([cmds])
       //  console.log('-', test.expect);
        // console.log('+', test.stdout);
 
+console.log('Input:', test.cmds);
       const changes = jsdiff.diffLines(test.expect, test.stdout);
       changes.forEach(function (part) {
-        const k = part.added ? colors.magenta : colors.green;
+        const k = part.added ? colors.green : colors.magenta;
         const v = part.value.replace(/\s*$/,"");
         if (part.added) {
           console.log('+', k(v.split(/\n/g).join('\n+')));
@@ -158,6 +159,7 @@ Usage: r2r [options] [file] [name] ([cmds])
           console.log(' ', v.split(/\n/g).join('\n '));
         }
       });
+
         console.log('Wat du? (f)ix (i)gnore (b)roken (q)uit');
         readLine((err, line) => {
           if (err) {
