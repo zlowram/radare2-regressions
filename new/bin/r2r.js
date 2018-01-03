@@ -2,6 +2,7 @@
 
 const NewRegressions = require('..');
 
+const execSync = require('child_process').execSync;
 const fs = require('fs');
 const jsdiff = require('diff');
 const colors = require('colors/safe');
@@ -146,21 +147,21 @@ Usage: r2r [options] [file] [name] ([cmds])
       //  console.log('-', test.expect);
        // console.log('+', test.stdout);
 
-console.log('Input:', test.cmds);
-      const changes = jsdiff.diffLines(test.expect, test.stdout);
-      changes.forEach(function (part) {
-        const k = part.added ? colors.green : colors.magenta;
-        const v = part.value.replace(/\s*$/,"");
-        if (part.added) {
-          console.log('+', k(v.split(/\n/g).join('\n+')));
-        } else if (part.removed) {
-          console.log('-', k(v.split(/\n/g).join('\n-')));
-        } else {
-          console.log(' ', v.split(/\n/g).join('\n '));
-        }
-      });
+        console.log('Input:', test.cmds);
+        const changes = jsdiff.diffLines(test.expect, test.stdout);
+        changes.forEach(function (part) {
+          const k = part.added ? colors.green : colors.magenta;
+          const v = part.value.replace(/\s*$/, '');
+          if (part.added) {
+            console.log('+', k(v.split(/\n/g).join('\n+')));
+          } else if (part.removed) {
+            console.log('-', k(v.split(/\n/g).join('\n-')));
+          } else {
+            console.log(' ', v.split(/\n/g).join('\n '));
+          }
+        });
 
-        console.log('Wat du? (f)ix (i)gnore (b)roken (q)uit');
+        console.log('Wat du? (f)ix (i)gnore (b)roken (q)uit (c)ommands');
         readLine((err, line) => {
           if (err) {
             return cb(err);
@@ -178,6 +179,9 @@ console.log('Input:', test.cmds);
               break;
             case 'f':
               fixTest(test, next);
+              break;
+            case 'c':
+              fixCommands(test, next);
               break;
           }
         });
@@ -209,7 +213,7 @@ function markAsBroken (test, next) {
       if (line.startsWith('NAME=')) {
         const name = line.split('=', 2)[1];
         if (name === test.name) {
-          console.error("TEST FOUND!!! BINGO :D");
+          console.error('TEST FOUND!!! BINGO :D');
           output += 'BROKEN=1\n';
         }
       }
@@ -232,7 +236,7 @@ function fixTest (test, next) {
     for (let line of lines) {
       if (target) {
         if (line.startsWith('EXPECT64=')) {
-          const msg = new Buffer(test.stdout).toString('base64')
+          const msg = Buffer.from(test.stdout).toString('base64');
           output += 'EXPECT64=' + msg + '\n';
         } else {
           output += line + '\n';
@@ -244,6 +248,47 @@ function fixTest (test, next) {
         target = null;
       }
       if (line.startsWith('NAME=')) {
+        const name = line.split('=', 2)[1];
+        if (name === test.name) {
+          target = name;
+        }
+      }
+    }
+    fs.writeFileSync(filePath, output);
+    next();
+  } catch (err) {
+    console.error(err);
+    next();
+  }
+}
+
+function fixCommands (test, next) {
+  const filePath = test.from;
+  let output = '';
+  // read all lines from filepath and stop when finding the test that matches
+  try {
+    let lines = fs.readFileSync(filePath).toString().trim().split('\n');
+    console.error('TODO: fix commands not yet done');
+    let target = null;
+    for (let line of lines) {
+      if (target) {
+        if (line.startsWith('CMDS64=')) {
+          const msg = Buffer.from(line.substring(7), 'base64');
+          fs.writeFileSync('.cmds.txt', msg);
+          execSync('vim .cmds.txt');
+          const cmds = fs.readFileSync('.cmds').toString('base64');
+          output += 'CMDS64=' + cmds + '\n';
+        } else {
+          output += line + '\n';
+        }
+      } else {
+        output += line + '\n';
+      }
+      if (line.startsWith('RUN')) {
+        target = null;
+      }
+      if (line.startsWith('NAME=')) {
+// TODO: ensure expect is valid
         const name = line.split('=', 2)[1];
         if (name === test.name) {
           target = name;

@@ -493,7 +493,7 @@ class NewRegressions {
 
       const changes = jsdiff.diffLines(test.expect, test.stdout);
       changes.forEach(function (part) {
-        const k = part.added ? colors.magenta : colors.green;
+        const k = part.added ? colors.green: colors.magenta;
         const v = part.value.replace(/\s*$/,"");
         if (part.added) {
           console.log('+', k(v.split(/\n/g).join('\n+')));
