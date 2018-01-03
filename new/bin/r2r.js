@@ -6,6 +6,7 @@ const execSync = require('child_process').execSync;
 const fs = require('fs');
 const jsdiff = require('diff');
 const colors = require('colors/safe');
+const child_process = require('child_process');
 const minimist = require('minimist');
 const walk = require('walk').walk;
 const path = require('path');
@@ -262,21 +263,27 @@ function fixTest (test, next) {
   }
 }
 
+function editFile(someFile) {
+const editor = process.env.EDITOR || 'vi';
+let child = child_process.spawnSync(editor, [someFile], {
+    stdio: 'inherit'
+});
+}
+
 function fixCommands (test, next) {
   const filePath = test.from;
   let output = '';
   // read all lines from filepath and stop when finding the test that matches
   try {
     let lines = fs.readFileSync(filePath).toString().trim().split('\n');
-    console.error('TODO: fix commands not yet done');
     let target = null;
     for (let line of lines) {
       if (target) {
         if (line.startsWith('CMDS64=')) {
           const msg = Buffer.from(line.substring(7), 'base64');
           fs.writeFileSync('.cmds.txt', msg);
-          execSync('vim .cmds.txt');
-          const cmds = fs.readFileSync('.cmds').toString('base64');
+          editFile('.cmds.txt');
+          const cmds = fs.readFileSync('.cmds.txt').toString('base64');
           output += 'CMDS64=' + cmds + '\n';
         } else {
           output += line + '\n';
