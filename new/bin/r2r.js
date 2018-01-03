@@ -2,11 +2,10 @@
 
 const NewRegressions = require('..');
 
-const execSync = require('child_process').execSync;
 const fs = require('fs');
 const jsdiff = require('diff');
 const colors = require('colors/safe');
-const child_process = require('child_process');
+const spawnSync = require('child_process').spawnSync;
 const minimist = require('minimist');
 const walk = require('walk').walk;
 const path = require('path');
@@ -139,6 +138,9 @@ Usage: r2r [options] [file] [name] ([cmds])
           return cb();
         }
         const test = nr.queue.pop();
+        if (test.broken) {
+          return next();
+        }
         function next () {
           setTimeout(_ => { pullQueue(cb); }, 0);
         }
@@ -171,7 +173,7 @@ Usage: r2r [options] [file] [name] ([cmds])
             case 'q':
               console.error('Aborted');
               process.exit(1);
-              break;
+              // unreachable break;
             case 'i':
               next();
               break;
@@ -263,11 +265,9 @@ function fixTest (test, next) {
   }
 }
 
-function editFile(someFile) {
-const editor = process.env.EDITOR || 'vi';
-let child = child_process.spawnSync(editor, [someFile], {
-    stdio: 'inherit'
-});
+function editFile (someFile) {
+  const editor = process.env.EDITOR || 'vi';
+  spawnSync(editor, [someFile], { stdio: 'inherit' });
 }
 
 function fixCommands (test, next) {

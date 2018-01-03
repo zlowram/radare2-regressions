@@ -434,8 +434,8 @@ class NewRegressions {
 
   checkTest (test) {
     test.passes = test.expectErr ? test.expectErr.trim() === test.stderr.trim() : true;
-    if (test.passes && typeof test.stdout !== undefined) { // && test.expect) {
-      if (process.platform == 'win32') {
+    if (test.passes && typeof test.stdout !== 'undefined') { // && test.expect) {
+      if (process.platform === 'win32') {
         /* Delete \r on windows.
          * Note that process.platform is always win32 even on Windows 64 bits */
         test.stdout = test.stdout.replace(/\r/g, '');
@@ -493,8 +493,8 @@ class NewRegressions {
 
       const changes = jsdiff.diffLines(test.expect, test.stdout);
       changes.forEach(function (part) {
-        const k = part.added ? colors.green: colors.magenta;
-        const v = part.value.replace(/\s*$/,"");
+        const k = part.added ? colors.green : colors.magenta;
+        const v = part.value.replace(/\s*$/, '');
         if (part.added) {
           console.log('+', k(v.split(/\n/g).join('\n+')));
         } else if (part.removed) {
@@ -519,7 +519,7 @@ class NewRegressions {
         console.log('EXPECT64=' + base64(test.stdout));
       }
       if (this.interactive) {
-        console.log('TODO: interactive thing should happen here');
+//        console.log('TODO: interactive thing should happen here');
       }
       this.queue.push(test);
     }
@@ -577,9 +577,9 @@ function parseTestAsm (source, line) {
   if (filename.length > 3) {
     console.error(colors.red.bold('[XX]', 'Wrong filename: ' + source));
     return [];
-  } else if (filename.length == 2) {
+  } else if (filename.length === 2) {
     r2args.push('e asm.bits=' + filename[1]);
-  } else if (filename.length == 3) {
+  } else if (filename.length === 3) {
     r2args.push('e asm.cpu=' + filename[1]);
     r2args.push('e asm.bits=' + filename[2]);
   }
@@ -622,11 +622,11 @@ function parseTestAsm (source, line) {
 }
 
 function debase64 (msg) {
-  return new Buffer(msg, 'base64').toString('utf8');
+  return Buffer.from(msg, 'base64').toString('utf8');
 }
 
 function base64 (msg) {
-  return new Buffer(msg).toString('base64');
+  return Buffer.from(msg).toString('base64');
 }
 
 function binPath (file) {
