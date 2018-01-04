@@ -1,0 +1,18 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+
+NAME='iS. and iSj. implementation'
+FILE=../../bins/anal/lab1B
+CMDS='s 0x188
+iS.
+s 0x08058000
+iS.
+s 0x760
+iSj.
+'
+EXPECT='Current section
+00 0x00000188    36 0x08048188    36 --r-- .note.gnu.build_id
+Current section
+{"name":".plt","size":240,"vsize":240,"flags":"--r-x","paddr":1888,"vaddr":134514528}'
+run_test
