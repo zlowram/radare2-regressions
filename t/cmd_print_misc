@@ -7,8 +7,3 @@ CMDS='pvj ~{'
 EXPECT='{"value":0,"string":""}
 '
 run_test
-
-NAME='p= - crash'
-FILE='-'
-CMDS='p=p" 1 " 1 EN'
-run_test
