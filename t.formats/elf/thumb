@@ -60,11 +60,10 @@ run_test
 NAME='thumb sym'
 FILE=../../bins/elf/analysis/thumb
 ARGS=
-CMDS='is~=main[1]
-is~=main[3]
+CMDS='is~main
 '
-EXPECT='0x00008424
-0x00000424
+EXPECT='107 0x00000424 0x00008424 GLOBAL   FUNC   16 main
+001 0x000002bc 0x000082bc GLOBAL   FUNC   16 imp.__libc_start_main
 '
 run_test
 

@@ -38,8 +38,8 @@ NAME='PE: corkami 96workingsections.exe - sections list'
 FILE=../../bins/pe/96emptysections.exe
 ARGS='-n'
 CMDS="!rabin2 -pS ${FILE}"
-FILTER='grep sections'
-EXPECT='96 sections
+FILTER='wc -l'
+EXPECT='97
 '
 IGNORE_ERR=1
 run_test

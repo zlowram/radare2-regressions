@@ -38,11 +38,9 @@ IGNORE_ERR=1
 ARGS=''
 CMDS="iS"
 EXPECT='[Sections]
-idx=00 vaddr=0x0000000a paddr=0x0000000a sz=16 vsz=16 perm=----- name=type
-idx=01 vaddr=0x0000001d paddr=0x0000001d sz=44 vsz=44 perm=----- name=function
-idx=02 vaddr=0x0000004d paddr=0x0000004d sz=476 vsz=476 perm=----- name=export
-idx=03 vaddr=0x0000022d paddr=0x0000022d sz=502 vsz=502 perm=----- name=code
-
-4 sections
+00 0x0000000a    16 0x0000000a    16 ----- type
+01 0x0000001d    44 0x0000001d    44 ----- function
+02 0x0000004d   476 0x0000004d   476 ----- export
+03 0x0000022d   502 0x0000022d   502 ----- code
 '
 run_test

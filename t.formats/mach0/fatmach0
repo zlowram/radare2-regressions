@@ -263,10 +263,8 @@ FILE=../../bins/mach0/fatmach0-3true
 ARGS="-a x86 -b32 -B 0x90000000"
 CMDS="is"
 EXPECT='[Symbols]
-vaddr=0x90000000 paddr=0x00005000 ord=000 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=__mh_execute_header
-vaddr=0x95613542 paddr=0x00005000 ord=001 fwd=NONE sz=0 bind=LOCAL type=FUNC name=radr://5614542
-vaddr=0x90000f94 paddr=0x00005f94 ord=002 fwd=NONE sz=0 bind=LOCAL type=FUNC name=imp.exit
-
-3 symbols
+000 0x00005000 0x90000000 GLOBAL   FUNC    0 __mh_execute_header
+001 0x00005000 0x95613542  LOCAL   FUNC    0 radr://5614542
+002 0x00005f94 0x90000f94  LOCAL   FUNC    0 imp.exit
 '
 run_test

@@ -13,7 +13,7 @@ NAME='x86 - init_array detection'
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='iS~init_array
 '
-EXPECT='idx=18 vaddr=0x0804959c paddr=0x0000059c sz=4 vsz=4 perm=--rw- name=.init_array
+EXPECT='18 0x0000059c     4 0x0804959c     4 --rw- .init_array
 '
 run_test
 

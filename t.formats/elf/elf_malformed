@@ -6,12 +6,10 @@ FILE=../../bins/elf/elf_stripped
 CMDS='is;ir;iS
 '
 EXPECT='[Symbols]
-vaddr=0x080484ac paddr=0x000004ac ord=004 fwd=NONE sz=4 bind=GLOBAL type=OBJECT name=_IO_stdin_used
-vaddr=0x080482d0 paddr=0x000002d0 ord=001 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.puts
-vaddr=0x080482e0 paddr=0x000002e0 ord=002 fwd=NONE sz=16 bind=WEAK type=NOTYPE name=imp.__gmon_start__
-vaddr=0x080482f0 paddr=0x000002f0 ord=003 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.__libc_start_main
-
-4 symbols
+004 0x000004ac 0x080484ac GLOBAL OBJECT    4 _IO_stdin_used
+001 0x000002d0 0x080482d0 GLOBAL   FUNC   16 imp.puts
+002 0x000002e0 0x080482e0   WEAK NOTYPE   16 imp.__gmon_start__
+003 0x000002f0 0x080482f0 GLOBAL   FUNC   16 imp.__libc_start_main
 [Relocations]
 vaddr=0x08049690 paddr=0x00000690 type=SET_32 __gmon_start__
 vaddr=0x080496a0 paddr=0x000006a0 type=SET_32 puts
@@ -20,20 +18,18 @@ vaddr=0x080496a8 paddr=0x000006a8 type=SET_32 __libc_start_main
 
 4 relocations
 [Sections]
-idx=00 vaddr=0x08048270 paddr=0x00000270 sz=8 vsz=8 perm=----- name=.rel.dyn
-idx=01 vaddr=0x08048278 paddr=0x00000278 sz=24 vsz=24 perm=----- name=.rela.plt
-idx=02 vaddr=0x08049694 paddr=0x00000694 sz=24 vsz=24 perm=----- name=.got.plt
-idx=03 vaddr=0x08048034 paddr=0x00000034 sz=256 vsz=256 perm=m-r-x name=PHDR
-idx=04 vaddr=0x08048134 paddr=0x00000134 sz=19 vsz=19 perm=m-r-- name=INTERP
-idx=05 vaddr=0x08048000 paddr=0x00000000 sz=1436 vsz=1436 perm=m-r-x name=LOAD0
-idx=06 vaddr=0x0804959c paddr=0x0000059c sz=280 vsz=284 perm=m-rw- name=LOAD1
-idx=07 vaddr=0x080495a8 paddr=0x000005a8 sz=232 vsz=232 perm=m-rw- name=DYNAMIC
-idx=08 vaddr=0x08048148 paddr=0x00000148 sz=68 vsz=68 perm=m-r-- name=NOTE
-idx=09 vaddr=0x080484c0 paddr=0x000004c0 sz=44 vsz=44 perm=m-r-- name=GNU_EH_FRAME
-idx=10 vaddr=0x00000000 paddr=0x00000000 sz=0 vsz=0 perm=m-rw- name=GNU_STACK
-idx=11 vaddr=0x08048000 paddr=0x00000000 sz=52 vsz=52 perm=m-rw- name=ehdr
-
-12 sections
+00 0x00000270     8 0x08048270     8 ----- .rel.dyn
+01 0x00000278    24 0x08048278    24 ----- .rela.plt
+02 0x00000694    24 0x08049694    24 ----- .got.plt
+03 0x00000034   256 0x08048034   256 m-r-x PHDR
+04 0x00000134    19 0x08048134    19 m-r-- INTERP
+05 0x00000000  1436 0x08048000  1436 m-r-x LOAD0
+06 0x0000059c   280 0x0804959c   284 m-rw- LOAD1
+07 0x000005a8   232 0x080495a8   232 m-rw- DYNAMIC
+08 0x00000148    68 0x08048148    68 m-r-- NOTE
+09 0x000004c0    44 0x080484c0    44 m-r-- GNU_EH_FRAME
+10 0x00000000     0 0x00000000     0 m-rw- GNU_STACK
+11 0x00000000    52 0x08048000    52 m-rw- ehdr
 '
 run_test
 
@@ -44,12 +40,10 @@ FILE=../../bins/elf/elf_one_symbol_shdr
 CMDS='is;ir;iS
 '
 EXPECT='[Symbols]
-vaddr=0x080484ac paddr=0x000004ac ord=004 fwd=NONE sz=4 bind=GLOBAL type=OBJECT name=_IO_stdin_used
-vaddr=0x080482d0 paddr=0x000002d0 ord=001 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.puts
-vaddr=0x080482e0 paddr=0x000002e0 ord=002 fwd=NONE sz=16 bind=WEAK type=NOTYPE name=imp.__gmon_start__
-vaddr=0x080482f0 paddr=0x000002f0 ord=003 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.__libc_start_main
-
-4 symbols
+004 0x000004ac 0x080484ac GLOBAL OBJECT    4 _IO_stdin_used
+001 0x000002d0 0x080482d0 GLOBAL   FUNC   16 imp.puts
+002 0x000002e0 0x080482e0   WEAK NOTYPE   16 imp.__gmon_start__
+003 0x000002f0 0x080482f0 GLOBAL   FUNC   16 imp.__libc_start_main
 [Relocations]
 vaddr=0x08049690 paddr=0x00000690 type=SET_32 __gmon_start__
 vaddr=0x080496a0 paddr=0x000006a0 type=SET_32 puts
@@ -58,47 +52,45 @@ vaddr=0x080496a8 paddr=0x000006a8 type=SET_32 __libc_start_main
 
 4 relocations
 [Sections]
-idx=00 vaddr=0x00000000 paddr=0x00000000 sz=0 vsz=0 perm=----- name=
-idx=01 vaddr=0x08048134 paddr=0x00000134 sz=19 vsz=19 perm=--r-- name=.interp
-idx=02 vaddr=0x08048148 paddr=0x00000148 sz=32 vsz=32 perm=--r-- name=.note.ABI_tag
-idx=03 vaddr=0x08048168 paddr=0x00000168 sz=36 vsz=36 perm=--r-- name=.note.gnu.build_id
-idx=04 vaddr=0x0804818c paddr=0x0000018c sz=32 vsz=32 perm=--r-- name=.gnu.hash
-idx=05 vaddr=0x080481ac paddr=0x000001ac sz=16 vsz=16 perm=--r-- name=.dynsym
-idx=06 vaddr=0x080481fc paddr=0x000001fc sz=74 vsz=74 perm=--r-- name=.dynstr
-idx=07 vaddr=0x08048246 paddr=0x00000246 sz=10 vsz=10 perm=--r-- name=.gnu.version
-idx=08 vaddr=0x08048250 paddr=0x00000250 sz=32 vsz=32 perm=--r-- name=.gnu.version_r
-idx=09 vaddr=0x08048270 paddr=0x00000270 sz=8 vsz=8 perm=--r-- name=.rel.dyn
-idx=10 vaddr=0x08048278 paddr=0x00000278 sz=24 vsz=24 perm=--r-- name=.rel.plt
-idx=11 vaddr=0x08048290 paddr=0x00000290 sz=35 vsz=35 perm=--r-x name=.init
-idx=12 vaddr=0x080482c0 paddr=0x000002c0 sz=64 vsz=64 perm=--r-x name=.plt
-idx=13 vaddr=0x08048300 paddr=0x00000300 sz=404 vsz=404 perm=--r-x name=.text
-idx=14 vaddr=0x08048494 paddr=0x00000494 sz=20 vsz=20 perm=--r-x name=.fini
-idx=15 vaddr=0x080484a8 paddr=0x000004a8 sz=21 vsz=21 perm=--r-- name=.rodata
-idx=16 vaddr=0x080484c0 paddr=0x000004c0 sz=44 vsz=44 perm=--r-- name=.eh_frame_hdr
-idx=17 vaddr=0x080484ec paddr=0x000004ec sz=176 vsz=176 perm=--r-- name=.eh_frame
-idx=18 vaddr=0x0804959c paddr=0x0000059c sz=4 vsz=4 perm=--rw- name=.init_array
-idx=19 vaddr=0x080495a0 paddr=0x000005a0 sz=4 vsz=4 perm=--rw- name=.fini_array
-idx=20 vaddr=0x080495a4 paddr=0x000005a4 sz=4 vsz=4 perm=--rw- name=.jcr
-idx=21 vaddr=0x080495a8 paddr=0x000005a8 sz=232 vsz=232 perm=--rw- name=.dynamic
-idx=22 vaddr=0x08049690 paddr=0x00000690 sz=4 vsz=4 perm=--rw- name=.got
-idx=23 vaddr=0x08049694 paddr=0x00000694 sz=24 vsz=24 perm=--rw- name=.got.plt
-idx=24 vaddr=0x080496ac paddr=0x000006ac sz=8 vsz=8 perm=--rw- name=.data
-idx=25 vaddr=0x080496b4 paddr=0x000006b4 sz=0 vsz=4 perm=--rw- name=.bss
-idx=26 vaddr=0x00000000 paddr=0x000006b4 sz=17 vsz=17 perm=----- name=.comment
-idx=27 vaddr=0x00000000 paddr=0x000006c5 sz=262 vsz=262 perm=----- name=.shstrtab
-idx=28 vaddr=0x00000000 paddr=0x00000c7c sz=16 vsz=16 perm=----- name=.symtab
-idx=29 vaddr=0x00000000 paddr=0x000010cc sz=599 vsz=599 perm=----- name=.strtab
-idx=30 vaddr=0x08048034 paddr=0x00000034 sz=256 vsz=256 perm=m-r-x name=PHDR
-idx=31 vaddr=0x08048134 paddr=0x00000134 sz=19 vsz=19 perm=m-r-- name=INTERP
-idx=32 vaddr=0x08048000 paddr=0x00000000 sz=1436 vsz=1436 perm=m-r-x name=LOAD0
-idx=33 vaddr=0x0804959c paddr=0x0000059c sz=280 vsz=284 perm=m-rw- name=LOAD1
-idx=34 vaddr=0x080495a8 paddr=0x000005a8 sz=232 vsz=232 perm=m-rw- name=DYNAMIC
-idx=35 vaddr=0x08048148 paddr=0x00000148 sz=68 vsz=68 perm=m-r-- name=NOTE
-idx=36 vaddr=0x080484c0 paddr=0x000004c0 sz=44 vsz=44 perm=m-r-- name=GNU_EH_FRAME
-idx=37 vaddr=0x00000000 paddr=0x00000000 sz=0 vsz=0 perm=m-rw- name=GNU_STACK
-idx=38 vaddr=0x08048000 paddr=0x00000000 sz=52 vsz=52 perm=m-rw- name=ehdr
-
-39 sections
+00 0x00000000     0 0x00000000     0 ----- 
+01 0x00000134    19 0x08048134    19 --r-- .interp
+02 0x00000148    32 0x08048148    32 --r-- .note.ABI_tag
+03 0x00000168    36 0x08048168    36 --r-- .note.gnu.build_id
+04 0x0000018c    32 0x0804818c    32 --r-- .gnu.hash
+05 0x000001ac    16 0x080481ac    16 --r-- .dynsym
+06 0x000001fc    74 0x080481fc    74 --r-- .dynstr
+07 0x00000246    10 0x08048246    10 --r-- .gnu.version
+08 0x00000250    32 0x08048250    32 --r-- .gnu.version_r
+09 0x00000270     8 0x08048270     8 --r-- .rel.dyn
+10 0x00000278    24 0x08048278    24 --r-- .rel.plt
+11 0x00000290    35 0x08048290    35 --r-x .init
+12 0x000002c0    64 0x080482c0    64 --r-x .plt
+13 0x00000300   404 0x08048300   404 --r-x .text
+14 0x00000494    20 0x08048494    20 --r-x .fini
+15 0x000004a8    21 0x080484a8    21 --r-- .rodata
+16 0x000004c0    44 0x080484c0    44 --r-- .eh_frame_hdr
+17 0x000004ec   176 0x080484ec   176 --r-- .eh_frame
+18 0x0000059c     4 0x0804959c     4 --rw- .init_array
+19 0x000005a0     4 0x080495a0     4 --rw- .fini_array
+20 0x000005a4     4 0x080495a4     4 --rw- .jcr
+21 0x000005a8   232 0x080495a8   232 --rw- .dynamic
+22 0x00000690     4 0x08049690     4 --rw- .got
+23 0x00000694    24 0x08049694    24 --rw- .got.plt
+24 0x000006ac     8 0x080496ac     8 --rw- .data
+25 0x000006b4     0 0x080496b4     4 --rw- .bss
+26 0x000006b4    17 0x00000000    17 ----- .comment
+27 0x000006c5   262 0x00000000   262 ----- .shstrtab
+28 0x00000c7c    16 0x00000000    16 ----- .symtab
+29 0x000010cc   599 0x00000000   599 ----- .strtab
+30 0x00000034   256 0x08048034   256 m-r-x PHDR
+31 0x00000134    19 0x08048134    19 m-r-- INTERP
+32 0x00000000  1436 0x08048000  1436 m-r-x LOAD0
+33 0x0000059c   280 0x0804959c   284 m-rw- LOAD1
+34 0x000005a8   232 0x080495a8   232 m-rw- DYNAMIC
+35 0x00000148    68 0x08048148    68 m-r-- NOTE
+36 0x000004c0    44 0x080484c0    44 m-r-- GNU_EH_FRAME
+37 0x00000000     0 0x00000000     0 m-rw- GNU_STACK
+38 0x00000000    52 0x08048000    52 m-rw- ehdr
 '
 run_test
 
@@ -109,41 +101,39 @@ FILE=../../bins/elf/analysis/elf_overlapped
 CMDS='is;s 0x00400508; pi 1
 '
 EXPECT='[Symbols]
-vaddr=0x006006e0 paddr=0x000016e0 ord=030 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=__JCR_LIST__
-vaddr=0x00400420 paddr=0x00000420 ord=031 fwd=NONE sz=0 bind=LOCAL type=FUNC name=deregister_tm_clones
-vaddr=0x00400460 paddr=0x00000460 ord=032 fwd=NONE sz=0 bind=LOCAL type=FUNC name=register_tm_clones
-vaddr=0x004004a0 paddr=0x000004a0 ord=033 fwd=NONE sz=0 bind=LOCAL type=FUNC name=__do_global_dtors_aux
-vaddr=0x006008f8 paddr=0x000018f8 ord=034 fwd=NONE sz=1 bind=LOCAL type=OBJECT name=completed.6938
-vaddr=0x006006d8 paddr=0x000016d8 ord=035 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=__do_global_dtors_aux_fini_array_entry
-vaddr=0x004004c0 paddr=0x000004c0 ord=036 fwd=NONE sz=0 bind=LOCAL type=FUNC name=frame_dummy
-vaddr=0x006006d0 paddr=0x000016d0 ord=037 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=__frame_dummy_init_array_entry
-vaddr=0x004006c8 paddr=0x000006c8 ord=040 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=__FRAME_END__
-vaddr=0x006006e0 paddr=0x000016e0 ord=041 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=__JCR_END__
-vaddr=0x006006d8 paddr=0x000016d8 ord=043 fwd=NONE sz=0 bind=LOCAL type=NOTYPE name=__init_array_end
-vaddr=0x006006e8 paddr=0x000016e8 ord=044 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=_DYNAMIC
-vaddr=0x006006d0 paddr=0x000016d0 ord=045 fwd=NONE sz=0 bind=LOCAL type=NOTYPE name=__init_array_start
-vaddr=0x004005a4 paddr=0x000005a4 ord=046 fwd=NONE sz=0 bind=LOCAL type=NOTYPE name=__GNU_EH_FRAME_HDR
-vaddr=0x006008c0 paddr=0x000018c0 ord=047 fwd=NONE sz=0 bind=LOCAL type=OBJECT name=_GLOBAL_OFFSET_TABLE_
-vaddr=0x00400590 paddr=0x00000590 ord=048 fwd=NONE sz=2 bind=GLOBAL type=FUNC name=__libc_csu_fini
-vaddr=0x006008e8 paddr=0x000018e8 ord=050 fwd=NONE sz=0 bind=WEAK type=NOTYPE name=data_start
-vaddr=0x006008f8 paddr=0x000018f8 ord=051 fwd=NONE sz=0 bind=GLOBAL type=NOTYPE name=_edata
-vaddr=0x00400594 paddr=0x00000594 ord=052 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=_fini
-vaddr=0x006008e8 paddr=0x000018e8 ord=055 fwd=NONE sz=0 bind=GLOBAL type=NOTYPE name=__data_start
-vaddr=0x006008f0 paddr=0x000018f0 ord=057 fwd=NONE sz=0 bind=GLOBAL type=OBJECT name=__dso_handle
-vaddr=0x004005a0 paddr=0x000005a0 ord=058 fwd=NONE sz=4 bind=GLOBAL type=OBJECT name=_IO_stdin_used
-vaddr=0x00400520 paddr=0x00000520 ord=059 fwd=NONE sz=101 bind=GLOBAL type=FUNC name=__libc_csu_init
-vaddr=0x00600900 paddr=0x00600900 ord=060 fwd=NONE sz=0 bind=GLOBAL type=NOTYPE name=_end
-vaddr=0x004003f0 paddr=0x000003f0 ord=061 fwd=NONE sz=42 bind=GLOBAL type=FUNC name=_start
-vaddr=0x006008f8 paddr=0x000018f8 ord=062 fwd=NONE sz=0 bind=GLOBAL type=NOTYPE name=__bss_start
-vaddr=0x004004e6 paddr=0x000004e6 ord=063 fwd=NONE sz=46 bind=GLOBAL type=FUNC name=main
-vaddr=0x006008f8 paddr=0x000018f8 ord=065 fwd=NONE sz=0 bind=GLOBAL type=OBJECT name=__TMC_END__
-vaddr=0x00400390 paddr=0x00000390 ord=067 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=_init
-vaddr=0x004003c0 paddr=0x000003c0 ord=001 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.system
-vaddr=0x004003d0 paddr=0x000003d0 ord=002 fwd=NONE sz=16 bind=GLOBAL type=FUNC name=imp.__libc_start_main
-vaddr=0x00400000 paddr=0x00000000 ord=003 fwd=NONE sz=16 bind=WEAK type=NOTYPE name=imp.__gmon_start__
-vaddr=0x00400000 paddr=0x00000000 ord=003 fwd=NONE sz=16 bind=WEAK type=NOTYPE name=imp.__gmon_start__
-
-33 symbols
+030 0x000016e0 0x006006e0  LOCAL OBJECT    0 __JCR_LIST__
+031 0x00000420 0x00400420  LOCAL   FUNC    0 deregister_tm_clones
+032 0x00000460 0x00400460  LOCAL   FUNC    0 register_tm_clones
+033 0x000004a0 0x004004a0  LOCAL   FUNC    0 __do_global_dtors_aux
+034 0x000018f8 0x006008f8  LOCAL OBJECT    1 completed.6938
+035 0x000016d8 0x006006d8  LOCAL OBJECT    0 __do_global_dtors_aux_fini_array_entry
+036 0x000004c0 0x004004c0  LOCAL   FUNC    0 frame_dummy
+037 0x000016d0 0x006006d0  LOCAL OBJECT    0 __frame_dummy_init_array_entry
+040 0x000006c8 0x004006c8  LOCAL OBJECT    0 __FRAME_END__
+041 0x000016e0 0x006006e0  LOCAL OBJECT    0 __JCR_END__
+043 0x000016d8 0x006006d8  LOCAL NOTYPE    0 __init_array_end
+044 0x000016e8 0x006006e8  LOCAL OBJECT    0 _DYNAMIC
+045 0x000016d0 0x006006d0  LOCAL NOTYPE    0 __init_array_start
+046 0x000005a4 0x004005a4  LOCAL NOTYPE    0 __GNU_EH_FRAME_HDR
+047 0x000018c0 0x006008c0  LOCAL OBJECT    0 _GLOBAL_OFFSET_TABLE_
+048 0x00000590 0x00400590 GLOBAL   FUNC    2 __libc_csu_fini
+050 0x000018e8 0x006008e8   WEAK NOTYPE    0 data_start
+051 0x000018f8 0x006008f8 GLOBAL NOTYPE    0 _edata
+052 0x00000594 0x00400594 GLOBAL   FUNC    0 _fini
+055 0x000018e8 0x006008e8 GLOBAL NOTYPE    0 __data_start
+057 0x000018f0 0x006008f0 GLOBAL OBJECT    0 __dso_handle
+058 0x000005a0 0x004005a0 GLOBAL OBJECT    4 _IO_stdin_used
+059 0x00000520 0x00400520 GLOBAL   FUNC  101 __libc_csu_init
+060 0x00600900 0x00600900 GLOBAL NOTYPE    0 _end
+061 0x000003f0 0x004003f0 GLOBAL   FUNC   42 _start
+062 0x000018f8 0x006008f8 GLOBAL NOTYPE    0 __bss_start
+063 0x000004e6 0x004004e6 GLOBAL   FUNC   46 main
+065 0x000018f8 0x006008f8 GLOBAL OBJECT    0 __TMC_END__
+067 0x00000390 0x00400390 GLOBAL   FUNC    0 _init
+001 0x000003c0 0x004003c0 GLOBAL   FUNC   16 imp.system
+002 0x000003d0 0x004003d0 GLOBAL   FUNC   16 imp.__libc_start_main
+003 0x00000000 0x00400000   WEAK NOTYPE   16 imp.__gmon_start__
+003 0x00000000 0x00400000   WEAK NOTYPE   16 imp.__gmon_start__
 call sym.imp.system
 '
 run_test

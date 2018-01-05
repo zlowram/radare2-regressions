@@ -88,29 +88,29 @@ NAME='ELF: phdr override 2'
 FILE=../../bins/elf/busybox-phdr-shdr
 BROKEN=
 CMDS="ii~OBJECT"
-EXPECT='ordinal=007 plt=0x00400000 bind=GLOBAL type=OBJECT name=__environ
-ordinal=043 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_tolower
-ordinal=145 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdout
-ordinal=189 plt=0x00400000 bind=GLOBAL type=OBJECT name=stderr
-ordinal=409 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdin
-ordinal=410 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdin
-ordinal=417 plt=0x00400000 bind=GLOBAL type=OBJECT name=optind
-ordinal=468 plt=0x00400000 bind=GLOBAL type=OBJECT name=environ
-ordinal=588 plt=0x00400000 bind=GLOBAL type=OBJECT name=optarg
-ordinal=667 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_b
-ordinal=706 plt=0x00400000 bind=GLOBAL type=OBJECT name=allCountryList
-ordinal=718 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdout
-ordinal=007 plt=0x00400000 bind=GLOBAL type=OBJECT name=__environ
-ordinal=043 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_tolower
-ordinal=145 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdout
-ordinal=189 plt=0x00400000 bind=GLOBAL type=OBJECT name=stderr
-ordinal=409 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdin
-ordinal=410 plt=0x00400000 bind=GLOBAL type=OBJECT name=__stdin
-ordinal=417 plt=0x00400000 bind=GLOBAL type=OBJECT name=optind
-ordinal=468 plt=0x00400000 bind=GLOBAL type=OBJECT name=environ
-ordinal=588 plt=0x00400000 bind=GLOBAL type=OBJECT name=optarg
-ordinal=667 plt=0x00400000 bind=GLOBAL type=OBJECT name=__ctype_b
-ordinal=706 plt=0x00400000 bind=GLOBAL type=OBJECT name=allCountryList
-ordinal=718 plt=0x00400000 bind=GLOBAL type=OBJECT name=stdout
+EXPECT='007 0x00400000 GLOBAL OBJECT __environ
+043 0x00400000 GLOBAL OBJECT __ctype_tolower
+145 0x00400000 GLOBAL OBJECT __stdout
+189 0x00400000 GLOBAL OBJECT stderr
+409 0x00400000 GLOBAL OBJECT stdin
+410 0x00400000 GLOBAL OBJECT __stdin
+417 0x00400000 GLOBAL OBJECT optind
+468 0x00400000 GLOBAL OBJECT environ
+588 0x00400000 GLOBAL OBJECT optarg
+667 0x00400000 GLOBAL OBJECT __ctype_b
+706 0x00400000 GLOBAL OBJECT allCountryList
+718 0x00400000 GLOBAL OBJECT stdout
+007 0x00400000 GLOBAL OBJECT __environ
+043 0x00400000 GLOBAL OBJECT __ctype_tolower
+145 0x00400000 GLOBAL OBJECT __stdout
+189 0x00400000 GLOBAL OBJECT stderr
+409 0x00400000 GLOBAL OBJECT stdin
+410 0x00400000 GLOBAL OBJECT __stdin
+417 0x00400000 GLOBAL OBJECT optind
+468 0x00400000 GLOBAL OBJECT environ
+588 0x00400000 GLOBAL OBJECT optarg
+667 0x00400000 GLOBAL OBJECT __ctype_b
+706 0x00400000 GLOBAL OBJECT allCountryList
+718 0x00400000 GLOBAL OBJECT stdout
 '
 run_test

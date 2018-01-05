@@ -60,7 +60,7 @@ FILE=$F0
 ARGS=
 CMDS='iS~calc
 '
-EXPECT='idx=09 vaddr=0xfffe0000 paddr=0x00000000 sz=929792 vsz=929792 perm=m---- name=C:_Windows_System32_calc.exe
+EXPECT='09 0x00000000 929792 0xfffe0000 929792 m---- C:_Windows_System32_calc.exe
 '
 run_test
 
@@ -166,9 +166,9 @@ run_test
 NAME="${PLUGIN}: 32bit - symbols count"
 FILE=$F1
 ARGS=
-CMDS='is~symbols
+CMDS='is~?
 '
-EXPECT='7466 symbols
+EXPECT='7467
 '
 run_test
 
@@ -178,7 +178,7 @@ FILE=$F1
 ARGS=
 CMDS='is~imp.KERNEL32.dll_DeleteCriticalSection:0
 '
-EXPECT='vaddr=0x00406108 paddr=0x0009dcda ord=001 fwd= sz=0 bind=NONE type=FUNC name=imp.KERNEL32.dll_DeleteCriticalSection
+EXPECT='001 0x0009dcda 0x00406108   NONE   FUNC    0 imp.KERNEL32.dll_DeleteCriticalSection
 '
 run_test
 
@@ -188,7 +188,7 @@ FILE=$F1
 ARGS=
 CMDS='is~ntdll.dll_RtlDeleteCriticalSection:0
 '
-EXPECT='vaddr=0x76fb05a4 paddr=0x001c2176 ord=358 fwd= sz=0 bind=NONE type=FUNC name=imp.ntdll.dll_RtlDeleteCriticalSection
+EXPECT='358 0x001c2176 0x76fb05a4   NONE   FUNC    0 imp.ntdll.dll_RtlDeleteCriticalSection
 '
 run_test
 
@@ -196,9 +196,9 @@ run_test
 NAME="${PLUGIN}: 32bit - imports count"
 FILE=$F1
 ARGS=
-CMDS='ii~imports
+CMDS='ii~?
 '
-EXPECT='2028 imports
+EXPECT='2029
 '
 run_test
 
@@ -208,7 +208,7 @@ FILE=$F1
 ARGS=
 CMDS='ii~KERNEL32.dll_TerminateProcess
 '
-EXPECT='ordinal=017 plt=0x00406148 bind=NONE type=FUNC name=KERNEL32.dll_TerminateProcess
+EXPECT='017 0x00406148 NONE FUNC KERNEL32.dll_TerminateProcess
 '
 run_test
 
@@ -216,9 +216,9 @@ run_test
 NAME="${PLUGIN}: 32bit - exports count"
 FILE=$F1
 ARGS=
-CMDS='iE~exports
+CMDS='iE~?
 '
-EXPECT='5438 exports
+EXPECT='5439
 '
 run_test
 
@@ -228,7 +228,7 @@ FILE=$F1
 ARGS=
 CMDS='iE~ntdll.dll_Ordinal_1
 '
-EXPECT='vaddr=0x77802620 paddr=0x0041f1f2 ord=1992 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=ntdll.dll_Ordinal_1
+EXPECT='1992 0x0041f1f2 0x77802620 GLOBAL   FUNC    0 ntdll.dll_Ordinal_1
 '
 run_test
 
@@ -320,9 +320,9 @@ run_test
 NAME="${PLUGIN}: 64bit - symbols count"
 FILE=$F2
 ARGS=
-CMDS='is~symbols
+CMDS='is~?
 '
-EXPECT='6824 symbols
+EXPECT='6825
 '
 run_test
 
@@ -332,7 +332,7 @@ FILE=$F2
 ARGS=
 CMDS='is~imp.KERNEL32.dll_DeleteCriticalSection
 '
-EXPECT='vaddr=0x004081fc paddr=0x0009ae8b ord=001 fwd= sz=0 bind=NONE type=FUNC name=imp.KERNEL32.dll_DeleteCriticalSection
+EXPECT='001 0x0009ae8b 0x004081fc   NONE   FUNC    0 imp.KERNEL32.dll_DeleteCriticalSection
 '
 run_test
 
@@ -342,7 +342,7 @@ FILE=$F2
 ARGS=
 CMDS='is~ntdll.dll_A_SHAFinal
 '
-EXPECT='vaddr=0x77728bf0 paddr=0x001eb87f ord=008 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=ntdll.dll_A_SHAFinal
+EXPECT='008 0x001eb87f 0x77728bf0 GLOBAL   FUNC    0 ntdll.dll_A_SHAFinal
 '
 run_test
 
@@ -350,9 +350,9 @@ run_test
 NAME="${PLUGIN}: 64bit - imports count"
 FILE=$F2
 ARGS=
-CMDS='ii~imports
+CMDS='ii~?
 '
-EXPECT='1509 imports
+EXPECT='1510
 '
 run_test
 
@@ -362,7 +362,7 @@ FILE=$F2
 ARGS=
 CMDS='ii~KERNEL32.dll_GetCurrentProcessId
 '
-EXPECT='ordinal=004 plt=0x00408214 bind=NONE type=FUNC name=KERNEL32.dll_GetCurrentProcessId
+EXPECT='004 0x00408214 NONE FUNC KERNEL32.dll_GetCurrentProcessId
 '
 run_test
 
@@ -370,9 +370,9 @@ run_test
 NAME="${PLUGIN}: 64bit - exports count"
 FILE=$F2
 ARGS=
-CMDS='iE~exports
+CMDS='iE~?
 '
-EXPECT='5315 exports
+EXPECT='5316
 '
 run_test
 
@@ -382,7 +382,7 @@ FILE=$F2
 ARGS=
 CMDS='iE~ntdll.dll_CsrVerifyRegion
 '
-EXPECT='vaddr=0x777d24b0 paddr=0x0029513f ord=038 fwd=NONE sz=0 bind=GLOBAL type=FUNC name=ntdll.dll_CsrVerifyRegion
+EXPECT='038 0x0029513f 0x777d24b0 GLOBAL   FUNC    0 ntdll.dll_CsrVerifyRegion
 '
 run_test
 

@@ -66,13 +66,11 @@ FILE=../../bins/pe/a.exe
 ARGS=
 CMDS='!rabin2 -K md5 -S ${R2_FILE}'
 EXPECT='[Sections]
-idx=00 vaddr=0x00401000 paddr=0x00000400 sz=2560 vsz=4096 perm=m-r-x md5=3d6a5b8dc5e41b09659638ad5735e5b5 name=.text
-idx=01 vaddr=0x00402000 paddr=0x00000e00 sz=512 vsz=4096 perm=m-rw- md5=b3c542ba67f2d1a949fa1a25ce22f7e3 name=.data
-idx=02 vaddr=0x00403000 paddr=0x00001000 sz=512 vsz=4096 perm=m-r-- md5=c9a877a4e945b087b8323830442c88d6 name=.rdata
-idx=03 vaddr=0x00404000 paddr=0x00000000 sz=0 vsz=4096 perm=m-rw- md5=d41d8cd98f00b204e9800998ecf8427e name=.bss
-idx=04 vaddr=0x00405000 paddr=0x00001200 sz=1024 vsz=4096 perm=m-rw- md5=963212dc58a74f32e0f6ffce84dcf7ea name=.idata
-
-5 sections
+00 0x00000400  2560 0x00401000  4096 m-r-x md5=3d6a5b8dc5e41b09659638ad5735e5b5 .text
+01 0x00000e00   512 0x00402000  4096 m-rw- md5=b3c542ba67f2d1a949fa1a25ce22f7e3 .data
+02 0x00001000   512 0x00403000  4096 m-r-- md5=c9a877a4e945b087b8323830442c88d6 .rdata
+03 0x00000000     0 0x00404000  4096 m-rw- md5=d41d8cd98f00b204e9800998ecf8427e .bss
+04 0x00001200  1024 0x00405000  4096 m-rw- md5=963212dc58a74f32e0f6ffce84dcf7ea .idata
 '
 run_test
 
@@ -81,7 +79,7 @@ BROKEN=
 FILE=../../bins/pe/a.exe
 ARGS=
 CMDS='!rabin2 -s ${R2_FILE}|wc -l|awk "{print \$1}"'
-EXPECT='23
+EXPECT='21
 '
 run_test
 
@@ -90,7 +88,7 @@ BROKEN=
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 ARGS=
 CMDS='!rabin2 -s ${R2_FILE}|wc -l|awk "{print \$1}"'
-EXPECT='36
+EXPECT='34
 '
 run_test
 
@@ -103,9 +101,9 @@ CMDS='!rabin2 -S ${R2_FILE}|wc -l|awk "{print \$1}"
 !rabin2 -rS ${R2_FILE}|wc -l|awk "{print \$1}"
 !env RABIN2_PREFIX=prixfixe rabin2 -S ${R2_FILE} |grep prixfixe. |wc -l
 !env RABIN2_PREFIX=prixfixe rabin2 -rS ${R2_FILE} |grep prixfixe. |wc -l'
-EXPECT='42
+EXPECT='40
 157
-39
+0
 156
 '
 run_test
@@ -239,10 +237,8 @@ FILE=../../bins/mach0/fatmach0-3true
 ARGS=
 CMDS='!rabin2 -a x86 -b 32 -i ${R2_FILE}'
 EXPECT='[Imports]
-ordinal=000 plt=0x00001f94 bind=NONE type=FUNC name=exit
-ordinal=001 plt=0x00000000 bind=NONE type=FUNC name=dyld_stub_binder
-
-2 imports
+000 0x00001f94 NONE FUNC exit
+001 0x00000000 NONE FUNC dyld_stub_binder
 '
 run_test
 
@@ -251,10 +247,8 @@ FILE=../../bins/mach0/fatmach0-3true
 ARGS=
 CMDS='!rabin2 -G 0x5000 -i ${R2_FILE}'
 EXPECT='[Imports]
-ordinal=000 plt=0x00001f94 bind=NONE type=FUNC name=exit
-ordinal=001 plt=0x00000000 bind=NONE type=FUNC name=dyld_stub_binder
-
-2 imports
+000 0x00001f94 NONE FUNC exit
+001 0x00000000 NONE FUNC dyld_stub_binder
 '
 run_test
 
@@ -286,13 +280,11 @@ rm /tmp/rabin2testpe.exe
 '
 EXPECT='wx e0000040 @ 0x244
 [Sections]
-idx=00 vaddr=0x00401000 paddr=0x00000400 sz=35328 vsz=36864 perm=m-r-x name=.text
-idx=01 vaddr=0x0040a000 paddr=0x00008e00 sz=9216 vsz=12288 perm=m-r-- name=.rdata
-idx=02 vaddr=0x0040d000 paddr=0x0000b200 sz=4096 vsz=12288 perm=m-rwx name=.data
-idx=03 vaddr=0x00410000 paddr=0x0000c200 sz=512 vsz=4096 perm=m-r-- name=.rsrc
-idx=04 vaddr=0x00411000 paddr=0x0000c400 sz=3584 vsz=4096 perm=m-r-- name=.reloc
-
-5 sections
+00 0x00000400 35328 0x00401000 36864 m-r-x .text
+01 0x00008e00  9216 0x0040a000 12288 m-r-- .rdata
+02 0x0000b200  4096 0x0040d000 12288 m-rwx .data
+03 0x0000c200   512 0x00410000  4096 m-r-- .rsrc
+04 0x0000c400  3584 0x00411000  4096 m-r-- .reloc
 '
 run_test
 
@@ -306,8 +298,6 @@ rm /tmp/rabin2testpe.exe
 '
 EXPECT='wx 10000000 @ 0x16c
 [Sections]
-idx=00 vaddr=0x00401000 paddr=0x00000200 sz=512 vsz=4096 perm=ms--- name=sect_0
-
-1 sections
+00 0x00000200   512 0x00401000  4096 ms--- sect_0
 '
 run_test

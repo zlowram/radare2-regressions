@@ -24,8 +24,9 @@ NAME="symbols 16 bits omf"
 FILE=../../bins/omf/hello_world
 ARGS=''
 BROKEN=
-CMDS="is~addr"
-EXPECT='vaddr=0x00001000 paddr=0x00000073 ord=001 fwd=NONE sz=0 bind= type= name=_start
+CMDS="is"
+EXPECT='[Symbols]
+001 0x00000073 0x00001000 (null) (null)    0 _start
 '
 run_test
 
@@ -33,9 +34,10 @@ NAME="sections 16 bits omf"
 FILE=../../bins/omf/hello_world
 ARGS=''
 BROKEN=
-CMDS="iS~addr"
-EXPECT='idx=00 vaddr=0x00001000 paddr=0x00000073 sz=19 vsz=19 perm=m-rwx name=text_1
-idx=01 vaddr=0x00001013 paddr=0x00000095 sz=14 vsz=14 perm=m-rwx name=data_1
+CMDS="iS"
+EXPECT='[Sections]
+00 0x00000073    19 0x00001000    19 m-rwx text_1
+01 0x00000095    14 0x00001013    14 m-rwx data_1
 '
 run_test
 
@@ -82,8 +84,9 @@ NAME="symbols 32 bits omf"
 FILE=../../bins/omf/hello_world32
 ARGS=''
 BROKEN=
-CMDS="is~addr"
-EXPECT='vaddr=0x00001000 paddr=0x00000074 ord=001 fwd=NONE sz=0 bind= type= name=_start
+CMDS="is"
+EXPECT='[Symbols]
+001 0x00000074 0x00001000 (null) (null)    0 _start
 '
 run_test
 
@@ -91,9 +94,10 @@ NAME="sections 32 bits omf"
 FILE=../../bins/omf/hello_world32
 ARGS=''
 BROKEN=
-CMDS="iS~addr"
-EXPECT='idx=00 vaddr=0x00001000 paddr=0x00000074 sz=29 vsz=29 perm=m-rwx name=.text_1
-idx=01 vaddr=0x0000101d paddr=0x000000a3 sz=14 vsz=14 perm=m-rwx name=.data_1
+CMDS="iS"
+EXPECT='[Sections]
+00 0x00000074    29 0x00001000    29 m-rwx .text_1
+01 0x000000a3    14 0x0000101d    14 m-rwx .data_1
 '
 run_test
 
@@ -110,9 +114,10 @@ NAME="multiple symbols omf"
 FILE=../../bins/omf/multi_pubdef
 ARGS=''
 BROKEN=
-CMDS="is~addr"
-EXPECT='vaddr=0x00001000 paddr=0x00000084 ord=001 fwd=NONE sz=0 bind= type= name=_start
-vaddr=0x00001013 paddr=0x00000097 ord=002 fwd=NONE sz=0 bind= type= name=second_symbol
+CMDS="is"
+EXPECT='[Symbols]
+001 0x00000084 0x00001000 (null) (null)    0 _start
+002 0x00000097 0x00001013 (null) (null)    0 second_symbol
 '
 run_test
 
@@ -120,8 +125,9 @@ NAME="null checksum omf"
 FILE=../../bins/omf/null_checks
 ARGS=''
 BROKEN=
-CMDS="is~addr"
-EXPECT='vaddr=0x00001000 paddr=0x00000073 ord=001 fwd=NONE sz=0 bind= type= name=_start
+CMDS="is"
+EXPECT='[Symbols]
+001 0x00000073 0x00001000 (null) (null)    0 _start
 '
 run_test
 

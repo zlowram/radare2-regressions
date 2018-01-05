@@ -91,15 +91,13 @@ BROKEN=
 IGNORE_ERR=1
 CMDS="ii"
 EXPECT='[Imports]
-ordinal=000 plt=0x000001b0 bind=NONE type=FUNC name=Ljava/io/PrintStream.method.println(Ljava/lang/String;)V
-ordinal=001 plt=0x000001b8 bind=NONE type=FUNC name=Ljava/lang/Integer.method.<init>(I)V
-ordinal=002 plt=0x000001c0 bind=NONE type=FUNC name=Ljava/lang/Integer.method.toString()Ljava/lang/String;
-ordinal=003 plt=0x000001c8 bind=NONE type=FUNC name=Ljava/lang/Object.method.<init>()V
-ordinal=004 plt=0x000001d0 bind=NONE type=FUNC name=Ljava/lang/StringBuilder.method.<init>()V
-ordinal=005 plt=0x000001d8 bind=NONE type=FUNC name=Ljava/lang/StringBuilder.method.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-ordinal=006 plt=0x000001e0 bind=NONE type=FUNC name=Ljava/lang/StringBuilder.method.toString()Ljava/lang/String;
-
-7 imports
+000 0x000001b0 NONE FUNC Ljava/io/PrintStream.method.println(Ljava/lang/String;)V
+001 0x000001b8 NONE FUNC Ljava/lang/Integer.method.<init>(I)V
+002 0x000001c0 NONE FUNC Ljava/lang/Integer.method.toString()Ljava/lang/String;
+003 0x000001c8 NONE FUNC Ljava/lang/Object.method.<init>()V
+004 0x000001d0 NONE FUNC Ljava/lang/StringBuilder.method.<init>()V
+005 0x000001d8 NONE FUNC Ljava/lang/StringBuilder.method.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+006 0x000001e0 NONE FUNC Ljava/lang/StringBuilder.method.toString()Ljava/lang/String;
 '
 run_test
 
@@ -110,13 +108,11 @@ BROKEN=
 IGNORE_ERR=1
 CMDS="iE"
 EXPECT='[Exports]
-vaddr=0x00000238 paddr=0x00000238 ord=002 fwd= sz=20 bind=GLOBAL type=FUNC name=LHello.method.<init>()V
-vaddr=0x0000025c paddr=0x0000025c ord=003 fwd= sz=34 bind=GLOBAL type=FUNC name=LHello.method.main([Ljava/lang/String;)V
-vaddr=0x00000290 paddr=0x00000290 ord=004 fwd= sz=84 bind=GLOBAL type=FUNC name=LHello.method.foo(I)V
-vaddr=0x000002f4 paddr=0x000002f4 ord=007 fwd= sz=20 bind=GLOBAL type=FUNC name=LWorld.method.<init>()V
-vaddr=0x00000318 paddr=0x00000318 ord=008 fwd= sz=68 bind=GLOBAL type=FUNC name=LWorld.method.foo(I)V
-
-5 exports
+002 0x00000238 0x00000238 GLOBAL   FUNC   20 LHello.method.<init>()V
+003 0x0000025c 0x0000025c GLOBAL   FUNC   34 LHello.method.main([Ljava/lang/String;)V
+004 0x00000290 0x00000290 GLOBAL   FUNC   84 LHello.method.foo(I)V
+007 0x000002f4 0x000002f4 GLOBAL   FUNC   20 LWorld.method.<init>()V
+008 0x00000318 0x00000318 GLOBAL   FUNC   68 LWorld.method.foo(I)V
 '
 run_test
 
