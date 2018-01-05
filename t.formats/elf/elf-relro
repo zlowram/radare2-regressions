@@ -5,8 +5,8 @@ NAME='ELF: corkami elf-relro - sections'
 FILE=../../bins/elf/analysis/elf-relro
 ARGS=''
 CMDS="iS~rel"
-EXPECT='idx=09 vaddr=0x0804827c paddr=0x0000027c sz=8 vsz=8 perm=--r-- name=.rel.dyn
-idx=10 vaddr=0x08048284 paddr=0x00000284 sz=16 vsz=16 perm=--r-- name=.rel.plt
+EXPECT='09 0x0000027c     8 0x0804827c     8 --r-- .rel.dyn
+10 0x00000284    16 0x08048284    16 --r-- .rel.plt
 '
 run_test
 

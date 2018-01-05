@@ -38,7 +38,7 @@ NAME='PE: corkami 96workingsections.exe - sections list'
 FILE=../../bins/pe/96emptysections.exe
 ARGS='-n'
 CMDS="!rabin2 -pS ${FILE}"
-FILTER='wc -l'
+FILTER='wc -l | awk "{print \$1}"'
 EXPECT='97
 '
 IGNORE_ERR=1
