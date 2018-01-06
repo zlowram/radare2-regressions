@@ -76,3 +76,9 @@ BROKEN=
 EXPECT='41
 '
 run_test
+
+NAME='radiff2 -B (GDIFF support) #1'
+CMDS='!!radiff2 ../../bins/other/radiff2/radiff2_c_1 ../../bins/other/radiff2/radiff2_c_2 -B /dev/stdout | xxd'
+EXPECT='00000000: d1ff d1ff 0401 9000                      ........
+'
+run_test
