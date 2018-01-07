@@ -145,6 +145,7 @@ Usage: r2r [options] [file] [name] ([cmds])
           setTimeout(_ => { pullQueue(cb); }, 0);
         }
         console.log('This test has failed:');
+        console.log('File:', test.file);
         console.log('Script:', test.from);
         console.log('Name:', test.name);
       //  console.log('-', test.expect);
