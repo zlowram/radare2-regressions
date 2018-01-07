@@ -22,34 +22,34 @@ BROKEN=
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='C
 '
-EXPECT='0x00000000 CCu "section 37 va=0x00000000 pa=0x00000000 sz=0 vsz=0 rwx=m-rw- GNU_STACK"
-0x08048000 CCu "section 38 va=0x08048000 pa=0x00000000 sz=52 vsz=52 rwx=m-rw- ehdr"
-0x08048034 CCu "section 30 va=0x08048034 pa=0x00000034 sz=256 vsz=256 rwx=m-r-x PHDR"
-0x08048134 CCu "section 31 va=0x08048134 pa=0x00000134 sz=19 vsz=19 rwx=m-r-- INTERP"
-0x08048148 CCu "section 35 va=0x08048148 pa=0x00000148 sz=68 vsz=68 rwx=m-r-- NOTE"
-0x08048168 CCu "section 3 va=0x08048168 pa=0x00000168 sz=36 vsz=36 rwx=--r-- .note.gnu.build_id"
-0x0804818c CCu "section 4 va=0x0804818c pa=0x0000018c sz=32 vsz=32 rwx=--r-- .gnu.hash"
-0x080481ac CCu "section 5 va=0x080481ac pa=0x000001ac sz=80 vsz=80 rwx=--r-- .dynsym"
-0x080481fc CCu "section 6 va=0x080481fc pa=0x000001fc sz=74 vsz=74 rwx=--r-- .dynstr"
-0x08048246 CCu "section 7 va=0x08048246 pa=0x00000246 sz=10 vsz=10 rwx=--r-- .gnu.version"
-0x08048250 CCu "section 8 va=0x08048250 pa=0x00000250 sz=32 vsz=32 rwx=--r-- .gnu.version_r"
-0x08048270 CCu "section 9 va=0x08048270 pa=0x00000270 sz=8 vsz=8 rwx=--r-- .rel.dyn"
-0x08048278 CCu "section 10 va=0x08048278 pa=0x00000278 sz=24 vsz=24 rwx=--r-- .rel.plt"
-0x08048290 CCu "section 11 va=0x08048290 pa=0x00000290 sz=35 vsz=35 rwx=--r-x .init"
-0x080482c0 CCu "section 12 va=0x080482c0 pa=0x000002c0 sz=64 vsz=64 rwx=--r-x .plt"
-0x08048300 CCu "section 13 va=0x08048300 pa=0x00000300 sz=404 vsz=404 rwx=--r-x .text"
-0x08048494 CCu "section 14 va=0x08048494 pa=0x00000494 sz=20 vsz=20 rwx=--r-x .fini"
-0x080484a8 CCu "section 15 va=0x080484a8 pa=0x000004a8 sz=21 vsz=21 rwx=--r-- .rodata"
-0x080484c0 CCu "section 36 va=0x080484c0 pa=0x000004c0 sz=44 vsz=44 rwx=m-r-- GNU_EH_FRAME"
-0x080484ec CCu "section 17 va=0x080484ec pa=0x000004ec sz=176 vsz=176 rwx=--r-- .eh_frame"
-0x0804959c CCu "section 33 va=0x0804959c pa=0x0000059c sz=280 vsz=284 rwx=m-rw- LOAD1"
-0x080495a0 CCu "section 19 va=0x080495a0 pa=0x000005a0 sz=4 vsz=4 rwx=--rw- .fini_array"
-0x080495a4 CCu "section 20 va=0x080495a4 pa=0x000005a4 sz=4 vsz=4 rwx=--rw- .jcr"
-0x080495a8 CCu "section 34 va=0x080495a8 pa=0x000005a8 sz=232 vsz=232 rwx=m-rw- DYNAMIC"
-0x08049690 CCu "section 22 va=0x08049690 pa=0x00000690 sz=4 vsz=4 rwx=--rw- .got"
-0x08049694 CCu "section 23 va=0x08049694 pa=0x00000694 sz=24 vsz=24 rwx=--rw- .got.plt"
-0x080496ac CCu "section 24 va=0x080496ac pa=0x000006ac sz=8 vsz=8 rwx=--rw- .data"
-0x080496b4 CCu "section 25 va=0x080496b4 pa=0x000006b4 sz=0 vsz=4 rwx=--rw- .bss"
+EXPECT='0x00000000 CCu "[37] m-rw- section size 0 named GNU_STACK"
+0x08048000 CCu "[38] m-rw- section size 52 named ehdr"
+0x08048034 CCu "[30] m-r-x section size 256 named PHDR"
+0x08048134 CCu "[31] m-r-- section size 19 named INTERP"
+0x08048148 CCu "[35] m-r-- section size 68 named NOTE"
+0x08048168 CCu "[03] --r-- section size 36 named .note.gnu.build_id"
+0x0804818c CCu "[04] --r-- section size 32 named .gnu.hash"
+0x080481ac CCu "[05] --r-- section size 80 named .dynsym"
+0x080481fc CCu "[06] --r-- section size 74 named .dynstr"
+0x08048246 CCu "[07] --r-- section size 10 named .gnu.version"
+0x08048250 CCu "[08] --r-- section size 32 named .gnu.version_r"
+0x08048270 CCu "[09] --r-- section size 8 named .rel.dyn"
+0x08048278 CCu "[10] --r-- section size 24 named .rel.plt"
+0x08048290 CCu "[11] --r-x section size 35 named .init"
+0x080482c0 CCu "[12] --r-x section size 64 named .plt"
+0x08048300 CCu "[13] --r-x section size 404 named .text"
+0x08048494 CCu "[14] --r-x section size 20 named .fini"
+0x080484a8 CCu "[15] --r-- section size 21 named .rodata"
+0x080484c0 CCu "[36] m-r-- section size 44 named GNU_EH_FRAME"
+0x080484ec CCu "[17] --r-- section size 176 named .eh_frame"
+0x0804959c CCu "[33] m-rw- section size 280 named LOAD1"
+0x080495a0 CCu "[19] --rw- section size 4 named .fini_array"
+0x080495a4 CCu "[20] --rw- section size 4 named .jcr"
+0x080495a8 CCu "[34] m-rw- section size 232 named DYNAMIC"
+0x08049690 CCu "[22] --rw- section size 4 named .got"
+0x08049694 CCu "[23] --rw- section size 24 named .got.plt"
+0x080496ac CCu "[24] --rw- section size 8 named .data"
+0x080496b4 CCu "[25] --rw- section size 0 named .bss"
 0x08049690 data Cd 4
 0x080496a0 data Cd 4
 0x080496a4 data Cd 4
@@ -63,34 +63,34 @@ BROKEN=
 FILE=../../bins/elf/analysis/x86-helloworld-gcc
 CMDS='C*
 '
-EXPECT='CCu base64:c2VjdGlvbiAzNyB2YT0weDAwMDAwMDAwIHBhPTB4MDAwMDAwMDAgc3o9MCB2c3o9MCByd3g9bS1ydy0gR05VX1NUQUNL @ 0x00000000
-CCu base64:c2VjdGlvbiAzOCB2YT0weDA4MDQ4MDAwIHBhPTB4MDAwMDAwMDAgc3o9NTIgdnN6PTUyIHJ3eD1tLXJ3LSBlaGRy @ 0x08048000
-CCu base64:c2VjdGlvbiAzMCB2YT0weDA4MDQ4MDM0IHBhPTB4MDAwMDAwMzQgc3o9MjU2IHZzej0yNTYgcnd4PW0tci14IFBIRFI= @ 0x08048034
-CCu base64:c2VjdGlvbiAzMSB2YT0weDA4MDQ4MTM0IHBhPTB4MDAwMDAxMzQgc3o9MTkgdnN6PTE5IHJ3eD1tLXItLSBJTlRFUlA= @ 0x08048134
-CCu base64:c2VjdGlvbiAzNSB2YT0weDA4MDQ4MTQ4IHBhPTB4MDAwMDAxNDggc3o9NjggdnN6PTY4IHJ3eD1tLXItLSBOT1RF @ 0x08048148
-CCu base64:c2VjdGlvbiAzIHZhPTB4MDgwNDgxNjggcGE9MHgwMDAwMDE2OCBzej0zNiB2c3o9MzYgcnd4PS0tci0tIC5ub3RlLmdudS5idWlsZF9pZA== @ 0x08048168
-CCu base64:c2VjdGlvbiA0IHZhPTB4MDgwNDgxOGMgcGE9MHgwMDAwMDE4YyBzej0zMiB2c3o9MzIgcnd4PS0tci0tIC5nbnUuaGFzaA== @ 0x0804818c
-CCu base64:c2VjdGlvbiA1IHZhPTB4MDgwNDgxYWMgcGE9MHgwMDAwMDFhYyBzej04MCB2c3o9ODAgcnd4PS0tci0tIC5keW5zeW0= @ 0x080481ac
-CCu base64:c2VjdGlvbiA2IHZhPTB4MDgwNDgxZmMgcGE9MHgwMDAwMDFmYyBzej03NCB2c3o9NzQgcnd4PS0tci0tIC5keW5zdHI= @ 0x080481fc
-CCu base64:c2VjdGlvbiA3IHZhPTB4MDgwNDgyNDYgcGE9MHgwMDAwMDI0NiBzej0xMCB2c3o9MTAgcnd4PS0tci0tIC5nbnUudmVyc2lvbg== @ 0x08048246
-CCu base64:c2VjdGlvbiA4IHZhPTB4MDgwNDgyNTAgcGE9MHgwMDAwMDI1MCBzej0zMiB2c3o9MzIgcnd4PS0tci0tIC5nbnUudmVyc2lvbl9y @ 0x08048250
-CCu base64:c2VjdGlvbiA5IHZhPTB4MDgwNDgyNzAgcGE9MHgwMDAwMDI3MCBzej04IHZzej04IHJ3eD0tLXItLSAucmVsLmR5bg== @ 0x08048270
-CCu base64:c2VjdGlvbiAxMCB2YT0weDA4MDQ4Mjc4IHBhPTB4MDAwMDAyNzggc3o9MjQgdnN6PTI0IHJ3eD0tLXItLSAucmVsLnBsdA== @ 0x08048278
-CCu base64:c2VjdGlvbiAxMSB2YT0weDA4MDQ4MjkwIHBhPTB4MDAwMDAyOTAgc3o9MzUgdnN6PTM1IHJ3eD0tLXIteCAuaW5pdA== @ 0x08048290
-CCu base64:c2VjdGlvbiAxMiB2YT0weDA4MDQ4MmMwIHBhPTB4MDAwMDAyYzAgc3o9NjQgdnN6PTY0IHJ3eD0tLXIteCAucGx0 @ 0x080482c0
-CCu base64:c2VjdGlvbiAxMyB2YT0weDA4MDQ4MzAwIHBhPTB4MDAwMDAzMDAgc3o9NDA0IHZzej00MDQgcnd4PS0tci14IC50ZXh0 @ 0x08048300
-CCu base64:c2VjdGlvbiAxNCB2YT0weDA4MDQ4NDk0IHBhPTB4MDAwMDA0OTQgc3o9MjAgdnN6PTIwIHJ3eD0tLXIteCAuZmluaQ== @ 0x08048494
-CCu base64:c2VjdGlvbiAxNSB2YT0weDA4MDQ4NGE4IHBhPTB4MDAwMDA0YTggc3o9MjEgdnN6PTIxIHJ3eD0tLXItLSAucm9kYXRh @ 0x080484a8
-CCu base64:c2VjdGlvbiAzNiB2YT0weDA4MDQ4NGMwIHBhPTB4MDAwMDA0YzAgc3o9NDQgdnN6PTQ0IHJ3eD1tLXItLSBHTlVfRUhfRlJBTUU= @ 0x080484c0
-CCu base64:c2VjdGlvbiAxNyB2YT0weDA4MDQ4NGVjIHBhPTB4MDAwMDA0ZWMgc3o9MTc2IHZzej0xNzYgcnd4PS0tci0tIC5laF9mcmFtZQ== @ 0x080484ec
-CCu base64:c2VjdGlvbiAzMyB2YT0weDA4MDQ5NTljIHBhPTB4MDAwMDA1OWMgc3o9MjgwIHZzej0yODQgcnd4PW0tcnctIExPQUQx @ 0x0804959c
-CCu base64:c2VjdGlvbiAxOSB2YT0weDA4MDQ5NWEwIHBhPTB4MDAwMDA1YTAgc3o9NCB2c3o9NCByd3g9LS1ydy0gLmZpbmlfYXJyYXk= @ 0x080495a0
-CCu base64:c2VjdGlvbiAyMCB2YT0weDA4MDQ5NWE0IHBhPTB4MDAwMDA1YTQgc3o9NCB2c3o9NCByd3g9LS1ydy0gLmpjcg== @ 0x080495a4
-CCu base64:c2VjdGlvbiAzNCB2YT0weDA4MDQ5NWE4IHBhPTB4MDAwMDA1YTggc3o9MjMyIHZzej0yMzIgcnd4PW0tcnctIERZTkFNSUM= @ 0x080495a8
-CCu base64:c2VjdGlvbiAyMiB2YT0weDA4MDQ5NjkwIHBhPTB4MDAwMDA2OTAgc3o9NCB2c3o9NCByd3g9LS1ydy0gLmdvdA== @ 0x08049690
-CCu base64:c2VjdGlvbiAyMyB2YT0weDA4MDQ5Njk0IHBhPTB4MDAwMDA2OTQgc3o9MjQgdnN6PTI0IHJ3eD0tLXJ3LSAuZ290LnBsdA== @ 0x08049694
-CCu base64:c2VjdGlvbiAyNCB2YT0weDA4MDQ5NmFjIHBhPTB4MDAwMDA2YWMgc3o9OCB2c3o9OCByd3g9LS1ydy0gLmRhdGE= @ 0x080496ac
-CCu base64:c2VjdGlvbiAyNSB2YT0weDA4MDQ5NmI0IHBhPTB4MDAwMDA2YjQgc3o9MCB2c3o9NCByd3g9LS1ydy0gLmJzcw== @ 0x080496b4
+EXPECT='CCu base64:WzM3XSBtLXJ3LSBzZWN0aW9uIHNpemUgMCBuYW1lZCBHTlVfU1RBQ0s= @ 0x00000000
+CCu base64:WzM4XSBtLXJ3LSBzZWN0aW9uIHNpemUgNTIgbmFtZWQgZWhkcg== @ 0x08048000
+CCu base64:WzMwXSBtLXIteCBzZWN0aW9uIHNpemUgMjU2IG5hbWVkIFBIRFI= @ 0x08048034
+CCu base64:WzMxXSBtLXItLSBzZWN0aW9uIHNpemUgMTkgbmFtZWQgSU5URVJQ @ 0x08048134
+CCu base64:WzM1XSBtLXItLSBzZWN0aW9uIHNpemUgNjggbmFtZWQgTk9URQ== @ 0x08048148
+CCu base64:WzAzXSAtLXItLSBzZWN0aW9uIHNpemUgMzYgbmFtZWQgLm5vdGUuZ251LmJ1aWxkX2lk @ 0x08048168
+CCu base64:WzA0XSAtLXItLSBzZWN0aW9uIHNpemUgMzIgbmFtZWQgLmdudS5oYXNo @ 0x0804818c
+CCu base64:WzA1XSAtLXItLSBzZWN0aW9uIHNpemUgODAgbmFtZWQgLmR5bnN5bQ== @ 0x080481ac
+CCu base64:WzA2XSAtLXItLSBzZWN0aW9uIHNpemUgNzQgbmFtZWQgLmR5bnN0cg== @ 0x080481fc
+CCu base64:WzA3XSAtLXItLSBzZWN0aW9uIHNpemUgMTAgbmFtZWQgLmdudS52ZXJzaW9u @ 0x08048246
+CCu base64:WzA4XSAtLXItLSBzZWN0aW9uIHNpemUgMzIgbmFtZWQgLmdudS52ZXJzaW9uX3I= @ 0x08048250
+CCu base64:WzA5XSAtLXItLSBzZWN0aW9uIHNpemUgOCBuYW1lZCAucmVsLmR5bg== @ 0x08048270
+CCu base64:WzEwXSAtLXItLSBzZWN0aW9uIHNpemUgMjQgbmFtZWQgLnJlbC5wbHQ= @ 0x08048278
+CCu base64:WzExXSAtLXIteCBzZWN0aW9uIHNpemUgMzUgbmFtZWQgLmluaXQ= @ 0x08048290
+CCu base64:WzEyXSAtLXIteCBzZWN0aW9uIHNpemUgNjQgbmFtZWQgLnBsdA== @ 0x080482c0
+CCu base64:WzEzXSAtLXIteCBzZWN0aW9uIHNpemUgNDA0IG5hbWVkIC50ZXh0 @ 0x08048300
+CCu base64:WzE0XSAtLXIteCBzZWN0aW9uIHNpemUgMjAgbmFtZWQgLmZpbmk= @ 0x08048494
+CCu base64:WzE1XSAtLXItLSBzZWN0aW9uIHNpemUgMjEgbmFtZWQgLnJvZGF0YQ== @ 0x080484a8
+CCu base64:WzM2XSBtLXItLSBzZWN0aW9uIHNpemUgNDQgbmFtZWQgR05VX0VIX0ZSQU1F @ 0x080484c0
+CCu base64:WzE3XSAtLXItLSBzZWN0aW9uIHNpemUgMTc2IG5hbWVkIC5laF9mcmFtZQ== @ 0x080484ec
+CCu base64:WzMzXSBtLXJ3LSBzZWN0aW9uIHNpemUgMjgwIG5hbWVkIExPQUQx @ 0x0804959c
+CCu base64:WzE5XSAtLXJ3LSBzZWN0aW9uIHNpemUgNCBuYW1lZCAuZmluaV9hcnJheQ== @ 0x080495a0
+CCu base64:WzIwXSAtLXJ3LSBzZWN0aW9uIHNpemUgNCBuYW1lZCAuamNy @ 0x080495a4
+CCu base64:WzM0XSBtLXJ3LSBzZWN0aW9uIHNpemUgMjMyIG5hbWVkIERZTkFNSUM= @ 0x080495a8
+CCu base64:WzIyXSAtLXJ3LSBzZWN0aW9uIHNpemUgNCBuYW1lZCAuZ290 @ 0x08049690
+CCu base64:WzIzXSAtLXJ3LSBzZWN0aW9uIHNpemUgMjQgbmFtZWQgLmdvdC5wbHQ= @ 0x08049694
+CCu base64:WzI0XSAtLXJ3LSBzZWN0aW9uIHNpemUgOCBuYW1lZCAuZGF0YQ== @ 0x080496ac
+CCu base64:WzI1XSAtLXJ3LSBzZWN0aW9uIHNpemUgMCBuYW1lZCAuYnNz @ 0x080496b4
 Cd 4 @ 0x08049690
 Cd 4 @ 0x080496a0
 Cd 4 @ 0x080496a4
@@ -410,7 +410,7 @@ EXPECT='[
       "section..text",
       "sym._start"
     ],
-    "comment": "c2VjdGlvbiAxMyB2YT0weDA4MDQ4MzAwIHBhPTB4MDAwMDAzMDAgc3o9NDA0IHZzej00MDQgcnd4PS0tci14IC50ZXh0"
+    "comment": "WzEzXSAtLXIteCBzZWN0aW9uIHNpemUgNDA0IG5hbWVkIC50ZXh0"
   },
   {
     "offset": 134513410,

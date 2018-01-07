@@ -48,7 +48,7 @@ EXPECT='[00:00] . pa=0x0000017c m--- va=0x0000017c sz=0x00ef vsz=0x00ef .drectve
             ;-- section..text_mn_5:
             ;-- .text$mn:
             ;-- ??1FooBar@@QAE@XZ:
-            0x00000ec2      55             push ebp                    ; section 5 va=0x00000ec2 pa=0x00000ec2 sz=42 vsz=42 rwx=m-r-x .text_mn_5
+            0x00000ec2      55             push ebp                    ; [05] m-r-x section size 42 named .text_mn_5
             0x00000ec3      8bec           mov ebp, esp
 '
 run_test
