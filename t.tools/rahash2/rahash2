@@ -154,8 +154,6 @@ EXPECT='  md5
   sha256
   sha384
   sha512
-  crc16
-  crc32
   md4
   xor
   xorpair
@@ -169,12 +167,26 @@ EXPECT='  md5
   luhn
   crc8smbus
   crc15can
+  crc16
   crc16hdlc
   crc16usb
   crc16citt
   crc24
+  crc32
   crc32c
   crc32ecma267
+  crc32bzip2
+  crc32d
+  crc32mpeg2
+  crc32posix
+  crc32q
+  crc32jamcrc
+  crc32xfer
+  crc64
+  crc64ecma
+  crc64we
+  crc64xz
+  crc64iso
   base64
   base91
   punycode
