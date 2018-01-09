@@ -468,7 +468,7 @@ class NewRegressions {
     }
     if ((process.env.NOOK && status !== colors.green('[OK]')) || !process.env.NOOK) {
       // console.log('[' + status + ']', colors.yellow(test.name), test.path, test.lifetime);
-      process.stdout.write('\x1b[0K\r' + status + ' ' + colors.yellow(test.name) + test.path + test.lifetime + (this.verbose ? '\n' : '\r'));
+      process.stdout.write('\x1b[0K\r' + status + ' ' + test.from + ' ' + colors.yellow(test.name) + ' ' + test.path  + ' ' + test.lifetime + (this.verbose ? '\n' : '\r'));
     }
     return test.passes;
   }
