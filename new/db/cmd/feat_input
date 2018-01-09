@@ -49,8 +49,13 @@ FILE=malloc://1024
 EXPECT64=YmFyCgo=
 CMDS64=Cjs/ZSBiYXIKCg==
 RUN
-NAME=> in cmd: agn "sh->fu"
+NAME='>' in cmd: agn "sh->fu"
 FILE=-
 CMDS64=CmFnbiAic2gtPmZ1IgphZ2cK
 EXPECT64=Li0tLS0tLS0tLS0tLS0tLS0tLS0tLgp8ICBzaC0+ZnUgICAgICAgICAgICB8CmAtLS0tLS0tLS0tLS0tLS0tLS0tLScK
+RUN
+NAME=multiple '>' in cmd line: ?e abc > def>ghi
+FILE=-
+CMDS64=Cj9lIGFiYyA+IGRlZj5naGkgICMgc2hvdWxkIG5vdCBoYW5nCg==
+EXPECT64=Cg==
 RUN
