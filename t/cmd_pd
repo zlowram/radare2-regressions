@@ -479,16 +479,16 @@ pd 3
 e asm.nbytes = 6
 pd 3
 '
-EXPECT=' 0x00000000      488d85c0f9ff.  lea rax, rbp - 0x640
+EXPECT=' 0x00000000      488d85c0f9ff.  lea rax, [rbp - 0x640]
  0x00000007      488985b8f9ff.  mov qword [rbp - 0x648], rax
  0x0000000e      4585f6         test r14d, r14d
- 0x00000000      488d85c0f9ffff         lea rax, rbp - 0x640
+ 0x00000000      488d85c0f9ffff         lea rax, [rbp - 0x640]
  0x00000007      488985b8f9ffff         mov qword [rbp - 0x648], rax
  0x0000000e      4585f6                 test r14d, r14d
- 0x00000000              488d85c0f9ffff  lea rax, rbp - 0x640
+ 0x00000000              488d85c0f9ffff  lea rax, [rbp - 0x640]
  0x00000007              488985b8f9ffff  mov qword [rbp - 0x648], rax
  0x0000000e                      4585f6  test r14d, r14d
- 0x00000000       488d85c0f9ff.  lea rax, rbp - 0x640
+ 0x00000000       488d85c0f9ff.  lea rax, [rbp - 0x640]
  0x00000007       488985b8f9ff.  mov qword [rbp - 0x648], rax
  0x0000000e              4585f6  test r14d, r14d
 '
@@ -512,7 +512,7 @@ e asm.relsub=true
 pd 1
 '
 EXPECT=' 0x00400000      488d05020000.  lea rax, [rip + 2]
- 0x00400000      488d05020000.  lea rax, 0x00400009
+ 0x00400000      488d05020000.  lea rax, [0x00400009]
 '
 run_test
 
@@ -621,8 +621,8 @@ ARGS=
 CMDS='pd 1 @ 0x140001034
 pd 1 @ 0x140001070
 '
-EXPECT='            0x140001034      488d05495001.  lea rax, 0x140016084       ; "\r"
-            0x140001070      488d053d5001.  lea rax, 0x1400160b4       ; "a"
+EXPECT='            0x140001034      488d05495001.  lea rax, [0x140016084]     ; "\r"
+            0x140001070      488d053d5001.  lea rax, [0x1400160b4]     ; "a"
 '
 run_test
 
@@ -660,10 +660,10 @@ pd 1 @ 0x0001145f
 e asm.cmtright=false
 pd 1 @ 0x0001145f
 '
-EXPECT='            0x0001145f      488d3d72a100.  lea rdi, 0x0001b5d8         ; NULL_error ; "A NULL argv[0] was passed through an exec system call.\n"
+EXPECT='            0x0001145f      488d3d72a100.  lea rdi, [0x0001b5d8]       ; NULL_error ; "A NULL argv[0] was passed through an exec system call.\n"
             ; NULL_error
             ; "A NULL argv[0] was passed through an exec system call.\n"
-            0x0001145f      488d3d72a100.  lea rdi, 0x0001b5d8
+            0x0001145f      488d3d72a100.  lea rdi, [0x0001b5d8]
 '
 run_test
 
@@ -741,8 +741,8 @@ pd 1 @ 0x0001145f
 e asm.filter=false
 pd 1 @ 0x0001145f
 '
-EXPECT='  [36m          [0m[32m0x0001145f[0m      [37mlea[36m rdi[0m,[36m[36m [33mstr.A_NULL_argv_0__was_passed_through_an_exec_system_call.[0m[0m
-  [36m          [0m[32m0x0001145f[0m      [37mlea[36m rdi[0m,[36m[36m [33m0x0001b5d8[0m[0m
+EXPECT='  [36m          [0m[32m0x0001145f[0m      [37mlea[36m rdi[0m,[36m[36m [0m[33mstr.A_NULL_argv_0__was_passed_through_an_exec_system_call.[0m[36m[0m[0m
+  [36m          [0m[32m0x0001145f[0m      [37mlea[36m rdi[0m,[36m[36m [0m[[36m[33m0x0001b5d8[0m][36m[0m[0m
 '
 run_test
 
@@ -779,7 +779,7 @@ FILE=../bins/pe/testapp-msvc64.exe
 ARGS=
 CMDS='pd 1 @ 0x140001040
 '
-EXPECT='            0x140001040      488d05415001.  lea rax, 0x140016088       ; u"r2 \u1308\u23f4\u23f4"
+EXPECT='            0x140001040      488d05415001.  lea rax, [0x140016088]     ; u"r2 \u1308\u23f4\u23f4"
 '
 run_test
 
@@ -843,8 +843,8 @@ pd 1 @ 0x140001058
 e asm.strenc=utf8
 pd 1 @ 0x140001058
 '
-EXPECT='            0x140001058      488d05415001.  lea rax, 0x1400160a0       ; "latin1 gate: \xce\xbb\xab\xce"
-            0x140001058      488d05415001.  lea rax, 0x1400160a0       ; "latin1 gate: \u03bb\xab\xce"
+EXPECT='            0x140001058      488d05415001.  lea rax, [0x1400160a0]     ; "latin1 gate: \xce\xbb\xab\xce"
+            0x140001058      488d05415001.  lea rax, [0x1400160a0]     ; "latin1 gate: \u03bb\xab\xce"
 '
 run_test
 
@@ -916,8 +916,8 @@ pd 1 @ 0x14000104c
 e asm.strenc=utf16le
 pd 1 @ 0x14000104c
 '
-EXPECT='            0x14000104c      488d05455001.  lea rax, 0x140016098       ; "@"
-            0x14000104c      488d05455001.  lea rax, 0x140016098       ; u"@\ufffd\ud801"
+EXPECT='            0x14000104c      488d05455001.  lea rax, [0x140016098]     ; "@"
+            0x14000104c      488d05455001.  lea rax, [0x140016098]     ; u"@\ufffd\ud801"
 '
 run_test
 
@@ -953,16 +953,16 @@ pd 1 @ 0x140001010
 e asm.cmtright=false
 pd 1 @ 0x140001010
 '
-EXPECT='            0x140001010      488d05015001.  lea rax, 0x140016018       ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001028      488d05415001.  lea rax, 0x140016070       ; str.Formfeed_at_start
+EXPECT='            0x140001010      488d05015001.  lea rax, [0x140016018]     ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            0x140001028      488d05415001.  lea rax, [0x140016070]     ; str.Formfeed_at_start
             ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001010      488d05015001.  lea rax, 0x140016018
+            0x140001010      488d05015001.  lea rax, [0x140016018]
             ; str.Formfeed_at_start
-            0x140001028      488d05415001.  lea rax, 0x140016070
-            0x140001010      488d05015001.  lea rax, 0x140016018       ; str.wide ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            0x140001028      488d05415001.  lea rax, [0x140016070]
+            0x140001010      488d05015001.  lea rax, [0x140016018]     ; str.wide ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             ; str.wide
             ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001010      488d05015001.  lea rax, 0x140016018
+            0x140001010      488d05015001.  lea rax, [0x140016018]
 '
 run_test
 
@@ -976,10 +976,10 @@ pd 1 @ 0x140001010
 e asm.cmtright=false
 pd 1 @ 0x140001010
 '
-EXPECT='            0x140001010      488d05015001.  lea rax, 0x140016018       ; str.wide__esc:__e_0m ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+EXPECT='            0x140001010      488d05015001.  lea rax, [0x140016018]     ; str.wide__esc:__e_0m ; u"\twide\\esc: \x1b[0m\xa1\r\n"
             ; str.wide__esc:__e_0m
             ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001010      488d05015001.  lea rax, 0x140016018
+            0x140001010      488d05015001.  lea rax, [0x140016018]
 '
 run_test
 
@@ -1024,8 +1024,8 @@ e asm.cmtoff=nodup
 pd 1 @ 0x140001010
 '
 EXPECT='            0x140001010      488d05015001.  lea rax, str.wide__esc:__e_0m ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001010      488d05015001.  lea rax, 0x140016018       ; 0x140016018 ; u"\twide\\esc: \x1b[0m\xa1\r\n"
-            0x140001010      488d05015001.  lea rax, 0x140016018       ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            0x140001010      488d05015001.  lea rax, [0x140016018]     ; 0x140016018 ; u"\twide\\esc: \x1b[0m\xa1\r\n"
+            0x140001010      488d05015001.  lea rax, [0x140016018]     ; u"\twide\\esc: \x1b[0m\xa1\r\n"
 '
 run_test
 
@@ -1038,9 +1038,9 @@ pd 1 @ 0x00005c2f
 e asm.cmtright=false
 pd 1 @ 0x00005c2f
 '
-EXPECT='            0x00005c2f      4c8d054ae200.  lea r8, 0x00013e80          ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
+EXPECT='            0x00005c2f      4c8d054ae200.  lea r8, [0x00013e80]        ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
             ; LEA r8 = [0x5c36] = 0x480000e1d30d8d48 "H...."
-            0x00005c2f      4c8d054ae200.  lea r8, 0x00013e80
+            0x00005c2f      4c8d054ae200.  lea r8, [0x00013e80]
 '
 run_test
 
