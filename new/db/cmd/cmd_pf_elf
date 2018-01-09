@@ -1,31 +1,31 @@
 NAME=32: Elf header size
 FILE=malloc://1024
-EXPECT64=NTIgYnl0ZShzKQo=
+EXPECT64=NTIK
 CMDS64=cGZvIGVsZjMyCnBmcy5lbGZfaGVhZGVyCgo=
 RUN
 NAME=64: Elf header size
 FILE=malloc://1024
-EXPECT64=NjQgYnl0ZShzKQo=
+EXPECT64=NjQK
 CMDS64=cGZvIGVsZjY0CnBmcy5lbGZfaGVhZGVyCgo=
 RUN
 NAME=32: Elf program header size
 FILE=malloc://1024
-EXPECT64=MzIgYnl0ZShzKQo=
+EXPECT64=MzIK
 CMDS64=cGZvIGVsZjMyCnBmcy5lbGZfcGhkcgoK
 RUN
 NAME=64: Elf program header size
 FILE=malloc://1024
-EXPECT64=NTYgYnl0ZShzKQo=
+EXPECT64=NTYK
 CMDS64=cGZvIGVsZjY0CnBmcy5lbGZfcGhkcgoK
 RUN
 NAME=32: Elf section header size
 FILE=malloc://1024
-EXPECT64=NDAgYnl0ZShzKQo=
+EXPECT64=NDAK
 CMDS64=cGZvIGVsZjMyCnBmcy5lbGZfc2hkcgoK
 RUN
 NAME=64: Elf section header size
 FILE=malloc://1024
-EXPECT64=NjQgYnl0ZShzKQo=
+EXPECT64=NjQK
 CMDS64=cGZvIGVsZjY0CnBmcy5lbGZfc2hkcgoK
 RUN
 NAME=32: Multiple section headers
