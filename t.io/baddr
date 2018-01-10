@@ -105,7 +105,8 @@ run_test
 NAME="bin.baddr and anal"
 FILE=../bins/elf/analysis/pie
 ARGS='-B 0xf00000'
-CMDS='aaa
+CMDS='e anal.pltujmp = false
+aaa
 afl
 '
 EXPECT='0x00f003ec    3 35           sym._init
