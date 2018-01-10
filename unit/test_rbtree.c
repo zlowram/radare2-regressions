@@ -51,7 +51,7 @@ static bool check1(RBNode *x, int dep, int black, bool leftmost) {
 	static int black_;
 	if (x) {
 		black += !x->red;
-		if (x->red && (x->child[0] && x->child[0]->red || x->child[1] && x->child[1]->red)) {
+		if (x->red && ((x->child[0] && x->child[0]->red) || (x->child[1] && x->child[1]->red))) {
 			printf ("error: red violation\n");
 			return false;
 		}
