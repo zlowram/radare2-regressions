@@ -17,7 +17,7 @@ EXPECT='mov rdi, main
 run_test
 
 NAME='Main in disassembly'
-BROKEN=1
+BROKEN=
 FILE=../../bins/elf/analysis/ls_main_bug
 ARGS=
 CMDS='

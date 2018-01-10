@@ -113,7 +113,7 @@ test_vector "${PLUGIN}" "cdq" 99 "br"
 test_vector "${PLUGIN}" "cdqe" 98 "br"
 test_vector "${PLUGIN}" "clc" f8 "br"
 test_vector "${PLUGIN}" "cld" fc "br"
-test_vector "${PLUGIN}" "clflush byte [eax]" 0fae38 "br"
+test_vector "${PLUGIN}" "clflush byte [eax]" 0fae38
 test_vector "${PLUGIN}" "clgi" 0f01dd "br"
 test_vector "${PLUGIN}" "cli" fa
 test_vector "${PLUGIN}" "clts" 0f06 "br"
@@ -222,7 +222,7 @@ test_vector "${PLUGIN}" "dec edi" 4f
 test_vector "${PLUGIN}" "dec edx" 4a
 test_vector "${PLUGIN}" "dec esi" 4e
 test_vector "${PLUGIN}" "dec esp" 4c
-test_vector "${PLUGIN}" "div byte [eax]" f630 "br"
+test_vector "${PLUGIN}" "div byte [eax]" f630
 test_vector "${PLUGIN}" "divpd xmm0, xmmword [eax]" 660f5e00 "br"
 test_vector "${PLUGIN}" "divps xmm0, xmmword [eax]" 0f5e00 "br"
 test_vector "${PLUGIN}" "divsd xmm0, qword [eax]" f20f5e00 "br"
@@ -235,15 +235,15 @@ test_vector "${PLUGIN}" "extrq xmm0, 0x0, 0x0" 660f78c00000 "br"
 test_vector "${PLUGIN}" "extrq xmm0, xmm0" 660f7900 "br"
 test_vector "${PLUGIN}" "femms" 0f0e "br"
 test_vector "${PLUGIN}" "fsincos" d9fb
-test_vector "${PLUGIN}" "fxrstor [eax]" 0fae08 "br"
-test_vector "${PLUGIN}" "fxsave [eax]" 0fae00 "br"
+test_vector "${PLUGIN}" "fxrstor [eax]" 0fae0
+test_vector "${PLUGIN}" "fxsave [eax]" 0fae00
 test_vector "${PLUGIN}" "getsec" 0f37 "br"
 test_vector "${PLUGIN}" "haddpd xmm0, xmmword [eax]" 660f7c00 "br"
 test_vector "${PLUGIN}" "haddps xmm0, xmmword [eax]" f20f7c00 "br"
 test_vector "${PLUGIN}" "hlt" f4
 test_vector "${PLUGIN}" "hsubpd xmm0, xmmword [eax]" 660f7d00 "br"
 test_vector "${PLUGIN}" "hsubps xmm0, xmmword [eax]" f20f7d00 "br"
-test_vector "${PLUGIN}" "idiv byte [eax]" f638 "br"
+test_vector "${PLUGIN}" "idiv byte [eax]" f638
 test_vector "${PLUGIN}" "imul byte [eax]" f628 "br"
 test_vector "${PLUGIN}" "imul eax, dword [eax], 0" 6b0000 "br"
 test_vector "${PLUGIN}" "imul eax, dword [eax]" 0faf00 "br"
@@ -353,13 +353,13 @@ test_vector "${PLUGIN}" "leave" c9
 test_vector "${PLUGIN}" "les eax, [eax]" c400 "br"
 test_vector "${PLUGIN}" "lfence" 0faee8 "br"
 test_vector "${PLUGIN}" "lfs eax, dword [eax]" 0fb400 "br"
-test_vector "${PLUGIN}" "lgdt [eax]" 0f0110 "br"
+test_vector "${PLUGIN}" "lgdt [eax]" 0f0110
 test_vector "${PLUGIN}" "lgs eax, dword [eax]" 0fb500 "br"
-test_vector "${PLUGIN}" "lidt [eax]" 0f0118 "br"
-test_vector "${PLUGIN}" "lldt ax" 0f00d0 "br"
-test_vector "${PLUGIN}" "lldt word [eax]" 0f0010 "br"
-test_vector "${PLUGIN}" "lmsw ax" 0f01f0 "br"
-test_vector "${PLUGIN}" "lmsw word [eax]" 0f0130 "br"
+test_vector "${PLUGIN}" "lidt [eax]" 0f0118
+test_vector "${PLUGIN}" "lldt ax" 0f00d0
+test_vector "${PLUGIN}" "lldt word [eax]" 0f0010
+test_vector "${PLUGIN}" "lmsw ax" 0f01f0
+test_vector "${PLUGIN}" "lmsw word [eax]" 0f0130
 test_vector "${PLUGIN}" "lock and word [fs:bx + si], si" 646766f02130 "br"
 test_vector "${PLUGIN}" "lock cmpxchg8b" f00fc7c0 "br"
 test_vector "${PLUGIN}" "lock mov dword [eax], eax" f08900 "br"
@@ -559,7 +559,7 @@ test_vector "${PLUGIN}" "mov word [eax], es" 8c00 "br"
 test_vector "${PLUGIN}" "movzx eax, byte [eax]" 0fb600 "br"
 test_vector "${PLUGIN}" "movzx eax, word [eax]" 0fb700 "br"
 test_vector "${PLUGIN}" "mpsadbw xmm0, xmm0, 0" 660f3a42c000 "br"
-test_vector "${PLUGIN}" "mul byte [eax]" f620 "br"
+test_vector "${PLUGIN}" "mul byte [eax]" f620 
 test_vector "${PLUGIN}" "mulpd xmm0, xmmword [eax]" 660f5900 "br"
 test_vector "${PLUGIN}" "mulpd xmm7, xmm7" 660f59ff "br"
 test_vector "${PLUGIN}" "mulps xmm0, xmmword [eax]" 0f5900 "br"

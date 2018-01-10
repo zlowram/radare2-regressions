@@ -239,7 +239,7 @@ run_test
 
 NAME='Save project for a binary and checking opened files'
 FILE='../bins/elf/analysis/main'
-BROKEN=1
+BROKEN=
 ARGS=
 CMDS='e dir.projects = /tmp/
 Ps blah > /dev/null
