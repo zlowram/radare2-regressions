@@ -265,7 +265,7 @@ run_test
 
 NAME='Save project for a binary without saving its info at a specific map offset'
 FILE='../bins/elf/analysis/main'
-BROKEN=
+BROKEN=1
 ARGS='-n -m 0x1337'
 CMDS='e dir.projects = /tmp/
 Ps blah > /dev/null
