@@ -12,3 +12,9 @@ test_tree
 test_diff
 test_range
 test_skiplist
+test_addr_interval
+test_hex
+test_io
+test_rbtree
+test_sparse
+test_unum
