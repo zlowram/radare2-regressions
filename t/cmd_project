@@ -219,7 +219,7 @@ ARGS=
 CMDS='tk char **=type
 tk type.char **=**z
 tk type.char **.size=64
-"td struct Foo { int bar; int x, int y }"
+"td struct Foo { int bar; int x; int y; };"
 Ps custom_types > /dev/null
 t- char **
 t- Foo
@@ -239,7 +239,7 @@ run_test
 
 NAME='Save project for a binary and checking opened files'
 FILE='../bins/elf/analysis/main'
-BROKEN=
+BROKEN=1
 ARGS=
 CMDS='e dir.projects = /tmp/
 Ps blah > /dev/null
