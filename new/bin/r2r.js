@@ -151,6 +151,12 @@ Usage: r2r [options] [file] [name] ([cmds])
       //  console.log('-', test.expect);
        // console.log('+', test.stdout);
 
+        try {
+          verifyTest(test);
+        } catch (e) {
+          return cb(e);
+        }
+
         console.log('Input:', test.cmds);
         const changes = jsdiff.diffLines(test.expect, test.stdout);
         changes.forEach(function (part) {
@@ -309,4 +315,12 @@ function fixCommands (test, next) {
     console.error(err);
     next();
   }
+}
+
+const tests = [];
+function verifyTest(test) {
+  if (tests.indexOf(test.name) !== -1) {
+    throw new Error('Found two tests with the same name', JSON.stringify(test, null, 2));
+  }
+  tests.push(test.name);
 }
