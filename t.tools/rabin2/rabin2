@@ -237,8 +237,8 @@ FILE=../../bins/mach0/fatmach0-3true
 ARGS=
 CMDS='!rabin2 -a x86 -b 32 -i ${R2_FILE}'
 EXPECT='[Imports]
-000 0x00001f94 NONE FUNC exit
-001 0x00000000 NONE FUNC dyld_stub_binder
+   0 0x00001f94    NONE    FUNC exit
+   1 0x00000000    NONE    FUNC dyld_stub_binder
 '
 run_test
 
@@ -247,8 +247,8 @@ FILE=../../bins/mach0/fatmach0-3true
 ARGS=
 CMDS='!rabin2 -G 0x5000 -i ${R2_FILE}'
 EXPECT='[Imports]
-000 0x00001f94 NONE FUNC exit
-001 0x00000000 NONE FUNC dyld_stub_binder
+   0 0x00001f94    NONE    FUNC exit
+   1 0x00000000    NONE    FUNC dyld_stub_binder
 '
 run_test
 

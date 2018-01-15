@@ -91,13 +91,13 @@ BROKEN=
 IGNORE_ERR=1
 CMDS="ii"
 EXPECT='[Imports]
-000 0x000001b0 NONE FUNC Ljava/io/PrintStream.method.println(Ljava/lang/String;)V
-001 0x000001b8 NONE FUNC Ljava/lang/Integer.method.<init>(I)V
-002 0x000001c0 NONE FUNC Ljava/lang/Integer.method.toString()Ljava/lang/String;
-003 0x000001c8 NONE FUNC Ljava/lang/Object.method.<init>()V
-004 0x000001d0 NONE FUNC Ljava/lang/StringBuilder.method.<init>()V
-005 0x000001d8 NONE FUNC Ljava/lang/StringBuilder.method.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-006 0x000001e0 NONE FUNC Ljava/lang/StringBuilder.method.toString()Ljava/lang/String;
+   0 0x000001b0    NONE    FUNC Ljava/io/PrintStream.method.println(Ljava/lang/String;)V
+   1 0x000001b8    NONE    FUNC Ljava/lang/Integer.method.<init>(I)V
+   2 0x000001c0    NONE    FUNC Ljava/lang/Integer.method.toString()Ljava/lang/String;
+   3 0x000001c8    NONE    FUNC Ljava/lang/Object.method.<init>()V
+   4 0x000001d0    NONE    FUNC Ljava/lang/StringBuilder.method.<init>()V
+   5 0x000001d8    NONE    FUNC Ljava/lang/StringBuilder.method.append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   6 0x000001e0    NONE    FUNC Ljava/lang/StringBuilder.method.toString()Ljava/lang/String;
 '
 run_test
 

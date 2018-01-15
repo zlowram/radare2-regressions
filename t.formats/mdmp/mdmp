@@ -208,7 +208,7 @@ FILE=$F1
 ARGS=
 CMDS='ii~KERNEL32.dll_TerminateProcess
 '
-EXPECT='017 0x00406148 NONE FUNC KERNEL32.dll_TerminateProcess
+EXPECT='  17 0x00406148    NONE    FUNC KERNEL32.dll_TerminateProcess
 '
 run_test
 
@@ -362,7 +362,7 @@ FILE=$F2
 ARGS=
 CMDS='ii~KERNEL32.dll_GetCurrentProcessId
 '
-EXPECT='004 0x00408214 NONE FUNC KERNEL32.dll_GetCurrentProcessId
+EXPECT='   4 0x00408214    NONE    FUNC KERNEL32.dll_GetCurrentProcessId
 '
 run_test
 
