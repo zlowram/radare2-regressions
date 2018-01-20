@@ -19,3 +19,13 @@ pd 1 @ sym.imp.msvcrt.dll_strlen~?dword
 EXPECT='1
 '
 run_test
+
+FILE=../../bins/pe/testx64.exe
+BROKEN=1
+CMDS='aaa
+pd 1 @ sym.imp.VCRUNTIME140.dll_memset~?qword
+
+'
+EXPECT='1
+'
+run_test
