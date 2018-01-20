@@ -9,3 +9,13 @@ afi @ sub.msvcrt.dll_printf_b2d~name
 EXPECT='name: sub.msvcrt.dll_printf_b2d
 '
 run_test
+
+FILE=../../bins/pe/ioli/w32/crackme0x00.exe
+BROKEN=1
+CMDS='aaa
+pd 1 @ sym.imp.msvcrt.dll_strlen~?dword
+
+'
+EXPECT='1
+'
+run_test
