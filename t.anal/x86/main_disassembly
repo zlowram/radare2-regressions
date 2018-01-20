@@ -16,24 +16,11 @@ EXPECT='mov rdi, main
 '
 run_test
 
-NAME='Main in disassembly with ujump hack'
+NAME='Main in disassembly'
 BROKEN=
 FILE=../../bins/elf/analysis/ls_main_bug
 ARGS=
-CMDS='e anal.pltujmp = false
-aa
-afi @ main ~offset
-'
-EXPECT='offset: 0x000038b0
-'
-run_test
-
-NAME='Main in disassembly without ujump hack'
-BROKEN=1
-FILE=../../bins/elf/analysis/ls_main_bug
-ARGS=
-CMDS='e anal.pltujmp = true
-aa
+CMDS='aa
 afi @ main ~offset
 '
 EXPECT='offset: 0x000038b0
