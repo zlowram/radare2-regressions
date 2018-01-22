@@ -10,3 +10,12 @@ axt 0x4bffb0"
 EXPECT="(nofunc) 0x4bfe53 [data] mov edx, 0x4bffb0
 "
 run_test
+
+NAME="aaa with maxbbsz"
+FILE=../../bins/anal/flare_notepad.ex
+CMDS="e anal.bb.maxsize = 2048
+aaa
+pdf~ret?"
+EXPECT="1
+"
+run_test
