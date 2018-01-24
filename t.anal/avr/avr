@@ -64,3 +64,12 @@ ao~size[1]
 EXPECT='4
 '
 run_test
+
+NAME="${PLUGIN} DISasm: IO-Ports"
+FILE=../../bins/firmware/arduino_avr.bin
+CMDS='
+pd 1 @ 0x00000170~?IO
+'
+EXPECT='1
+'
+run_test
