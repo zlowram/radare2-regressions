@@ -1,0 +1,5 @@
+NAME=t/empty-file
+FILE=../bins/other/.empty.tmp
+EXPECT64=MHg2NjYKMHhmCjB4MWMKMHgxCjB4NQoweDAKMHgxMgoK
+CMDS64=CnMgMHg2NjYKcwpzIDE1CnMKcyAwMzQKcwpzIDAKcysyCnMgLTEKcwpzKzB4NApzCjAKcwoweDEyCnMKCg==
+RUN
