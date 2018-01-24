@@ -5,11 +5,8 @@
 #TESTS+=t/cmd_help
 #TESTS+=t/cmd_i
 #TESTS+=t/cmd_json
-TESTS+=t/sugar
-TESTS+=t/undoredo
-TESTS+=t/unified
-TESTS+=t/utf32
-TESTS+=t/va
+TESTS+=t/cmd_search
+TESTS+=t/cmd_search_hit
 
 all:
 	npm install

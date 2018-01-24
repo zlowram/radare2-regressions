@@ -1,0 +1,5 @@
+NAME=pvj JSON indent - crash
+FILE=-
+EXPECT64=eyJ2YWx1ZSI6MCwic3RyaW5nIjoiIn0KCg==
+CMDS64=cHZqIH57Cg==
+RUN
