@@ -12,6 +12,10 @@ TESTS+=t/utf32
 TESTS+=t/va
 
 all:
+	npm install
+	node bin/r2r.js
+
+generate:
 	mkdir -p db/cmd
 	cd .. ; for a in $(TESTS) ; do \
 		d=$$(dirname $$a) ; \
