@@ -20,4 +20,3 @@ if [ -n "${TRAVIS}" ]; then
 else
   run_test
 fi
-
