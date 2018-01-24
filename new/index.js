@@ -598,15 +598,19 @@ function parseTestAsm (source, line) {
   let tests = [];
   for (let c of type) {
     let t = {from: source, broken: false, args: r2args.join(';')};
+    t.endianess = false
+    if (type.indexOf('E') !== -1) {
+      t.endianess = true;
+    }
     switch (c) {
       case 'd':
-        t.cmd = 'pad ' + expect;
+        t.cmd = "e cfg.bigendian=" + t.endianess + ";" + 'pad ' + expect;
         t.expect = asm;
         t.name = filename + ': ' + expect + ' => "' + asm + '"' + colors.blue(' (disassemble)');
         tests.push(t);
         break;
       case 'a':
-        t.cmd = 'pa ' + asm;
+        t.cmd = "e cfg.bigendian=" + t.endianess + ";" + 'pa ' + asm;
         t.expect = expect;
         t.name = filename + ': "' + asm + '" => ' + expect + colors.blue(' (assemble)');
         tests.push(t);
