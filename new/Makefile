@@ -5,8 +5,7 @@
 #TESTS+=t/cmd_help
 #TESTS+=t/cmd_i
 #TESTS+=t/cmd_json
-TESTS+=t/cmd_search
-TESTS+=t/cmd_search_hit
+TESTS+=t/metadata
 
 all:
 	npm install
