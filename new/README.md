@@ -27,6 +27,7 @@ Example tests for `db/asm/*`:
 			* a stands for assemble
 			* d stands for disassemble
 			* B stands for broken
+			* E stands for cfg.bigendian=true
 
 		offset:
 			Some architectures are going to assemble an instruction differently depending
