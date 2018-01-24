@@ -550,37 +550,37 @@ print_report() {
   echo
   echo "=== Report ==="
   echo
-  printf "    SUCCESS"
+  printf "       SUCCESS"
   if [ "${TESTS_SUCCESS}" -gt 0 ]; then
     print_success "${TESTS_SUCCESS}"
   else
     print_failed "${TESTS_SUCCESS}"
   fi
-  printf "    FIXED"
+  printf "       FIXED"
   if [ "${TESTS_FIXED}" -gt 0 ]; then
     print_fixed   "${TESTS_FIXED}"
   else
     print_fixed   0
   fi
-  printf "    BROKEN"
+  printf "       BROKEN"
   if [ "${TESTS_BROKEN}" -gt 0 ]; then
     print_broken "${TESTS_BROKEN}"
   else
     print_broken 0
   fi
-  printf "    FATAL"
+  printf "       FATAL"
   if [ "${TESTS_FATAL}" -gt 0 ]; then
     print_failed "${TESTS_FATAL}"
   else
     print_failed 0
   fi
-  printf "    FAILED"
+  printf "       FAILED"
   if [ "${TESTS_FAILED}" -gt 0 ]; then
     print_failed  "${TESTS_FAILED}"
   else
     print_failed  0
   fi
-  printf "    TOTAL${NL}"
+  printf "       TOTAL${NL}"
   print_label "[${TESTS_TOTAL}]"
 
   if [ "${TESTS_TOTAL}" != 0 ]; then
@@ -588,7 +588,7 @@ print_report() {
     if [ $? = 0 ]; then
       BADBOYS=$((${TESTS_BROKEN}+${TESTS_FAILED}+${TESTS_FATAL}))
       BN=`echo "100 ${BADBOYS} * ${TESTS_TOTAL} / n" | dc`
-      printf "    BROKENNESS${NL}"
+      printf "  BROKENNESS${NL}"
       print_label "[${BN}%]"
       echo
     else
