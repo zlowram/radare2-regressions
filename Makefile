@@ -33,7 +33,7 @@ all:
 	-$(MAKE) overlay-apply
 	$(MAKE) alltargets
 
-alltargets: js-tests radare2 commands formats tools io asm anal esil tools archos unit_tests
+alltargets: js-tests radare2 commands formats tools io anal esil tools archos unit_tests
 
 radare2:
 	@if [ -f ../binr/radare2/radare2 ]; then $(SHELL) run_tests.sh ../t ; fi
@@ -54,15 +54,6 @@ tools:
 io:
 	$(SHELL) run_tests.sh t.io
 
-asm: asm.arm asm.labels asm.x86 asm.m68k
-asm.arm:
-	$(SHELL) run_tests.sh t.asm/arm
-asm.labels:
-	$(SHELL) run_tests.sh t.asm/labels
-asm.x86:
-	$(SHELL) run_tests.sh t.asm/x86
-asm.m68k:
-	$(SHELL) run_tests.sh t.asm/m68k
 
 anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.ppc anal.6502 anal.8051 anal.tm320
 anal.arc:
