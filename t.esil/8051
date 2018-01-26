@@ -363,15 +363,17 @@ NAME="op: cjne a, imm, offset"
 FILE=malloc://0x100000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
-wx b41120b41020
-ar a=0x11
+wx b46220b49620
+ar a=0x62
 aes
-ar pc
+ar pc; ar psw
 aes
-ar pc
+ar pc; ar psw
 '
 EXPECT='0x00000003
+0x00000000
 0x00000026
+0x00000080
 '
 run_test
 
@@ -383,15 +385,17 @@ FILE=malloc://0x100000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b52030b52130
-wx 1110 @0x10020
+wx 1112 @0x10020
 ar a=0x11
 aes
-ar pc
+ar pc; ar psw
 aes
-ar pc
+ar pc; ar psw
 '
 EXPECT='0x00000003
+0x00000000
 0x00000036
+0x00000080
 '
 run_test
 
@@ -406,12 +410,14 @@ wx b71130b71030
 wx 1110 @0x10020
 ar r1=0x20
 aes
-ar pc
+ar pc; ar psw
 aes
-ar pc
+ar pc; ar psw
 '
 EXPECT='0x00000003
+0x00000000
 0x00000036
+0x00000000
 '
 run_test
 
@@ -422,15 +428,17 @@ NAME="op: cjne Rn, imm, offset"
 FILE=malloc://0x100000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
-wx bf1120bf1020
+wx bf1120bf1220
 ar r7=0x11
 aes
-ar pc
+ar pc; ar psw
 aes
-ar pc
+ar pc; ar psw
 '
 EXPECT='0x00000003
+0x00000000
 0x00000026
+0x00000080
 '
 run_test
 
@@ -1022,6 +1030,112 @@ EXPECT='0x00000001
 run_test
 
 #-------------------------------------------------------------------------
+# SUBB a, imm
+#-------------------------------------------------------------------------
+NAME="op: subb a, imm"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx c37462949674279412
+aes
+aes
+aes
+ar pc; ar psw; ar a
+aes
+aes
+ar pc; ar psw; ar a
+'
+EXPECT='0x00000005
+0x000000c0
+0x000000cc
+0x00000009
+0x00000000
+0x00000014
+'
+run_test
+
+#-------------------------------------------------------------------------
+# SUBB a, direct
+#-------------------------------------------------------------------------
+NAME="op: subb a, direct"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx c37462952074279521
+wx 9612 @0x10020
+aes
+aes
+aes
+ar pc; ar psw; ar a
+aes
+aes
+ar pc; ar psw; ar a
+'
+EXPECT='0x00000005
+0x000000c0
+0x000000cc
+0x00000009
+0x00000000
+0x00000014
+'
+run_test
+
+#-------------------------------------------------------------------------
+# SUBB a, @Ri
+#-------------------------------------------------------------------------
+NAME="op: subb a, @Ri"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx 7920c374629709742797
+wx 9612 @0x10020
+aes
+aes
+aes
+aes
+ar pc; ar psw; ar a
+aes
+aes
+aes
+ar pc; ar psw; ar a
+'
+EXPECT='0x00000006
+0x000000c0
+0x000000cc
+0x0000000a
+0x00000000
+0x00000014
+'
+run_test
+
+#-------------------------------------------------------------------------
+# SUBB a, Rn
+#-------------------------------------------------------------------------
+NAME="op: subb a, Rn"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx c374627f969f74277f129f
+aes
+aes
+aes
+aes
+ar pc; ar psw; ar a
+aes
+aes
+aes
+ar pc; ar psw; ar a
+'
+EXPECT='0x00000006
+0x000000c0
+0x000000cc
+0x0000000b
+0x00000000
+0x00000014
+'
+run_test
+
+#-------------------------------------------------------------------------
 # DA a (BCD addition)
 #-------------------------------------------------------------------------
 NAME="op: da a (BCD no carry: 23+23)"
@@ -1069,6 +1183,63 @@ ar pc; ar psw; ar a
 EXPECT='0x00000005
 0x00000080
 0x00000065
+'
+run_test
+
+#-------------------------------------------------------------------------
+# DIV ab
+#-------------------------------------------------------------------------
+NAME="op: div ab"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx 848484
+ar a=106
+ar b=3
+aes
+ar pc; ar psw; ar a; ar b
+aes
+ar pc; ar psw; ar a; ar b
+aes
+ar pc; ar ov;
+'
+EXPECT='0x00000001
+0x00000001
+0x00000023
+0x00000001
+0x00000002
+0x00000001
+0x00000023
+0x00000000
+0x00000003
+0x00000001
+'
+run_test
+
+#-------------------------------------------------------------------------
+# MUL ab
+#-------------------------------------------------------------------------
+NAME="op: mul ab"
+FILE=malloc://0x100000
+CMDS='
+e asm.arch=8051;e asm.bits=8; aei
+wx a4a4
+ar a=32
+ar b=7
+aes
+ar pc; ar psw; ar a; ar b
+ar b=3
+aes
+ar pc; ar psw; ar a; ar b
+'
+EXPECT='0x00000001
+0x00000001
+0x000000e0
+0x00000000
+0x00000002
+0x00000004
+0x000000a0
+0x00000002
 '
 run_test
 
