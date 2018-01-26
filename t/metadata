@@ -389,14 +389,12 @@ run_test
 
 NAME="Csj ascii/latin1"
 FILE=../bins/pe/testapp-msvc64.exe
-ARGS=
+ARGS="-z"
 CMDS='Csa @ 0x1400160a0
 Csg @ 0x1400160b8
 Csj
 '
-FILTER='grep -o "{[^}]*\(5368799392\|5368799416\),[^}]*}"'
-EXPECT='{"offset":5368799392, "type":"Cs", "name":"bGF0aW4xIGdhdGU6IM67q84=", "enc":"latin1", "ascii":false}
-{"offset":5368799416, "type":"Cs", "name":"ICAtLSBpbiBDb25FbXUsIHJ1biBgY2hjcCAyODU5MWAgdG8gc2VlIHRoZSBnYXRlLg==", "enc":"latin1", "ascii":true}
+EXPECT='[{"offset":5368799392, "type":"Cs", "name":"bGF0aW4xIGdhdGU6IM67q84=", "enc":"latin1", "ascii":false},{"offset":5368799416, "type":"Cs", "name":"ICAtLSBpbiBDb25FbXUsIHJ1biBgY2hjcCAyODU5MWAgdG8gc2VlIHRoZSBnYXRlLg==", "enc":"latin1", "ascii":true}]
 '
 run_test
 
@@ -439,7 +437,7 @@ run_test
 
 NAME="Csg, Csa and Csj"
 FILE=../bins/pe/testapp-msvc64.exe
-ARGS=
+ARGS="-e bin.strpurge=0-0xffffffffffffffff,!0x140016018"
 CMDS='s 0x140016018
 Csj
 Csa
@@ -447,10 +445,9 @@ Csj
 Csg
 Csj
 '
-FILTER='grep -o "{[^}]*5368799256,[^}]*}"'
-EXPECT='{"offset":5368799256, "type":"Cs", "name":"XHR3aWRlXFxlc2M6IFxlWzBtwqFcclxu", "enc":"iz", "ascii":false}
-{"offset":5368799256, "type":"Cs", "name":"CQ==", "enc":"latin1", "ascii":true}
-{"offset":5368799256, "type":"Cs", "name":"CXdpZGVcZXNjOiAbWzBtoQ0K", "enc":"latin1", "ascii":false}
+EXPECT='[{"offset":5368799256, "type":"Cs", "name":"XHR3aWRlXFxlc2M6IFxlWzBtwqFcclxu", "enc":"iz", "ascii":false}]
+[{"offset":5368799256, "type":"Cs", "name":"CQ==", "enc":"latin1", "ascii":true}]
+[{"offset":5368799256, "type":"Cs", "name":"CXdpZGVcZXNjOiAbWzBtoQ0K", "enc":"latin1", "ascii":false}]
 '
 run_test
 
@@ -484,15 +481,14 @@ run_test
 
 NAME="Cs8 and Csj"
 FILE=../bins/elf/strenc
-ARGS=
+ARGS="-e bin.strpurge=0-0xffffffffffffffff,!0x004021ff"
 CMDS='s 0x004021ff
 Csj
 Cs8
 Csj
 '
-FILTER='grep -o "{[^}]*4203007,[^}]*}"'
-EXPECT='{"offset":4203007, "type":"Cs", "name":"dXRmOD4gXFx1MDBhMlxcdTIwYWNcXFUwMDAxMDM0OCBpbiB5ZWxsb3c6XGVbMzNtIMKi4oKs8JCNiCBcZVswbVxu", "enc":"iz", "ascii":false}
-{"offset":4203007, "type":"Cs", "name":"dXRmOD4gXHUwMGEyXHUyMGFjXFUwMDAxMDM0OCBpbiB5ZWxsb3c6G1szM20gwqLigqzwkI2IIBtbMG0K", "enc":"utf8", "ascii":false}
+EXPECT='[{"offset":4203007, "type":"Cs", "name":"dXRmOD4gXFx1MDBhMlxcdTIwYWNcXFUwMDAxMDM0OCBpbiB5ZWxsb3c6XGVbMzNtIMKi4oKs8JCNiCBcZVswbVxu", "enc":"iz", "ascii":false}]
+[{"offset":4203007, "type":"Cs", "name":"dXRmOD4gXHUwMGEyXHUyMGFjXFUwMDAxMDM0OCBpbiB5ZWxsb3c6G1szM20gwqLigqzwkI2IIBtbMG0K", "enc":"utf8", "ascii":false}]
 '
 run_test
 
