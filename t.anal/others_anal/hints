@@ -13,8 +13,8 @@ ao~?
 ahe test
 ao~?
 '
-EXPECT='13
-13
+EXPECT='14
+14
 '
 run_test
 

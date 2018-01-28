@@ -14,7 +14,7 @@ ao 1
 p8 1
 ao 1~?
 '
-EXPECT='12
+EXPECT='13
 address: 0x0
 opcode: nop
 mnemonic: nop
@@ -27,8 +27,9 @@ type: nop
 esil: ,
 stack: null
 family: cpu
+stackop: null
 90
-12
+13
 '
 run_test
 
