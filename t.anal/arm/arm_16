@@ -123,3 +123,12 @@ pd 1 @ 0x2
 EXPECT='            0x00000002      01a0           adr r0, 4                   ; "Radare2 test\r\n" ; 0x8 ; 8
 '
 run_test
+
+NAME="arm 16 BE 4 bytes instruction"
+BROKEN=
+ARGS="-a arm -b 16"
+CMDS="e cfg.bigendian=1
+pa blx 0x33b8"
+EXPECT='f003f9da
+'
+run_test
