@@ -349,7 +349,7 @@ class NewRegressions {
           test.args = v || [];
           break;
         case 'CMDS':
-          test.cmdScript = v + "\n";
+          test.cmdScript = v ? v + "\n" : v;
           test.cmds = test.cmdScript ? test.cmdScript.trim().split('\n') : [];
           break;
         case 'CMDS64':
