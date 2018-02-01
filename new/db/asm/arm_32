@@ -38,6 +38,14 @@ aB "91232310" mlane r3, r1, r3, r2
 a "moveq r0, sl" 0a00a001
 a "movne r0, r9" 0900a011
 aB "93000310" mulne r3, r3, r0
+a "mul r2, r3, r4" 930402e0
+a "mul r6, r2" 960206e0
+a "smull r4, r1, r2, r3" 9243c1e0
+a "smlal r4, r1, r2, r3" 9243e1e0
+a "smlabb r4, r7, r3, r1" 871304e1
+a "smlabt r4, r7, r3, r1" c71304e1
+a "smlatb r4, r7, r3, r1" a71304e1
+a "smlatt r4, r7, r3, r1" e71304e1
 a "mvneq r0, 21" 1500e003
 a "mvneq r0, -2147483648" 0201e003
 a "orreq r5, r5, r3" 03508501
@@ -79,10 +87,11 @@ aB "9347a510" umlalnE r4, r5, r3, r7
 aB "7010ef06" uxtbeq r1, r0
 aB "7000ff06a" uxtheq r0, r0
 aB "000b800d" vstreq d0, [r0]
-a "ldr r1, [r2, r3, lsl 2]" 031192e7
-a "ldr r1, [r2, r3, lsr 5]" a31292e7
-a "ldr r1, [r2, r3, asr 6]" 431392e7
-a "ldr r1, [r2, r3, ror 9]" e31492e7
+a "ldr r1, [r2, r3]" 031092e7
+aB "ldr r1, [r2, r3, lsl 2]" 031192e7
+aB "ldr r1, [r2, r3, lsr 5]" a31292e7
+aB "ldr r1, [r2, r3, asr 6]" 431392e7
+aB "ldr r1, [r2, r3, ror 9]" e31492e7
 a "mrc p5, 1, r4, c2, c4, 6" d44532ee
 a "mrc p4, 4, r5, c2, c2" 125492ee
 a "mrc p3, 0, r5, c3, c5, 6" d55313ee
