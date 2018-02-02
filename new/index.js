@@ -300,7 +300,33 @@ class NewRegressions {
       editMode.name = 'cmd_graph';
       process.exit(1);
     }
+    const delims = /['"%]/;
+    const stateEnum = Object.freeze({NORMAL: 0, CMDS_CONT: 1, EXPECT_CONT: 2});
+    var state = stateEnum.NORMAL;
+    var delim;
+    var endDelim;
     for (let l of lines) {
+      switch (state) {
+        case stateEnum.CMDS_CONT:
+          endDelim = l.indexOf(delim);
+          if (endDelim == -1) {
+            test.cmdScript += l + "\n";
+          } else {
+            test.cmdScript += l.substring(0, endDelim);
+            test.cmds = test.cmdScript.trim().split('\n');
+            state = stateEnum.NORMAL;
+          }
+          continue;
+        case stateEnum.EXPECT_CONT:
+          endDelim = l.indexOf(delim);
+          if (endDelim == -1) {
+            test.expect += l + "\n";
+          } else {
+            test.expect += l.substring(0, endDelim);
+            state = stateEnum.NORMAL;
+          }
+          continue;
+      }
       const line = l.trim();
       if (line.length === 0 || line[0] === '#') {
         continue;
@@ -349,7 +375,20 @@ class NewRegressions {
           test.args = v || [];
           break;
         case 'CMDS':
-          test.cmdScript = v ? v + "\n" : v;
+          delim = v.trim().charAt(0);
+          if (delims.test(delim)) {
+            const startDelim = v.indexOf(delim);
+            const endDelim = v.indexOf(delim, startDelim + 1);
+            if (endDelim == -1) {
+              test.cmdScript = v.substring(startDelim + 1) + "\n";
+              state = stateEnum.CMDS_CONT;
+              break;
+            } else {
+              test.cmdScript = v.substring(startDelim + 1, endDelim) + "\n";
+            }
+          } else {
+            test.cmdScript = v ? v + "\n" : v;
+          }
           test.cmds = test.cmdScript ? test.cmdScript.trim().split('\n') : [];
           break;
         case 'CMDS64':
@@ -366,7 +405,22 @@ class NewRegressions {
           test.broken = true;
           break;
         case 'EXPECT':
-          test.expect = v;
+          test.expect64 = false;
+          delim = v.trim().charAt(0);
+          if (delims.test(delim)) {
+            test.expectDelim = delim;
+            const startDelim = v.indexOf(delim);
+            const endDelim = v.indexOf(delim, startDelim + 1);
+            if (endDelim == -1) {
+              test.expect = v.substring(startDelim + 1) + "\n";
+              state = stateEnum.EXPECT_CONT;
+              break;
+            } else {
+              test.expect = v.substring(startDelim + 1, endDelim) + "\n";
+            }
+          } else {
+            test.expect = v;
+          }
           break;
         case 'EXPECT64':
           test.expect = debase64(v);
@@ -384,6 +438,9 @@ class NewRegressions {
         default:
           throw new Error('Invalid database, key =(', k, ')');
       }
+    }
+    if (state !== stateEnum.NORMAL) {
+      throw new Error('Unexpected EOF, state = ' + state);
     }
     if (Object.keys(test) !== 0) {
       if (test.file && test.cmds) {
@@ -440,7 +497,7 @@ class NewRegressions {
          * Note that process.platform is always win32 even on Windows 64 bits */
         test.stdout = test.stdout.replace(/\r/g, '');
       }
-      test.passes = test.expect.trim() === test.stdout.trim();
+      test.passes = test.expect64 ? test.expect.trim() === test.stdout.trim() : test.expect === test.stdout;
     }
     const status = (test.passes)
     ? (test.broken ? colors.yellow('[FX]') : colors.green('[OK]'))
@@ -517,6 +574,19 @@ class NewRegressions {
       // console.log('===');
       if (test.expect64) {
         console.log('EXPECT64=' + base64(test.stdout));
+      } else if (test.expect64 !== undefined) {
+        if (test.expectDelim === undefined) {
+          test.expectDelim = '%';
+        }
+        const wsTrailing = /[ \t]+$/gm;
+        var curIndex = 0;
+        var match;
+        process.stdout.write('EXPECT=' + test.expectDelim);
+        while ((match = wsTrailing.exec(test.stdout)) !== null) {
+          process.stdout.write(test.stdout.substring(curIndex, wsTrailing.lastIndex - match[0].length) + colors.bgRed(match[0]));
+          curIndex = wsTrailing.lastIndex;
+        }
+        process.stdout.write(test.stdout.substring(curIndex) + test.expectDelim + "\n");
       }
       if (this.interactive) {
 //        console.log('TODO: interactive thing should happen here');
