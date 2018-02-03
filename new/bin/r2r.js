@@ -222,7 +222,7 @@ function markAsBroken (test, next) {
     for (let line of lines) {
       output += line + '\n';
       if (line.startsWith('NAME=')) {
-        const name = line.split('=', 2)[1];
+        const name = line.substring(5);
         if (name === test.name) {
           console.error('TEST FOUND!!! BINGO :D');
           output += 'BROKEN=1\n';
@@ -370,7 +370,7 @@ function fixCommands (test, next) {
       }
       if (line.startsWith('NAME=')) {
 // TODO: ensure expect is valid
-        const name = line.split('=', 2)[1];
+        const name = line.substring(5);
         if (name === test.name) {
           target = name;
         }
