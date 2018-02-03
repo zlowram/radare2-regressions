@@ -284,7 +284,7 @@ function fixTest (test, next) {
         target = null;
       }
       if (line.startsWith('NAME=')) {
-        const name = line.split('=', 2)[1];
+        const name = line.substring(5);
         if (name === test.name) {
           target = name;
         }
