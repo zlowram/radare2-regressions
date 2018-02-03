@@ -5,7 +5,7 @@ for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 # NOP
 #-------------------------------------------------------------------------
 NAME="op: nop"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 00
@@ -21,7 +21,7 @@ run_test
 # AJMP addr11
 #-------------------------------------------------------------------------
 NAME="op: ajmp addr11"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a101
@@ -37,7 +37,7 @@ run_test
 # LJMP addr16
 #-------------------------------------------------------------------------
 NAME="op: ljmp addr16"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 021234
@@ -53,7 +53,7 @@ run_test
 # SJMP offset
 #-------------------------------------------------------------------------
 NAME="op: sjmp offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 8010
@@ -69,7 +69,7 @@ run_test
 # JMP @a+dptr
 #-------------------------------------------------------------------------
 NAME="op: jmp @a+dptr"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 73
@@ -87,15 +87,15 @@ run_test
 # ACALL addr11
 #-------------------------------------------------------------------------
 NAME="op: acall addr11"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b101
 ar sp=0x20
-wx ffffff @0x10020
+wx ffffff @_idata+0x20
 aes
 ar pc; ar psw; ar sp
-p8 3 @0x10020
+p8 3 @_idata+0x20
 '
 EXPECT='0x00000501
 0x00000000
@@ -108,15 +108,15 @@ run_test
 # LCALL addr16
 #-------------------------------------------------------------------------
 NAME="op: lcall addr16"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 121234
 ar sp=0x20
-wx ffffff @0x10020
+wx ffffff @_idata+0x20
 aes
 ar pc; ar psw; ar sp
-p8 3 @0x10020
+p8 3 @_idata+0x20
 '
 EXPECT='0x00001234
 0x00000000
@@ -129,11 +129,11 @@ run_test
 # RET
 #-------------------------------------------------------------------------
 NAME="op: ret"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 22
-wx 002301 @0x10020
+wx 002301 @_idata+0x20
 ar sp=0x22
 aes
 ar pc; ar psw; ar sp
@@ -148,11 +148,11 @@ run_test
 # RETI
 #-------------------------------------------------------------------------
 NAME="op: reti"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 32
-wx 002301 @0x10020
+wx 002301 @_idata+0x20
 ar sp=0x22
 aes
 ar pc; ar psw; ar sp
@@ -167,16 +167,16 @@ run_test
 # PUSH direct
 #-------------------------------------------------------------------------
 NAME="op: push direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c030
-wx 40 @0x10030
+wx 40 @_idata+0x30
 ar sp=0x21
-wx ffffff @0x10020
+wx ffffff @_idata+0x20
 aes
 ar pc; ar psw; ar sp
-p8 3 @0x10020
+p8 3 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -189,15 +189,15 @@ run_test
 # POP direct
 #-------------------------------------------------------------------------
 NAME="op: pop direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d030
 ar sp=0x21
-wx ff40ff @0x10020
+wx ff40ff @_idata+0x20
 aes
 ar pc; ar psw; ar sp
-p8 1 @0x10030
+p8 1 @_idata+0x30
 '
 EXPECT='0x00000002
 0x00000000
@@ -210,16 +210,16 @@ run_test
 # JBC bit, offset
 #-------------------------------------------------------------------------
 NAME="op: jbc bit, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 100330100430
-wx 10 @0x10020
+wx 10 @_idata+0x20
 aes
 ar pc
 aes
 ar pc; ar psw
-pB 1 @0x10020
+pB 1 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000036
@@ -232,16 +232,16 @@ run_test
 # JB bit, offset
 #-------------------------------------------------------------------------
 NAME="op: jb bit, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 200330200430
-wx 10 @0x10020
+wx 10 @_idata+0x20
 aes
 ar pc
 aes
 ar pc; ar psw
-pB 1 @0x10020
+pB 1 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000036
@@ -254,16 +254,16 @@ run_test
 # JNB bit, offset
 #-------------------------------------------------------------------------
 NAME="op: jnb bit, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 300430300330
-wx 10 @0x10020
+wx 10 @_idata+0x20
 aes
 ar pc
 aes
 ar pc; ar psw
-pB 1 @0x10020
+pB 1 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000036
@@ -276,7 +276,7 @@ run_test
 # JC offset
 #-------------------------------------------------------------------------
 NAME="op: jc offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c34030d34030
@@ -297,7 +297,7 @@ run_test
 # JNC offset
 #-------------------------------------------------------------------------
 NAME="op: jnc offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d35030c35030
@@ -318,7 +318,7 @@ run_test
 # JZ offset
 #-------------------------------------------------------------------------
 NAME="op: jz offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f46030e46030
@@ -339,7 +339,7 @@ run_test
 # JNZ offset
 #-------------------------------------------------------------------------
 NAME="op: jnz offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e47030f47030
@@ -360,7 +360,7 @@ run_test
 # CJNE a, imm, offset
 #-------------------------------------------------------------------------
 NAME="op: cjne a, imm, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b46220b49620
@@ -381,11 +381,11 @@ run_test
 # CJNE a, direct, offset
 #-------------------------------------------------------------------------
 NAME="op: cjne a, direct, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b52030b52130
-wx 1112 @0x10020
+wx 1112 @_idata+0x20
 ar a=0x11
 aes
 ar pc; ar psw
@@ -403,11 +403,11 @@ run_test
 # CJNE @Ri, imm, offset
 #-------------------------------------------------------------------------
 NAME="op: cjne @Ri, imm, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b71130b71030
-wx 1110 @0x10020
+wx 1110 @_idata+0x20
 ar r1=0x20
 aes
 ar pc; ar psw
@@ -425,7 +425,7 @@ run_test
 # CJNE Rn, imm, offset
 #-------------------------------------------------------------------------
 NAME="op: cjne Rn, imm, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx bf1120bf1220
@@ -446,17 +446,17 @@ run_test
 # DJNZ direct, offset
 #-------------------------------------------------------------------------
 NAME="op: djnz direct, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d52030d52030
-wx 01 @0x10020
+wx 01 @_idata+0x20
 aes
 ar pc
-p8 1 @0x10020
+p8 1 @_idata+0x20
 aes
 ar pc
-p8 1 @0x10020
+p8 1 @_idata+0x20
 '
 EXPECT='0x00000003
 00
@@ -469,7 +469,7 @@ run_test
 # DJNZ Rn, offset
 #-------------------------------------------------------------------------
 NAME="op: djnz Rn, offset"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx df30df30
@@ -493,7 +493,7 @@ run_test
 # SETB c
 #-------------------------------------------------------------------------
 NAME="op: setb c"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d3
@@ -509,14 +509,14 @@ run_test
 # SETB bit
 #-------------------------------------------------------------------------
 NAME="op: setb bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d204d206
 aes
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 pB 1
 '
 EXPECT='0x00000004
@@ -529,7 +529,7 @@ run_test
 # CLR a
 #-------------------------------------------------------------------------
 NAME="op: clr a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e4
@@ -548,7 +548,7 @@ run_test
 # CLR c
 #-------------------------------------------------------------------------
 NAME="op: clr c"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c3
@@ -565,15 +565,15 @@ run_test
 # CLR bit
 #-------------------------------------------------------------------------
 NAME="op: clr bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c204c206
-wx ff @0x10020
+wx ff @_idata+0x20
 aes
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 pB 1
 '
 EXPECT='0x00000004
@@ -586,7 +586,7 @@ run_test
 # CPL a
 #-------------------------------------------------------------------------
 NAME="op: cpl a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f4
@@ -605,7 +605,7 @@ run_test
 # CPL c
 #-------------------------------------------------------------------------
 NAME="op: cpl c"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b3
@@ -622,15 +622,15 @@ run_test
 # CPL bit
 #-------------------------------------------------------------------------
 NAME="op: cpl bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx b203b206
-wx f0 @0x10020
+wx f0 @_idata+0x20
 aes
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 pB 1
 '
 EXPECT='0x00000004
@@ -643,7 +643,7 @@ run_test
 # DEC a
 #-------------------------------------------------------------------------
 NAME="op: dec a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 14
@@ -661,14 +661,14 @@ run_test
 # DEC direct
 #-------------------------------------------------------------------------
 NAME="op: dec direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 1520
-wx 80 @0x10020
+wx 80 @_idata+0x20
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 p8 1
 '
 EXPECT='0x00000002
@@ -681,15 +681,15 @@ run_test
 # DEC @Ri
 #-------------------------------------------------------------------------
 NAME="op: dec @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 16
 ar r0=0x20
-wx 80 @0x10020
+wx 80 @_idata+0x20
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 p8 1
 '
 EXPECT='0x00000001
@@ -702,7 +702,7 @@ run_test
 # DEC Rn
 #-------------------------------------------------------------------------
 NAME="op: dec Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 1f
@@ -720,7 +720,7 @@ run_test
 # INC a
 #-------------------------------------------------------------------------
 NAME="op: inc a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 04
@@ -738,14 +738,14 @@ run_test
 # INC direct
 #-------------------------------------------------------------------------
 NAME="op: inc direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 0520
-wx 80 @0x10020
+wx 80 @_idata+0x20
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 p8 1
 '
 EXPECT='0x00000002
@@ -758,15 +758,15 @@ run_test
 # INC @Ri
 #-------------------------------------------------------------------------
 NAME="op: inc @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 06
 ar r0=0x20
-wx 80 @0x10020
+wx 80 @_idata+0x20
 aes
 ar pc; ar psw
-s 0x10020
+s _idata+0x20
 p8 1
 '
 EXPECT='0x00000001
@@ -779,7 +779,7 @@ run_test
 # INC Rn
 #-------------------------------------------------------------------------
 NAME="op: inc Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 0f
@@ -797,7 +797,7 @@ run_test
 # INC dptr
 #-------------------------------------------------------------------------
 NAME="op: inc dptr"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a3
@@ -815,7 +815,7 @@ run_test
 # ADD a, imm
 #-------------------------------------------------------------------------
 NAME="op: add a, imm (carry)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 2480
@@ -830,7 +830,7 @@ EXPECT='0x00000002
 run_test
 
 NAME="op: add a, imm (aux carry)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 2408
@@ -845,7 +845,7 @@ EXPECT='0x00000002
 run_test
 
 NAME="op: add a, imm (overflow)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 2440
@@ -863,12 +863,12 @@ run_test
 # ADD a, direct
 #-------------------------------------------------------------------------
 NAME="op: add a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 2520
 ar a=0x81
-wx 2030 @0x10020
+wx 2030 @_idata+0x20
 aes
 ar pc; ar psw; ar a
 '
@@ -882,13 +882,13 @@ run_test
 # ADD a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: add a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 27
 ar a=0x81
 ar r1=0x20
-wx 2030 @0x10020
+wx 2030 @_idata+0x20
 aes
 ar pc; ar psw; ar a
 '
@@ -902,7 +902,7 @@ run_test
 # ADD a, Rn
 #-------------------------------------------------------------------------
 NAME="op: add a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 2f
@@ -921,7 +921,7 @@ run_test
 # ADDC a, imm
 #-------------------------------------------------------------------------
 NAME="op: addc a, imm (carry)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 3480
@@ -937,7 +937,7 @@ EXPECT='0x00000002
 run_test
 
 NAME="op: addc a, imm (aux carry)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 3408
@@ -953,7 +953,7 @@ EXPECT='0x00000002
 run_test
 
 NAME="op: addc a, imm (overflow)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 3440
@@ -972,13 +972,13 @@ run_test
 # ADDC a, direct
 #-------------------------------------------------------------------------
 NAME="op: addc a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 3520
 ar a=0x81
 ar c=1
-wx 2030 @0x10020
+wx 2030 @_idata+0x20
 aes
 ar pc; ar psw; ar a
 '
@@ -992,14 +992,14 @@ run_test
 # ADDC a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: addc a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 37
 ar a=0x81
 ar r1=0x20
 ar c=1
-wx 2030 @0x10020
+wx 2030 @_idata+0x20
 aes
 ar pc; ar psw; ar a
 '
@@ -1013,7 +1013,7 @@ run_test
 # ADDC a, Rn
 #-------------------------------------------------------------------------
 NAME="op: addc a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 3f
@@ -1033,7 +1033,7 @@ run_test
 # SUBB a, imm
 #-------------------------------------------------------------------------
 NAME="op: subb a, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c37462949674279412
@@ -1058,11 +1058,11 @@ run_test
 # SUBB a, direct
 #-------------------------------------------------------------------------
 NAME="op: subb a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c37462952074279521
-wx 9612 @0x10020
+wx 9612 @_idata+0x20
 aes
 aes
 aes
@@ -1084,11 +1084,11 @@ run_test
 # SUBB a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: subb a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 7920c374629709742797
-wx 9612 @0x10020
+wx 9612 @_idata+0x20
 aes
 aes
 aes
@@ -1112,7 +1112,7 @@ run_test
 # SUBB a, Rn
 #-------------------------------------------------------------------------
 NAME="op: subb a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c374627f969f74277f129f
@@ -1139,7 +1139,7 @@ run_test
 # DA a (BCD addition)
 #-------------------------------------------------------------------------
 NAME="op: da a (BCD no carry: 23+23)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 74232423d4
@@ -1155,7 +1155,7 @@ EXPECT='0x00000005
 run_test
 
 NAME="op: da a (BCD with carry #1: 99+99)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 74992499d4
@@ -1171,7 +1171,7 @@ EXPECT='0x00000005
 run_test
 
 NAME="op: da a (BCD with carry #2: 99+66)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 74992466d4
@@ -1190,7 +1190,7 @@ run_test
 # DIV ab
 #-------------------------------------------------------------------------
 NAME="op: div ab"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 848484
@@ -1220,7 +1220,7 @@ run_test
 # MUL ab
 #-------------------------------------------------------------------------
 NAME="op: mul ab"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a4a4
@@ -1247,15 +1247,15 @@ run_test
 # ORL direct, a
 #-------------------------------------------------------------------------
 NAME="op: orl direct, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 4220
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x81
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1267,14 +1267,14 @@ run_test
 # ORL direct, imm
 #-------------------------------------------------------------------------
 NAME="op: orl direct, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 432081
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000000
@@ -1286,7 +1286,7 @@ run_test
 # ORL a, imm
 #-------------------------------------------------------------------------
 NAME="op: orl a, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 4483
@@ -1304,11 +1304,11 @@ run_test
 # ORL a, direct
 #-------------------------------------------------------------------------
 NAME="op: orl a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 4520
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x83
 aes
 ar pc; ar psw; ar a
@@ -1323,11 +1323,11 @@ run_test
 # ORL a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: orl a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 47
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x20
 ar a=0x83
 aes
@@ -1343,7 +1343,7 @@ run_test
 # ORL a, Rn
 #-------------------------------------------------------------------------
 NAME="op: orl a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 4f
@@ -1362,11 +1362,11 @@ run_test
 # ORL C, bit
 #-------------------------------------------------------------------------
 NAME="op: orl c, bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 7203
-wx 08 @0x10020
+wx 08 @_idata+0x20
 aes
 ar pc; ar psw;
 '
@@ -1379,11 +1379,11 @@ run_test
 # ORL C, /bit
 #-------------------------------------------------------------------------
 NAME="op: orl c, /bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a003
-wx 80 @0x10020
+wx 80 @_idata+0x20
 aes
 ar pc; ar psw;
 '
@@ -1396,15 +1396,15 @@ run_test
 # ANL direct, a
 #-------------------------------------------------------------------------
 NAME="op: anl direct, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 5220
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x10
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1416,14 +1416,14 @@ run_test
 # ANL direct, imm
 #-------------------------------------------------------------------------
 NAME="op: anl direct, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 532010
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000000
@@ -1435,7 +1435,7 @@ run_test
 # ANL a, imm
 #-------------------------------------------------------------------------
 NAME="op: anl a, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 5410
@@ -1453,11 +1453,11 @@ run_test
 # ANL a, direct
 #-------------------------------------------------------------------------
 NAME="op: anl a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 5520
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x10
 aes
 ar pc; ar psw; ar a
@@ -1472,11 +1472,11 @@ run_test
 # ANL a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: anl a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 57
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x20
 ar a=0x10
 aes
@@ -1492,7 +1492,7 @@ run_test
 # ANL a, Rn
 #-------------------------------------------------------------------------
 NAME="op: anl a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 5f
@@ -1511,11 +1511,11 @@ run_test
 # ANL C, bit
 #-------------------------------------------------------------------------
 NAME="op: anl c, bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d38203
-wx 08 @0x10020
+wx 08 @_idata+0x20
 aes
 aes
 ar pc; ar psw;
@@ -1529,11 +1529,11 @@ run_test
 # ANL C, /bit
 #-------------------------------------------------------------------------
 NAME="op: anl c, /bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d3b003
-wx 08 @0x10020
+wx 08 @_idata+0x20
 aes
 aes
 ar pc; ar psw;
@@ -1548,15 +1548,15 @@ run_test
 # XRL direct, a
 #-------------------------------------------------------------------------
 NAME="op: xrl direct, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 6220
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x31
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1568,14 +1568,14 @@ run_test
 # XRL direct, imm
 #-------------------------------------------------------------------------
 NAME="op: xrl direct, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 632031
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000000
@@ -1587,7 +1587,7 @@ run_test
 # XRL a, imm
 #-------------------------------------------------------------------------
 NAME="op: xrl a, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 6430
@@ -1605,11 +1605,11 @@ run_test
 # XRL a, direct
 #-------------------------------------------------------------------------
 NAME="op: xrl a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 6520
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x31
 aes
 ar pc; ar psw; ar a
@@ -1624,11 +1624,11 @@ run_test
 # XRL a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: xrl a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 67
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x20
 ar a=0x31
 aes
@@ -1644,7 +1644,7 @@ run_test
 # XRL a, Rn
 #-------------------------------------------------------------------------
 NAME="op: xrl a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 6f
@@ -1663,7 +1663,7 @@ run_test
 # RR a
 #-------------------------------------------------------------------------
 NAME="op: rr a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 03
@@ -1681,7 +1681,7 @@ run_test
 # RRC a
 #-------------------------------------------------------------------------
 NAME="op: rrc a (carry set)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 13
@@ -1697,7 +1697,7 @@ EXPECT='0x00000001
 run_test
 
 NAME="op: rrc a (carry clear)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 13
@@ -1715,7 +1715,7 @@ run_test
 # RL a
 #-------------------------------------------------------------------------
 NAME="op: rl a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 23
@@ -1733,7 +1733,7 @@ run_test
 # RLC a
 #-------------------------------------------------------------------------
 NAME="op: rlc a (carry set)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 33
@@ -1749,7 +1749,7 @@ EXPECT='0x00000001
 run_test
 
 NAME="op: rlc a (carry clear)"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 33
@@ -1767,7 +1767,7 @@ run_test
 # MOV a, imm
 #-------------------------------------------------------------------------
 NAME="op: mov a, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 7420
@@ -1784,14 +1784,14 @@ run_test
 # MOV direct, imm
 #-------------------------------------------------------------------------
 NAME="op: mov direct, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 752021
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000000
@@ -1803,15 +1803,15 @@ run_test
 # MOV @Ri, imm
 #-------------------------------------------------------------------------
 NAME="op: mov @Ri imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 7720
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1823,7 +1823,7 @@ run_test
 # MOV Rn, imm
 #-------------------------------------------------------------------------
 NAME="op: mov Rn, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 7f20
@@ -1840,14 +1840,14 @@ run_test
 # MOV direct, direct
 #-------------------------------------------------------------------------
 NAME="op: mov direct, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 852021
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000003
 0x00000000
@@ -1859,15 +1859,15 @@ run_test
 # MOV direct, @Ri
 #-------------------------------------------------------------------------
 NAME="op: mov direct, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 8720
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1879,15 +1879,15 @@ run_test
 # MOV direct, Rn
 #-------------------------------------------------------------------------
 NAME="op: mov direct, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 8f20
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r7=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1899,7 +1899,7 @@ run_test
 # MOV dptr, imm
 #-------------------------------------------------------------------------
 NAME="op: mov dptr, imm"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 902010
@@ -1916,15 +1916,15 @@ run_test
 # MOV bit, c
 #-------------------------------------------------------------------------
 NAME="op: mov bit, c"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d39203c39204
-wx f0 @0x10020
+wx f0 @_idata+0x20
 ar c=1
 aes 4
 ar pc; ar psw
-pB 1 @0x10020
+pB 1 @_idata+0x20
 '
 EXPECT='0x00000006
 0x00000000
@@ -1936,11 +1936,11 @@ run_test
 # MOV c, bit
 #-------------------------------------------------------------------------
 NAME="op: mov c, bit"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a203
-wx 08 @0x10020
+wx 08 @_idata+0x20
 aes
 ar pc; ar psw
 '
@@ -1953,15 +1953,15 @@ run_test
 # MOV @Ri, direct
 #-------------------------------------------------------------------------
 NAME="op: mov @Ri direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx a720
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -1973,11 +1973,11 @@ run_test
 # MOV Rn, direct
 #-------------------------------------------------------------------------
 NAME="op: mov Rn, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx af20
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r7=0x21
 aes
 ar pc; ar psw; ar r7
@@ -1992,11 +1992,11 @@ run_test
 # MOV a, direct
 #-------------------------------------------------------------------------
 NAME="op: mov a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e521
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 aes
 ar pc; ar psw; ar a
 '
@@ -2010,11 +2010,11 @@ run_test
 # MOV a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: mov a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e7
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x21
 aes
 ar pc; ar psw; ar a
@@ -2029,7 +2029,7 @@ run_test
 # MOV a, Rn
 #-------------------------------------------------------------------------
 NAME="op: mov a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx ef
@@ -2047,15 +2047,15 @@ run_test
 # MOV direct, a
 #-------------------------------------------------------------------------
 NAME="op: mov direct, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f520
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000000
@@ -2067,16 +2067,16 @@ run_test
 # MOV @Ri, a
 #-------------------------------------------------------------------------
 NAME="op: mov @Ri, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f7
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x20
 ar r1=0x21
 aes
 ar pc; ar psw;
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000001
 0x00000000
@@ -2088,7 +2088,7 @@ run_test
 # MOV Rn, a
 #-------------------------------------------------------------------------
 NAME="op: mov Rn, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx ff
@@ -2107,11 +2107,11 @@ run_test
 # MOVX a, @dptr
 #-------------------------------------------------------------------------
 NAME="op: movx a, @dptr"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e0
-wx 10 @0x10200
+wx 10 @_xdata+0x100
 ar dptr=0x100
 aes
 ar pc; ar psw; ar a
@@ -2126,11 +2126,11 @@ run_test
 # MOVX a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: movx a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx e3
-wx 3040 @0x10120
+wx 3040 @_xdata+0x020
 ar r1=0x21
 aes
 ar pc; ar psw; ar a
@@ -2145,16 +2145,16 @@ run_test
 # MOVX @dptr, a
 #-------------------------------------------------------------------------
 NAME="op: movx @dptr, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f0
-wx 10 @0x10200
+wx 10 @_xdata+0x100
 ar dptr=0x100
 ar a=0x20
 aes
 ar pc; ar psw;
-p8 1 @0x10200
+p8 1 @_xdata+0x100
 '
 EXPECT='0x00000001
 0x00000000
@@ -2166,16 +2166,16 @@ run_test
 # MOVX @Ri, a
 #-------------------------------------------------------------------------
 NAME="op: movx @Ri, a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx f3
-wx 10 @0x10110
+wx 10 @_xdata+0x010
 ar r1=0x10
 ar a=0x20
 aes
 ar pc; ar psw;
-p8 1 @0x10110
+p8 1 @_xdata+0x010
 '
 EXPECT='0x00000001
 0x00000000
@@ -2187,7 +2187,7 @@ run_test
 # MOVC a, @a+pc
 #-------------------------------------------------------------------------
 NAME="op: movc a, @a+pc"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 83
@@ -2206,7 +2206,7 @@ run_test
 # MOVC a, @a+dptr
 #-------------------------------------------------------------------------
 NAME="op: movc a, @a+dptr"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx 93
@@ -2226,7 +2226,7 @@ run_test
 # SWAP a
 #-------------------------------------------------------------------------
 NAME="op: swap a"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c4
@@ -2244,15 +2244,15 @@ run_test
 # XCH a, direct
 #-------------------------------------------------------------------------
 NAME="op: xch a, direct"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c521
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar a=0x20
 aes
 ar pc; ar psw; ar a
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000002
 0x00000001
@@ -2265,16 +2265,16 @@ run_test
 # XCH a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: xch a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx c7
-wx 3040 @0x10020
+wx 3040 @_idata+0x20
 ar r1=0x21
 ar a=0x20
 aes
 ar pc; ar psw; ar a
-p8 2 @0x10020
+p8 2 @_idata+0x20
 '
 EXPECT='0x00000001
 0x00000001
@@ -2287,7 +2287,7 @@ run_test
 # XCH a, Rn
 #-------------------------------------------------------------------------
 NAME="op: xch a, Rn"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx cf
@@ -2307,16 +2307,16 @@ run_test
 # XCHD a, @Ri
 #-------------------------------------------------------------------------
 NAME="op: xchd a, @Ri"
-FILE=malloc://0x100000
+FILE=malloc://0x10000
 CMDS='
 e asm.arch=8051;e asm.bits=8; aei
 wx d7
-wx 34 @0x10020
+wx 34 @_idata+0x20
 ar r1=0x20
 ar a=0x56
 aes
 ar pc; ar psw; ar a
-p8 1 @0x10020
+p8 1 @_idata+0x20
 '
 EXPECT='0x00000001
 0x00000001
