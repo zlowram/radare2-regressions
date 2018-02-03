@@ -497,7 +497,7 @@ class NewRegressions {
          * Note that process.platform is always win32 even on Windows 64 bits */
         test.stdout = test.stdout.replace(/\r/g, '');
       }
-      test.passes = test.expect64 ? test.expect.trim() === test.stdout.trim() : test.expect === test.stdout;
+      test.passes = test.expect64 || test.expect64 === undefined ? test.expect.trim() === test.stdout.trim() : test.expect === test.stdout;
     }
     const status = (test.passes)
     ? (test.broken ? colors.yellow('[FX]') : colors.green('[OK]'))
