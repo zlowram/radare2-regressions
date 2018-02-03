@@ -419,7 +419,7 @@ class NewRegressions {
               test.expect = v.substring(startDelim + 1, endDelim) + "\n";
             }
           } else {
-            test.expect = v;
+            test.expect = v + "\n";
           }
           break;
         case 'EXPECT64':
