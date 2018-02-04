@@ -581,7 +581,7 @@ class NewRegressions {
         const wsTrailing = /[ \t]+$/gm;
         var curIndex = 0;
         var match;
-        process.stdout.write('EXPECT=' + test.expectDelim);
+        process.stdout.write('\nEXPECT=' + test.expectDelim);
         while ((match = wsTrailing.exec(test.stdout)) !== null) {
           process.stdout.write(test.stdout.substring(curIndex, wsTrailing.lastIndex - match[0].length) + colors.bgRed(match[0]));
           curIndex = wsTrailing.lastIndex;
