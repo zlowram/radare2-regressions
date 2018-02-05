@@ -11,7 +11,6 @@ EXPECT='name: sub.msvcrt.dll_printf_b2d
 run_test
 
 FILE=../../bins/pe/ioli/w32/crackme0x00.exe
-BROKEN=1
 CMDS='aaa
 pd 1 @ sym.imp.msvcrt.dll_strlen~?dword
 
@@ -21,7 +20,6 @@ EXPECT='1
 run_test
 
 FILE=../../bins/pe/testx64.exe
-BROKEN=1
 CMDS='aaa
 pd 1 @ sym.imp.VCRUNTIME140.dll_memset~?qword
 
@@ -29,3 +27,10 @@ pd 1 @ sym.imp.VCRUNTIME140.dll_memset~?qword
 EXPECT='1
 '
 run_test
+
+FILE=../../bins/pe/96workingsections.exe
+CMDS='aaa
+afb @ sym.imp.kernel32.dll_ExitProcess
+'
+EXPECT='
+'
