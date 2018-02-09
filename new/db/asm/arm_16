@@ -30,6 +30,8 @@ a "mov.w r0, 240" 4ff0f000
 a "mov.w r3, 536" 4ff40673
 a "mov.w r7, 1032" 4ff48167
 a "mov.w r1, 2048" 4ff40061
+a "blx 0xF4" 00f078e8
+a "blx 0x4" 00f000e8
 aB "blx 0xfb000134" fff754ee 0xfb00048a
 aB "blx 0x22211C" 1cf21aea 0x00005CE4
 aB "bl 0xF4001260" 00f055ff 0xF40003B2
