@@ -1,5 +1,5 @@
 #!/bin/sh
-# LGPL - Copyright (C) 2015 pancake
+# LGPL - Copyright (C) 2015-2018 pancake
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
@@ -21,8 +21,8 @@ wv8 0x500 @ 0x1048
 w Hello @ 0x500
 pd 1
 '
-EXPECT=' ; [0x1048:8]=0x500 "Hello"
- 0x00000000      mov rsi, qword [rip + 0x1041]
+EXPECT='  ; [0x1048:8]=0x500 "Hello"
+  0x00000000      mov rsi, qword [rip + 0x1041]
 '
 run_test
 
@@ -44,8 +44,8 @@ wv8 0x500 @ 0x1048
 w Hello @ 0x500
 pd 1
 '
-EXPECT=' ; [0x1048:8]=0x500 "Hello"
- 0x00000000      mov rsi, qword [rip + 0x1041]
+EXPECT='  ; [0x1048:8]=0x500 "Hello"
+  0x00000000      mov rsi, qword [rip + 0x1041]
 '
 run_test
 
