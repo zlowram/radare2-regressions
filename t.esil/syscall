@@ -52,7 +52,7 @@ e asm.emu.str=1
 e asm.cmtcol=30
 pd 5~write
 '
-EXPECT=' 0x004000f1      syscall      ; 1 = write (1, "Hello, world!.", 14)
+EXPECT='  0x004000f1      syscall     ; 1 = write (1, "Hello, world!.", 14)
 '
 run_test
 
