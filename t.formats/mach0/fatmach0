@@ -23,7 +23,7 @@ e asm.lines=0
 pd 1
 "
 EXPECT='64
- 0x100010f7c      stp x22, x21, [sp, -0x30]!
+  0x100010f7c      stp x22, x21, [sp, -0x30]!
 '
 run_test
 
@@ -38,7 +38,7 @@ e asm.lines=0
 pd 1
 "
 EXPECT='64
- 0x100010f7c      stp x22, x21, [sp, -0x30]!
+  0x100010f7c      stp x22, x21, [sp, -0x30]!
 '
 run_test
 
@@ -51,7 +51,7 @@ e asm.flags=0
 e asm.lines=0
 pd 1
 "
-EXPECT=' 0x100010f7c      stp x22, x21, [sp, -0x30]!
+EXPECT='  0x100010f7c      stp x22, x21, [sp, -0x30]!
 '
 run_test
 
