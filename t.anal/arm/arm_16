@@ -128,7 +128,17 @@ NAME="arm 16 BE 4 bytes instruction"
 BROKEN=
 ARGS="-a arm -b 16"
 CMDS="e cfg.bigendian=1
-pa blx 0x33b8"
-EXPECT='f003f9da
+wa blx 0x33b8
+p8 4
+pi 1
+e cfg.bigendian=0
+wa blx 0x33b8
+p8 4
+pi 1
+"
+EXPECT='f003e9da
+blx 0x33b8
+03f0dae9
+blx 0x33b8
 '
 run_test
