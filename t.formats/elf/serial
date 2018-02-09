@@ -17,7 +17,7 @@ pd 1
 af @ 0x0040073d
 pd 1
 '
-EXPECT=' 0x00400b35      lea rax, [0x0040073d]
- 0x00400b35      lea rax, [fcn.0040073d]
+EXPECT='  0x00400b35      lea rax, [0x0040073d]
+  0x00400b35      lea rax, [fcn.0040073d]
 '
 run_test

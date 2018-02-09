@@ -45,7 +45,7 @@ pd 1~push
 aae
 pd 1~push
 '
-EXPECT=' 0x00015e24      push {r4, r5, r6, r7, lr}
- 0x00015e24      push {r4, r5, r6, r7, lr}
+EXPECT='  0x00015e24      push {r4, r5, r6, r7, lr}
+  0x00015e24      push {r4, r5, r6, r7, lr}
 '
 run_test
