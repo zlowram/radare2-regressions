@@ -5,7 +5,7 @@
 #TESTS+=t/cmd_help
 #TESTS+=t/cmd_i
 #TESTS+=t/cmd_json
-TESTS+=t.anal/mips/mips
+TESTS+=t.anal/others_anal/aaa
 
 
 all:
