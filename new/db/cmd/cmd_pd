@@ -399,15 +399,21 @@ RUN
 NAME=pd, esil, asm.emu.stroff and bin.strpurge
 FILE=../bins/elf/analysis/hello-android-mips
 CMDS='e asm.emu.str=true
-e asm.emu.stroff=true
 s 0x0008049c
 e bin.strpurge=
+e asm.emu.stroff=false
+pd 2
+?e ----
+e asm.emu.stroff=true
 pd 2
 ?e ----
 e bin.strpurge=0x80510
 pd 2
 '
 EXPECT='            0x0008049c      0800023c       lui v0, 8                   ; section.ehdr
+            0x000804a0      10054424       addiu a0, v0, 0x510         ; "Hello World" section..rodata
+----
+            0x0008049c      0800023c       lui v0, 8                   ; section.ehdr
             0x000804a0      10054424       addiu a0, v0, 0x510         ; 0x80510 "Hello World" section..rodata
 ----
             0x0008049c      0800023c       lui v0, 8                   ; section.ehdr
