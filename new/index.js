@@ -67,6 +67,7 @@ class NewRegressions {
 
   callbackFromPath (from) {
     for (let row of [
+      [path.join('db', 'anal'), this.runTest],
       [path.join('db', 'cmd'), this.runTest],
       [path.join('db', 'bin'), this.runTestBin]
     ]) {
