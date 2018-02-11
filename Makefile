@@ -55,31 +55,18 @@ io:
 	$(SHELL) run_tests.sh t.io
 
 
-anal: anal.arc anal.arm anal.avr anal.dalvik anal.java anal.mips anal.x86 anal.others anal.ppc anal.6502 anal.8051 anal.tm320
-anal.arc:
-	$(SHELL) run_tests.sh t.anal/arc
-anal.arm:
-	$(SHELL) run_tests.sh t.anal/arm
-anal.avr:
-	$(SHELL) run_tests.sh t.anal/avr
-anal.dalvik:
-	$(SHELL) run_tests.sh t.anal/dalvik
+anal: anal.8051 anal.java anal.others anal.tricore anal.x86
+anal.8051:
+	$(SHELL) run_tests.sh t.anal/8051
 anal.java:
 	$(SHELL) run_tests.sh t.anal/java
-anal.mips:
-	$(SHELL) run_tests.sh t.anal/mips
-anal.tm320:
-	$(SHELL) run_tests.sh t.anal/tms320
-anal.x86:
-	$(SHELL) run_tests.sh t.anal/x86
 anal.others:
 	$(SHELL) run_tests.sh t.anal/others_anal
-anal.ppc:
-	$(SHELL) run_tests.sh t.anal/ppc
-anal.6502:
-	$(SHELL) run_tests.sh t.anal/6502
-anal.8051:
-		$(SHELL) run_tests.sh t.anal/8051
+anal.tricore:
+	$(SHELL) run_tests.sh t.anal/tricore
+anal.x86:
+	$(SHELL) run_tests.sh t.anal/x86
+
 
 esil:
 	$(SHELL) run_tests.sh t.esil
