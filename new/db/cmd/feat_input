@@ -56,7 +56,7 @@ EXPECT64=Li0tLS0tLS0tLS0tLS0tLS0tLS0tLgp8ICBzaC0+ZnUgICAgICAgICAgICB8CmAtLS0tLS0
 RUN
 NAME=multiple '>' in cmd line: ?e abc > def>ghi
 FILE=-
-CMDS64=Cj9lIGFiYyA+IGRlZj5naGkgICMgc2hvdWxkIG5vdCBoYW5nCg==
+CMDS64=Cj9lIGFiYyA+IGRlZj5naGkgICMgc2hvdWxkIG5vdCBoYW5nCiFybSAtZiAiZGVmPmdoaSIKIXJtIC1mIGdoaQo=
 EXPECT64=Cg==
 RUN
 NAME=hash+space in quoted string
