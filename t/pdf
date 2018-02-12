@@ -23,8 +23,7 @@ CMDS='e asm.dwarf=true
 e anal.nopskip=true # if set to true it fucks the test
 aa # full analysis fuckups main
 pd 1 @main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main ();
 |           ; var int local_4h @ rbp-0x4
 |              ; DATA XREF from 0x0040045d (entry0)
@@ -45,8 +44,7 @@ e asm.varsub=false
 e anal.nopskip=true # if set to true it fucks the test
 af@main # full analysis fuckups main
 pd 1 @main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main (int arg_fch);
 |           ; arg int arg_fch @ rbp+0xfc
 |           0x0040052d      55             push rbp                    ; dwarftest.c:4 {
@@ -66,8 +64,7 @@ e asm.varsub=false
 e anal.nopskip=true # if set to true it fucks the test
 af@main # full analysis fuckups main
 pd 1 @main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main (int arg_fch);
 |           ; arg int arg_fch @ rbp+0xfc
 |           0x0040052d      55             push rbp                    ; dwarftest.c:4 {
@@ -88,8 +85,7 @@ e anal.eobjmp=false
 e anal.nopskip=true
 af@main
 pdf@main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main (int arg_fch);
 |           ; arg int arg_fch @ rbp+0xfc
 |           0x0040052d      55             push rbp                    ; dwarftest.c:4 {
@@ -127,8 +123,7 @@ e anal.eobjmp=false
 e anal.nopskip=true
 af@main
 pdf@main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main (int arg_fch);
 |           ; arg int arg_fch @ rbp+0xfc
 |           0x0040052d      55             push rbp                    ; /tmp/r2-regressions/.//dwarftest.c:4 {
@@ -165,8 +160,7 @@ e anal.eobjmp=false
 e anal.nopskip=true
 af@main
 pdf@main'
-EXPECT='            ;-- main:
-/ (fcn) main 44
+EXPECT='/ (fcn) main 44
 |   main (int arg_fch);
 |           ; arg int arg_fch @ rbp+0xfc
 |           0x0040052d      55             push rbp                    ; dwarftest.c:4 {
