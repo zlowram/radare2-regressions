@@ -63,8 +63,15 @@ linux|'')
   IFS=`printf "\t"`
 	for i in $arr ; do
 		c="`echo $i`"
-		NAME="JSON: $c Well-formed"
+		NAME="JSON: $c Well-formed [ELF]"
 		CMDS="!r2 -qc $c ../bins/elf/bomb | jq . > /dev/null && echo \"1\""
+		EXPECT='1
+'
+		run_test
+
+		c="`echo $i`"
+		NAME="JSON: $c Well-formed [PE]"
+		CMDS="!r2 -qc $c ../bins/pe/version_std.exe | jq . > /dev/null && echo \"1\""
 		EXPECT='1
 '
 		run_test
