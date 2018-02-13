@@ -110,3 +110,22 @@ EXPECT='0x00000000 0 rom_start
 0x00001294 0 Reserv3F
 '
 run_test
+
+
+NAME="sega megadrive rom entrypoint"
+FILE=../../bins/smd/LiquidSpaceDodgerV3.bin
+ARGS=''
+CMDS="ie~vadd"
+EXPECT='vaddr=0x00010100 paddr=0x00010100 baddr=0xffffffffffffffff laddr=0x00000000 haddr=-1 type=program
+'
+
+run_test
+
+NAME="sega megadrive rom maps and printing"
+FILE=../../bins/smd/LiquidSpaceDodgerV3.bin
+ARGS=''
+CMDS="pxw 4 @ 0x10100"
+EXPECT='0x00010100  0xa1003910                                   .9..
+'
+
+run_test
