@@ -125,6 +125,11 @@ invalid
 "
 run_test
 
+NAME='Rasm2 #9197'
+CMDS="!rasm2 -a arm -b 64 'ldur x1, [x29, -8]' "
+EXPECT='a1835ff8
+'
+run_test
 
 NAME='rasm2 -h~Usage?"'
 CMDS='!!rasm2 -h~Usage?'
