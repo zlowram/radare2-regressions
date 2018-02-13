@@ -75,6 +75,12 @@ linux|'')
 	EXPECT='1
 '
 	run_test
+
+	NAME="JSON: iVj Well-formed"
+	CMDS="!r2 -qc 'iVj' ../bins/elf/bomb | jq . > /dev/null && echo \"1\""
+	EXPECT='1
+'
+	run_test
 	;;
 esac
 
