@@ -32,9 +32,9 @@ a "mov.w r7, 1032" 4ff48167
 a "mov.w r1, 2048" 4ff40061
 a "blx 0xF4" 00f078e8
 a "blx 0x4" 00f000e8
-aB "blx 0xfb000134" fff754ee 0xfb00048a
-aB "blx 0x22211C" 1cf21aea 0x00005CE4
-aB "bl 0xF4001260" 00f055ff 0xF40003B2
-aB "blx 0xF4002A6C" 02f064eb 0xF40003A0
-aB "bl 0xF4002862" fff7b4ff 0xF40028F6
-aB "blx 0xF4002AF4" 02f006ea 0xF40006E4
+a "blx 0xfb000134" fff754ee 0xfb00048a
+a "blx 0x22211C" 1cf21aea 0x00005CE4
+a "bl 0xF4001260" 00f055ff 0xF40003B2
+a "blx 0xF4002A6C" 02f064eb 0xF40003A0
+a "bl 0xF4002862" fff7b4ff 0xF40028F6
+a "blx 0xF4002AF4" 02f006ea 0xF40006E4
