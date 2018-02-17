@@ -1920,7 +1920,7 @@ a "seto byte [eax]" 0f9000
 a "setp byte [eax]" 0f9a00
 a "sets byte [eax]" 0f9800
 a "sfence" 0faef8
-aB "sgdt [eax]" 0f0100
+a "sgdt [eax]" 0f0100
 aB "shld dword [eax], eax, 0" 0fa40000
 aB "shld dword [eax], eax, cl" 0fa500
 a "shl edx, 5" c1e205
@@ -1928,12 +1928,12 @@ aB "shrd dword [eax], eax, 0" 0fac0000
 aB "shrd dword [eax], eax, cl" 0fad00
 aB "shufpd xmm0, xmmword [eax], 0x0" 660fc60000
 aB "shufps xmm0, xmmword [eax], 0" 0fc60000
-aB "sidt [eax]" 0f0108
+a "sidt [eax]" 0f0108
 aB "skinit" 0f01de
-aB "sldt word [eax]" 0f0000
+a "sldt word [eax]" 0f0000
 aB "smsw ax" 660f01e0
-aB "smsw eax" 0f01e0
-aB "smsw word [eax]" 0f0120
+a "smsw eax" 0f01e0
+a "smsw word [eax]" 0f0120
 aB "sqrtpd xmm0, xmmword [eax]" 660f5100
 aB "sqrtps xmm0, xmmword [eax]" 0f5100
 aB "sqrtsd xmm0, qword [eax]" f20f5100
@@ -1942,10 +1942,10 @@ a "stc" f9
 a "std" fd
 a "stgi" 0f01dc
 a "sti" fb
-aB "stmxcsr dword [eax]" 0fae18
+a "stmxcsr dword [eax]" 0fae18
 a "stosb byte es:[edi], al" aa
 a "stosd dword es:[edi], eax" ab
-aB "str word [eax]" 0f0008
+a "str word [eax]" 0f0008
 a "sub al, 0" 2c00
 a "sub al, byte [eax]" 2a00
 a "sub byte [eax], al" 2800
@@ -2012,10 +2012,10 @@ aB "vbroadcastsd ymm0, qword [0]" c4e27d190500000000
 aB "vbroadcastss ymm0, dword [eax]" c4e27d1800
 aB "vcvtph2ps xmm0, xmm0, 0" 8fe878a0c000
 aB "vcvtps2ph xmm0, xmm0, 0" 8fe878a1c000
-aB "verr ax" 0f00e0
+a "verr ax" 0f00e0
 aB "verr [eax]" 0f0020
-aB "verw ax" 0f00e8
-aB "verw word [eax]" 0f0028
+a "verw ax" 0f00e8
+a "verw word [eax]" 0f0028
 aB "vextractf128 xmm0, ymm0, 0" c4e37d19c000
 aB "vextractf128 xmm0, ymm0, 0x0" c4e37d19c000
 aB "vfmadd132pd xmm0, xmm0, xmm0" c4e2f998c0
@@ -2062,17 +2062,17 @@ aB "vinsertf128 ymm0, ymm0, xmm0, 0x0" c4e37d18c000
 aB "vmaskmovpd ymm0, ymm0, ymmword [0]" c4e27d2d0500000000
 aB "vmaskmovps ymm0, ymm0, ymmword [0]" c4e27d2c0500000000
 a "vmcall" 0f01c1
-aB "vmclear qword [eax]" 660fc730
+a "vmclear qword [eax]" 660fc730
 a "vmlaunch" 0f01c2
 a "vmload" 0f01da
 a "vmmcall" 0f01d9
-aB "vmptrld qword [eax]" 0fc730
-aB "vmptrst qword [eax]" 0fc738
+a "vmptrld qword [eax]" 0fc730
+a "vmptrst qword [eax]" 0fc738
 a "vmresume" 0f01c3
 a "vmrun" 0f01d8
 a "vmsave" 0f01db
 a "vmxoff" 0f01c4
-aB "vmxon qword [eax]" f30fc730
+a "vmxon qword [eax]" f30fc730
 aB "vpcmov xmm0, xmm0, xmm0, xmm0" 8fe878a2c000
 aB "vpcomb xmm0, xmm0, xmm0, 0" 8fe878ccc000
 aB "vpcomd xmm0, xmm0, xmm0, 0" 8fe878cec000
