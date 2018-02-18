@@ -14,10 +14,10 @@ ARGS="-a x86 -b64"
 CMDS='
 wx 4889e5b8ffff000089c2c1ea1f01d0;aea 5
 '
-EXPECT='A: rsp rbp rax rdx cf edx zf pf sf eax of
-R: rsp rax rdx eax
-W: rbp rax rdx cf edx zf pf sf eax of
-N: rsp
+EXPECT=' A: rsp rbp rax rdx cf edx zf pf sf eax of
+ R: rsp rax rdx eax
+ W: rbp rax rdx cf edx zf pf sf eax of
+NW: rsp
 '
 run_test
 
@@ -72,10 +72,10 @@ ARGS="-a x86 -b64"
 CMDS='
 wx 4889e5b8ffff000089c2c1ea1f01d0;aeA 15
 '
-EXPECT='A: rsp rbp rax rdx cf edx zf pf sf eax of
-R: rsp rax rdx eax
-W: rbp rax rdx cf edx zf pf sf eax of
-N: rsp
+EXPECT=' A: rsp rbp rax rdx cf edx zf pf sf eax of
+ R: rsp rax rdx eax
+ W: rbp rax rdx cf edx zf pf sf eax of
+NW: rsp
 '
 run_test
 
