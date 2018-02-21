@@ -1223,6 +1223,21 @@ fi
 run_test
 }
 
+NAME="call [esp]"
+FILE=-
+ARGS="-a x86 -b 32"
+CMDS='
+aei
+aeim
+aeip
+wx b8efbeadde50ff1424
+3aes
+aer eip
+'
+EXPECT='0xdeadbeef
+'
+run_test
+
 test_cmov "" "cmova eax, ecx"  "0x00000008"
 test_cmov "aer zf=1" "cmova eax, ecx"  "0x00000000"
 test_cmov "aer cf=1" "cmova eax, ecx"  "0x00000000"
