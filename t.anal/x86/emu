@@ -12,7 +12,7 @@ e asm.bits=32
 e asm.os=linux
 e asm.emu=true
 e asm.bytes=0
-e asm.cmtcol=20
+e asm.cmt.col=20
 e asm.lines=false
 pd 20~write,exit
 '
@@ -32,7 +32,7 @@ e asm.os=windows
 e asm.emu=true
 e asm.emu.write=true
 e asm.bytes=0
-e asm.cmtcol=20
+e asm.cmt.col=20
 e asm.lines=false
 aeim
 s 0x00402ade
@@ -54,7 +54,7 @@ e asm.os=windows
 e asm.emu=true
 e asm.emu.write=true
 e asm.bytes=0
-e asm.cmtcol=20
+e asm.cmt.col=20
 e asm.lines=false
 e io.cache=true
 aeim
@@ -77,7 +77,7 @@ e asm.os=linux
 e asm.emu=true
 e asm.emu.write=true
 e asm.bytes=0
-e asm.cmtcol=20
+e asm.cmt.col=20
 e asm.lines=false
 e asm.fcnlines=false
 aa

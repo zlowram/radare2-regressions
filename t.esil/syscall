@@ -49,7 +49,7 @@ CMDS='
 e asm.bytes=0
 e asm.lines=0
 e asm.emu.str=1
-e asm.cmtcol=30
+e asm.cmt.col=30
 pd 5~write
 '
 EXPECT='  0x004000f1      syscall     ; 1 = write (1, "Hello, world!.", 14)

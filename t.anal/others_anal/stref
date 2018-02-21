@@ -15,7 +15,7 @@ e scr.color = false
 e io.va=0
 e asm.lines=0
 e asm.bytes=0
-e asm.cmtright=10
+e asm.cmt.right=10
 wx 488b3541100000
 wv8 0x500 @ 0x1048
 w Hello @ 0x500
@@ -38,7 +38,7 @@ e scr.color = false
 e io.va=1
 e asm.lines=0
 e asm.bytes=0
-e asm.cmtright=10
+e asm.cmt.right=10
 wx 488b3541100000
 wv8 0x500 @ 0x1048
 w Hello @ 0x500

@@ -2,12 +2,12 @@ NAME=pD@x:90~str~?
 FILE=../bins/mach0/bin_longstring
 BROKEN=1
 EXPECT64=NAoK
-ARGS=-e asm.cmtright=true
+ARGS=-e asm.cmt.right=true
 CMDS64=cyAweDEwMDAwMDg4YTsgcGQgM35zdHJpbmd+Pwo=
 RUN
 NAME=pD@x:90
 FILE=../bins/mach0/bin_longstring
 EXPECT64=NAoK
-ARGS=-e asm.cmtright=false
+ARGS=-e asm.cmt.right=false
 CMDS64=cyAweDEwMDAwMDg4YTsgcGQgM34/c3RyaW5nCg==
 RUN
