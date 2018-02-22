@@ -6,8 +6,7 @@ if [ $? = 0 ]; then
 # if we have jq installed...
 case "$TRAVIS_OS_NAME" in
 linux|'')
-  arr='
-	"aa ; pdfj"
+  arr='"aa ; pdfj"
 	"izzj"
 	"ij"
 	"iaj"

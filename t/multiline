@@ -29,10 +29,8 @@ run_test
 type nasm > /dev/null 2>&1
 if [ $? = 0 ]; then
     PLUGIN=x86.nasm
-    echo "nasm found in path. testing it..."
 else
     PLUGIN=x86
-    echo "cant find nasm, using x86"
 fi
 BITS=32
 
@@ -40,7 +38,7 @@ BITS=32
 TESTFILE=../bins/other/asm/multiline.asm
 NAME='labels replacements (multiline)'
 BROKEN=
-CMDS='!rasm2 -a '${PLUGIN}' -b '${BITS}' -f "'${TESTFILE}'"
+CMDS='!rasm2 -a '${PLUGIN}' -b '${BITS}' -f "'${TESTFILE}'" with plugin '${PLUGIN}'
 '
 
 EXPECT="9090e8fbffffff
