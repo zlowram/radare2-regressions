@@ -41,11 +41,11 @@ const delims = /['"%]/;
 main(minimist(args, {
   boolean: ['v', 'verbose', 'i', 'interactive']
 }));
+rl.close()
 
 function main (argv) {
   if (argv.h) {
-    console.log(`
-Usage: r2r [options] [file] [name] ([cmds])
+    console.log(`Usage: r2r [options] [file] [name] ([cmds])
  -a    add new test
  -b    mark failing tests as broken
  -c    use -c instead of -i to run r2 (EXPERIMENTAL)
@@ -56,8 +56,7 @@ Usage: r2r [options] [file] [name] ([cmds])
  -j    output in JSON
  -l    list all tests
  -u    unmark broken in fixed tests
- -v    be verbose (show broken tests and use more newlines)
-`);
+ -v    be verbose (show broken tests and use more newlines)`);
     return 0;
   }
 
