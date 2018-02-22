@@ -21,6 +21,23 @@ EXPECT='0x1122334455667788
 '
 run_test
 
+NAME="ldr x25, [sp, -0x28]"
+FILE=malloc://0x200
+CMDS='
+e asm.arch=arm
+e asm.bits=64
+ar > /dev/null
+ar sp=0x2c
+wx f9835df8
+w0 0x28@4
+wx 8877665544332211cacacacacaca@4
+aes
+ar x25
+'
+EXPECT='0x1122334455667788
+'
+run_test
+
 NAME="ldur x25, [sp, 0x28]"
 FILE=malloc://0x200
 CMDS='
