@@ -504,27 +504,18 @@ EXPECT='- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
 run_test
 
 NAME="ldp tests"
-#            0x00000000  ~   000500a9       stp x0, x1, [x8]
-#            0x00000004  ~   020d01a9       stp x2, x3, [x8, 0x10]
-#            0x00000008      041502a9       stp x4, x5, [x8, 0x20]
-#            0x0000000c      08810091       add x8, x8, 0x20
-#            0x00000010      0415ffa8       ldp x4, x5, [x8], -0x10
-#            0x00000014      020d40a9       ldp x2, x3, [x8]
-#            0x00000018      0005ffa9       ldp x0, x1, [x8, -0x10]!
+#            0x00000000      0415ffa8       ldp x4, x5, [x8], -0x10
+#            0x00000004      020d40a9       ldp x2, x3, [x8]
+#            0x00000008      0005ffa9       ldp x0, x1, [x8, -0x10]!
 FILE=malloc://0x200
 CMDS='
 e asm.arch=arm
 e asm.bits=64
 ar > /dev/null
-aer x0=0
-aer x1=1
-aer x2=2
-aer x3=3
-aer x4=4
-aer x5=5
-aer x8=0x100
-wx 000500a9020d01a9041502a9088100910415ffa8020d40a90005ffa9
-7aes
+aer x8=0x120
+wx 0415ffa8020d40a90005ffa9
+wx 000000000000000001000000000000000200000000000000030000000000000004000000000000000500000000000000 @ 0x100
+3aes
 ar x0; ar x1; ar x2; ar x3; ar x4; ar x5; 
 '
 EXPECT='0x00000000
