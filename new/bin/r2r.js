@@ -30,6 +30,7 @@ rl.on('error', err => {
 });
 
 const flagMap = {
+  '-h': '--help',
   '-i': '--interactive',
   '-v': '--verbose'
 };
@@ -44,8 +45,8 @@ main(minimist(args, {
 rl.close()
 
 function main (argv) {
-  if (argv.h) {
-    console.log(`Usage: r2r [options] [file] [name] ([cmds])
+  if (argv.help) {
+    console.log(`Usage: r2r [options] [filter]
  -a    add new test
  -b    mark failing tests as broken
  -c    use -c instead of -i to run r2 (EXPERIMENTAL)
@@ -197,7 +198,6 @@ function main (argv) {
         });
       }
       nr.quit().then(_ => {
-        console.log('Done');
         if (nr.queue.length > 0 && (argv.interactive || argv.i)) {
           console.error(nr.queue.length, 'failed tests');
           pullQueue(fin);
