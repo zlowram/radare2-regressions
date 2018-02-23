@@ -42,7 +42,6 @@ const delims = /['"%]/;
 main(minimist(args, {
   boolean: ['v', 'verbose', 'i', 'interactive']
 }));
-rl.close()
 
 function main (argv) {
   if (argv.help) {
@@ -58,6 +57,7 @@ function main (argv) {
  -l    list all tests
  -u    unmark broken in fixed tests
  -v    be verbose (show broken tests and use more newlines)`);
+    rl.close()
     return 0;
   }
 
