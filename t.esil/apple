@@ -32,8 +32,10 @@ e asm.emustr=true
 af
 pdsf
 '
-EXPECT='0x00002920 str.alloc
+EXPECT='0x00002918 "alloc"
+0x00002920 str.alloc
 0x00002928 bl sym.imp.objc_msgSend
+0x00002934 "init"
 0x0000293c str.init
 0x00002940 bl sym.imp.objc_msgSend
 0x0000294c "X\x10\x9d\xe5"
