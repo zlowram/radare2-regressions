@@ -361,6 +361,6 @@ aa
 aae
 pd 1 @ 0x08048432
 '
-EXPECT='[36m| [0m[36m          [0m[32m0x08048432[0m      [37mlea[36m eax[0m,[36m [0m[33mstr.Hello_PIC[0m[36m[0m[0m
+EXPECT='[36m|[0m [36m          [0m[32m0x08048432[0m      [37mlea[36m eax[0m,[36m [0m[33mstr.Hello_PIC[0m[36m[0m[0m
 '
 run_test
