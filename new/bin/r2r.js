@@ -70,8 +70,9 @@ function main (argv) {
     }
 
     if (argv.e) {
-      // nr.quit();
-     // return 0;
+      console.error('TODO');
+      nr.quit();
+      return 0;
     }
     if (argv.a) {
       console.error('TODO: Use: r2r -a instead of r2r.js for now');
