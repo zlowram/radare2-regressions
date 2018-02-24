@@ -31,6 +31,7 @@ rl.on('error', err => {
 
 const flagMap = {
   '-h': '--help',
+  '-g': '--grep',
   '-i': '--interactive',
   '-v': '--verbose'
 };
@@ -52,6 +53,7 @@ function main (argv) {
  -d    delete test
  -e    edit test
  -f    fix tests that are not passing
+ -g    grep
  -i    interactive mode
  -j    output in JSON
  -l    list all tests
@@ -71,7 +73,7 @@ function main (argv) {
      // return 0;
     }
     if (argv.a) {
-      console.error('Use: r2r -a instead of r2r.js for now');
+      console.error('TODO: Use: r2r -a instead of r2r.js for now');
 /*
       const test = {
         from: argv.a,
