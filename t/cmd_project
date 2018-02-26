@@ -303,6 +303,33 @@ EXPECT=''
 
 run_test
 
+NAME='Delete a saved project and used directory (with Pd)'
+FILE='../bins/elf/analysis/main'
+BROKEN=1
+ARGS='-n'
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+Pd blah > /dev/null
+Pl~blah
+ls -l `e dir.projects`~blah'
+EXPECT=''
+
+run_test
+
+
+NAME='Delete a saved project and used directory (with P-)'
+FILE='../bins/elf/analysis/main'
+BROKEN=1
+ARGS='-n'
+CMDS='e dir.projects = /tmp/
+Ps blah > /dev/null
+P- blah > /dev/null
+Pl~blah
+ls -l `e dir.projects`~blah'
+EXPECT=''
+
+run_test
+
 NAME='Save project for a file with asm.bits=32 and check the value after loading again'
 FILE='../bins/src/hello.c'
 BROKEN=
