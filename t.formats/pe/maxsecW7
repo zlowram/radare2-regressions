@@ -6,4 +6,4 @@ FILE=../../bins/pe/maxsecW7.exe
 ARGS='-A'
 CMDS="q!"
 EXPECT=''
-run_test
+#run_test
