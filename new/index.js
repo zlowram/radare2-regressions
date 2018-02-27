@@ -554,11 +554,11 @@ class NewRegressions {
         const k = part.added ? colors.green : colors.magenta;
         const v = part.value.replace(/\s*$/, '');
         if (part.added) {
-          console.log('+', k(v.split(/\n/g).join('\n+')));
+          console.log(k('+' + v.split(/\n/g).join('\n+')));
         } else if (part.removed) {
-          console.log('-', k(v.split(/\n/g).join('\n-')));
+          console.log(k('-' + v.split(/\n/g).join('\n-')));
         } else {
-          console.log(' ', v.split(/\n/g).join('\n '));
+          console.log(' ' + v.split(/\n/g).join('\n '));
         }
       });
 /*
