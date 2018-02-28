@@ -58,6 +58,19 @@ CMDS="!ragg2 -p n80 -w 79:c3 -x"
 EXPECT=''
 run_test
 
+NAME='ragg2 -q 0x45414146'
+BROKEN=
+CMDS='!ragg2 -q 0x45414146'
+EXPECT='Little endian: -1
+Big endian: 12
+'
+run_test
+
+NAME='ragg2 -q 45414146'
+BROKEN=
+CMDS='!ragg2 -q 45414146'
+EXPECT=''
+run_test
 
 NAME='ragg2 -k linux -a x86 -b32 simple_cmp.r'
 BROKEN=1
