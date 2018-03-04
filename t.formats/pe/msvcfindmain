@@ -1,0 +1,14 @@
+#!/bin/sh
+for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
+
+NAME='PE: msvcfindmain'
+FILE=../../bins/pe/msvcfindmain.exe
+IGNORE_ERR=1
+ARGS=''
+CMDS='
+aa
+pd 1 @ main~?0x00401000
+'
+EXPECT='1
+'
+run_test
