@@ -209,7 +209,7 @@ ARGS=-n
 CMDS='e bin.strpurge=all,!0x2fa,!0x1953
 izzj
 '
-EXPECT='{"strings":[,{"vaddr":762,"paddr":762,"ordinal":4,"size":5,"length":4,"section":"","type":"ascii","string":"cHV0cw=="},{"vaddr":6483,"paddr":6483,"ordinal":65,"size":18,"length":17,"section":"","type":"ascii","string":"cHV0c0BAR0xJQkNfMi4yLjU="}]}
+EXPECT='{"strings":[{"vaddr":762,"paddr":762,"ordinal":4,"size":5,"length":4,"section":"","type":"ascii","string":"cHV0cw=="},{"vaddr":6483,"paddr":6483,"ordinal":65,"size":18,"length":17,"section":"","type":"ascii","string":"cHV0c0BAR0xJQkNfMi4yLjU="}]}
 
 '
 RUN
@@ -281,12 +281,12 @@ CMDS64=aX5hcmNoCg==
 RUN
 NAME=izj unicode blocks
 FILE=../bins/elf/strenc
-EXPECT64=Wyx7InZhZGRyIjo0MjAyOTk2LCJwYWRkciI6ODY5Miwib3JkaW5hbCI6Miwic2l6ZSI6MTEsImxlbmd0aCI6MTAsInNlY3Rpb24iOiIucm9kYXRhIiwidHlwZSI6ImFzY2lpIiwic3RyaW5nIjoiWlc1ZlZWTXVkWFJtT0E9PSJ9LHsidmFkZHIiOjQyMDMwMDcsInBhZGRyIjo4NzAzLCJvcmRpbmFsIjozLCJzaXplIjo2MSwibGVuZ3RoIjo1NCwic2VjdGlvbiI6Ii5yb2RhdGEiLCJ0eXBlIjoidXRmOCIsInN0cmluZyI6ImRYUm1PRDRnWEZ4MU1EQmhNbHhjZFRJd1lXTmNYRlV3TURBeE1ETTBPQ0JwYmlCNVpXeHNiM2M2WEdWYk16TnRJTUtpNG9LczhKQ05pQ0JjWlZzd2JWeHUiLCJibG9ja3MiOlsiQmFzaWMgTGF0aW4iLCJMYXRpbi0xIFN1cHBsZW1lbnQiLCJDdXJyZW5jeSBTeW1ib2xzIiwiR290aGljIl19LHsidmFkZHIiOjQyMDMyMDgsInBhZGRyIjo4OTA0LCJvcmRpbmFsIjo3LCJzaXplIjo2OCwibGVuZ3RoIjozMywic2VjdGlvbiI6Ii5yb2RhdGEiLCJ0eXBlIjoidXRmMTZsZSIsInN0cmluZyI6ImFYTWdZU0IzWVd4c0lIZHBkR2dnYm04Z1pXMWlaV1JrWldRZ2VtVnliM05jYmc9PSJ9XQo=
+EXPECT64=W3sidmFkZHIiOjQyMDI5OTYsInBhZGRyIjo4NjkyLCJvcmRpbmFsIjoyLCJzaXplIjoxMSwibGVuZ3RoIjoxMCwic2VjdGlvbiI6Ii5yb2RhdGEiLCJ0eXBlIjoiYXNjaWkiLCJzdHJpbmciOiJaVzVmVlZNdWRYUm1PQT09In0seyJ2YWRkciI6NDIwMzAwNywicGFkZHIiOjg3MDMsIm9yZGluYWwiOjMsInNpemUiOjYxLCJsZW5ndGgiOjU0LCJzZWN0aW9uIjoiLnJvZGF0YSIsInR5cGUiOiJ1dGY4Iiwic3RyaW5nIjoiZFhSbU9ENGdYRngxTURCaE1seGNkVEl3WVdOY1hGVXdNREF4TURNME9DQnBiaUI1Wld4c2IzYzZYR1ZiTXpOdElNS2k0b0tzOEpDTmlDQmNaVnN3YlZ4dSIsImJsb2NrcyI6WyJCYXNpYyBMYXRpbiIsIkxhdGluLTEgU3VwcGxlbWVudCIsIkN1cnJlbmN5IFN5bWJvbHMiLCJHb3RoaWMiXX0seyJ2YWRkciI6NDIwMzIwOCwicGFkZHIiOjg5MDQsIm9yZGluYWwiOjcsInNpemUiOjY4LCJsZW5ndGgiOjMzLCJzZWN0aW9uIjoiLnJvZGF0YSIsInR5cGUiOiJ1dGYxNmxlIiwic3RyaW5nIjoiYVhNZ1lTQjNZV3hzSUhkcGRHZ2dibThnWlcxaVpXUmtaV1FnZW1WeWIzTmNiZz09In1dCg==
 CMDS64=ZSBiaW4uc3RycHVyZ2U9YWxsLCE0MjAyOTk2LCE0MjAzMDA3LCE0MjAzMjA4Cml6ago=
 RUN
 NAME=izzj unicode blocks
 FILE=../bins/elf/strenc-guess-utf32le
-EXPECT64=eyJzdHJpbmdzIjpbLHsidmFkZHIiOjQxOTU5MjAsInBhZGRyIjoxNjE2LCJvcmRpbmFsIjoxMywic2l6ZSI6NDQsImxlbmd0aCI6MTAsInNlY3Rpb24iOiIucm9kYXRhIiwidHlwZSI6InV0ZjMybGUiLCJzdHJpbmciOiJZV0pqWkdWbThKQ05pQ0FnWnc9PSIsImJsb2NrcyI6WyJCYXNpYyBMYXRpbiIsIkdvdGhpYyJdfV19Cgo=
+EXPECT64=eyJzdHJpbmdzIjpbeyJ2YWRkciI6NDE5NTkyMCwicGFkZHIiOjE2MTYsIm9yZGluYWwiOjEzLCJzaXplIjo0NCwibGVuZ3RoIjoxMCwic2VjdGlvbiI6Ii5yb2RhdGEiLCJ0eXBlIjoidXRmMzJsZSIsInN0cmluZyI6IllXSmpaR1ZtOEpDTmlDQWdadz09IiwiYmxvY2tzIjpbIkJhc2ljIExhdGluIiwiR290aGljIl19XX0KCg==
 CMDS64=ZSBiaW4uc3RycHVyZ2U9YWxsLCE0MTk1OTIwCml6emoK
 RUN
 NAME=iz/izz bin.strpurge
