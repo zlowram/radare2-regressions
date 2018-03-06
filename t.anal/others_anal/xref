@@ -3,6 +3,19 @@
 
 for a in . .. ../.. ; do [ -e $a/tests.sh ] && . $a/tests.sh ; done
 
+NAME="axt avr"
+BROKEN=
+FILE=../../bins/firmware/main.avr
+ARGS=
+CMDS='f str.hello 12 @ 0x276
+Csa 12 @ str.hello
+axd 0x260 @ str.hello
+pd 1 @ 0x260'
+EXPECT='            ; DATA XREF from 0x00000276 (str.hello + 0)
+            0x00000260      80e0           ldi r24, 0x00
+'
+run_test
+
 NAME="axt udis86"
 BROKEN=
 FILE=../../bins/elf/analysis/main
