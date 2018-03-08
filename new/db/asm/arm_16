@@ -32,6 +32,44 @@ adB "adc r0, r1, 0x1360000" 41f19b70
 d "adc r0, r1, 0x1360000" 41f19b70
 adB "adc r0, r1, 0x3800" 41f56050
 d "adc r0, r1, 0x3800" 41f56050
+adB "adc sl, fp, 0xfb" 4bf1fb0a
+d "adc sl, fp, 0xfb" 4bf1fb0a
+adB "adcs fp, ip, 0xa" 5cf10a0b
+d "adcs fp, ip, 0xa" 5cf10a0b
+aB "adc r2, 0x1f" 42f11f02
+d "adc r2, r2, 0x1f" 42f11f02
+adB "adcs r6, r7" 7e41
+d "adcs r6, r7" 7e41
+aB "adc r2, r1, r2" 41eb0202
+d "adc.w r2, r1, r2" 41eb0202
+aB "adc r8, r1" 48eb0108
+d "adc.w r8, r8, r1" 48eb0108
+aB "adc r1, r8" 41eb0801
+d "adc.w r1, r1, r8" 41eb0801
+aB "adc r1, r2, r3" 42eb0301
+d "adc.w r1, r2, r3" 42eb0301
+aB "adc r8, sb, sl" 49eb0a08
+d "adc.w r8, sb, sl" 49eb0a08
+aB "adcs r1, r2, r3" 52eb0301
+d "adcs.w r1, r2, r3" 52eb0301
+aB "adc r8, sb, sl, lsl 31" 49ebca78
+d "adc.w r8, sb, sl, lsl 31" 49ebca78
+aB "adc r8, sb, sl, lsl 28" 49eb0a78
+d "adc.w r8, sb, sl, lsl 28" 49eb0a78
+aB "adc r8, sb, sl, lsl 3" 49ebca08
+d "adc.w r8, sb, sl, lsl 3" 49ebca08
+aB "adc r8, sb, sl, lsr 32" 49eb1a08
+d "adc.w r8, sb, sl, lsr 32" 49eb1a08
+aB "adc r8, sb, sl, lsr 31" 49ebda78
+d "adc.w r8, sb, sl, lsr 31" 49ebda78
+aB "adc r8, sb, sl, asr 32" 49eb2a08
+d "adc.w r8, sb, sl, asr 32" 49eb2a08
+aB "adc r8, sb, sl, asr 31" 49ebea78
+d "adc.w r8, sb, sl, asr 31" 49ebea78
+aB "adc r8, sb, sl, ror 31" 49ebfa78
+d "adc.w r8, sb, sl, ror 31" 49ebfa78
+aB "adc r8, sb, sl, rrx" 49eb3a08
+d "adc.w r8, sb, sl, rrx" 49eb3a08
 ad "pop {r0}" 01bc
 ad "pop {r0, r1}" 03bc
 a "pop {r0-r1}" 03bc
